@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About — Freener's Digital Services</title>
+  <style>
+    :root {
+      --green: #00a86b;
+      --silver: #f2f2f2;
+      --text: #333;
+      --white: #fff;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      background:  var(--silver);
+  background-size: cover; /* ensures the image covers the entire page */
+  color: #333;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: none;
+  overscroll-behavior: none;
+  touch-action: pan-y;
+
+    }
+    header.site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: darkgreen;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    .logo { font-weight: 700; color: #fff; font-size: 1rem; }
+    
+    .nav {
+      display: flex;
+      gap: 20px;
+    }
+    .nav a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .nav a:hover,
+    .nav a.active {
+     color: greenyellow;
+    }
+    .btn {
+      background: var(--green);
+      color: var(--white);
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      background: var(--silver);
+      color: var(--green);
+    }
+    /* ===== MASTER MOBILE HAMBURGER ===== */
+.nav-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #ffffff;
+ 
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    z-index: 1001;
+  }
+
+  .nav {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 170px;
+    background: darkgreen;
+    flex-direction: column;
+    padding: 20px;
+    transition: right 0.3s ease;
+    
+  }
+
+  .nav.active {
+    right: 0;
+  }
+
+  .nav a {
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.05rem;
+  }
+
+  .nav a:hover {
+    background: greenyellow;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+}
+/* ===== MOBILE NAV (MATCH HOME PAGE STYLE) ===== */
+@media (max-width: 768px) {
+
+  .nav-toggle{
+    display:block;
+    font-size:1.8rem;
+    background:none;
+    border:none;
+    color:#fff;
+    cursor:pointer;
+  }
+
+  #navMenu{
+    position:absolute;
+    top:70px;
+    right:20px;
+    width:170px;
+    height:auto;
+    background:#00a86b;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    padding:20px 0;
+    gap: 15px;
+    z-index:999;
+    border-radius: 12px;
+  }
+
+  #navMenu.show{
+    display:flex;
+  }
+
+  #navMenu a{
+    color:#fff;
+    font-size:1.1rem;
+  }
+
+  #navMenu .btn{
+    background:#fff;
+    color:#00a86b;
+  }
+}
+
+
+    main.container {
+      padding: 100px 5% 60px;
+    }
+    .about-hero h1 {
+      color: var(--green);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .about-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      background: var(--white);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 30px;
+      margin-bottom: 15px;
+    }
+    .about-image img {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .about-text {
+      flex: 1;
+      margin-left: 30px;
+    }
+    .about-text p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+      color: #000;
+    }
+    ul {
+      margin: 20px 0;
+      padding-left: 20px;
+      list-style-type: square;
+      color: #000;
+    }
+    ul li {
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    /* Mission Section */
+    .mission {
+      background: var(--white);
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-top: 40px;
+      text-align: center;
+    }
+    .mission h2 {
+      color: var(--green);
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+    .mission p {
+      color: #000;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Catalog Button */
+.catalog-btn {
+  display: inline-block;
+  background: var(--green);
+  color: var(--white);
+  padding: 12px ;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 15px ;
+  transition: all 0.3s ease;
+}
+.catalog-btn:hover {
+  background: #007b50;
+  color: #fff;
+  transform: translateY(-2px);
+}
+      .about-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      .about-text {
+        margin-left: 0;
+        margin-top: 20px;
+      }
+      .about-image img {
+        max-width: 250px;
+      }
+
+      /* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+    
+  </style>
+</head>
+<body>
+  <!-- ===== MASTER HAMBURGER NAV (USED ON ALL PAGES) ===== -->
+<header class="site-header">
+  <div class="logo">Freener's Digital Services</div>
+
+  <nav class="nav" id="mainNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="contact.html">Contact</a>
+    <a href="payment.html">Payment</a>
+    <a href="faq.html">FAQs</a>
+    <a href="terms.html" class="mobile-only">Terms</a>
+    <a href="privacy.html" class="mobile-only">Privacy</a>
+  </nav>
+
+  <div class="nav-toggle" id="navToggle">&#9776;</div>
+</header>
+
+  <main class="container">
+
+     <section class="about-hero">
+      <h1>About Freener's Digital Services</h1>
+      <div class="about-inner">
+        <div class="about-image">
+          <img src="./images/super-hero-logo.png" alt="About image">
+        </div>
+        <div class="about-text">
+          <p>Freener’s Digital Services is a digital infrastructure company dedicated to support individuals, financial firms and professional businesses streamline operations, secure their systems, scale through cloud infrastructure, cyber attacks, CRM automation & more intelligent digital solutions.</p>
+          <p>We support brands & businesses by providing clean website, Ai automation, infrastructure & more with flexible digital assistance support tailored to real business needs. Our focus is on simplicity, quality, and results — no unnecessary complexity.</p>
+          <p>At Freener’s Digital Services, every project is treated with care, attention to detail & clear understanding of your goals. We believe strong digital support should feel easy, professional, and trustworthy.</p>
+          <p>Whether you’re just starting out or scaling up, we’re here to Assist you move forward with confidence.
+Let’s build something meaningful together.</p>
+          <ul>
+            <li>Trusted developer team</li>
+            <li>Efficient virtual assistants</li>
+            <li>On-demand freelance support</li>
+            <li>And many more</li>
+          </ul>
+        </div>
+      </div>
+
+    <section class="about-hero">
+
+  <h1>About The Founder</h1>
+
+  <div class="about-inner">
+    <div class="about-image">
+      <img src="images/C E O.jpg" alt="Founder of Freener's Digital Services">
+    </div>
+
+    <div class="about-text">
+      <p>
+        Awhaefe Freener is a Digital infrastructure Consultant and the Founder of  <strong>Freener’s Digital Services</strong>, a brand dedicated to empowering businesses and individuals with smart, reliable, & scalable digital solutions.
+      </p>
+
+      <p>
+        The company focuses on building digital experiences that are not only functional but impactful. Every project is guided by commitment to excellence, innovation, & helping clients succeed in an increasingly digital world.
+      </p>
+
+      <p>
+        The brand core princile is a simple philosophy: doing things right, prioritizing execution over excuses, and recognizing digital presence as a strategic business asset. With precision, consistency & vision. Freener’s Digital Services helps brands overcome limitations and transform ideas into measurable success.
+      </p>
+
+      <ul>
+        <li>Driven by clarity, growth, and business empowerment</li>
+        <li>Focused on execution, precision, and measurable impact</li>
+        <li>Committed to delivering smart digital solutions that work for all businesses</li>
+      </ul>
+    </div>
+  </div>
+
+  <h1>Our Vision</h1>
+  <ul>
+    <li>To empower businesses through digital innovation.</li>
+    <li>To deliver intelligent solutions for every client.</li>
+    <li>To operate globally with Integrity & results driven.</li>
+    <li>To support growth through strategic digital expertise.</li>
+    <li>To simplify digital solutions through infrastructure & smart support.</li>
+  </ul>
+
+  <h1>Our Values</h1>
+  <ul>
+    <li>Integrity</li>
+    <li>Excellence</li>
+    <li>Innovation</li>
+    <li>Reliability</li>
+    <li>Client-Centered Focus</li>
+  </ul>
+
+  <div class="mission">
+    <h1>Our Mission</h1>
+    <p>
+      To empower individuals and businesses through reliable digital solutions that enhance productivity, strengthen online presence, and expand global reach. We bridge creativity and technology by delivering user-focused web solutions, Ai automation, infrastructure & nmore professional assistance that drive long-term success.
+    </p>
+  </div>
+
+      <h1>Explore our Catalog</h1>
+<a href="https://wa.me/c/2347078911819" class="btn catalog-btn">View Catalog</a>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+ 
+  <script>
+    // Hamburger toggle
+    
+const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  navToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+  });
+
+  // Auto close when any link is clicked
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('active');
+    });
+  });
+
+    // Dynamic Year
+    document.getElementById("yearAbout").textContent = new Date().getFullYear();
+
+    fetch("https://modular-infrastructure-production.up.railway.app/api/status")
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+  </script>
+</body>
+</html>

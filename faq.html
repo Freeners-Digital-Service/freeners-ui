@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ | Freener's Digital Services</title>
+  <style>
+    :root {
+      --silver: #f2f2f2;
+      --green: #00a86b;
+      --dark: #1a1a1a;
+      --text: #333;
+      --white: #fff;
+    }
+    /* Reset + prevent side scroll */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--silver);
+      color: var(--text);
+      line-height: 1.6;
+       overscroll-behavior-x: none;
+      overscroll-behavior: none;
+  touch-action: pan-y;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background-color: darkgreen;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo { font-weight: 700; color: #fff; font-size: 1rem; }
+    nav { display: flex; gap: 20px; }
+    nav a { text-decoration: none; color: #fff; font-weight: 500; transition: color 0.3s; }
+    nav a:hover { color: greenyellow; }
+
+    /* ===== MASTER MOBILE HAMBURGER ===== */
+.nav-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #ffffff;
+  
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    z-index: 1001;
+  }    
+    .nav {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 170px;
+    background: darkgreen;
+    flex-direction: column;
+    padding: 20px;
+    transition: right 0.3s ease;
+  }
+    .nav.active {
+    right: 0;
+  }
+
+  .nav a {
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.05rem;
+  }
+  .nav a:hover {
+    background: greenyellow;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+}
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background: linear-gradient(to bottom right, var(--green), #00945f);
+      color: var(--white);
+    }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .faq-container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+    .faq-item {
+      background: var(--white);
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    }
+    .faq-question {
+      padding: 15px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      position: relative;
+    }
+    .faq-question::after {
+      content: '+';
+      position: absolute;
+      right: 20px;
+      font-weight: 700;
+      transition: transform 0.3s ease;
+    }
+    .faq-question.active::after { transform: rotate(45deg); }
+    .faq-answer { display: none; padding: 0 20px 15px 20px; }
+
+    /* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+  </style>
+</head>
+<body>
+  <!-- ===== MASTER HAMBURGER NAV (USED ON ALL PAGES) ===== -->
+<header class="site-header">
+  <div class="logo">Freener's Digital Services</div>
+
+  <nav class="nav" id="mainNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="contact.html">Contact</a>
+    <a href="payment.html">Payment</a>
+    <a href="faq.html">FAQs</a>
+    <a href="terms.html" class="mobile-only">Terms</a>
+    <a href="privacy.html" class="mobile-only">Privacy</a>
+  </nav>
+
+  <div class="nav-toggle" id="navToggle">&#9776;</div>
+</header>
+
+  <main class="faq-container">
+    <section class="hero">
+      <h1>Frequently Asked Questions</h1>
+      <p>Your questions & answered about our services.</p>
+    </section>
+
+    <div class="faq-item">
+      <div class="faq-question">What is Freener’s Digital Services?</div>
+      <div class="faq-answer">
+        <p>Freener’s Digital Services is a full-service digital infrastructure and business support firm providing strategic web, automation, cybersecurity, and more operational solutions for modern businesses</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"> Who do you work with?</div>
+      <div class="faq-answer">
+        <p>We work with startups, SMEs, entrepreneurs, and growing organizations seeking structured, scalable digital systems.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you serve international clients?</div>
+      <div class="faq-answer">
+        <p>Yes. We operate globally and provide remote-first digital solutions.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">What makes your firm different from freelancers?</div>
+      <div class="faq-answer">
+        <p>We operate with structured processes, infrastructure planning, long-term support models, and performance accountability.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"> Do you offer consultations before starting?</div>
+      <div class="faq-answer">
+        <p>Yes. Every project begins with a structured discovery session.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you offer custom pricing?</div>
+      <div class="faq-answer">
+        <p>Yes. Every solution is tailored based on scope, complexity, and business objectives.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"> Do you offer monthly retainers?</div>
+      <div class="faq-answer">
+        <p>Yes. We provide structured monthly retainers for ongoing management and support.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you offer one-time project services?</div>
+      <div class="faq-answer">
+        <p>Yes, for clearly defined deliverables.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How do payments work?</div>
+      <div class="faq-answer">
+        <p>Projects require 50% initial commitment payment, with structured milestone payments where applicable.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you sign service agreements?</div>
+      <div class="faq-answer">
+        <p> Yes. Formal agreements ensure clarity and accountability.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"> Do you build custom websites?</div>
+      <div class="faq-answer">
+        <p>Yes. We design responsive, performance-focused websites aligned with your brand identity.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you redesign existing websites?</div>
+      <div class="faq-answer">
+        <p>Yes. We modernize outdated websites for improved performance and authority.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Will my website be mobile responsive?</div>
+      <div class="faq-answer">
+        <p>Absolutely. All websites are optimized for mobile, tablet, and desktop.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you provide website hosting?</div>
+      <div class="faq-answer">
+        <p>Yes. We offer secure hosting and performance management.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you handle website maintenance?</div>
+      <div class="faq-answer">
+        <p>Yes. We provide structured maintenance plans.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">What does hosting & management include?</div>
+      <div class="faq-answer">
+        <p>Server setup, security monitoring, performance optimization, and technical oversight.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you manage domain configuration?</div>
+      <div class="faq-answer">
+        <p>Yes. We handle DNS configuration and technical setup.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Can you migrate my website?</div>
+      <div class="faq-answer">
+        <p>Yes. We handle seamless migrations.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"> Do you offer cloud setup?</div>
+      <div class="faq-answer">
+        <p>Yes. We configure and manage secure cloud environments.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you monitor uptime?</div>
+      <div class="faq-answer">
+        <p>Yes. Infrastructure monitoring is included in management plans.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Is AI automation System available?</div>
+      <div class="faq-answer">
+        <p>Yes. We implement intelligent systems to streamline operations and reduce manual workload.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you build chatbots?</div>
+      <div class="faq-answer">
+        <p>Yes. We create structured chatbot systems for customer engagement and support.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you maintain automation systems?</div>
+      <div class="faq-answer">
+        <p> Yes. Ongoing optimization and monitoring are available</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Can you automate CRM workflows?</div>
+      <div class="faq-answer">
+        <p>Yes. We design CRM automation systems for efficiency.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you integrate tools together?</div>
+      <div class="faq-answer">
+        <p>Yes. We integrate business tools for seamless data flow.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">What cybersecurity services do you offer?</div>
+      <div class="faq-answer">
+        <p>Website protection, threat monitoring, system hardening, and risk mitigation strategies.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"> Do you protect against malware?</div>
+      <div class="faq-answer">
+        <p>Yes. We implement preventive and monitoring systems.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you secure cloud environments?</div>
+      <div class="faq-answer">
+        <p>Yes. Security configurations are applied to all managed infrastructure.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"> Can you audit my website security?</div>
+      <div class="faq-answer">
+        <p>Yes. We provide structured security assessments.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"> Is cybersecurity ongoing?</div>
+      <div class="faq-answer">
+        <p>Yes. Security requires continuous monitoring.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you offer technical support?</div>
+      <div class="faq-answer">
+        <p>Yes. Structured website and system support is available.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">What does CRM setup include?</div>
+      <div class="faq-answer">
+        <p>System configuration, workflow automation, and optimization.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you provide email automation services?</div>
+      <div class="faq-answer">
+        <p> Yes. We design automated email workflows.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you handle data entry and management?</div>
+      <div class="faq-answer">
+        <p> Yes. We provide structured data organization and accuracy management.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you offer file management systems?</div>
+      <div class="faq-answer">
+        <p>Yes. We implement secure digital filing structures.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you provide social media management?</div>
+      <div class="faq-answer">
+        <p> Yes. We manage strategy, posting, and performance optimization.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you offer lead generation services?</div>
+      <div class="faq-answer">
+        <p> Yes. We design structured lead acquisition systems.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you provide writing and translation services?</div>
+      <div class="faq-answer">
+        <p>Yes. Professional writing and localization services are available.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"> Can you support sales automation?</div>
+      <div class="faq-answer">
+        <p> Yes. We implement structured sales workflows.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you create digital growth strategies?</div>
+      <div class="faq-answer">
+        <p>Yes. Strategic advisory is available.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How long does a typical project take?</div>
+      <div class="faq-answer">
+        <p>Timelines vary based on scope and complexity.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Will I have a dedicated point of contact?</div>
+      <div class="faq-answer">
+        <p>Yes. Communication is structured and professional.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question"> Do you provide reports?</div>
+      <div class="faq-answer">
+        <p>Yes. Performance and infrastructure reports are available for managed clients.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Is my business data confidential?</div>
+      <div class="faq-answer">
+        <p>Absolutely. Confidentiality is our core operational standard.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you offer long-term partnerships?</div>
+      <div class="faq-answer">
+        <p>Yes. We prioritize strategic, ongoing relationships.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">What are add-on services?</div>
+      <div class="faq-answer">
+        <p>Specialized enhancements such as advanced automation, additional integrations, or extended support.</p>
+      </div>
+    </div>
+
+<div class="faq-item">
+      <div class="faq-question">Can I upgrade my service later?</div>
+      <div class="faq-answer">
+        <p>Yes. Solutions are scalable.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you offer emergency technical support?</div>
+      <div class="faq-answer">
+        <p>Yes, under structured priority plans.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Can you customize solutions beyond listed services?</div>
+      <div class="faq-answer">
+        <p>Yes. We design tailored infrastructure systems.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I get started?</div>
+      <div class="faq-answer">
+        <p>Schedule a consultation and we will structure a solution aligned with your business objectives.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How can I contact you?</div>
+      <div class="faq-answer">
+        <p>You can contact us at:<br>
+        <a href="https://wa.me/2347078911819" target="_blank">💬 WhatsApp</a><br>
+        <strong>Email:</strong> freenersdigitals@gmail.com<br>
+        <strong>Phone:</strong> +2347078911819</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+  <script>
+    // MASTER MOBILE HAMBURGER
+    const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  navToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+  });
+
+  // Auto close when any link is clicked
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('active');
+    });
+  });
+    // Auto-update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // FAQ accordion
+    const questions = document.querySelectorAll('.faq-question');
+    questions.forEach(q => {
+      q.addEventListener('click', () => {
+        q.classList.toggle('active');
+        const answer = q.nextElementSibling;
+        answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
+      });
+    });
+    fetch("https://modular-infrastructure-production.up.railway.app/api/status")
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+  </script>
+</body>
+</html>

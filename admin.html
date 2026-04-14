@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freener Admin OS</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
+
+body{
+  display:flex;
+  height:100vh;
+  background:#f1f5f9;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:240px;
+  background:#0f172a;
+  color:#fff;
+  padding:20px;
+}
+.sidebar h2{margin-bottom:20px;}
+.sidebar a{
+  display:block;
+  color:#94a3b8;
+  padding:10px;
+  margin-bottom:5px;
+  text-decoration:none;
+  border-radius:6px;
+}
+.sidebar a.active,
+.sidebar a:hover{
+  background:#1e293b;
+  color:#fff;
+}
+
+/* MAIN WRAP */
+.main{
+  flex:1;
+  display:flex;
+}
+
+/* CENTER */
+.center{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
+/* TOPBAR */
+.topbar{
+  padding:15px 25px;
+  background:#fff;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* CONTENT */
+.content{
+  padding:20px;
+  overflow:auto;
+}
+
+/* RIGHT PANEL */
+.panel{
+  width:260px;
+  background:#fff;
+  border-left:1px solid #e2e8f0;
+  padding:15px;
+}
+
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+th,td{
+  padding:10px;
+  border-bottom:1px solid #eee;
+  font-size:13px;
+}
+th{background:#f8fafc;text-align:left;}
+
+tr:hover{
+  background:#f1f5f9;
+  cursor:pointer;
+}
+
+/* SEARCH */
+.search{
+  padding:8px;
+  width:100%;
+  margin-bottom:10px;
+  border:1px solid #ddd;
+  border-radius:6px;
+}
+
+/* PANEL CARD */
+.panel-card{
+  background:#f8fafc;
+  padding:12px;
+  border-radius:10px;
+  font-size:13px;
+  margin-bottom:10px;
+}
+
+/* BUTTON */
+.btn{
+  width:100%;
+  padding:8px;
+  margin-top:8px;
+  border:none;
+  background:#0f172a;
+  color:#fff;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* CHART */
+.chart{
+  height:150px;
+  display:flex;
+  align-items:flex-end;
+  gap:10px;
+}
+.bar{
+  flex:1;
+  background:#0f172a;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+  <h2>FDOS</h2>
+  <a href="#" data-page="users" class="active">Users</a>
+  <a href="#" data-page="billing">Billing</a>
+  <a href="#" data-page="analytics">Analytics</a>
+</div>
+
+<div class="main">
+
+  <!-- CENTER -->
+  <div class="center">
+    <div class="topbar">
+      <span id="title">Users</span>
+      <span id="liveUsers">Users: 0</span>
+    </div>
+
+    <div class="content" id="content"></div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="panel" id="panel">
+    <div class="panel-card">
+      <strong>No Selection</strong><br>
+      Select item to manage
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+/* ===== DATA ===== */
+let users = [
+  {id:1,name:"John",status:"Active"},
+  {id:2,name:"Mary",status:"Inactive"},
+  {id:3,name:"David",status:"Active"}
+];
+
+let payments = [
+  {id:1,user:"John",amount:200,status:"Paid"},
+  {id:2,user:"Mary",amount:150,status:"Pending"}
+];
+
+/* ===== PAGES ===== */
+const pages = {
+
+users: `
+<h3>User Management</h3>
+<input class="search" placeholder="Search user..." oninput="filterUsers(this.value)">
+<table id="userTable">
+<tr><th>Name</th><th>Status</th></tr>
+${users.map(u=>`
+<tr onclick="selectUser(${u.id})">
+<td>${u.name}</td>
+<td>${u.status}</td>
+</tr>
+`).join("")}
+</table>
+`,
+
+billing: `
+<h3>Billing System</h3>
+<table>
+<tr><th>User</th><th>Amount</th><th>Status</th></tr>
+${payments.map(p=>`
+<tr onclick="selectPayment(${p.id})">
+<td>${p.user}</td>
+<td>$${p.amount}</td>
+<td>${p.status}</td>
+</tr>
+`).join("")}
+</table>
+`,
+
+analytics: `
+<h3>Analytics</h3>
+<div class="chart" id="chart"></div>
+`
+
+};
+
+/* ===== NAV ===== */
+document.querySelectorAll(".sidebar a").forEach(link=>{
+  link.onclick = e=>{
+    e.preventDefault();
+    document.querySelectorAll(".sidebar a").forEach(l=>l.classList.remove("active"));
+    link.classList.add("active");
+
+    const page = link.dataset.page;
+    document.getElementById("title").innerText = link.innerText;
+    loadPage(page);
+    resetPanel();
+  };
+});
+
+/* ===== LOAD PAGE ===== */
+function loadPage(page){
+  document.getElementById("content").innerHTML = pages[page];
+
+  if(page==="analytics") drawChart();
+}
+
+/* ===== USER PANEL ===== */
+function selectUser(id){
+  const user = users.find(u=>u.id===id);
+
+  document.getElementById("panel").innerHTML = `
+    <div class="panel-card">
+      <strong>${user.name}</strong><br>
+      Status: ${user.status}
+
+      <button class="btn" onclick="toggleUser(${id})">Toggle Status</button>
+      <button class="btn" onclick="deleteUser(${id})">Delete User</button>
+    </div>
+  `;
+}
+
+function toggleUser(id){
+  const user = users.find(u=>u.id===id);
+  user.status = user.status==="Active" ? "Inactive" : "Active";
+  loadPage("users");
+}
+
+function deleteUser(id){
+  users = users.filter(u=>u.id!==id);
+  loadPage("users");
+  resetPanel();
+}
+
+/* ===== BILLING PANEL ===== */
+function selectPayment(id){
+  const p = payments.find(x=>x.id===id);
+
+  document.getElementById("panel").innerHTML = `
+    <div class="panel-card">
+      <strong>${p.user}</strong><br>
+      Amount: $${p.amount}<br>
+      Status: ${p.status}
+
+      <button class="btn" onclick="markPaid(${id})">Mark Paid</button>
+    </div>
+  `;
+}
+
+function markPaid(id){
+  const p = payments.find(x=>x.id===id);
+  p.status = "Paid";
+  loadPage("billing");
+}
+
+/* ===== SEARCH ===== */
+function filterUsers(value){
+  const rows = document.querySelectorAll("#userTable tr");
+  rows.forEach((row,i)=>{
+    if(i===0) return;
+    row.style.display = row.innerText.toLowerCase().includes(value.toLowerCase()) ? "" : "none";
+  });
+}
+
+/* ===== PANEL RESET ===== */
+function resetPanel(){
+  document.getElementById("panel").innerHTML = `
+    <div class="panel-card">
+      <strong>No Selection</strong><br>
+      Select item to manage
+    </div>
+  `;
+}
+
+/* ===== CHART ===== */
+function drawChart(){
+  const chart = document.getElementById("chart");
+  chart.innerHTML = "";
+  const data = [50,100,70,120,90];
+
+  data.forEach(d=>{
+    const bar = document.createElement("div");
+    bar.className="bar";
+    bar.style.height = d+"px";
+    chart.appendChild(bar);
+  });
+}
+
+/* ===== REAL TIME ===== */
+setInterval(()=>{
+  document.getElementById("liveUsers").innerText =
+    "Users: " + Math.floor(Math.random()*500);
+},2000);
+
+/* INIT */
+loadPage("users");
+
+
+const systemLogs = [
+  {time:"10:21:03", event:"Agent deployed", status:"Success"},
+  {time:"10:22:10", event:"Payment received", status:"Success"},
+  {time:"10:23:55", event:"High CPU usage", status:"Warning"}
+];
+
+const installedSystems = [
+  {name:"AI Sales Agent", status:"Running", location:"USA"},
+  {name:"Workflow Engine", status:"Active", location:"Germany"},
+  {name:"Email System", status:"Running", location:"Nigeria"}
+];
+
+
+</script>
+
+</body>
+</html>

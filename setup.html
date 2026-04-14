@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>System Setup</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #1e293b;
+      padding: 25px;
+      border-radius: 10px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #22c55e;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .nav-btn {
+      background: #334155;
+    }
+    .hidden {
+      display: none;
+    }
+    .step {
+      margin-top: 20px;
+    }
+    .color-box {
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+      border-radius: 4px;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>Setup Your System</h2>
+
+  <!-- STEP 0 -->
+  <div id="step0" class="step">
+    <p>How do you want to proceed?</p>
+    <button onclick="selectMode('new')">Set up a new system</button>
+    <button onclick="selectMode('existing')">Connect existing system</button>
+  </div>
+
+  <!-- STEP 1 -->
+  <div id="step1" class="step hidden">
+    <h3>Confirm Your System</h3>
+    <p><b id="system_display">Loading system...</b></p>
+    <button onclick="nextStep(2)">Next</button>
+  </div>
+
+  <!-- STEP 2 NEW -->
+  <div id="step2-new" class="step hidden">
+    <h3>New System Setup</h3>
+    <input id="business" placeholder="Business Name">
+    <input id="domain" placeholder="Domain (yourdomain.com)">
+    <input id="brand" placeholder="Brand Name">
+    <input id="admin_email" placeholder="Admin Email">
+
+    <label>Primary Color</label>
+    <input type="color" id="primary_color" value="#22c55e">
+
+    <label>Secondary Color</label>
+    <input type="color" id="secondary_color" value="#0ea5e9">
+
+    <button class="nav-btn" onclick="prevStep()">Back</button>
+    <button onclick="nextStep(3)">Next</button>
+  </div>
+
+  <!-- STEP 2 EXISTING -->
+  <div id="step2-existing" class="step hidden">
+    <h3>Connect Existing System</h3>
+
+    <select id="system_type">
+      <option value="website">Website</option>
+      <option value="webapp">Web App</option>
+      <option value="mobile_app">Mobile App</option>
+      <option value="automation">Automation System</option>
+      <option value="crm">CRM System</option>
+      <option value="ai_system">AI System</option>
+      <option value="other">Other</option>
+    </select>
+
+    <input id="existing_domain" placeholder="Domain">
+    <input id="api_key" placeholder="API Key">
+    <input id="webhook" placeholder="Webhook URL">
+    <input id="hosting" placeholder="Hosting Provider">
+    <textarea id="notes" placeholder="Additional notes"></textarea>
+
+    <label>Primary Color</label>
+    <input type="color" id="primary_color_existing" value="#22c55e">
+
+    <label>Secondary Color</label>
+    <input type="color" id="secondary_color_existing" value="#0ea5e9">
+
+    <button class="nav-btn" onclick="prevStep()">Back</button>
+    <button onclick="nextStep(3)">Next</button>
+  </div>
+
+  <!-- STEP 3 -->
+  <div id="step3" class="step hidden">
+    <h3>Review & Submit</h3>
+    <div id="review"></div>
+
+    <button class="nav-btn" onclick="prevStep()">Back</button>
+    <button onclick="submitSetup(event)">Submit</button>
+  </div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const product_id = params.get("id");
+
+let mode = "";
+let step = 0;
+let productName = "";
+
+
+/* LOAD LATEST PURCHASE (CORRECT FLOW) */
+async function loadProduct() {
+  try {
+
+    // 🔹 Get product_id from URL
+    const params = new URLSearchParams(window.location.search);
+    const product_id = params.get("id");
+
+    // 🔹 Fetch products
+    const res = await fetch("https://modular-infrastructure.onrender.com/api/products");
+    const products = await res.json();
+
+    // 🔹 Find product
+    const product = products.find(p => p.id == product_id);
+
+    if (!product) {
+      document.getElementById("system_display").innerText = "System not found";
+      return;
+    }
+
+    // 🔹 Separate values
+    const name = product.name || "System";
+    const fullName = product.full_name || "";
+    prouctname =name;
+
+    // 🔹 Display separately (two lines)
+    document.getElementById("system_display").innerHTML = `
+      <div style="font-size: 20px; font-weight: bold;">${name}</div>
+      <div style="font-size: 14px; opacity: 0.8;">${fullName}</div>
+    `;
+
+  } catch (err) {
+    console.log("Load error:", err);
+    document.getElementById("system_display").innerText = "Error loading system";
+  }
+}
+
+
+
+
+/* SELECT MODE */
+function selectMode(selected) {
+  mode = selected;
+  document.getElementById("step0").classList.add("hidden");
+  document.getElementById("step1").classList.remove("hidden");
+  step = 1;
+  saveProgress();
+}
+
+/* NEXT */
+function nextStep(next) {
+  document.querySelectorAll(".step").forEach(s => s.classList.add("hidden"));
+
+  if (next === 2) {
+    if (mode === "new") {
+      document.getElementById("step2-new").classList.remove("hidden");
+    } else {
+      document.getElementById("step2-existing").classList.remove("hidden");
+    }
+  }
+
+  if (next === 3) {
+    document.getElementById("step3").classList.remove("hidden");
+    renderReview();
+  }
+
+  step = next;
+  saveProgress();
+}
+
+/* BACK */
+function prevStep() {
+  document.querySelectorAll(".step").forEach(s => s.classList.add("hidden"));
+
+  if (step === 3) {
+    if (mode === "new") {
+      document.getElementById("step2-new").classList.remove("hidden");
+    } else {
+      document.getElementById("step2-existing").classList.remove("hidden");
+    }
+    step = 2;
+  } else {
+    document.getElementById("step1").classList.remove("hidden");
+    step = 1;
+  }
+}
+
+/* GET DATA (FIXED COLOR SEPARATION) */
+function getData() {
+
+  let primary = "#22c55e";
+  let secondary = "#0ea5e9";
+
+  if (mode === "new") {
+    primary = document.getElementById("primary_color")?.value || primary;
+    secondary = document.getElementById("secondary_color")?.value || secondary;
+  }
+
+  if (mode === "existing") {
+    primary = document.getElementById("primary_color_existing")?.value || primary;
+    secondary = document.getElementById("secondary_color_existing")?.value || secondary;
+  }
+
+  return {
+    mode,
+    system_name: productName || document.getElementById("system_display").innerText || "System",
+
+    business: document.getElementById("business")?.value || "",
+    domain: document.getElementById("domain")?.value || "",
+    brand: document.getElementById("brand")?.value || "",
+    admin_email: document.getElementById("admin_email")?.value || "",
+
+    system_type: document.getElementById("system_type")?.value || "",
+    existing_domain: document.getElementById("existing_domain")?.value || "",
+    api_key: document.getElementById("api_key")?.value || "",
+    webhook: document.getElementById("webhook")?.value || "",
+    hosting: document.getElementById("hosting")?.value || "",
+    notes: document.getElementById("notes")?.value || "",
+
+    primary_color: primary,
+    secondary_color: secondary
+  };
+}
+
+/* SAVE */
+async function saveProgress() {
+  try {
+    await fetch("https://modular-infrastructure.onrender.com/api/setup/save", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        product_id,
+        email: "test@email.com",
+        data: getData(),
+        step
+      })
+    });
+  } catch {}
+}
+
+/* REVIEW */
+function renderReview() {
+  const d = getData();
+
+  document.getElementById("review").innerHTML = `
+    <p><b>System:</b> ${d.system_name}</p>
+    <p><b>Mode:</b> ${d.mode}</p>
+
+    ${d.mode === "new" ? `
+      <p><b>Business:</b> ${d.business}</p>
+      <p><b>Domain:</b> ${d.domain}</p>
+      <p><b>Brand:</b> ${d.brand}</p>
+      <p><b>Admin Email:</b> ${d.admin_email}</p>
+    ` : `
+      <p><b>System Type:</b> ${d.system_type}</p>
+      <p><b>Domain:</b> ${d.existing_domain}</p>
+      <p><b>Hosting:</b> ${d.hosting}</p>
+      <p><b>Notes:</b> ${d.notes}</p>
+    `}
+
+    <p><b>Primary Color:</b>
+      <span class="color-box" style="background:${d.primary_color}"></span>
+    </p>
+
+    <p><b>Secondary Color:</b>
+      <span class="color-box" style="background:${d.secondary_color}"></span>
+    </p>
+  `;
+}
+
+/* SUBMIT */
+async function submitSetup(e) {
+  const btn = e.target;
+
+  btn.innerText = "Submitting...";
+  btn.disabled = true;
+
+  try {
+    const res = await fetch("https://modular-infrastructure.onrender.com/api/setup/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        product_id,
+        email: "test@email.com"
+      })
+    });
+
+    const data = await res.json();
+
+    // ✅ SUCCESS
+    if (data.success) {
+      document.body.innerHTML = `
+        <div style="text-align:center; margin-top:50px;">
+          <h2>✅ Setup Submitted</h2>
+          <p>Your system is being prepared.</p>
+          <p>We’re configuring everything for a smooth experience.</p>
+          <p>You’ll be notified once it's ready.</p>
+
+          <br><br>
+
+          <button onclick="window.location.href='dashboard.html'">
+            Go to Dashboard
+          </button>
+        </div>
+      `;
+    } 
+    
+    // ❌ FAILED RESPONSE
+    else {
+      alert("Submission failed. Please try again.");
+      btn.innerText = "Submit";
+      btn.disabled = false;
+    }
+
+  } catch (err) {
+    console.log("Submission error:", err);
+
+    // ❌ NETWORK / SERVER ERROR
+    alert("Submission failed. Please check your connection and try again.");
+    btn.innerText = "Submit";
+    btn.disabled = false;
+  }
+}
+
+/* INIT */
+loadProduct();
+</script>
+</body>
+</html>

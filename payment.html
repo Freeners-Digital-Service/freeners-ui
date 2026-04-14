@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Payment — Freener's Digital Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://checkout.flutterwave.com/v3.js"></script>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family:"Poppins",sans-serif;}
+    html,body {
+      height:100%;
+      background: var(--silver);
+  background-size: cover; /* ensures the image covers the entire page */
+  color: #333;
+  scroll-behavior: smooth;
+      overflow-x:hidden;
+      
+    }
+    body {
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+       overscroll-behavior-x: none;
+      overscroll-behavior: none;
+  touch-action: pan-y;
+    }
+
+    /* HEADER */
+    header.site-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 5%;
+      background:darkgreen;
+      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+    }
+    .logo { font-weight: 700; color: #fff; font-size: 1rem; }
+    .nav{display:flex;gap:20px;transition:right .3s ease;}
+    .nav a{text-decoration:none;color: #fff; font-weight:500;transition:.3s;}
+    .nav a:hover,.nav a.active{color:greenyellow;}
+    .nav-toggle{display:none;font-size:2rem;background:#00a86b ;border:none;cursor:pointer;color:white}
+
+    @media (max-width: 768px) {
+  .nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    padding: 20px 0;
+    background-color: #00a86b; /* BRAND GREEN */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    display: none;
+  }
+
+  .nav.active {
+    display: flex;
+  }
+
+  .nav a {
+    color: #ffffff;
+    font-size: 1.1rem;
+  }
+
+  .nav a:hover,
+  .nav a.active {
+    color: greenyellow;
+  }
+
+  .nav-toggle {
+    display: block;
+    z-index: 1001;
+  }
+}
+
+    /* MAIN CONTENT */
+    main.container {
+      flex:1;
+      padding:120px 5% 100px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      font-size: 1.5rem;
+    }
+    .payment-page h1{
+      color:#00a86b;
+      margin-bottom:15px;
+      text-align:center;
+      font-weight:700;
+    }
+
+    .payment-page h2{
+      color:orange;
+      margin-bottom:15px;
+      text-align:center;
+      font-weight:700;
+      font-size: 1.8rem;
+    }
+    .lead{
+      text-align:center;
+      margin-bottom:25px;
+      color: #000;;
+      max-width:800px;
+      font-size:1.2rem;
+    }
+    .payment-card{
+      background:#fff;
+      padding:35px;
+      border-radius:14px;
+      box-shadow:0 3px 15px rgba(0,0,0,0.1);
+      max-width:800px;
+      width:100%;
+      transition:transform .3s, box-shadow .3s;
+    }
+    .payment-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 5px 20px rgba(0,0,0,0.15);
+    }
+    label{display:block;margin:12px 0 5px;font-weight:500;}
+    input,select{
+      width:100%;
+      padding:11px;
+      border:1px solid #ccc;
+      border-radius:6px;
+      font-size:1rem;
+      outline:none;
+      background:#fff;
+      transition:border .3s;
+    }
+    input:focus,select:focus{border-color:#00a86b;}
+    .btn{
+      display:inline-block;
+      width:100%;
+      padding:13px 25px;
+      margin-top:22px;
+      background:#00a86b;
+      color:#fff;
+      border:none;
+      border-radius:30px;
+      font-weight:600;
+      cursor:pointer;
+      transition:all .3s;
+    }
+    .btn:hover{background:silver;color:#00a86b;transform:scale(1.05);}
+    .note{font-size:0.8rem;color:#666;margin-top:10px;text-align:center;}
+
+    /* ===== MASTER MOBILE HAMBURGER ===== */
+.nav-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    z-index: 1001;
+  }
+
+  .nav {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 170px;
+    background: darkgreen;
+    flex-direction: column;
+    padding: 20px;
+    transition: right 0.3s ease;
+  }
+
+  .nav.active {
+    right: 0;
+  }
+
+  .nav a {
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.05rem;
+  }
+
+  .nav a:hover {
+    background: greenyellow;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+}
+.stablecoin-card{
+  margin-top:30px;
+}
+
+.payment-section-spacer {
+  height: 50px;       /* Adjust space as needed */
+  width: 100%;
+}
+
+.elite-note {
+  text-align: center;
+  padding: 20px 5%;
+  font-size: 0.9rem;
+  color: #333;
+  background: #f5f5f5;      /* subtle, elegant background */
+  border-top: 1px solid #ddd;
+  margin-top: 30px;          /* separates from last payment card */
+  border-radius: 12px;
+}
+.elite-note p {
+  margin: 0;
+  line-height: 1.6;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+/* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+
+  </style>
+</head>
+
+<body>
+  <!-- ===== MASTER HAMBURGER NAV (USED ON ALL PAGES) ===== -->
+<header class="site-header">
+  <div class="logo">Freener's Digital Services</div>
+
+  <nav class="nav" id="mainNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="contact.html">Contact</a>
+    <a href="payment.html">Payment</a>
+    <a href="faq.html">FAQs</a>
+    <a href="terms.html" class="mobile-only">Terms</a>
+    <a href="privacy.html" class="mobile-only">Privacy</a>
+  </nav>
+
+  <div class="nav-toggle" id="navToggle">&#9776;</div>
+</header>
+
+  <main class="container payment-page">
+    <section>
+      <h1>Secure Global Payments</h1>
+      <p class="lead">Choose your currency, fiat or stablecoin & complete transactions seamlessly with enterprise-grade security and instant verification through our integrated flutterwave Payment infrastructure.
+
+<div class="payment-section-spacer"></div>
+
+     <h2>Pay with Traditional Currency</h2>
+      <p class="lead">Complete your transactions securely using USD, NGN, EUR, or GBP. Fast, reliable, and powered by trusted payment infrastructure.<p><strong>Pay with Fiat Currency</strong></p>
+
+      <div class="payment-card">
+        <label for="pay-name">Full name</label>
+        <input id="pay-name" type="text" placeholder="Customer name" required>
+
+        <label for="pay-email">Email</label>
+        <input id="pay-email" type="email" placeholder="you@example.com" required>
+
+        <label for="pay-number">Phone number</label>
+        <input id="pay-number" type="tel" placeholder="Phone number">
+
+        <label for="currency">Select currency</label>
+        <select id="currency">
+          <option value="USD">USD</option>
+          <option value="NGN">NGN</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+        </select>
+
+        <label for="amount">Amount</label>
+        <input id="amount" type="number" placeholder="Enter amount" min="20" required>
+
+        <label for="service">Service</label>
+        <select id="service" name="service">
+          <option value="Web Development">Web Development</option>
+          <option value="Ai-automation">Ai-automation</option>
+          <option value="Hosting & management">Hosting & Management</option>
+          <option value="Cyber-security">Cyber-security services</option>
+          <option value="Maintainace">Maintainace</option>
+          <option value="Enterprise">Enterprise setup & management</option>
+          <option value="Chatbots-services">Chatbots-services</option>
+          <option value="Updates & Bug Fixes">Updates & Bug Fixes</option>
+          <option value="Cloud setup & management">Cloud setup & management</option>
+          <option value="Emial Automation">Emial Automation</option>
+          <option value="CRM-management">CRM-management</option>
+          <option value="Infrastructure">Infrastructure setup & management</option>
+          <option value="Freelancing">Freelancing</option>
+          <option value="Digital Marketing">Digital Marketing</option>
+          <option value="Virtual Assistant">Virtual Assistant</option>
+          <option value="Data Entry">Data Entry</option>
+          <option value="Lead Generation Services">Lead Generation Services</option>
+          <option value="Writing & Translation">Writing & Translation</option>
+          <option value="File Management">File Management</option>
+          <option value="Copy & Paste Services">Copy & Paste Services</option>
+          <option value="Website updating & Maintenance">Website Updating & Maintenance</option>
+        </select>
+
+        <button id="pay-btn" class="btn">Proceed to Pay</button>
+        <p class="note">Note: This page uses Flutterwave to process live transactions securely.</p>
+      </div>
+
+      <div class="payment-section-spacer"></div>
+
+    <h2>Stablecoin & Crypto Payments</h2>
+      <p class="lead">Execute international transactions seamlessly using trusted digital currencies with institutional-grade security.<p><strong>Pay with Stablecoins</strong></p>
+
+      <div class="payment-card stablecoin-card">
+  <label for="sc-name">Full name</label>
+  <input id="sc-name" type="text" placeholder="Customer name" required>
+
+  <label for="sc-email">Email</label>
+  <input id="sc-email" type="email" placeholder="you@example.com" required>
+
+  <label for="stablecoin">Select coin</label>
+  <select id="stablecoin">
+    <option value="">-- Choose Coin --</option>
+    <option value="USDT">USDT</option>
+    <option value="USDC">USDC</option>
+  </select>
+
+  <label for="sc-amount">Amount</label>
+  <input id="sc-amount" type="number" placeholder="Enter amount" min="20" required>
+
+  <label for="sc-service">Service</label>
+  <select id="sc-service">
+    <option value="Web Development">Web Development</option>
+    <option value="Ai-automation">Ai-Automation</option>
+    <option value="Hosting & management">Hosting & Management</option>
+    <option value="Cyber-security">Cyber-security services</option>
+    <option value="Maintainace">Maintainace</option>
+    <option value="Enterprise">Enterprise setup & management</option>
+    <option value="Chatbots-services">Chatbots-services</option>
+    <option value="Updates & Bug Fixes">Updates & Bug Fixes</option>
+    <option value="Cloud setup & management">Cloud setup & management</option>
+    <option value="Emial Automation">Emial Automation</option>
+    <option value="CRM-management">CRM-management</option>
+    <option value="Infrastructure">Infrastructure setup & management</option>
+    <option value="Freelancing">Freelancing</option>
+    <option value="Digital Marketing">Digital Marketing</option>
+    <option value="Virtual Assistant">Virtual Assistant</option>
+    <option value="Lead Generation Services">Lead Generation Services</option>
+    <option value="Data Entry">Data Entry</option>
+    <option value="Writing & Translation">Writing & Translation</option>
+    <option value="File Management">File Management</option>
+    <option value="Copy & Paste Services">Copy & Paste Services</option>
+    <option value="Website updating & Maintenance">Website Updating & Maintenance</option>
+  </select>
+
+  <button id="stablecoin-btn" class="btn">
+    Proceed with Stablecoin
+  </button>
+
+  <p class="note">
+    You will be redirected to secure Flutterwave checkout.
+  </p>
+</div>
+
+    </section>
+
+    <div class="elite-note">
+  <p>
+    🏦 Transactions on this platform are handled exclusively via Flutterwave. 
+    Whether paying with traditional currency or stablecoins, your funds are protected with instant verification, professional-grade security protocols, and full compliance with global payment standards.
+  </p>
+</div>
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+  <script>
+  // MASTER MOBILE HAMBURGER
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  navToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+  });
+
+  // Auto close when any link is clicked
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('active');
+    });
+  });
+
+  // FLUTTERWAVE CHECKOUT
+  document.getElementById('pay-btn').addEventListener('click', function () {
+    const name = document.getElementById('pay-name').value.trim();
+    const email = document.getElementById('pay-email').value.trim();
+    const phone = document.getElementById('pay-number').value.trim();
+    const amount = parseFloat(document.getElementById('amount').value);
+    const currency = document.getElementById('currency').value;
+    const service = document.getElementById('service').value;
+
+    if (!name || !email || !amount || !currency) {
+      alert('Please fill in your name, email, amount, and currency.');
+      return;
+    }
+
+    FlutterwaveCheckout({
+      public_key: "FLWPUBK-REPLACE_WITH_YOUR_PUBLIC_KEY",
+      tx_ref: "freener-" + Date.now(),
+      amount: amount,
+      currency: currency,
+      payment_options: "card, banktransfer, ussd",
+      customer: {
+        email: email,
+        phonenumber: phone,
+        name: name,
+      },
+      customizations: {
+        title: "Freener's Digital Services",
+        description: `Payment for ${service}`,
+        logo: "images/logo.png",
+      },
+    });
+  });
+
+   // STABLECOIN REDIRECT
+  document.getElementById('stablecoin-btn').addEventListener('click', function () {
+
+  const name = document.getElementById('sc-name').value.trim();
+  const email = document.getElementById('sc-email').value.trim();
+  const amount = parseFloat(document.getElementById('sc-amount').value);
+  const coin = document.getElementById('stablecoin').value;
+
+  if (!name || !email || !amount || !coin) {
+    alert('Please fill in all required stablecoin fields.');
+    return;
+  }
+
+  // Replace with your real Flutterwave stablecoin link
+  const STABLECOIN_LINK = "https://flutterwave.com/pay/YOUR_STABLECOIN_LINK";
+
+  window.location.href = STABLECOIN_LINK;
+});
+fetch("https://modular-infrastructure-production.up.railway.app/api/status")
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+</script>
+
+</body>
+</html>

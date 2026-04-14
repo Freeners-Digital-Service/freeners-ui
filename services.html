@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | Freener's Digital Services</title>
+  <style>
+    /* ===== GLOBAL ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      background: var(--silver);
+  background-size: cover; /* ensures the image covers the entire page */
+  color: #333;
+  scroll-behavior: smooth;
+   overscroll-behavior-x: none;
+  overscroll-behavior: none;
+  touch-action: pan-y;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: darkgreen;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+    }
+    nav .logo { font-weight: 700; color: #fff; font-size: 1rem; }
+    
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: greenyellow; /* greenyellow highlight */
+    }
+
+    /* ===== NAVBAR FIXED (DESKTOP) ===== */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: darkgreen;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: greenyellow;
+}
+
+/* ===== MASTER MOBILE HAMBURGER ===== */
+.nav-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .nav-toggle {
+    display: block;
+    z-index: 1001;
+  }
+
+  /* 🔥 THIS IS THE KEY FIX */
+  #mainNav {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 170px;
+    background: darkgreen;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 1px;
+    transition: right 0.3s ease;
+  }
+
+  #mainNav.active {
+    right: 0;
+  }
+
+  #mainNav li {
+    list-style: none;
+  }
+
+  #mainNav a {
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding: 16px 14px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.05rem;
+    gap: 5px;
+  }
+
+  #mainNav a:hover {
+    background: greenyellow;
+  }
+}
+
+  #mainNav-mobile-only {
+    display: block;
+  }
+
+    /* ===== PAGE CONTENT OFFSET ===== */
+    .page-wrapper {
+      padding-top: 100px; /* space for fixed nav */
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      color: #00a86b;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    header p {
+      color: #000;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    .catalog-btn {
+      background: darkgreen;
+      color: #fff;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: 0.3s ease;
+    }
+    .catalog-btn:hover {
+      background: silver;
+      color: #00a86b;
+    }
+
+    /* ===== GUTENBERG SECTION ===== */
+.wp-section{
+max-width:1200px;
+margin:auto;
+padding:0 5%;
+}
+
+/* ===== SERVICES GRID ===== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row on desktop */
+  gap: 25px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr; /* 1 card per row */
+  }
+}
+
+.service-card{
+background:#fff;
+border-radius:20px;
+box-shadow:0 4px 10px rgba(0,0,0,.08);
+padding:25px;
+text-align:center;
+transition:.3s
+}
+.service-card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:15px;
+margin-bottom:15px
+}
+.service-card h3{color:#00a86b;margin-bottom:10px}
+.service-card p{color:#555;font-size:.95rem;margin-bottom:15px}
+.service-card a,
+.service-card button{
+background:#00a86b;
+color:#fff;
+padding:10px 25px;
+border-radius:30px;
+border:none;
+text-decoration:none;
+cursor:pointer
+}
+.service-card a:hover,
+.service-card button:hover{
+background:silver;
+color:#00a86b
+}
+
+/* ===== FEATURE SECTIONS ===== */
+.feature-bar{
+border-radius:30px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+margin:0 5%;
+padding:40px 20px;
+overflow:hidden;
+}
+.split{
+display:flex;
+width:100%;
+gap:10px
+}
+.split > div{
+flex:1;
+border-radius:18px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px
+}
+
+/* ===== SLIDER CORE ===== */
+.slider{
+  overflow:hidden;
+  width:100%;
+  position:relative;
+}
+
+.slider-track{
+  display:flex;
+  transition:transform 0.6s ease;
+}
+
+.slider-item{
+  min-width:100%;
+  text-align:center;
+  padding:20px;
+  box-sizing:border-box;
+}
+
+/* text */
+.slider-item h2{
+  font-size:1.4rem;
+  white-space:normal;
+  word-break:break-word;
+}
+
+/* icons */
+.slider-icons .slider-item{
+display:flex;
+justify-content:center;
+align-items:center;
+min-width:100%;
+}
+
+.slider-icons img{
+width:36px;
+height:36px;
+filter:drop-shadow(0 0 6px rgba(255,255,255,0.8));
+}
+
+@media (max-width:768px){
+
+  .feature-bar{
+    padding:30px 15px;
+  }
+
+  .slider-item h2{
+    font-size:1.1rem;
+  }
+
+  .slider-item p{
+    font-size:0.9rem;
+    line-height:1.5;
+  }
+
+}
+
+/* ===== CTA SECTION ===== */
+.cta-section{
+height:150px;
+background:linear-gradient(90deg,#00a86b,#fff);
+border-radius:20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+margin:0 5%
+}
+.cta-section h2{color:#000;font-weight:700}
+.cta-section p{margin-top:3px}
+.cta-section a{
+margin-top:8px;
+background:#000;
+color:#00a86b;
+padding:12px 30px;
+border-radius:30px;
+text-decoration:none;
+transition: all 0.3s ease;
+} 
+.cta-section a:hover{
+  background: #fff;
+  color: #000; /* optional - keeps text feadable */
+}
+  
+@media (max-width: 768px){
+  section{
+    padding: 50px 16px; /* reduce big section gaps */
+  }
+
+  .services-section,
+  .service-cards,
+  .card{
+    margin-bottom: 24px; /* normalize spacing */
+  }
+}
+
+    .service-card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      padding: 25px;
+      margin-bottom: 15px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+    .service-card h3 {
+      color: #00a86b;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .service-card p {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    /* ===== GLOBAL SECTION SPACING ===== */
+.wp-section {
+  width: 100%;
+  margin: 30px 0;   /* controls space between blocks */
+  position: relative;
+  clear: both;
+}
+
+/* Service card group spacing */
+.services-container {
+  margin-bottom: 20px;
+}
+
+.horizontal-slider {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 35px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px){
+  .slider,
+  .slide,
+  .auto-slide-section{
+    height: auto;
+    overflow: visible;
+    min-height: auto;
+  }
+}
+
+    /* BUTTON STYLING */
+    button, .service-card button, .service-card a, .portfolio-btn {
+      display: inline-block;
+      background: #00a86b;
+      color: #fff;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover, .service-card button:hover, .service-card a:hover, .store-btn:hover {
+      background: silver;
+      color: #00a86b;
+      transform: scale(1.05);
+    }
+
+    /* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+  margin-top: 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+  </style>
+</head>
+<body>
+  <!-- ===== NAVBAR ===== -->
+<nav>
+  <div class="logo">
+    <div class="logo">Freener's Digital Services</div>
+  </div>
+
+  <ul id="mainNav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="marketplace.html">Marketplace</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="payment.html">Payment</a></li>
+    <li><a href="faq.html">Faqs</a></li>
+    <li><a href="terms.html">Terms</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+  </ul>
+
+    <div class="nav-toggle" id="navToggle">&#9776;</div>
+</nav>
+
+  <div class="page-wrapper">
+    <!-- ===== HEADER ===== -->
+    <header>
+      <h1>Empowering Your Brand With Smart Digital Support</h1>
+      <p>Smart Solutions for Businesses & Creators</p>
+      <button onclick="window.location.href='https://wa.me/c/2347078911819'">View catalog</button>
+    </header>
+
+    <!-- ===== SERVICES BATCH 1 ===== -->
+<section class="wp-section services-grid">
+<!-- PASTE FIRST 3 SERVICE CARDS HERE (UNCHANGED) -->
+
+<!-- Website design-->
+  <div class="service-card-wrapper">
+    <div class="service-card">
+      <img src="./images/web-design.png" alt="website design">
+      <h3>Website Design</h3>
+      <p>Strategic, high-performance websites built for authority, scalability, and business growth across all devices.</p>
+      <button onclick="window.location.href='contact.html'"> Learn More</button>
+    </div>
+  </div>
+
+ <div class="service-card-wrapper">
+    <div class="service-card">
+      <img src="./images/freelancing.png" alt="Freelancing Service">
+      <h3>Freelancing Services</h3>
+      <p>Reliable digital execution for businesses requiring structured, professional remote support services.</p>
+      <button onclick="window.location.href='contact.html'">Hire Me</button>
+    </div>
+  </div>
+
+  <!-- Hosting & management -->
+  <div class="service-card-wrapper">
+    <div class="service-card">
+      <img src="./images/web-hosting-&-mana.png" alt="hosting & management">
+      <h3>Hosting & Management</h3>
+      <p>Secure, optimized hosting environments with proactive monitoring and performance oversight.<p>
+      <div class="actions">
+        <a href="contact.html" class="btn">Available</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="space-15px"></div>
+
+<!-- ===== ORANGE FEATURE ===== -->
+<section class="feature-bar" style="background:purple;color:white">
+<div class="text-slider">
+  <div class="slider">
+<div class="slider-track">
+<div class="slider-item"><h2>Professional Agreements</h2></div>
+<div class="slider-item"><h2>On-Time Delivery</h2></div>
+<div class="slider-item"><h2>Reliable Assistance</h2></div>
+<div class="slider-item"><h2>Strict Data Confidentiality</h2></div>
+<div class="slider-item"><h2>Discretion 100% Guaranteed</h2></div>
+<div class="slider-item"><h2>Secure Data Handling</h2></div>
+<div class="slider-item"><h2>GDPR-Aware Practices</h2></div>
+<div class="slider-item"><h2>Compliance readiness checks</h2></div>
+<div class="slider-item"><h2>Access Control Protocols</h2></div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="space-15px"></div>
+
+<!-- ===== SERVICES BATCH 2 ===== -->
+<section class="wp-section services-grid">
+<!-- NEXT 3 SERVICE CARDS -->
+ <div class="service-card-wrapper">
+    <div class="service-card">
+      <img src="./images/Ai-automation.png" alt="Ai Automation">
+      <h3>AI Automation & Maintenance</h3>
+      <p>Intelligent workflow systems designed to streamline operations and reduce manual workload.<p>
+      <div class="actions">
+        <a href="contact.html" class="btn">Automate my business</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- seo optimization -->
+  <div class="service-card-wrapper">
+    <div class="service-card">
+      <img src="./images/chatbot.png" alt="Chatbots Service">
+      <h3> SaaS & Upsell Chatbots Services</h3>
+      <p>Custom conversational systems that enhance customer engagement and automate communication.</p>
+      <div class="actions">
+        <a href="contact.html" class="btn">Improve my rankings</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cybersecurity -->
+  <div class="service-card-wrapper">
+    <div class="service-card">
+      <img src="./images/cyber-security.png" alt="Cybersecurity">
+      <h3>Cybersecurity Protection & Monitoring</h3>
+      <p>Advanced protection strategies to safeguard digital assets, data & infrastructure against modern cyber threats. 
+</p>
+      <div class="actions">
+        <a href="contact.html" class="btn">Protect my website</a>
+      </div>
+      </div>
+      </div>
+</section>
+
+<div class="space-15px"></div>
+
+<!-- ===== GREEN FEATURE ===== -->
+<section class="feature-bar" style="background:#00a86b;color:white">
+<div class="text-slider">
+  <div class="slider">
+<div class="slider-track">
+<div class="slider-item"><h2>Transparent Process</h2></div>
+<div class="slider-item"><h2>Security patches & updates</h2></div>
+<div class="slider-item"><h2>99.9% Stability Focus</h2></div>
+<div class="slider-item"><h2>Breach alerts</h2></div>
+<div class="slider-item"><h2>Brute-force protection</h2></div>
+<div class="slider-item"><h2>Global Remote Delivery</h2></div>
+<div class="slider-item"><h2>Scalable Architecture</h2></div>
+<div class="slider-item"><h2>Reliable Solutions</h2></div>
+<div class="slider-item"><h2>Client Satisfaction</h2></div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="space-15px"></div>
+
+<!-- ===== SERVICES BATCH 3 ===== -->
+<section class="wp-section services-grid">
+
+<!-- website management -->
+  <div class="service-card-wrapper">
+    <div class="service-card">
+      <img src="./images/Technical-support.png" alt="Website Maintenance & Security">
+      <h3>Website Support & Technical Assistance</h3>
+      <p>Ongoing technical oversight to ensure stability, functionality, and uninterrupted performance.</p>
+      <div class="actions">
+        <a href="contact.html" class="btn">Need Technical Support</a>
+      </div>
+    </div>
+  </div>
+
+
+<di class="service-card-wrapper">
+    <div class="service-card">
+      <img src="./images/Cloud setup.png" alt="Cloud Setup & Management">
+      <h3>Cloud Setup & Management</h3>
+      <p>Reliable, secure, and scalable cloud solutions tailored for your business. 
+      From basic deployment to full enterprise-level architecture.</p>
+      <div class="actions">
+        <a href="contact.html" class="btn">Request Service</a>
+      </div>
+      </div>
+      </di>
+
+  <!-- email automation -->
+  <div class="service-card-wrapper">
+    <div class="service-card">
+      <img src="./images/CRM.png" alt="CRM Setup & Automation">
+      <h3>CRM Setup & Automation</h3>
+      <p>Optimized CRM systems with automated workflows to improve customer management and sales efficiency.</p>
+      <div class="actions">
+        <a href="contact.html" class="btn">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="space-15px"></div>
+
+<!-- ===== BLACK FEATURE ===== -->
+<section class="feature-bar" style="background:#000;color:white;flex-direction:column">
+<h4 style="color:#00a86b">Client Success Highlights</h4>
+<div class="text-slider">
+  <div class="slider">
+<div class="slider-track">
+ <div class="slider-item"><h2>Technology Startup</h2>
+<p>Implemented scalable web infrastructure, improving system performance and user onboarding flow.</p></div>
+ <div class="slider-item"><h2>E-Commerce Brand</h2>
+<p>Optimized store architecture and checkout process, increasing conversion efficiency.</p></div>
+ <div class="slider-item"><h2> Professional Services Firm</h2>
+  <p>Redesigned digital presence, strengthening brand credibility and client acquisition.</p></div>
+ <div class="slider-item"><h2>Growth Startup</h2>
+<p>Deployed CRM automation, improving lead tracking and sales pipeline visibility.</p></div>
+ <div class="slider-item"><h2> Consulting Business</h2>
+<p>Structured email automation workflows, increasing engagement consistency.</p></div>
+ <div class="slider-item"><h2>Creative Agency</h2>
+  <p>Integrated cloud-based collaboration systems, improving project turnaround time.</p></div>
+<div class="slider-item"><h2>Financial Services Firm</h2>
+  <p>Implemented enhanced cybersecurity layers to protect client data and transactions.</p></div>
+
+   <div class="slider-item"><h2>Real Estate Business</h2><p>
+ Built lead capture and follow-up automation, improving inquiry response time.
+   </p></div>
+     <div class="slider-item"><h2> Education Platform</h2><p>
+ Optimized platform performance and structured content delivery for better user retention.
+     </p></div>
+
+     <div class="slider-item"><h2> Enterprise Organization</h2><p>
+ Managed infrastructure monitoring and maintenance for stable digital operations.
+     </p></div>
+
+     <div class="slider-item"><h2> SaaS Company</h2><p>
+ Enhanced technical SEO framework to improve search visibility and traffic quality.
+     </p></div>
+
+     <div class="slider-item"><h2> Online Retailer</h2><p>
+ Implemented secure hosting and performance optimization for peak traffic handling.
+     </p></div>
+
+     <div class="slider-item"><h2> Corporate Brand</h2><p>
+ Deployed data management systems for improved operational organization.
+     </p></div>
+
+     <div class="slider-item"><h2> Service-Based Business</h2><p>
+ Streamlined administrative processes through automation and structured workflows.
+     </p></div>
+
+     <div class="slider-item"><h2> Multilingual Brand</h2><p>
+ Delivered professional translation integration for global market expansion.
+     </p></div>
+
+</div>
+</div>
+</div>
+</section>
+
+<div class="space-15px"></div>
+
+<!-- ===== SERVICES BATCH 4 ===== -->
+<section class="wp-section services-grid">
+  <div class="service-card-wrapper">
+    <div class="service-card">
+      <img src="./images/Data-entry.png" alt="Data Entry & Management">
+      <h3>Data Entry & Management</h3>
+      <p>Accurate, structured data organization designed for operational clarity and decision-making.</p>
+      <div class="actions">
+        <a href="contact.html" class="btn">Get Started</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- file management -->
+  <div class="service-card-wrapper">
+    <div class="service-card">
+      <img src="./images/file-managem.png" alt="File Management">
+      <h3> File Management Systems</h3>
+      <p>Secure digital filing structures that enhance accessibility, control, and workflow efficiency.</p>
+      <div class="actions">
+        <a href="contact.html" class="btn">Oganize my files</a>
+      </div>
+      </div>
+      </div>
+
+  <!-- email automation -->
+  <div class="service-card-wrapper">
+    <div class="service-card">
+      <img src="./images/email-automation.png" alt="Email Marketing Automation">
+      <h3>Email Automation</h3>
+      <p>Strategic automated email systems that nurture leads and enhance client communication.</p>
+      <div class="actions">
+        <a href="contact.html" class="btn">Automate my emails</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="space-15px"></div>
+
+<!-- ===== ORANGE FEATURE ===== -->
+<section class="feature-bar" style="background:orangered;color:white">
+<div class="text-slider">
+  <div class="slider">
+<div class="slider-track">
+<div class="slider-item"><h2>Professional Agreements</h2></div>
+<div class="slider-item"><h2>On-Time Delivery</h2></div>
+<div class="slider-item"><h2>Reliable Assistance</h2></div>
+<div class="slider-item"><h2>Strict Data Confidentiality</h2></div>
+<div class="slider-item"><h2>Discretion 100% Guaranteed</h2></div>
+<div class="slider-item"><h2>Secure Data Handling</h2></div>
+<div class="slider-item"><h2>GDPR-Aware Practices</h2></div>
+<div class="slider-item"><h2>Compliance readiness checks</h2></div>
+<div class="slider-item"><h2>Access Control Protocols</h2></div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="space-15px"></div>
+
+<!-- ===== SERVICES BATCH 5 ===== -->
+<section class="wp-section services-grid">
+  <!-- social media marketing -->
+  <div class="service-card-wrapper">
+    <div class="service-card">
+      <img src="./images/social-media-market.png" alt=" Social Media Management">
+      <h3> Social Media Management</h3>
+      <p>Professional brand positioning through structured content planning and audience engagement.</p>
+      <div class="actions">
+        <a href="contact.html" class="btn">Grow my Audience</a>
+      </div>
+    </div>
+  </div>
+
+  <di class="service-card-wrapper">
+    <div class="service-card">
+      <img src="./images/writing-translation.png" alt="Writing & Translation">
+      <h3>Writing & Translation</h3>
+      <p>Clear, professional communication tailored for global audiences and brand credibility.</p>
+      <div class="actions">
+        <a href="contact.html" class="btn">Request Service</a>
+      </div>
+      </div>
+      </di>
+
+  <!-- Lead generation -->
+  <div class="service-card-wrapper">
+    <div class="service-card">
+      <img src="./images/Lead-generation.png" alt="Lead Generation">
+      <h3>Lead Generation</h3>
+      <p>Structured acquisition strategies designed to attract, qualify, and convert high-value prospects.</p>
+      <div class="actions">
+        <a href="contact.html" class="btn">Get Quality Leads</a>
+      </div>
+      </div>
+      </div>
+</section>
+
+<div class="space-15px"></div>
+
+<!-- ===== BROWN FEATURE ===== -->
+<section class="feature-bar" style="background:brown;color:white">
+<div class="text-slider">
+  <div class="slider">
+<div class="slider-track">
+<div class="slider-item"><h2>Industry-Standard Security</h2></div>
+<div class="slider-item"><h2>Secure Infrastructure</h2></div>
+<div class="slider-item"><h2>System Hardening</h2></div>
+<div class="slider-item"><h2>Risk Mitigation</h2></div>
+<div class="slider-item"><h2>Data-Led Decisions</h2></div>
+<div class="slider-item"><h2>Retainer-Based Support</h2></div>
+<div class="slider-item"><h2>And many more</h2></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="wp-section services-grid">
+  
+</section>
+
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+<h2>Have a project in mind?</h2>
+<p>I specialize in translating complex operational needs into simple, effective solutions.</p>
+<a href="contact.html">Tell us about your projects</a>
+</section>
+
+
+  <footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+  <script>
+  // Service card hover animation
+  const cards = document.querySelectorAll('.service-card');
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => card.style.transform = 'translateY(-8px)');
+    card.addEventListener('mouseleave', () => card.style.transform = 'translateY(0)');
+  });
+
+  // Mobile menu toggle
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  navToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+  });
+
+  // Auto close when any link is clicked
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('active');
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+  document.querySelectorAll(".slider").forEach(slider => {
+    const track = slider.querySelector(".slider-track");
+    const items = slider.querySelectorAll(".slider-item");
+    let index = 0;
+    const total = items.length;
+
+    setInterval(() => {
+      index++;
+
+      if (index >= total) {
+        // Instantly jump back to first slide (NO rewind)
+        track.style.transition = "none";
+        track.style.transform = "translateX(0)";
+        index = 0;
+
+        // Re-enable smooth animation
+        setTimeout(() => {
+          track.style.transition = "transform 0.6s ease";
+        }, 50);
+
+      } else {
+        track.style.transition = "transform 0.6s ease";
+        track.style.transform = `translateX(-${index * 100}%)`;
+      }
+
+    }, 4000); // ⏱ 4 seconds
+  });
+
+});
+fetch("https://modular-infrastructure-production.up.railway.app/api/status")
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+</script>
+</body>
+</html>

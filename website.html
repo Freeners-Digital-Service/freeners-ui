@@ -1,0 +1,2187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Projects — Freener's Digital Services</title>
+
+<style>
+:root{
+ --green:#00a86b;
+ --darkgreen:darkgreen;
+ --silver:#f2f2f2;
+ --text:#333;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:var(--silver);
+color:var(--text);
+}
+
+/* ================= NAV ================= */
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:var(--darkgreen);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+z-index:1000;
+}
+
+.logo{
+color:#fff;
+font-weight:700;
+}
+
+.nav{
+display:flex;
+gap:20px;
+}
+
+.nav a{
+color:#fff;
+text-decoration:none;
+font-weight:500;
+}
+
+.nav-toggle{
+display:none;
+color:#fff;
+font-size:1.8rem;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+.nav{
+position:fixed;
+top:70px;
+right:-100%;
+width:180px;
+background:var(--darkgreen);
+flex-direction:column;
+padding:20px;
+transition:.3s;
+}
+.nav.active{
+right:0;
+}
+.nav-toggle{
+display:block;
+}
+}
+
+/* ================= MAIN ================= */
+
+main{
+padding:110px 5% 60px;
+}
+
+.section-title{
+text-align:center;
+font-size:2rem;
+color:var(--green);
+margin-bottom:10px;
+}
+
+.section-sub{
+text-align:center;
+font-size:1.1rem;
+color:#555;
+margin-bottom:40px;
+}
+
+
+/* ================= GRID ================= */
+
+.cards {
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================= CARD ================= */
+
+.video-card{
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  overflow:hidden;
+  transition:.3s;
+
+  display:flex;
+  flex-direction:column;
+  min-width: 0;
+  
+}
+
+.video-card:hover{
+  transform:translateY(-5px);
+}
+
+/* ================= MEDIA ================= */
+
+.card-media{
+  position:relative;
+  height:200px; /* FIXED HEIGHT (prevents stretching) */
+  overflow:hidden;
+  flex-shrink: 0;
+}
+
+.card-media video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  cursor:pointer;
+}
+
+
+/* ================= BODY ================= */
+
+.card-body{
+  padding:20px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  flex-grow:1;
+  min-width: 0;
+}
+
+/* ================= TEXT CONTROL ================= */
+
+.card-body p{
+  font-size:14px;
+  line-height:1.4;
+  max-height:60px;
+  overflow:hidden;
+}
+
+/* ================= PRICE ================= */
+
+.price{
+  background:var(--green);
+  color:#fff;
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:.85rem;
+  margin-bottom:12px;
+}
+
+/* ================= AGENT TAG ================= */
+
+.agent-tag{
+  display:inline-block;
+  font-size:.75rem;
+  background:#eee;
+  padding:4px 10px;
+  border-radius:12px;
+  margin-bottom:8px;
+}
+
+/* HIDE ANIMATION */
+.card.hide {
+  display: none;
+}
+
+/* CARD CTA – PREMIUM MULTI RADIATE */
+.card-btn{
+display:inline-block;
+margin-top:14px;
+padding:10px 22px;
+border-radius:30px;
+font-size:.9rem;
+font-weight:600;
+text-decoration:none;
+color:#000;
+background:linear-gradient(45deg,
+gold,
+#00ff88,
+aqua,
+crimson,
+lemonchiffon);
+background-size:300% 300%;
+animation:cardGradient 6s ease infinite;
+transition:.3s;
+}
+
+.card-btn:hover{
+transform:scale(1.05);
+}
+
+@keyframes cardGradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.card-btn.order-btn{
+  background:#00c896 !important;
+  color:#fff !important;
+
+  /* kill gradient completely */
+  background-image:none !important;
+  animation:none !important;
+}
+
+.card-btn.order-btn:hover{
+  background:#00b386 !important;
+}
+
+
+/* WRAPPER (centers everything) */
+.controls-wrapper{
+  position: sticky;
+  top: 70px;
+  z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+/* INNER CONTROLS (clean card look) */
+.controls{
+  width: 100%;
+  max-width: 900px;
+
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+
+  padding: 12px;
+  border-radius: 16px;
+
+  backdrop-filter: blur(14px);
+  background: green;
+
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+/* GLASS EFFECT BASE */
+.search-box,
+.filter-container{
+  position:relative;
+  flex:1;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.6);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* ICON */
+.icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* INPUT */
+.search-box input{
+  width:100%;
+  padding:14px 14px 14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  outline:none;
+}
+
+/* SELECT */
+.filter-container select{
+  width:100%;
+  padding:14px 14px 14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  cursor:pointer;
+  outline:none;
+  appearance:none;
+}
+
+/* CUSTOM ARROW */
+.filter-container::after{
+  content:"▼";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  opacity:0.6;
+}
+
+/* FOCUS EFFECT */
+.search-box:focus-within,
+.filter-container:focus-within{
+  border:1px solid rgba(0,200,150,.6);
+  box-shadow:0 0 0 3px rgba(0,200,150,.15);
+}
+
+/* SORT BOX (GLASS) */
+.sort-box{
+  position:relative;
+  flex:1;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.6);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* SELECT */
+.sort-box select{
+  width:100%;
+  padding:14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  cursor:pointer;
+  outline:none;
+  appearance:none;
+}
+
+/* ICON */
+.sort-box .icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* CUSTOM ARROW */
+.sort-box::after{
+  content:"▼";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  opacity:0.6;
+}
+
+/* FOCUS EFFECT */
+.sort-box:focus-within{
+  border:1px solid rgba(0,200,150,.6);
+  box-shadow:0 0 0 3px rgba(0,200,150,.15);
+}
+
+/* ================= CONTROLS ================= */
+
+.controls{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:25px;
+}
+
+/* SEARCH BOX */
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff;
+}
+
+/* FILTER + SORT ROW */
+.controls-row{
+  display:flex;
+  gap:12px;
+}
+
+/* FILTER + SORT BOXES */
+.filter-container,
+.sort-box{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:1;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff;
+}
+
+/* INPUTS */
+.search-box input,
+.filter-container select,
+.sort-box select{
+  width:100%;
+  border:none;
+  outline:none;
+  background:transparent;
+  font-size:14px;
+}
+
+/* ICON */
+.icon{
+  flex-shrink:0;
+}
+
+
+
+/* FINAL CTA */
+.cta-block{
+background:#111;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+border-radius:15px;
+margin:60px 0;
+}
+
+/* ================= CTA BLOCK ================= */
+.cta-block{
+background:#111;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+border-radius:15px;
+margin-bottom:30px;
+}
+.cta-btn{
+display:inline-block;
+margin-top:20px;
+padding:14px 30px;
+border-radius:40px;
+background:linear-gradient(45deg,#00ffcc,#00a86b,#00f0ff,#00ff88);
+color:#000;
+font-weight:600;
+text-decoration:none;
+animation:glow 3s infinite linear;
+}
+@keyframes glow{
+0%{filter:hue-rotate(0deg)}
+100%{filter:hue-rotate(360deg)}
+}
+
+/* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">Freener's Digital Services</div>
+
+<nav class="nav" id="nav">
+<a href="marketplace.html">Marketplace</a>
+</nav>
+
+<div class="nav-toggle" id="toggle">&#9776;</div>
+</header>
+
+<main>
+
+<h2 class="section-title">Digital Experience Portfolio</h2>
+<p class="section-sub">
+A collection of professionally engineered web platforms designed to support brand credibility, structured growth, and consistent digital performance.
+</p>
+
+<div class="controls-wrapper">
+
+  <div class="controls">
+
+    <!-- SEARCH -->
+    <div class="search-box">
+      <span class="icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search digital solutions..." />
+    </div>
+
+    <!-- FILTER + SORT ROW -->
+    <div class="controls-row">
+
+      <!-- FILTER -->
+      <div class="filter-container">
+        <span class="icon">⚙️</span>
+        <select id="filterSelect">
+          <option value="all">All Categories</option>
+          <option value="website-ecommerce">E-commerce Website Systems</option>
+          <option value="website-business">Business Website Systems</option>
+          <option value="website-portfolio">Portfolio & Personal Brands Systems</option>
+          <option value="website-service">Service & Booking Systems</option>
+          <option value="website-realestate">Real Estate Website Systems</option>
+        </select>
+      </div>
+
+      <!-- SORT -->
+      <div class="sort-box">
+        <span class="icon">📊</span>
+        <select id="sortSelect">
+          <option value="default">Sort</option>
+          <option value="low">Price: Low → High</option>
+          <option value="high">Price: High → Low</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cards">
+
+
+<div class="video-card"
+  data-id="721"
+  data-name="Corpvia"
+  data-fullname="Corporate Website System"
+  data-type="system"
+  data-category="website-business"
+  data-setup="280"
+  data-monthly="120"
+  data-label="Website Infrastructure System"
+  data-description="A structured corporate website system designed to present company information, brand identity, and organizational structure with clarity and professionalism"
+  data-modules='[
+    {"name":"Company Profile Module","price":20},
+    {"name":"Service Presentation System","price":20},
+    {"name":"Brand Identity Section","price":20},
+    {"name":"Contact & Inquiry System","price":20},
+    {"name":"Content Management Module","price":20},
+    {"name":"Navigation Structure Engine","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/corporate-site.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Corpvia</span>
+    <span class="price">$120 / month</span>
+
+    <p>Corporate Website System — establish a strong and professional business presence online.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Company Profile</li>
+        <li>Service Pages</li>
+        <li>Brand Identity</li>
+        <li>Contact System</li>
+        <li>Content Management</li>
+        <li>Navigation Structure</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="722"
+  data-name="Portivex"
+  data-fullname="Business Portfolio Website"
+  data-type="system"
+  data-category="website-business"
+  data-setup="260"
+  data-monthly="110"
+  data-label="Website Infrastructure System"
+  data-description="A system that showcases company projects, past work, and achievements to build trust and demonstrate capability to potential clients"
+  data-modules='[
+    {"name":"Project Showcase Engine","price":20},
+    {"name":"Case Study Module","price":20},
+    {"name":"Visual Gallery System","price":20},
+    {"name":"Client Testimonial Section","price":20},
+    {"name":"Work Highlight Module","price":20},
+    {"name":"Portfolio Navigation System","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/portfolio-site.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Portivex</span>
+    <span class="price">$110 / month</span>
+
+    <p>Business Portfolio Website — showcase your work and build client trust.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Project Showcase</li>
+        <li>Case Studies</li>
+        <li>Visual Gallery</li>
+        <li>Testimonials</li>
+        <li>Work Highlights</li>
+        <li>Portfolio Navigation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="723"
+  data-name="Agencira"
+  data-fullname="Agency Website System"
+  data-type="system"
+  data-category="website-business"
+  data-setup="300"
+  data-monthly="130"
+  data-label="Website Infrastructure System"
+  data-description="A system designed for agencies to present services, attract clients, and convert visitors into business opportunities"
+  data-modules='[
+    {"name":"Service Breakdown Module","price":25},
+    {"name":"Client Acquisition Section","price":25},
+    {"name":"Offer Presentation Engine","price":20},
+    {"name":"Lead Capture Integration","price":20},
+    {"name":"Team Showcase Module","price":20},
+    {"name":"Conversion Flow System","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/agency-site.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Agencira</span>
+    <span class="price">$130 / month</span>
+
+    <p>Agency Website System — attract clients and convert traffic into leads.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Service Breakdown</li>
+        <li>Client Acquisition</li>
+        <li>Offer Presentation</li>
+        <li>Lead Capture</li>
+        <li>Team Showcase</li>
+        <li>Conversion Flow</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="724"
+  data-name="Profilon"
+  data-fullname="Company Profile System"
+  data-type="system"
+  data-category="website-business"
+  data-setup="240"
+  data-monthly="100"
+  data-label="Website Infrastructure System"
+  data-description="A structured company profile system designed to communicate company history, mission, structure, and credibility in a clear and organized format"
+  data-modules='[
+    {"name":"Company Overview Engine","price":20},
+    {"name":"Mission & Vision Module","price":20},
+    {"name":"Leadership Structure Display","price":20},
+    {"name":"Company Timeline System","price":20},
+    {"name":"Corporate Document Section","price":20},
+    {"name":"Profile Presentation Layout","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/company-profile.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Profilon</span>
+    <span class="price">$100 / month</span>
+
+    <p>Company Profile System — present your business identity with clarity and structure.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Company Overview</li>
+        <li>Mission & Vision</li>
+        <li>Leadership Structure</li>
+        <li>Company Timeline</li>
+        <li>Corporate Documents</li>
+        <li>Profile Layout</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="725"
+  data-name="Serviqo"
+  data-fullname="Professional Services Website"
+  data-type="system"
+  data-category="website-business"
+  data-setup="270"
+  data-monthly="115"
+  data-label="Website Infrastructure System"
+  data-description="A system designed for service-based professionals to present offerings, expertise, and client solutions with structured clarity"
+  data-modules='[
+    {"name":"Service Detailing Engine","price":20},
+    {"name":"Expertise Highlight Module","price":20},
+    {"name":"Client Solution Mapping","price":20},
+    {"name":"Service Inquiry Routing","price":20},
+    {"name":"Professional Credibility Section","price":20},
+    {"name":"Service Navigation System","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/services-site.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Serviqo</span>
+    <span class="price">$115 / month</span>
+
+    <p>Professional Services Website — clearly present services and attract high-value clients.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Service Detailing</li>
+        <li>Expertise Highlight</li>
+        <li>Solution Mapping</li>
+        <li>Inquiry Routing</li>
+        <li>Credibility Section</li>
+        <li>Service Navigation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="726"
+  data-name="EnterraX"
+  data-fullname="Enterprise Website System"
+  data-type="system"
+  data-category="website-business"
+  data-setup="350"
+  data-monthly="160"
+  data-label="Website Infrastructure System"
+  data-description="A high-level enterprise website system designed to support large-scale operations, structured content hierarchy, and multi-department presentation"
+  data-modules='[
+    {"name":"Multi-Department Structure Engine","price":25},
+    {"name":"Enterprise Content Hierarchy","price":25},
+    {"name":"Advanced Navigation Framework","price":25},
+    {"name":"Corporate Communication Hub","price":25},
+    {"name":"Scalable Page Management System","price":25},
+    {"name":"Enterprise Branding Framework","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/enterprise-site.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">EnterraX</span>
+    <span class="price">$160 / month</span>
+
+    <p>Enterprise Website System — built for large-scale business structure and operations.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Department Structure</li>
+        <li>Content Hierarchy</li>
+        <li>Advanced Navigation</li>
+        <li>Communication Hub</li>
+        <li>Page Management</li>
+        <li>Enterprise Branding</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="741"
+  data-name="Commerza"
+  data-fullname="E-commerce Store System"
+  data-type="system"
+  data-category="website-ecommerce"
+  data-setup="420"
+  data-monthly="180"
+  data-label="Website Infrastructure System"
+  data-description="A complete online store system designed to manage products, handle transactions, and support digital and physical product sales efficiently"
+  data-modules='[
+    {"name":"Product Listing Engine","price":30},
+    {"name":"Shopping Cart System","price":30},
+    {"name":"Order Processing Module","price":30},
+    {"name":"Payment Processing Integration","price":30},
+    {"name":"Customer Purchase Flow","price":30},
+    {"name":"Checkout Optimization Engine","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/ecommerce-store.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Commerza</span>
+    <span class="price">$180 / month</span>
+
+    <p>E-commerce Store System — launch and manage your online store efficiently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Product Listings</li>
+        <li>Shopping Cart</li>
+        <li>Order Processing</li>
+        <li>Payment Integration</li>
+        <li>Purchase Flow</li>
+        <li>Checkout Optimization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="742"
+  data-name="Catalogix"
+  data-fullname="Product Catalog Website"
+  data-type="system"
+  data-category="website-ecommerce"
+  data-setup="300"
+  data-monthly="130"
+  data-label="Website Infrastructure System"
+  data-description="A structured product catalog system designed to display products with detailed information, categories, and browsing experience without direct checkout"
+  data-modules='[
+    {"name":"Product Display Grid System","price":20},
+    {"name":"Category Structuring Engine","price":20},
+    {"name":"Product Detail Presentation","price":20},
+    {"name":"Visual Product Showcase","price":20},
+    {"name":"Inquiry-Based Product System","price":20},
+    {"name":"Catalog Navigation Framework","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/catalog-site.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Catalogix</span>
+    <span class="price">$130 / month</span>
+
+    <p>Product Catalog Website — showcase products without direct checkout.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Product Display</li>
+        <li>Category Structure</li>
+        <li>Product Details</li>
+        <li>Visual Showcase</li>
+        <li>Inquiry System</li>
+        <li>Catalog Navigation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="743"
+  data-name="Paytrix"
+  data-fullname="Checkout & Payment Website"
+  data-type="system"
+  data-category="website-ecommerce"
+  data-setup="350"
+  data-monthly="150"
+  data-label="Website Infrastructure System"
+  data-description="A transaction-focused system designed to handle checkout processes, payment flows, and secure purchase completion for products and services"
+  data-modules='[
+    {"name":"Secure Checkout Engine","price":25},
+    {"name":"Payment Gateway Routing","price":25},
+    {"name":"Transaction Verification System","price":25},
+    {"name":"Order Confirmation Engine","price":25},
+    {"name":"Purchase Session Manager","price":25},
+    {"name":"Payment Flow Optimization","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/checkout-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Paytrix</span>
+    <span class="price">$150 / month</span>
+
+    <p>Checkout & Payment Website — handle secure and seamless transactions.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Secure Checkout</li>
+        <li>Payment Routing</li>
+        <li>Transaction Verification</li>
+        <li>Order Confirmation</li>
+        <li>Session Management</li>
+        <li>Payment Optimization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="744"
+  data-name="Storevia"
+  data-fullname="Online Storefront System"
+  data-type="system"
+  data-category="website-ecommerce"
+  data-setup="330"
+  data-monthly="140"
+  data-label="Website Infrastructure System"
+  data-description="A storefront-focused system designed to present products in an engaging retail-style interface that enhances browsing and product discovery experience"
+  data-modules='[
+    {"name":"Storefront Display Engine","price":25},
+    {"name":"Visual Merchandising System","price":25},
+    {"name":"Product Discovery Interface","price":25},
+    {"name":"Featured Product Highlight Module","price":25},
+    {"name":"Category Browsing Experience","price":25},
+    {"name":"Customer Navigation Experience","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/storefront-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Storevia</span>
+    <span class="price">$140 / month</span>
+
+    <p>Online Storefront System — create a powerful product browsing experience.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Storefront Display</li>
+        <li>Visual Merchandising</li>
+        <li>Product Discovery</li>
+        <li>Featured Products</li>
+        <li>Category Browsing</li>
+        <li>Navigation Experience</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="745"
+  data-name="Multivex"
+  data-fullname="Multi-Product Store System"
+  data-type="system"
+  data-category="website-ecommerce"
+  data-setup="460"
+  data-monthly="190"
+  data-label="Website Infrastructure System"
+  data-description="A scalable commerce system designed to handle large product inventories with structured organization, bulk product handling, and efficient store management"
+  data-modules='[
+    {"name":"Bulk Product Management Engine","price":30},
+    {"name":"Inventory Structuring System","price":30},
+    {"name":"Product Variation Controller","price":30},
+    {"name":"Catalog Scaling Engine","price":30},
+    {"name":"Stock Organization Module","price":30},
+    {"name":"Product Sorting Logic System","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/multi-store.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Multivex</span>
+    <span class="price">$190 / month</span>
+
+    <p>Multi-Product Store System — manage and scale large product inventories.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Bulk Product Management</li>
+        <li>Inventory Structuring</li>
+        <li>Product Variations</li>
+        <li>Catalog Scaling</li>
+        <li>Stock Organization</li>
+        <li>Sorting Logic</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="746"
+  data-name="Digisellix"
+  data-fullname="Digital Product Website"
+  data-type="system"
+  data-category="website-ecommerce"
+  data-setup="340"
+  data-monthly="150"
+  data-label="Website Infrastructure System"
+  data-description="A system designed for selling digital products with automated delivery, access control, and secure distribution of digital assets"
+  data-modules='[
+    {"name":"Digital Asset Delivery Engine","price":25},
+    {"name":"Secure Download Access System","price":25},
+    {"name":"Purchase Access Control","price":25},
+    {"name":"License Distribution Module","price":25},
+    {"name":"File Protection Mechanism","price":25},
+    {"name":"Digital Product Access Manager","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/digital-products.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Digisellix</span>
+    <span class="price">$150 / month</span>
+
+    <p>Digital Product Website — sell and deliver digital products securely.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Digital Delivery</li>
+        <li>Secure Access</li>
+        <li>Purchase Control</li>
+        <li>License Distribution</li>
+        <li>File Protection</li>
+        <li>Access Management</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="761"
+  data-name="Portixa"
+  data-fullname="Personal Portfolio System"
+  data-type="system"
+  data-category="website-portfolio"
+  data-setup="220"
+  data-monthly="95"
+  data-label="Website Infrastructure System"
+  data-description="A structured personal portfolio system designed to showcase individual skills, projects, and professional identity in a clean and focused presentation"
+  data-modules='[
+    {"name":"Personal Introduction Engine","price":15},
+    {"name":"Skill Representation System","price":15},
+    {"name":"Project Showcase Framework","price":15},
+    {"name":"Experience Timeline Module","price":15},
+    {"name":"Achievement Highlight Section","price":15},
+    {"name":"Personal Branding Layout","price":15}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/personal-portfolio.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Portixa</span>
+    <span class="price">$95 / month</span>
+
+    <p>Personal Portfolio System — present your skills and work professionally.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Personal Introduction</li>
+        <li>Skill Representation</li>
+        <li>Project Showcase</li>
+        <li>Experience Timeline</li>
+        <li>Achievements</li>
+        <li>Brand Layout</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="762"
+  data-name="Creativon"
+  data-fullname="Creative Showcase Website"
+  data-type="system"
+  data-category="website-portfolio"
+  data-setup="250"
+  data-monthly="105"
+  data-label="Website Infrastructure System"
+  data-description="A visual-focused system designed for creatives to display designs, artworks, and visual projects in an immersive and engaging format"
+  data-modules='[
+    {"name":"Visual Presentation Engine","price":20},
+    {"name":"Creative Gallery System","price":20},
+    {"name":"Media Display Framework","price":20},
+    {"name":"Interactive Viewing Experience","price":20},
+    {"name":"Creative Work Structuring","price":20},
+    {"name":"Visual Navigation Flow","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/creative-showcase.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Creativon</span>
+    <span class="price">$105 / month</span>
+
+    <p>Creative Showcase Website — display your visual work in an engaging format.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Visual Presentation</li>
+        <li>Creative Gallery</li>
+        <li>Media Display</li>
+        <li>Interactive Viewing</li>
+        <li>Work Structuring</li>
+        <li>Visual Navigation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="763"
+  data-name="Freelixor"
+  data-fullname="Freelancer Website System"
+  data-type="system"
+  data-category="website-portfolio"
+  data-setup="240"
+  data-monthly="100"
+  data-label="Website Infrastructure System"
+  data-description="A system built for freelancers to present services, attract clients, and convert visitors into paid opportunities"
+  data-modules='[
+    {"name":"Service Offering Display","price":20},
+    {"name":"Client Engagement Section","price":20},
+    {"name":"Pricing Presentation Module","price":20},
+    {"name":"Work Proposal Interface","price":20},
+    {"name":"Client Inquiry Routing","price":20},
+    {"name":"Freelance Positioning Layout","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/freelancer-site.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Freelixor</span>
+    <span class="price">$100 / month</span>
+
+    <p>Freelancer Website System — attract clients and convert opportunities.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Service Display</li>
+        <li>Client Engagement</li>
+        <li>Pricing Presentation</li>
+        <li>Proposal Interface</li>
+        <li>Inquiry Routing</li>
+        <li>Freelance Layout</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="764"
+  data-name="Brandora"
+  data-fullname="Personal Brand Website"
+  data-type="system"
+  data-category="website-portfolio"
+  data-setup="260"
+  data-monthly="110"
+  data-label="Website Infrastructure System"
+  data-description="A system designed to position individuals as authorities by structuring their message, values, and unique identity into a powerful online presence"
+  data-modules='[
+    {"name":"Brand Positioning Engine","price":20},
+    {"name":"Core Message Structuring","price":20},
+    {"name":"Audience Alignment System","price":20},
+    {"name":"Authority Signal Framework","price":20},
+    {"name":"Personal Story Integration","price":20},
+    {"name":"Identity Consistency Layer","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/personal-brand.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Brandora</span>
+    <span class="price">$110 / month</span>
+
+    <p>Personal Brand Website — build authority and stand out with a strong identity.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Brand Positioning</li>
+        <li>Message Structuring</li>
+        <li>Audience Alignment</li>
+        <li>Authority Signals</li>
+        <li>Story Integration</li>
+        <li>Identity Consistency</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="765"
+  data-name="Resumixor"
+  data-fullname="Resume Website System"
+  data-type="system"
+  data-category="website-portfolio"
+  data-setup="200"
+  data-monthly="85"
+  data-label="Website Infrastructure System"
+  data-description="A structured resume system that transforms traditional CVs into a dynamic digital profile with enhanced visibility and professional clarity"
+  data-modules='[
+    {"name":"Structured Resume Engine","price":15},
+    {"name":"Career Path Mapping","price":15},
+    {"name":"Skill Verification Display","price":15},
+    {"name":"Qualification Presentation System","price":15},
+    {"name":"Experience Breakdown Layer","price":15},
+    {"name":"Recruiter Access Interface","price":15}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/resume-site.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Resumixor</span>
+    <span class="price">$85 / month</span>
+
+    <p>Resume Website System — turn your CV into a powerful digital profile.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Structured Resume</li>
+        <li>Career Mapping</li>
+        <li>Skill Verification</li>
+        <li>Qualification Display</li>
+        <li>Experience Breakdown</li>
+        <li>Recruiter Access</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="766"
+  data-name="Influviax"
+  data-fullname="Influencer Website System"
+  data-type="system"
+  data-category="website-portfolio"
+  data-setup="280"
+  data-monthly="120"
+  data-label="Website Infrastructure System"
+  data-description="A system built for influencers to manage audience presence, partnerships, and monetization opportunities through a centralized platform"
+  data-modules='[
+    {"name":"Audience Engagement Hub","price":20},
+    {"name":"Partnership Showcase System","price":20},
+    {"name":"Content Highlight Engine","price":20},
+    {"name":"Collaboration Request Interface","price":20},
+    {"name":"Media Kit Integration Module","price":20},
+    {"name":"Monetization Pathway System","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/influencer-site.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Influviax</span>
+    <span class="price">$120 / month</span>
+
+    <p>Influencer Website System — manage audience, partnerships, and monetization.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Audience Hub</li>
+        <li>Partnership Showcase</li>
+        <li>Content Highlights</li>
+        <li>Collaboration Requests</li>
+        <li>Media Kit</li>
+        <li>Monetization Pathways</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="781"
+  data-name="Servixa"
+  data-fullname="Service Booking Website"
+  data-type="system"
+  data-category="website-service"
+  data-setup="320"
+  data-monthly="140"
+  data-label="Website Infrastructure System"
+  data-description="A service-focused system that allows clients to view services, select options, and complete booking requests through a structured service flow"
+  data-modules='[
+    {"name":"Service Selection Engine","price":25},
+    {"name":"Booking Request Processor","price":25},
+    {"name":"Availability Matching System","price":25},
+    {"name":"Service Option Configuration","price":25},
+    {"name":"Booking Confirmation Logic","price":25},
+    {"name":"Client Booking Flow Controller","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/service-booking.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Servixa</span>
+    <span class="price">$140 / month</span>
+
+    <p>Service Booking Website — allow clients to book services seamlessly.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Service Selection</li>
+        <li>Booking Requests</li>
+        <li>Availability Matching</li>
+        <li>Service Configuration</li>
+        <li>Booking Confirmation</li>
+        <li>Booking Flow</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="782"
+  data-name="Schedora"
+  data-fullname="Appointment Scheduling System"
+  data-type="system"
+  data-category="website-service"
+  data-setup="300"
+  data-monthly="130"
+  data-label="Website Infrastructure System"
+  data-description="A time-based scheduling system that manages appointments, time slots, and client reservations with precision and automated coordination"
+  data-modules='[
+    {"name":"Time Slot Allocation Engine","price":25},
+    {"name":"Calendar Synchronization System","price":25},
+    {"name":"Appointment Reservation Logic","price":25},
+    {"name":"Time Conflict Resolution Module","price":25},
+    {"name":"Client Scheduling Interface","price":25},
+    {"name":"Schedule Adjustment Controller","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/scheduling-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Schedora</span>
+    <span class="price">$130 / month</span>
+
+    <p>Appointment Scheduling System — manage bookings with precise time control.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Time Slot Allocation</li>
+        <li>Calendar Sync</li>
+        <li>Reservation Logic</li>
+        <li>Conflict Resolution</li>
+        <li>Scheduling Interface</li>
+        <li>Schedule Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="783"
+  data-name="Listiva"
+  data-fullname="Service Listing Website"
+  data-type="system"
+  data-category="website-service"
+  data-setup="270"
+  data-monthly="115"
+  data-label="Website Infrastructure System"
+  data-description="A listing-focused system that organizes multiple services into structured categories, enabling users to browse and explore available offerings easily"
+  data-modules='[
+    {"name":"Service Catalog Structuring","price":20},
+    {"name":"Category Filtering Engine","price":20},
+    {"name":"Service Comparison Interface","price":20},
+    {"name":"Listing Display Framework","price":20},
+    {"name":"Service Discovery Logic","price":20},
+    {"name":"Listing Navigation System","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/service-listing.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Listiva</span>
+    <span class="price">$115 / month</span>
+
+    <p>Service Listing Website — organize and present services clearly.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Service Catalog</li>
+        <li>Category Filtering</li>
+        <li>Service Comparison</li>
+        <li>Listing Display</li>
+        <li>Discovery Logic</li>
+        <li>Navigation System</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="784"
+  data-name="Consultrix"
+  data-fullname="Consultation Booking System"
+  data-type="system"
+  data-category="website-service"
+  data-setup="310"
+  data-monthly="135"
+  data-label="Website Infrastructure System"
+  data-description="A consultation-focused system that enables structured client intake, session preparation, and organized consultation requests for professional services"
+  data-modules='[
+    {"name":"Client Intake Profiling Engine","price":25},
+    {"name":"Consultation Type Selector","price":25},
+    {"name":"Pre-Session Data Collection","price":25},
+    {"name":"Consultation Queue Manager","price":25},
+    {"name":"Session Preparation Framework","price":25},
+    {"name":"Consultation Routing Logic","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/consultation-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Consultrix</span>
+    <span class="price">$135 / month</span>
+
+    <p>Consultation Booking System — structure and manage client consultations effectively.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Client Intake Profiling</li>
+        <li>Consultation Selection</li>
+        <li>Pre-Session Data</li>
+        <li>Queue Management</li>
+        <li>Session Preparation</li>
+        <li>Routing Logic</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="785"
+  data-name="EventoraX"
+  data-fullname="Event Booking Website"
+  data-type="system"
+  data-category="website-service"
+  data-setup="340"
+  data-monthly="150"
+  data-label="Website Infrastructure System"
+  data-description="A system designed to manage event registrations, attendee coordination, and event participation across different types of events and audiences"
+  data-modules='[
+    {"name":"Event Registration Engine","price":25},
+    {"name":"Attendee Slot Allocation","price":25},
+    {"name":"Event Access Control System","price":25},
+    {"name":"Participation Tracking Module","price":25},
+    {"name":"Event Capacity Management","price":25},
+    {"name":"Event Flow Coordination Engine","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/event-booking.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">EventoraX</span>
+    <span class="price">$150 / month</span>
+
+    <p>Event Booking Website — manage registrations and event participation smoothly.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Event Registration</li>
+        <li>Slot Allocation</li>
+        <li>Access Control</li>
+        <li>Participation Tracking</li>
+        <li>Capacity Management</li>
+        <li>Event Coordination</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="786"
+  data-name="Reserviqo"
+  data-fullname="Reservation Management System"
+  data-type="system"
+  data-category="website-service"
+  data-setup="330"
+  data-monthly="145"
+  data-label="Website Infrastructure System"
+  data-description="A reservation-focused system designed to manage limited resources such as spaces, tables, rooms, or services with controlled allocation and tracking"
+  data-modules='[
+    {"name":"Resource Allocation Engine","price":25},
+    {"name":"Reservation Slot Distribution","price":25},
+    {"name":"Capacity Balancing System","price":25},
+    {"name":"Reservation Conflict Handler","price":25},
+    {"name":"Resource Availability Tracker","price":25},
+    {"name":"Reservation Lifecycle Controller","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/reservation-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Reserviqo</span>
+    <span class="price">$145 / month</span>
+
+    <p>Reservation Management System — control and manage limited service resources efficiently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Resource Allocation</li>
+        <li>Slot Distribution</li>
+        <li>Capacity Balancing</li>
+        <li>Conflict Handling</li>
+        <li>Availability Tracking</li>
+        <li>Reservation Lifecycle</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="801"
+  data-name="ListaraX"
+  data-fullname="Real Estate Listing System"
+  data-type="system"
+  data-category="website-realestate"
+  data-setup="380"
+  data-monthly="170"
+  data-label="Website Infrastructure System"
+  data-description="A property listing system designed to display and manage real estate listings with structured property data and organized presentation"
+  data-modules='[
+    {"name":"Property Listing Engine","price":30},
+    {"name":"Listing Categorization System","price":30},
+    {"name":"Property Detail Structuring","price":30},
+    {"name":"Listing Status Controller","price":30},
+    {"name":"Location-Based Display Logic","price":30},
+    {"name":"Property Visibility Manager","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/realestate-listing.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">ListaraX</span>
+    <span class="price">$170 / month</span>
+
+    <p>Real Estate Listing System — manage and present property listings efficiently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Property Listings</li>
+        <li>Listing Categories</li>
+        <li>Property Details</li>
+        <li>Status Control</li>
+        <li>Location Display</li>
+        <li>Visibility Management</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="802"
+  data-name="Showterra"
+  data-fullname="Property Showcase Website"
+  data-type="system"
+  data-category="website-realestate"
+  data-setup="350"
+  data-monthly="155"
+  data-label="Website Infrastructure System"
+  data-description="A visually focused system designed to highlight premium properties with immersive presentation and detailed viewing experience"
+  data-modules='[
+    {"name":"Property Visual Presentation Engine","price":25},
+    {"name":"Image & Media Display Framework","price":25},
+    {"name":"Virtual Viewing Integration","price":25},
+    {"name":"Property Highlight System","price":25},
+    {"name":"Feature Emphasis Module","price":25},
+    {"name":"Showcase Navigation Experience","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/property-showcase.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Showterra</span>
+    <span class="price">$155 / month</span>
+
+    <p>Property Showcase Website — present properties with a premium visual experience.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Visual Presentation</li>
+        <li>Media Display</li>
+        <li>Virtual Viewing</li>
+        <li>Property Highlights</li>
+        <li>Feature Emphasis</li>
+        <li>Showcase Navigation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="803"
+  data-name="Rentivox"
+  data-fullname="Rental Listing Platform"
+  data-type="system"
+  data-category="website-realestate"
+  data-setup="370"
+  data-monthly="165"
+  data-label="Website Infrastructure System"
+  data-description="A rental-focused system designed to manage property availability, rental listings, and tenant-facing property exploration"
+  data-modules='[
+    {"name":"Rental Availability Engine","price":30},
+    {"name":"Lease Display Framework","price":30},
+    {"name":"Tenant Inquiry Interface","price":30},
+    {"name":"Rental Duration Structuring","price":30},
+    {"name":"Occupancy Tracking System","price":30},
+    {"name":"Rental Listing Controller","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/rental-platform.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Rentivox</span>
+    <span class="price">$165 / month</span>
+
+    <p>Rental Listing Platform — manage rental properties and tenant interactions.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Rental Availability</li>
+        <li>Lease Display</li>
+        <li>Tenant Inquiry</li>
+        <li>Duration Structuring</li>
+        <li>Occupancy Tracking</li>
+        <li>Listing Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="804"
+  data-name="Agentrex"
+  data-fullname="Real Estate Agency Website"
+  data-type="system"
+  data-category="website-realestate"
+  data-setup="400"
+  data-monthly="175"
+  data-label="Website Infrastructure System"
+  data-description="A system designed for real estate agencies to manage agent profiles, property portfolios, and client interactions within a unified platform"
+  data-modules='[
+    {"name":"Agent Profile Management Engine","price":30},
+    {"name":"Brokerage Portfolio System","price":30},
+    {"name":"Agent Assignment Logic","price":30},
+    {"name":"Client-Agent Matching Interface","price":30},
+    {"name":"Agency Structure Representation","price":30},
+    {"name":"Agent Performance Display Module","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/agency-realestate.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Agentrex</span>
+    <span class="price">$175 / month</span>
+
+    <p>Real Estate Agency Website — manage agents, listings, and client relationships.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Agent Profiles</li>
+        <li>Portfolio System</li>
+        <li>Agent Assignment</li>
+        <li>Client Matching</li>
+        <li>Agency Structure</li>
+        <li>Performance Display</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="805"
+  data-name="Seekterra"
+  data-fullname="Property Search System"
+  data-type="system"
+  data-category="website-realestate"
+  data-setup="360"
+  data-monthly="160"
+  data-label="Website Infrastructure System"
+  data-description="A search-driven system that enables users to locate properties using dynamic filtering, location intelligence, and customized search parameters"
+  data-modules='[
+    {"name":"Advanced Search Query Engine","price":30},
+    {"name":"Dynamic Filter Configuration","price":30},
+    {"name":"Location Mapping Interface","price":30},
+    {"name":"Search Result Ranking Logic","price":30},
+    {"name":"User Preference Matching System","price":30},
+    {"name":"Search Session Persistence Engine","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/property-search.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Seekterra</span>
+    <span class="price">$160 / month</span>
+
+    <p>Property Search System — help users find properties with precision and control.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Search Engine</li>
+        <li>Dynamic Filters</li>
+        <li>Location Mapping</li>
+        <li>Result Ranking</li>
+        <li>Preference Matching</li>
+        <li>Session Persistence</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="806"
+  data-name="ManagoraX"
+  data-fullname="Listing Management Website"
+  data-type="system"
+  data-category="website-realestate"
+  data-setup="390"
+  data-monthly="170"
+  data-label="Website Infrastructure System"
+  data-description="A backend-driven system designed to control, update, and manage property listings with structured workflows and listing lifecycle tracking"
+  data-modules='[
+    {"name":"Listing Update Engine","price":30},
+    {"name":"Property Lifecycle Tracker","price":30},
+    {"name":"Listing Approval Workflow","price":30},
+    {"name":"Content Update Interface","price":30},
+    {"name":"Listing Archive System","price":30},
+    {"name":"Listing Control Dashboard","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/listing-management.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">ManagoraX</span>
+    <span class="price">$170 / month</span>
+
+    <p>Listing Management Website — control and manage property listings efficiently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Listing Updates</li>
+        <li>Lifecycle Tracking</li>
+        <li>Approval Workflow</li>
+        <li>Content Interface</li>
+        <li>Archive System</li>
+        <li>Control Dashboard</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+</div>
+</main>
+
+<!-- FINAL CTA -->
+<div class="cta-block">
+<h2>Have a project in mind?<br>Let’s build something powerful together.</h2>
+<a href="contact.html" class="cta-btn">Let’s Get Started</a>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+
+
+  </div>
+</div>
+
+<script>
+
+document.getElementById("toggle").onclick=function(){
+document.getElementById("nav").classList.toggle("active");
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const filterSelect = document.getElementById("filterSelect");
+  const cards = document.querySelectorAll(".video-card");
+  const searchInput = document.getElementById("searchInput");
+
+  let currentFilter = "all";
+
+  // DROPDOWN CHANGE
+  filterSelect.addEventListener("change", () => {
+    currentFilter = filterSelect.value;
+    filterCards();
+  });
+
+  // SEARCH
+  searchInput.addEventListener("keyup", filterCards);
+
+  function filterCards() {
+    const searchValue = searchInput.value.toLowerCase();
+
+    cards.forEach(card => {
+      const category = card.getAttribute("data-category") || "";
+      const keywords = card.getAttribute("data-keywords") || "";
+
+      const text = (
+        category + " " +
+        keywords + " " +
+        card.textContent
+      ).toLowerCase();
+
+      const matchFilter =
+        currentFilter === "all" || category === currentFilter;
+
+      const matchSearch =
+        text.includes(searchValue);
+
+      if (matchFilter && matchSearch) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+
+});
+
+
+const sortSelect = document.getElementById("sortSelect");
+const container = document.querySelector(".cards");
+
+sortSelect.addEventListener("change", () => {
+  const cards = Array.from(container.children);
+
+  cards.sort((a, b) => {
+    const priceA = parseInt(a.querySelector(".price").textContent.replace("$",""));
+    const priceB = parseInt(b.querySelector(".price").textContent.replace("$",""));
+
+    if (sortSelect.value === "low") return priceA - priceB;
+    if (sortSelect.value === "high") return priceB - priceA;
+    return 0;
+  });
+
+  cards.forEach(card => container.appendChild(card));
+});
+
+
+document.querySelectorAll(".order-btn").forEach(btn => {
+  btn.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const productId = this.closest(".video-card").dataset.id;
+
+    // ✅ update href dynamically (keeps anchor behavior)
+    this.href = "billing.html?id=" + productId;
+
+    // ✅ now allow redirect
+    window.location.href = this.href;
+  });
+});
+
+
+
+
+</script>
+
+</body>
+</html>

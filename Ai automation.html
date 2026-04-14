@@ -1,0 +1,2650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ai Automation — Freener's Digital Services</title>
+
+<style>
+:root{
+ --green:#00a86b;
+ --darkgreen:darkgreen;
+ --silver:#f2f2f2;
+ --text:#333;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:var(--silver);
+color:var(--text);
+}
+
+/* ================= NAV ================= */
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:var(--darkgreen);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+z-index:1000;
+}
+
+.logo{
+color:#fff;
+font-weight:700;
+}
+
+.nav{
+display:flex;
+gap:20px;
+}
+
+.nav a{
+color:#fff;
+text-decoration:none;
+font-weight:500;
+}
+
+.nav-toggle{
+display:none;
+color:#fff;
+font-size:1.8rem;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+.nav{
+position:fixed;
+top:70px;
+right:-100%;
+width:180px;
+background:var(--darkgreen);
+flex-direction:column;
+padding:20px;
+transition:.3s;
+}
+.nav.active{
+right:0;
+}
+.nav-toggle{
+display:block;
+}
+}
+
+/* ================= MAIN ================= */
+
+main{
+padding:110px 5% 60px;
+}
+
+.section-title{
+text-align:center;
+font-size:2rem;
+color:var(--green);
+margin-bottom:10px;
+}
+
+.section-sub{
+text-align:center;
+font-size:1.1rem;
+color:#555;
+margin-bottom:40px;
+}
+
+
+/* ================= GRID ================= */
+
+.cards{
+  display:grid;
+  gap:25px;
+  align-items:stretch;
+}
+
+@media (min-width:1024px){
+  .cards{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media (min-width:768px) and (max-width:1023px){
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media (max-width:767px){
+  .cards{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ================= CARD ================= */
+
+.video-card{
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  overflow:hidden;
+  transition:.3s;
+
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.video-card:hover{
+  transform:translateY(-5px);
+}
+
+/* ================= MEDIA ================= */
+
+.card-media{
+  position:relative;
+  height:200px; /* FIXED HEIGHT (prevents stretching) */
+  overflow:hidden;
+}
+
+.card-media video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  cursor:pointer;
+}
+
+/* ================= BODY ================= */
+
+.card-body{
+  padding:20px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  flex-grow:1;
+}
+
+/* ================= TEXT CONTROL ================= */
+
+.card-body p{
+  font-size:14px;
+  line-height:1.4;
+  max-height:60px;
+  overflow:hidden;
+}
+
+/* ================= PRICE ================= */
+
+.price{
+  background:var(--green);
+  color:#fff;
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:.85rem;
+  margin-bottom:12px;
+}
+
+/* ================= AGENT TAG ================= */
+
+.agent-tag{
+  display:inline-block;
+  font-size:.75rem;
+  background:#eee;
+  padding:4px 10px;
+  border-radius:12px;
+  margin-bottom:8px;
+}
+
+/* HIDE ANIMATION */
+.card.hide {
+  display: none;
+}
+
+
+/* WRAPPER (centers everything) */
+.controls-wrapper{
+  position: sticky;
+  top: 70px;
+  z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+/* INNER CONTROLS (clean card look) */
+.controls{
+  width: 100%;
+  max-width: 900px;
+
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+
+  padding: 12px;
+  border-radius: 16px;
+
+  backdrop-filter: blur(14px);
+  background: green;
+
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+/* GLASS EFFECT BASE */
+.search-box,
+.filter-container{
+  position:relative;
+  flex:1;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.6);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* ICON */
+.icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* INPUT */
+.search-box input{
+  width:100%;
+  padding:14px 14px 14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  outline:none;
+}
+
+/* SELECT */
+.filter-container select{
+  width:100%;
+  padding:14px 14px 14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  cursor:pointer;
+  outline:none;
+  appearance:none;
+}
+
+/* CUSTOM ARROW */
+.filter-container::after{
+  content:"▼";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  opacity:0.6;
+}
+
+/* FOCUS EFFECT */
+.search-box:focus-within,
+.filter-container:focus-within{
+  border:1px solid rgba(0,200,150,.6);
+  box-shadow:0 0 0 3px rgba(0,200,150,.15);
+}
+
+/* SORT BOX (GLASS) */
+.sort-box{
+  position:relative;
+  flex:1;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.6);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* SELECT */
+.sort-box select{
+  width:100%;
+  padding:14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  cursor:pointer;
+  outline:none;
+  appearance:none;
+}
+
+/* ICON */
+.sort-box .icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* CUSTOM ARROW */
+.sort-box::after{
+  content:"▼";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  opacity:0.6;
+}
+
+/* FOCUS EFFECT */
+.sort-box:focus-within{
+  border:1px solid rgba(0,200,150,.6);
+  box-shadow:0 0 0 3px rgba(0,200,150,.15);
+}
+
+/* ================= CONTROLS ================= */
+
+.controls{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:25px;
+}
+
+/* SEARCH BOX */
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff;
+}
+
+/* FILTER + SORT ROW */
+.controls-row{
+  display:flex;
+  gap:12px;
+}
+
+/* FILTER + SORT BOXES */
+.filter-container,
+.sort-box{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:1;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff;
+}
+
+/* INPUTS */
+.search-box input,
+.filter-container select,
+.sort-box select{
+  width:100%;
+  border:none;
+  outline:none;
+  background:transparent;
+  font-size:14px;
+}
+
+/* ICON */
+.icon{
+  flex-shrink:0;
+}
+
+
+
+
+
+/* CARD CTA – PREMIUM MULTI RADIATE */
+.card-btn{
+display:inline-block;
+margin-top:14px;
+padding:10px 22px;
+border-radius:30px;
+font-size:.9rem;
+font-weight:600;
+text-decoration:none;
+color:#000;
+background:linear-gradient(45deg,
+gold,
+#00ff88,
+aqua,
+crimson,
+lemonchiffon);
+background-size:300% 300%;
+animation:cardGradient 6s ease infinite;
+transition:.3s;
+}
+
+.card-btn:hover{
+transform:scale(1.05);
+}
+
+@keyframes cardGradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.card-btn.order-btn{
+  background:#00c896 !important;
+  color:#fff !important;
+
+  /* kill gradient completely */
+  background-image:none !important;
+  animation:none !important;
+}
+
+.card-btn.order-btn:hover{
+  background:#00b386 !important;
+}
+
+/* FINAL CTA */
+.cta-block{
+background:#111;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+border-radius:15px;
+margin:60px 0;
+}
+
+/* ================= CTA BLOCK ================= */
+.cta-block{
+background:#111;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+border-radius:15px;
+margin-bottom:30px;
+}
+.cta-btn{
+display:inline-block;
+margin-top:20px;
+padding:14px 30px;
+border-radius:40px;
+background:linear-gradient(45deg,#00ffcc,#00a86b,#00f0ff,#00ff88);
+color:#000;
+font-weight:600;
+text-decoration:none;
+animation:glow 3s infinite linear;
+}
+@keyframes glow{
+0%{filter:hue-rotate(0deg)}
+100%{filter:hue-rotate(360deg)}
+}
+
+/* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">Freener's Digital Services</div>
+
+<nav class="nav" id="nav">
+<a href="marketplace.html">Marketplace</a>
+</nav>
+
+<div class="nav-toggle" id="toggle">&#9776;</div>
+</header>
+
+<main>
+
+<h2 class="section-title">Intelligent Automation Portfolio</h2>
+<p class="section-sub">
+Intelligent automation systems developed to streamline workflows, enhance operational clarity, and support data-driven decision processes.
+</p>
+
+
+
+<div class="controls-wrapper">
+
+  <div class="controls">
+
+    <!-- SEARCH -->
+    <div class="search-box">
+      <span class="icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search digital solutions..." />
+    </div>
+
+    <!-- FILTER + SORT ROW -->
+    <div class="controls-row">
+
+    <!-- FILTER -->
+    <div class="filter-container">
+      <span class="icon">⚙️</span>
+      <select id="filterSelect">
+        <option value="all">All Categories</option>
+        <option value="Sales-Automation"> Sales Automation Systems</option>
+        <option value="Workflow-Automation"> Workflow Automation Systems</option>
+        <option value="Content-Generation">Content Generation Systems</option>
+        <option value="Data-Analysis"> Data Analysis Systems</option>
+        <option value="Customer-Support">Customer Support Systems</option>
+        <option value="Social-Media-Automation">Social Media Automation Systems</option>
+      </select>
+    </div>
+
+    <div class="sort-box">
+  <span class="icon">📊</span>
+  <select id="sortSelect">
+    <option value="default">Sort</option>
+    <option value="low">Price: Low → High</option>
+    <option value="high">Price: High → Low</option>
+  </select>
+</div>
+</div>
+</div>
+</div>
+
+<div class="cards">
+
+
+
+
+<div class="video-card"
+  data-id="1"
+  data-name="Velora"
+  data-fullname="Funnel Automation Engine"
+  data-type="system"
+  data-category="Sales-Automation"
+  data-setup="180"
+  data-monthly="120"
+  data-label="Sales Automation System"
+  data-description="A high-performance funnel automation system that guides prospects through structured conversion paths using intelligent workflows, dynamic routing, and automated engagement sequences"
+  data-modules='[
+    {"name":"Funnel Architecture Module","price":45},
+    {"name":"Entry Capture System","price":35},
+    {"name":"Journey Routing Engine","price":35},
+    {"name":"Conversion Path Optimizer","price":40},
+    {"name":"Automation Flow Controller","price":30},
+    {"name":"Funnel Performance Tracker","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/funnel-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Velora</span>
+    <span class="price">$120 / month</span>
+
+    <p>
+      Funnel Automation Engine — guide leads through intelligent conversion paths and maximize revenue flow.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Funnel Architecture</li>
+        <li>Entry Capture</li>
+        <li>Journey Routing</li>
+        <li>Conversion Optimization</li>
+        <li>Automation Flow</li>
+        <li>Performance Tracking</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+
+
+<div class="video-card"
+  data-id="2"
+  data-name="Sivora"
+  data-fullname="Lead Qualification Engine"
+  data-type="system"
+  data-category="Sales-Automation"
+  data-setup="150"
+  data-monthly="95"
+  data-label="Sales Intelligence System"
+  data-description="An intelligent lead qualification system that evaluates prospects using behavioral signals, scoring logic, and data enrichment to identify high-value opportunities with precision"
+  data-modules='[
+    {"name":"Signal Analysis Engine","price":30},
+    {"name":"Lead Scoring System","price":35},
+    {"name":"Qualification Logic Builder","price":25},
+    {"name":"Data Enrichment Engine","price":40},
+    {"name":"Segment Classification Module","price":25},
+    {"name":"Insight Dashboard System","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/qualification-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Sivora</span>
+    <span class="price">$95 / month</span>
+
+    <p>
+      Lead Qualification Engine — analyze, score, and identify high-value leads with intelligent decision systems.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Signal Analysis</li>
+        <li>Lead Scoring</li>
+        <li>Qualification Logic</li>
+        <li>Data Enrichment</li>
+        <li>Segment Classification</li>
+        <li>Insight Dashboard</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+   <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="3"
+  data-name="Nemoris"
+  data-fullname="Follow-up Automation Engine"
+  data-type="system"
+  data-category="Sales-Automation"
+  data-setup="130"
+  data-monthly="85"
+  data-label="Engagement Automation System"
+  data-description="A continuous engagement system that automates follow-up interactions through adaptive timing, behavioral triggers, and personalized communication sequences to maintain lead momentum"
+  data-modules='[
+    {"name":"Sequence Orchestration Engine","price":25},
+    {"name":"Adaptive Timing System","price":30},
+    {"name":"Behavior Trigger Engine","price":35},
+    {"name":"Multi-Channel Follow-up Layer","price":30},
+    {"name":"Response Monitoring System","price":25},
+    {"name":"Engagement Insight Panel","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/followup-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Nemoris</span>
+    <span class="price">$85 / month</span>
+
+    <p>
+      Follow-up Automation Engine — maintain consistent engagement and move leads forward with intelligent follow-up flows.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Sequence Orchestration</li>
+        <li>Adaptive Timing</li>
+        <li>Behavior Triggers</li>
+        <li>Multi-Channel Follow-up</li>
+        <li>Response Monitoring</li>
+        <li>Engagement Insights</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="4"
+  data-name="Syntra"
+  data-fullname="CRM Synchronization Engine"
+  data-type="system"
+  data-category="Sales-Automation"
+  data-setup="170"
+  data-monthly="110"
+  data-label="Data Synchronization System"
+  data-description="A real-time data synchronization system that unifies customer information across multiple platforms, ensuring consistency, accuracy, and seamless data flow between business tools"
+  data-modules='[
+    {"name":"Cross-Platform Sync Engine","price":35},
+    {"name":"Real-Time Data Stream System","price":40},
+    {"name":"Schema Mapping Layer","price":30},
+    {"name":"Conflict Resolution Engine","price":25},
+    {"name":"Integration Bridge Module","price":35},
+    {"name":"Sync Monitoring Console","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/crm-sync-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Syntra</span>
+    <span class="price">$110 / month</span>
+
+    <p>
+      CRM Synchronization Engine — keep your customer data unified and consistent across all systems in real-time.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Cross-Platform Sync</li>
+        <li>Real-Time Data Stream</li>
+        <li>Schema Mapping</li>
+        <li>Conflict Resolution</li>
+        <li>Integration Bridge</li>
+        <li>Sync Monitoring</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+  <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+
+
+<div class="video-card"
+  data-id="5"
+  data-name="Valtor"
+  data-fullname="Deal Closing Engine"
+  data-type="system"
+  data-category="Sales-Automation"
+  data-setup="200"
+  data-monthly="140"
+  data-label="Sales Execution System"
+  data-description="A high-impact deal execution system designed to finalize sales through structured closing strategies, decision triggers, and optimized negotiation flows that convert opportunities into revenue"
+  data-modules='[
+    {"name":"Closing Strategy Engine","price":40},
+    {"name":"Opportunity Tracking System","price":30},
+    {"name":"Negotiation Flow Controller","price":45},
+    {"name":"Decision Trigger Framework","price":35},
+    {"name":"Deal Finalization Module","price":30},
+    {"name":"Revenue Performance Insights","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/closing-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Valtor</span>
+    <span class="price">$140 / month</span>
+
+    <p>
+      Deal Closing Engine — execute winning strategies and convert opportunities into secured revenue.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Closing Strategy</li>
+        <li>Opportunity Tracking</li>
+        <li>Negotiation Flow</li>
+        <li>Decision Triggers</li>
+        <li>Deal Finalization</li>
+        <li>Revenue Insights</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+   <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="6"
+  data-name="Orvex"
+  data-fullname="Sales Communication Engine"
+  data-type="system"
+  data-category="Sales-Automation"
+  data-setup="160"
+  data-monthly="100"
+  data-label="Sales Communication System"
+  data-description="A unified communication system that manages customer conversations across multiple channels, ensuring consistent messaging, real-time engagement, and seamless interaction throughout the sales journey"
+  data-modules='[
+    {"name":"Omni-Channel Messaging Hub","price":35},
+    {"name":"Conversation Routing Engine","price":30},
+    {"name":"Real-Time Interaction Layer","price":40},
+    {"name":"Message History System","price":20},
+    {"name":"Engagement Control Panel","price":25},
+    {"name":"Conversation Intelligence Dashboard","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/communication-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Orvex</span>
+    <span class="price">$100 / month</span>
+
+    <p>
+      Sales Communication Engine — manage conversations, engage customers, and maintain consistent messaging across all channels.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Omni-Channel Messaging</li>
+        <li>Conversation Routing</li>
+        <li>Real-Time Interaction</li>
+        <li>Message History</li>
+        <li>Engagement Control</li>
+        <li>Conversation Intelligence</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+   <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="21"
+  data-name="Operonix"
+  data-fullname="Task Automation Engine"
+  data-type="system"
+  data-category="Workflow-Automation"
+  data-setup="140"
+  data-monthly="90"
+  data-label="Workflow Automation System"
+  data-description="A task automation system that executes repetitive and complex operations automatically using structured workflows, triggers, and intelligent task orchestration"
+  data-modules='[
+    {"name":"Task Execution Engine","price":30},
+    {"name":"Trigger Automation System","price":35},
+    {"name":"Workflow Orchestration Layer","price":40},
+    {"name":"Recurring Task Scheduler","price":25},
+    {"name":"Task Monitoring Dashboard","price":20},
+    {"name":"Execution Performance Tracker","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/task-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Operonix</span>
+    <span class="price">$90 / month</span>
+
+    <p>
+      Task Automation Engine — automate repetitive operations and streamline business workflows with precision.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Task Execution</li>
+        <li>Trigger Automation</li>
+        <li>Workflow Orchestration</li>
+        <li>Task Scheduling</li>
+        <li>Task Monitoring</li>
+        <li>Performance Tracking</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="22"
+  data-name="Procetrix"
+  data-fullname="Process Automation Engine"
+  data-type="system"
+  data-category="Workflow-Automation"
+  data-setup="180"
+  data-monthly="115"
+  data-label="Process Automation System"
+  data-description="A process automation system that designs, executes, and optimizes multi-step business workflows using structured logic, automation chains, and intelligent process control"
+  data-modules='[
+    {"name":"Process Design Engine","price":40},
+    {"name":"Automation Chain Builder","price":35},
+    {"name":"Process Execution Controller","price":45},
+    {"name":"Conditional Logic Engine","price":30},
+    {"name":"Process Monitoring Dashboard","price":25},
+    {"name":"Workflow Optimization System","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/process-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Procetrix</span>
+    <span class="price">$115 / month</span>
+
+    <p>
+      Process Automation Engine — automate complex workflows and manage business processes with structured precision.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Process Design</li>
+        <li>Automation Chains</li>
+        <li>Execution Control</li>
+        <li>Conditional Logic</li>
+        <li>Process Monitoring</li>
+        <li>Workflow Optimization</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+   <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="23"
+  data-name="Docuvra"
+  data-fullname="Document Workflow Engine"
+  data-type="system"
+  data-category="Workflow-Automation"
+  data-setup="160"
+  data-monthly="105"
+  data-label="Document Automation System"
+  data-description="A document workflow system that manages the creation, routing, approval, and tracking of files across business processes using structured automation and controlled document flows"
+  data-modules='[
+    {"name":"Document Routing Engine","price":35},
+    {"name":"Approval Flow Controller","price":40},
+    {"name":"File Lifecycle Manager","price":30},
+    {"name":"Document Tracking System","price":25},
+    {"name":"Version Control Engine","price":30},
+    {"name":"Access Control Layer","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/document-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Docuvra</span>
+    <span class="price">$105 / month</span>
+
+    <p>
+      Document Workflow Engine — automate document routing, approvals, and tracking across your organization.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Document Routing</li>
+        <li>Approval Flows</li>
+        <li>File Lifecycle</li>
+        <li>Tracking System</li>
+        <li>Version Control</li>
+        <li>Access Control</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="24"
+  data-name="Aprobix"
+  data-fullname="Approval Automation Engine"
+  data-type="system"
+  data-category="Workflow-Automation"
+  data-setup="170"
+  data-monthly="110"
+  data-label="Approval Management System"
+  data-description="An approval automation system that manages decision workflows, routes requests through structured approval chains, and ensures fast and accurate authorization across business operations"
+  data-modules='[
+    {"name":"Approval Chain Engine","price":40},
+    {"name":"Multi-Level Approval System","price":35},
+    {"name":"Decision Routing Controller","price":30},
+    {"name":"Approval Tracking Dashboard","price":25},
+    {"name":"Notification & Escalation Engine","price":30},
+    {"name":"Approval Audit System","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/approval-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Aprobix</span>
+    <span class="price">$110 / month</span>
+
+    <p>
+      Approval Automation Engine — streamline decision-making and automate approval workflows across your organization.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Approval Chains</li>
+        <li>Multi-Level Approval</li>
+        <li>Decision Routing</li>
+        <li>Tracking Dashboard</li>
+        <li>Notifications & Escalation</li>
+        <li>Audit System</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="25"
+  data-name="Operis"
+  data-fullname="Internal Operations Engine"
+  data-type="system"
+  data-category="Workflow-Automation"
+  data-setup="190"
+  data-monthly="125"
+  data-label="Operations Management System"
+  data-description="A centralized operations system that manages internal business activities, coordinates processes across teams, and ensures efficient execution of daily operations through structured control systems"
+  data-modules='[
+    {"name":"Operations Control Center","price":40},
+    {"name":"Internal Coordination Engine","price":35},
+    {"name":"Resource Allocation System","price":30},
+    {"name":"Process Oversight Dashboard","price":30},
+    {"name":"Operations Tracking Module","price":25},
+    {"name":"Performance Management Engine","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/operations-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Operis</span>
+    <span class="price">$125 / month</span>
+
+    <p>
+      Internal Operations Engine — manage and coordinate all internal business activities with structured control systems.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Operations Control</li>
+        <li>Team Coordination</li>
+        <li>Resource Allocation</li>
+        <li>Process Oversight</li>
+        <li>Operations Tracking</li>
+        <li>Performance Management</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="26"
+  data-name="Fluxara"
+  data-fullname="Workflow Automation Engine"
+  data-type="system"
+  data-category="Workflow-Automation"
+  data-setup="180"
+  data-monthly="120"
+  data-label="Automated Workflow System"
+  data-description="A ready-to-deploy workflow automation system that executes pre-built operational processes, eliminates manual steps, and ensures seamless task flow across business activities"
+  data-modules='[
+    {"name":"Pre-Built Workflow Library","price":35},
+    {"name":"Auto Execution Engine","price":40},
+    {"name":"Smart Trigger System","price":30},
+    {"name":"Process Flow Controller","price":35},
+    {"name":"Workflow Monitoring Dashboard","price":25},
+    {"name":"Performance Optimization Engine","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/workflow-auto.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Fluxara</span>
+    <span class="price">$120 / month</span>
+
+    <p>
+      Workflow Automation Engine — run pre-built workflows automatically and eliminate manual business operations.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Pre-Built Workflows</li>
+        <li>Auto Execution</li>
+        <li>Smart Triggers</li>
+        <li>Process Flow Control</li>
+        <li>Workflow Monitoring</li>
+        <li>Performance Optimization</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+  <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="41"
+  data-name="Scriptara"
+  data-fullname="Content Creation Engine"
+  data-type="system"
+  data-category="Content-Generation"
+  data-setup="160"
+  data-monthly="110"
+  data-label="Content Production System"
+  data-description="A content creation system that generates structured, high-quality written content across multiple formats using intelligent composition models and production workflows"
+  data-modules='[
+    {"name":"Content Generation Engine","price":35},
+    {"name":"Multi-Format Writing System","price":30},
+    {"name":"Topic Structuring Module","price":25},
+    {"name":"Content Expansion Engine","price":30},
+    {"name":"Draft Management System","price":20},
+    {"name":"Content Output Controller","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/content-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Scriptara</span>
+    <span class="price">$110 / month</span>
+
+    <p>
+      Content Creation Engine — generate structured, high-quality content across multiple formats with intelligent automation.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Content Generation</li>
+        <li>Multi-Format Writing</li>
+        <li>Topic Structuring</li>
+        <li>Content Expansion</li>
+        <li>Draft Management</li>
+        <li>Output Control</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="42"
+  data-name="Persuvar"
+  data-fullname="Copywriting Automation Engine"
+  data-type="system"
+  data-category="Content-Generation"
+  data-setup="170"
+  data-monthly="125"
+  data-label="Conversion Content System"
+  data-description="A copywriting automation system that generates high-converting content for sales pages, ads, emails, and marketing assets using structured persuasion frameworks and performance-driven messaging"
+  data-modules='[
+    {"name":"Persuasion Framework Engine","price":40},
+    {"name":"Sales Copy Generator","price":35},
+    {"name":"Ad Copy Creation Module","price":30},
+    {"name":"CTA Optimization System","price":25},
+    {"name":"Emotional Trigger Engine","price":35},
+    {"name":"Conversion Performance Tracker","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/copywriting-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Persuvar</span>
+    <span class="price">$125 / month</span>
+
+    <p>
+      Copywriting Automation Engine — create high-converting sales and marketing content that drives action and revenue.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Persuasion Frameworks</li>
+        <li>Sales Copy Generator</li>
+        <li>Ad Copy Creation</li>
+        <li>CTA Optimization</li>
+        <li>Emotional Triggers</li>
+        <li>Conversion Tracking</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="43"
+  data-name="Rankora"
+  data-fullname="SEO Content Engine"
+  data-type="system"
+  data-category="Content-Generation"
+  data-setup="180"
+  data-monthly="130"
+  data-label="Search Optimization System"
+  data-description="An SEO-driven content system that creates, structures, and optimizes content for search engines using keyword intelligence, ranking strategies, and performance-focused optimization techniques"
+  data-modules='[
+    {"name":"Keyword Intelligence Engine","price":40},
+    {"name":"Search Intent Analyzer","price":35},
+    {"name":"SEO Content Structuring Module","price":30},
+    {"name":"On-Page Optimization System","price":35},
+    {"name":"Ranking Performance Tracker","price":30},
+    {"name":"Content Optimization Engine","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/seo-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Rankora</span>
+    <span class="price">$130 / month</span>
+
+    <p>
+      SEO Content Engine — create and optimize content that ranks higher and drives consistent organic traffic.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Keyword Intelligence</li>
+        <li>Search Intent Analysis</li>
+        <li>SEO Structuring</li>
+        <li>On-Page Optimization</li>
+        <li>Ranking Tracking</li>
+        <li>Content Optimization</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="44"
+  data-name="Socivra"
+  data-fullname="Social Content Engine"
+  data-type="system"
+  data-category="Content-Generation"
+  data-setup="150"
+  data-monthly="105"
+  data-label="Social Content System"
+  data-description="A social content automation system that creates, adapts, and distributes engaging content across platforms while maintaining consistency, timing, and audience interaction"
+  data-modules='[
+    {"name":"Platform Content Adapter","price":30},
+    {"name":"Content Scheduling Engine","price":35},
+    {"name":"Engagement Content Generator","price":30},
+    {"name":"Trend Adaptation System","price":25},
+    {"name":"Post Timing Optimizer","price":30},
+    {"name":"Engagement Performance Tracker","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/social-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Socivra</span>
+    <span class="price">$105 / month</span>
+
+    <p>
+      Social Content Engine — create and manage engaging content across platforms with consistent and optimized delivery.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Platform Content Adapter</li>
+        <li>Content Scheduling</li>
+        <li>Engagement Content</li>
+        <li>Trend Adaptation</li>
+        <li>Timing Optimization</li>
+        <li>Performance Tracking</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+   <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="45"
+  data-name="Commerix"
+  data-fullname="Product Content Engine"
+  data-type="system"
+  data-category="Content-Generation"
+  data-setup="170"
+  data-monthly="115"
+  data-label="Product Content System"
+  data-description="A product content system that generates optimized descriptions, specifications, and structured product information designed to enhance visibility, clarity, and conversion across digital storefronts"
+  data-modules='[
+    {"name":"Product Description Generator","price":35},
+    {"name":"Specification Builder Engine","price":30},
+    {"name":"Catalog Content Structuring Module","price":35},
+    {"name":"Product SEO Optimization System","price":30},
+    {"name":"Bulk Content Generation Engine","price":40},
+    {"name":"Content Consistency Controller","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/product-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Commerix</span>
+    <span class="price">$115 / month</span>
+
+    <p>
+      Product Content Engine — create structured, optimized product content that improves visibility and drives sales.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Product Descriptions</li>
+        <li>Specification Builder</li>
+        <li>Catalog Structuring</li>
+        <li>Product SEO Optimization</li>
+        <li>Bulk Content Generation</li>
+        <li>Content Consistency</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+   <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="46"
+  data-name="Reverra"
+  data-fullname="Content Repurposing Engine"
+  data-type="system"
+  data-category="Content-Generation"
+  data-setup="140"
+  data-monthly="95"
+  data-label="Content Repurposing System"
+  data-description="A content transformation system that converts existing content into multiple formats such as social posts, emails, videos, and summaries to maximize reach and reuse value"
+  data-modules='[
+    {"name":"Multi-format Conversion Engine","price":30},
+    {"name":"Content Summarization System","price":25},
+    {"name":"Platform Adaptation Module","price":30},
+    {"name":"Content Expansion Engine","price":25},
+    {"name":"Snippet & Highlight Generator","price":20},
+    {"name":"Content Lifecycle Manager","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/repurpose-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Reverra</span>
+    <span class="price">$95 / month</span>
+
+    <p>
+      Content Repurposing Engine — transform one piece of content into multiple formats for maximum reach and reuse.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Multi-format Conversion</li>
+        <li>Content Summarization</li>
+        <li>Platform Adaptation</li>
+        <li>Content Expansion</li>
+        <li>Snippets & Highlights</li>
+        <li>Lifecycle Management</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+  <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="61"
+  data-name="Datyra"
+  data-fullname="Analytics Engine"
+  data-type="system"
+  data-category="Data-Analysis"
+  data-setup="180"
+  data-monthly="135"
+  data-label="Analytics & Intelligence System"
+  data-description="A centralized analytics system that collects, processes, and visualizes business data to provide actionable insights and performance tracking across all operations"
+  data-modules='[
+    {"name":"Data Aggregation Engine","price":35},
+    {"name":"Visualization Dashboard System","price":40},
+    {"name":"Performance Metrics Tracker","price":30},
+    {"name":"Cross-System Data Integrator","price":35},
+    {"name":"Insight Generation Engine","price":40},
+    {"name":"Data Filtering & Segmentation Module","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/analytics-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Datyra</span>
+    <span class="price">$135 / month</span>
+
+    <p>
+      Analytics Engine — transform raw data into clear insights, dashboards, and performance intelligence.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Data Aggregation</li>
+        <li>Visualization Dashboard</li>
+        <li>Performance Tracking</li>
+        <li>Data Integration</li>
+        <li>Insight Generation</li>
+        <li>Data Segmentation</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="62"
+  data-name="Reporix"
+  data-fullname="Reporting Automation Engine"
+  data-type="system"
+  data-category="Data-Analysis"
+  data-setup="160"
+  data-monthly="120"
+  data-label="Reporting Automation System"
+  data-description="An automated reporting system that generates, schedules, and delivers structured reports across business operations without manual effort"
+  data-modules='[
+    {"name":"Auto Report Generator","price":35},
+    {"name":"Scheduled Reporting System","price":30},
+    {"name":"Multi-Format Export Engine","price":30},
+    {"name":"Report Customization Module","price":35},
+    {"name":"Cross-Data Report Builder","price":40},
+    {"name":"Report Delivery Automation","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/report-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Reporix</span>
+    <span class="price">$120 / month</span>
+
+    <p>
+      Reporting Automation Engine — generate and deliver business reports automatically with zero manual effort.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Auto Report Generation</li>
+        <li>Scheduled Reports</li>
+        <li>Multi-Format Export</li>
+        <li>Custom Report Builder</li>
+        <li>Cross-System Reporting</li>
+        <li>Automated Delivery</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="63"
+  data-name="PerformaX"
+  data-fullname="KPI Tracking Engine"
+  data-type="system"
+  data-category="Data-Analysis"
+  data-setup="150"
+  data-monthly="110"
+  data-label="Performance Tracking System"
+  data-description="A performance tracking system that monitors key business metrics in real time, enabling teams to measure success, identify gaps, and optimize outcomes across operations"
+  data-modules='[
+    {"name":"KPI Configuration Engine","price":30},
+    {"name":"Real-Time Metrics Tracker","price":35},
+    {"name":"Goal Monitoring System","price":30},
+    {"name":"Performance Benchmarking Module","price":35},
+    {"name":"Alert & Threshold System","price":30},
+    {"name":"Trend Analysis Engine","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/kpi-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">PerformaX</span>
+    <span class="price">$110 / month</span>
+
+    <p>
+      KPI Tracking Engine — monitor performance, track goals, and measure success in real time.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>KPI Configuration</li>
+        <li>Real-Time Metrics</li>
+        <li>Goal Monitoring</li>
+        <li>Benchmarking</li>
+        <li>Alerts & Thresholds</li>
+        <li>Trend Analysis</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="64"
+  data-name="FuturaX"
+  data-fullname="Predictive Analytics Engine"
+  data-type="system"
+  data-category="Data-Analysis"
+  data-setup="220"
+  data-monthly="160"
+  data-label="Predictive Intelligence System"
+  data-description="An AI-powered predictive analytics system that forecasts trends, behaviors, and outcomes using historical data and intelligent modeling to support proactive decision-making"
+  data-modules='[
+    {"name":"Trend Prediction Engine","price":40},
+    {"name":"Behavior Forecasting System","price":35},
+    {"name":"Predictive Modeling Module","price":45},
+    {"name":"Risk Prediction Engine","price":35},
+    {"name":"Demand Forecasting System","price":40},
+    {"name":"Scenario Simulation Module","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/predictive-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">FuturaX</span>
+    <span class="price">$160 / month</span>
+
+    <p>
+      Predictive Analytics Engine — forecast trends, anticipate risks, and make smarter decisions with AI-powered predictions.
+    </p>
+
+    <!-- MODULE PREVIEW -->
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Trend Prediction</li>
+        <li>Behavior Forecasting</li>
+        <li>Predictive Modeling</li>
+        <li>Risk Prediction</li>
+        <li>Demand Forecasting</li>
+        <li>Scenario Simulation</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="65"
+  data-name="Intellixor"
+  data-fullname="Business Intelligence Engine"
+  data-type="system"
+  data-category="Data-Analysis"
+  data-setup="210"
+  data-monthly="150"
+  data-label="Business Intelligence System"
+  data-description="A centralized intelligence system that transforms complex data into strategic insights, enabling informed decision-making across all business units"
+  data-modules='[
+    {"name":"Cross-System Intelligence Engine","price":40},
+    {"name":"Decision Support System","price":35},
+    {"name":"Insight Aggregation Module","price":40},
+    {"name":"Business Pattern Recognition Engine","price":35},
+    {"name":"Strategic Recommendation System","price":45},
+    {"name":"Data Interpretation Layer","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/bi-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Intellixor</span>
+    <span class="price">$150 / month</span>
+
+    <p>
+      Business Intelligence Engine — convert data into strategic decisions with powerful insight and recommendation systems.
+    </p>
+
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Cross-System Intelligence</li>
+        <li>Decision Support</li>
+        <li>Insight Aggregation</li>
+        <li>Pattern Recognition</li>
+        <li>Strategic Recommendations</li>
+        <li>Data Interpretation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="66"
+  data-name="Visuora"
+  data-fullname="Dashboard Automation Engine"
+  data-type="system"
+  data-category="Data-Analysis"
+  data-setup="170"
+  data-monthly="125"
+  data-label="Dashboard Automation System"
+  data-description="An automated dashboard system that visualizes real-time data across systems, providing clear, dynamic, and interactive views of business performance"
+  data-modules='[
+    {"name":"Dynamic Dashboard Builder","price":40},
+    {"name":"Real-Time Data Sync Engine","price":35},
+    {"name":"Widget Customization Module","price":30},
+    {"name":"Cross-System Visualization Layer","price":40},
+    {"name":"Interactive Data Controls","price":30},
+    {"name":"Auto Dashboard Updates","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/dashboard-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+
+    <span class="agent-tag">Visuora</span>
+    <span class="price">$125 / month</span>
+
+    <p>
+      Dashboard Automation Engine — visualize your business in real time with dynamic, automated dashboards.
+    </p>
+
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Dashboard Builder</li>
+        <li>Real-Time Sync</li>
+        <li>Widget Customization</li>
+        <li>Data Visualization</li>
+        <li>Interactive Controls</li>
+        <li>Auto Updates</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="81"
+  data-name="Conversiq"
+  data-fullname="Live Chat Automation Engine"
+  data-type="system"
+  data-category="Customer-Support"
+  data-setup="180"
+  data-monthly="130"
+  data-label="Customer Support System"
+  data-description="A real-time chat automation system that handles customer conversations, responses, and engagement across multiple channels with intelligent interaction flows"
+  data-modules='[
+    {"name":"Real-Time Chat Engine","price":35},
+    {"name":"Automated Response System","price":30},
+    {"name":"Conversation Routing Module","price":30},
+    {"name":"Multi-Channel Chat Integration","price":35},
+    {"name":"Chat History & Tracking System","price":25},
+    {"name":"Engagement Optimization Engine","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/livechat-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Conversiq</span>
+    <span class="price">$130 / month</span>
+    <p>Live Chat Automation Engine — manage real-time customer conversations with intelligent automation.</p>
+
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Real-Time Chat</li>
+        <li>Auto Responses</li>
+        <li>Conversation Routing</li>
+        <li>Multi-Channel Chat</li>
+        <li>Chat Tracking</li>
+        <li>Engagement Optimization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+   <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="82"
+  data-name="Helpora"
+  data-fullname="Helpdesk Automation Engine"
+  data-type="system"
+  data-category="Customer-Support"
+  data-setup="200"
+  data-monthly="140"
+  data-label="Customer Support System"
+  data-description="A centralized helpdesk system that automates support workflows, manages requests, and ensures efficient resolution across support teams"
+  data-modules='[
+    {"name":"Support Workflow Engine","price":35},
+    {"name":"Request Handling System","price":30},
+    {"name":"Team Assignment Module","price":30},
+    {"name":"Support Queue Manager","price":35},
+    {"name":"Resolution Tracking Engine","price":30},
+    {"name":"Service Optimization Module","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/helpdesk-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Helpora</span>
+    <span class="price">$140 / month</span>
+    <p>Helpdesk Automation Engine — manage and resolve customer support operations efficiently.</p>
+
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Support Workflows</li>
+        <li>Request Handling</li>
+        <li>Team Assignment</li>
+        <li>Queue Management</li>
+        <li>Resolution Tracking</li>
+        <li>Service Optimization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+  <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="83"
+  data-name="Tickora"
+  data-fullname="Ticket Management Engine"
+  data-type="system"
+  data-category="Customer-Support"
+  data-setup="170"
+  data-monthly="125"
+  data-label="Customer Support System"
+  data-description="A structured ticketing system that organizes, tracks, and resolves customer issues with full visibility and workflow control"
+  data-modules='[
+    {"name":"Ticket Creation System","price":30},
+    {"name":"Ticket Tracking Engine","price":30},
+    {"name":"Priority Management Module","price":25},
+    {"name":"Status Workflow System","price":30},
+    {"name":"Issue Categorization Engine","price":30},
+    {"name":"Resolution Logging Module","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/ticket-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Tickora</span>
+    <span class="price">$125 / month</span>
+    <p>Ticket Management Engine — track, organize, and resolve customer issues with structured workflows.</p>
+
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Ticket Creation</li>
+        <li>Tracking System</li>
+        <li>Priority Management</li>
+        <li>Status Workflow</li>
+        <li>Issue Categorization</li>
+        <li>Resolution Logging</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="84"
+  data-name="Infora"
+  data-fullname="FAQ Automation Engine"
+  data-type="system"
+  data-category="Customer-Support"
+  data-setup="150"
+  data-monthly="110"
+  data-label="Customer Support System"
+  data-description="An automated FAQ system that delivers instant answers to common customer questions using structured knowledge and intelligent response mapping"
+  data-modules='[
+    {"name":"Knowledge Base Engine","price":30},
+    {"name":"Auto Answer System","price":25},
+    {"name":"Question Detection Module","price":25},
+    {"name":"Content Structuring Engine","price":30},
+    {"name":"Search & Retrieval System","price":25},
+    {"name":"FAQ Optimization Module","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/faq-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Infora</span>
+    <span class="price">$110 / month</span>
+    <p>FAQ Automation Engine — deliver instant answers with a structured knowledge system.</p>
+
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Knowledge Base</li>
+        <li>Auto Answers</li>
+        <li>Question Detection</li>
+        <li>Content Structuring</li>
+        <li>Search & Retrieval</li>
+        <li>FAQ Optimization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="85"
+  data-name="Onboria"
+  data-fullname="Customer Onboarding Engine"
+  data-type="system"
+  data-category="Customer-Support"
+  data-setup="190"
+  data-monthly="135"
+  data-label="Customer Support System"
+  data-description="A guided onboarding system that helps new customers get started through automated flows, instructions, and step-by-step experience management"
+  data-modules='[
+    {"name":"Onboarding Flow Engine","price":35},
+    {"name":"Step-by-Step Guidance System","price":30},
+    {"name":"User Activation Tracker","price":30},
+    {"name":"Interactive Walkthrough Module","price":35},
+    {"name":"Progress Monitoring Engine","price":30},
+    {"name":"Onboarding Optimization Module","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/onboarding-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Onboria</span>
+    <span class="price">$135 / month</span>
+    <p>Customer Onboarding Engine — guide users from signup to activation with automated onboarding flows.</p>
+
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Onboarding Flows</li>
+        <li>Guided Steps</li>
+        <li>User Activation Tracking</li>
+        <li>Interactive Walkthroughs</li>
+        <li>Progress Monitoring</li>
+        <li>Onboarding Optimization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+</div>
+</div>
+
+
+<div class="video-card"
+  data-id="86"
+  data-name="Supportyx"
+  data-fullname="Support Intelligence Engine"
+  data-type="system"
+  data-category="Customer-Support"
+  data-setup="210"
+  data-monthly="150"
+  data-label="Customer Support System"
+  data-description="An intelligent support system that analyzes customer interactions, detects patterns, and provides insights to improve service quality and operational efficiency"
+  data-modules='[
+    {"name":"Support Data Analysis Engine","price":40},
+    {"name":"Customer Behavior Insights Module","price":35},
+    {"name":"Issue Pattern Detection System","price":35},
+    {"name":"Support Performance Tracker","price":30},
+    {"name":"Service Improvement Engine","price":40},
+    {"name":"Insight Reporting Module","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/support-intel-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Supportyx</span>
+    <span class="price">$150 / month</span>
+    <p>Support Intelligence Engine — analyze support data to improve performance and customer satisfaction.</p>
+
+    <div class="module-preview">
+      <small>Includes Modules:</small>
+      <ul>
+        <li>Support Data Analysis</li>
+        <li>Customer Insights</li>
+        <li>Issue Pattern Detection</li>
+        <li>Performance Tracking</li>
+        <li>Service Optimization</li>
+        <li>Insight Reporting</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+  <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="101"
+  data-name="Postera"
+  data-fullname="Social Posting Engine"
+  data-type="system"
+  data-category="Social-Media-Automation"
+  data-setup="160"
+  data-monthly="115"
+  data-label="Social Media System"
+  data-description="A social posting system that creates, formats, and publishes content across multiple platforms with consistency and automation control"
+  data-modules='[
+    {"name":"Multi-Platform Publishing Engine","price":35},
+    {"name":"Post Formatting System","price":30},
+    {"name":"Content Queue Manager","price":30},
+    {"name":"Media Handling Module","price":25},
+    {"name":"Publishing Control Panel","price":30},
+    {"name":"Post History Tracker","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/posting-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Postera</span>
+    <span class="price">$115 / month</span>
+    <p>Social Posting Engine — publish and manage content across platforms with ease.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Multi-Platform Posting</li>
+        <li>Post Formatting</li>
+        <li>Content Queue</li>
+        <li>Media Handling</li>
+        <li>Publishing Control</li>
+        <li>Post Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="102"
+  data-name="Schedora"
+  data-fullname="Content Scheduling Engine"
+  data-type="system"
+  data-category="Social-Media-Automation"
+  data-setup="150"
+  data-monthly="105"
+  data-label="Social Media System"
+  data-description="A scheduling system that plans, organizes, and automates content publishing timelines for consistent social media presence"
+  data-modules='[
+    {"name":"Smart Scheduling Engine","price":30},
+    {"name":"Calendar Planning System","price":30},
+    {"name":"Time Optimization Module","price":25},
+    {"name":"Recurring Post Scheduler","price":30},
+    {"name":"Schedule Adjustment Engine","price":25},
+    {"name":"Publishing Timeline Tracker","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/schedule-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Schedora</span>
+    <span class="price">$105 / month</span>
+    <p>Content Scheduling Engine — plan and automate your posting calendar with precision.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Smart Scheduling</li>
+        <li>Content Calendar</li>
+        <li>Timing Optimization</li>
+        <li>Recurring Posts</li>
+        <li>Schedule Adjustments</li>
+        <li>Timeline Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="103"
+  data-name="Engagia"
+  data-fullname="Engagement Automation Engine"
+  data-type="system"
+  data-category="Social-Media-Automation"
+  data-setup="180"
+  data-monthly="125"
+  data-label="Social Media System"
+  data-description="An engagement system that automates interactions, responses, and audience engagement across social platforms to increase visibility and activity"
+  data-modules='[
+    {"name":"Auto Interaction Engine","price":35},
+    {"name":"Comment Response System","price":30},
+    {"name":"Message Handling Module","price":30},
+    {"name":"Engagement Tracking Engine","price":30},
+    {"name":"Audience Interaction Analyzer","price":35},
+    {"name":"Response Optimization Module","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/engagement-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Engagia</span>
+    <span class="price">$125 / month</span>
+    <p>Engagement Automation Engine — automate interactions and boost audience engagement.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Auto Interactions</li>
+        <li>Comment Responses</li>
+        <li>Message Handling</li>
+        <li>Engagement Tracking</li>
+        <li>Audience Analysis</li>
+        <li>Response Optimization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="104"
+  data-name="Analytica"
+  data-fullname="Social Analytics Engine"
+  data-type="system"
+  data-category="Social-Media-Automation"
+  data-setup="190"
+  data-monthly="135"
+  data-label="Social Media System"
+  data-description="A social analytics system that tracks performance, audience behavior, and content effectiveness across platforms to provide actionable insights"
+  data-modules='[
+    {"name":"Engagement Metrics Engine","price":35},
+    {"name":"Audience Behavior Analyzer","price":35},
+    {"name":"Content Performance Tracker","price":30},
+    {"name":"Platform Analytics Integrator","price":35},
+    {"name":"Growth Insights Generator","price":30},
+    {"name":"Analytics Reporting Module","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/social-analytics.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Analytica</span>
+    <span class="price">$135 / month</span>
+    <p>Social Analytics Engine — measure performance and understand your audience across platforms.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Engagement Metrics</li>
+        <li>Audience Analysis</li>
+        <li>Content Performance</li>
+        <li>Platform Integration</li>
+        <li>Growth Insights</li>
+        <li>Analytics Reports</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="105"
+  data-name="Trendrixa"
+  data-fullname="Trend Detection Engine"
+  data-type="system"
+  data-category="Social-Media-Automation"
+  data-setup="210"
+  data-monthly="145"
+  data-label="Social Media System"
+  data-description="A trend intelligence system that identifies emerging topics, viral patterns, and audience interests to keep content relevant and competitive"
+  data-modules='[
+    {"name":"Trend Monitoring Engine","price":40},
+    {"name":"Viral Pattern Detector","price":35},
+    {"name":"Topic Discovery System","price":35},
+    {"name":"Audience Interest Analyzer","price":35},
+    {"name":"Trend Alert Module","price":30},
+    {"name":"Trend Opportunity Engine","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/trend-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Trendrixa</span>
+    <span class="price">$145 / month</span>
+    <p>Trend Detection Engine — discover trends early and stay ahead in content strategy.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Trend Monitoring</li>
+        <li>Viral Pattern Detection</li>
+        <li>Topic Discovery</li>
+        <li>Audience Interest Analysis</li>
+        <li>Trend Alerts</li>
+        <li>Opportunity Detection</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+   <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="106"
+  data-name="Growvex"
+  data-fullname="Social Growth Engine"
+  data-type="system"
+  data-category="Social-Media-Automation"
+  data-setup="220"
+  data-monthly="160"
+  data-label="Social Media System"
+  data-description="A growth system that accelerates audience expansion, improves reach, and increases visibility through strategic automation and performance optimization"
+  data-modules='[
+    {"name":"Audience Growth Engine","price":40},
+    {"name":"Reach Optimization System","price":35},
+    {"name":"Follower Acquisition Module","price":35},
+    {"name":"Content Boosting Engine","price":40},
+    {"name":"Growth Strategy Controller","price":35},
+    {"name":"Performance Scaling Module","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/growth-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Growvex</span>
+    <span class="price">$160 / month</span>
+    <p>Social Growth Engine — scale your audience, reach, and visibility with automated growth systems.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Audience Growth</li>
+        <li>Reach Optimization</li>
+        <li>Follower Acquisition</li>
+        <li>Content Boosting</li>
+        <li>Growth Strategy</li>
+        <li>Performance Scaling</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+
+
+</div>
+</main>
+
+<!-- FINAL CTA -->
+<div class="cta-block">
+<h2>Have a project in mind?<br>Let’s build something powerful together.</h2>
+<a href="contact.html" class="cta-btn">Let’s Get Started</a>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+    
+
+<script>
+document.getElementById("toggle").onclick=function(){
+document.getElementById("nav").classList.toggle("active");
+};
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const filterSelect = document.getElementById("filterSelect");
+  const cards = document.querySelectorAll(".video-card");
+  const searchInput = document.getElementById("searchInput");
+
+  let currentFilter = "all";
+
+  // DROPDOWN CHANGE
+  filterSelect.addEventListener("change", () => {
+    currentFilter = filterSelect.value;
+    filterCards();
+  });
+
+  // SEARCH
+  searchInput.addEventListener("keyup", filterCards);
+
+  function filterCards() {
+    const searchValue = searchInput.value.toLowerCase();
+
+    cards.forEach(card => {
+      const category = card.getAttribute("data-category") || "";
+      const keywords = card.getAttribute("data-keywords") || "";
+
+      const text = (
+        category + " " +
+        keywords + " " +
+        card.textContent
+      ).toLowerCase();
+
+      const matchFilter =
+        currentFilter === "all" || category === currentFilter;
+
+      const matchSearch =
+        text.includes(searchValue);
+
+      if (matchFilter && matchSearch) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+
+});
+
+
+const sortSelect = document.getElementById("sortSelect");
+const container = document.querySelector(".cards");
+
+sortSelect.addEventListener("change", () => {
+  const cards = Array.from(container.children);
+
+  cards.sort((a, b) => {
+    const priceA = parseInt(a.querySelector(".price").textContent.replace("$",""));
+    const priceB = parseInt(b.querySelector(".price").textContent.replace("$",""));
+
+    if (sortSelect.value === "low") return priceA - priceB;
+    if (sortSelect.value === "high") return priceB - priceA;
+    return 0;
+  });
+
+  cards.forEach(card => container.appendChild(card));
+});
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const popup = document.getElementById("billingPopup");
+
+  let selectedProduct = {};
+
+  document.querySelectorAll(".order-btn").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault();
+
+      const card = btn.closest(".video-card");
+      console.log(card); // debug
+
+      const name = card.getAttribute("data-name");
+      const setup = Number(card.getAttribute("data-setup"));
+      const monthly = Number(card.getAttribute("data-monthly"));
+      const label = card.getAttribute("data-label");
+
+      selectedProduct = {
+        id: card.getAttribute("data-id"),
+        name,
+        setup,
+        monthly,
+        label
+      };
+
+      console.log("WORKING:", selectedProduct);
+
+      localStorage.setItem("selectedProduct", JSON.stringify(selectedProduct));
+
+      // Fill popup
+      document.getElementById("productName").innerText = name;
+      document.getElementById("setupPrice").innerText = "$" + setup;
+      document.getElementById("monthlyPrice").innerText = "$" + monthly + "/month";
+      document.getElementById("monthlyNext").innerText = "$" + monthly + "/month";
+      document.getElementById("billingLabel").innerText = label;
+      document.getElementById("billingLabel2").innerText = label;
+      document.getElementById("totalToday").innerText = "$" + (setup + monthly);
+
+      if (popup) popup.style.display = "flex";
+    });
+  });
+
+  document.getElementById("closePopup").onclick = () => {
+    popup.style.display = "none";
+  };
+
+});
+
+
+
+document.querySelectorAll(".order-btn").forEach(btn => {
+  btn.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const productId = this.closest(".video-card").dataset.id;
+
+    // ✅ update href dynamically (keeps anchor behavior)
+    this.href = "billing.html?id=" + productId;
+
+    // ✅ now allow redirect
+    window.location.href = this.href;
+  });
+});
+
+</script>
+
+</body>
+</html>

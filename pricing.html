@@ -1,0 +1,2798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing | Freener’s Digital Services</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f9f9f9;
+  color:#222;
+  line-height:1.6;
+  width:100%;
+  overflow-x:hidden;
+  overscroll-behavior-x: none;
+  overscroll-behavior: none;
+  touch-action: pan-y;
+}
+a{text-decoration:none;color:inherit}
+
+.container{max-width:1200px;margin:auto;padding:20px}
+
+/* HEADER */
+header{background: darkgreen}
+.nav{display:flex;justify-content:space-between;align-items:center;color:#fff}
+.logo{font-size:1rem;font-weight:700}
+.menu{display:flex;gap: 15px}
+.menu a{color: #fff;}
+.menu :hover{color: greenyellow;}
+.hamburger{display:none;font-size:28px;cursor:pointer}
+
+/* Default (desktop) */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+    position: relative;
+    z-index: 1001;
+  }
+
+  .menu {
+    display: none;
+  }
+}
+
+/* ===== MASTER MOBILE HAMBURGER ===== */
+.nav-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+/* DESKTOP HEADER */
+header {
+ background: darkgreen;
+ position: sticky;
+ top: 0;
+ z-index: 1100;
+}
+
+.container.nav {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+/* MOBILE TOGGLE */
+.nav-toggle {
+ display: none;
+ font-size: 28px;
+ cursor: pointer;
+ color: #fff;
+}
+
+  /* MOBILE DRAWER */
+.mobile-nav {
+ position: fixed;
+ top: 70px;
+ right: -100%;
+ width: 170px;
+ background: darkgreen;
+ display: flex;
+ flex-direction: column;
+ padding: 20px;
+ gap: 15px;
+ transition: right 0.3s ease;
+ z-index: 3000;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 2500;
+}
+
+  .mobile-nav.active {
+ right: 0;
+}
+
+  .mobile-nav a {
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding-left: 16px 14px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.05rem;
+  }
+
+  .mobile-nav a:hover {
+    background: greenyellow;
+  }
+
+  /* MOBILE RULES */
+@media (max-width: 768px) {
+ .menu {
+   display: none;
+ }
+ .nav-toggle {
+   display: block;
+ }
+}
+
+/* PAGE TITLE */
+.page-title{text-align:center;margin: 20px 0}
+.page-title h1{font-size:36px}
+.page-title p{color:#00a86b;margin-top:10px; font-size: 1.5rem;}
+
+/* SECTIONS */
+
+.section h2 {
+  font-size: 2.2rem;        /* Desktop */
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===============================
+   PRICING PAGE – GLOBAL SECTION SPACING
+================================ */
+.section{
+  padding-top:20px;
+  padding-bottom:20px;
+}
+
+@media (max-width:1024px){
+  .section{
+    padding: top 20px;
+    padding-bottom:20px;
+  }
+}
+
+@media (max-width:768px){
+  .section{
+    padding-top:20px;
+    padding-bottom:20px;
+  }
+}
+
+.section .intro,
+.section p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto 20px;
+  color: #333;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .section h2 {
+    font-size: 1.8rem;
+  }
+
+  @media (max-width:768px){
+  .section .intro,
+  .section p{
+    margin-bottom:20px;
+  }
+}
+
+  .section .intro,
+  .section p {
+    font-size: 1.05rem;
+  }
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap: 20px;
+}
+
+/* Space after pricing card groups */
+.grid,
+.managed-wrapper,
+.enterprise-cards,
+.managed-card.technical,
+.managed-card.authority{
+  margin-bottom:20px;
+}
+
+@media (max-width:768px){
+  .grid,
+  .managed-wrapper,
+  .enterprise-cards{
+    margin-bottom:15px;
+  }
+}
+
+
+/* CARD */
+.card{
+  background:#fff;
+  border-radius:12px;
+  padding:25px;
+  box-shadow:0 10px 25px rgba(0,0,0,.06);
+  display:flex;
+  flex-direction:column;
+
+  opacity:0;
+  transform:translateY(40px);
+  transition:.6s ease;
+}
+.card.show{
+  opacity:1;
+  transform:translateY(0);
+}
+.card h3{font-size:22px;margin-bottom:5px}
+.card .tag{
+  display:inline-block;
+  background:#00a86b;
+  color:#fff;
+  font: size 1.4em;
+  padding:4px 10px;
+  border-radius:20px;
+  margin-bottom:10px;
+}
+
+.card p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.price{font: size 2rem;font-weight:700;color:#00a86b;margin:10px 0}
+@media (max-width: 768px) {
+  .card .price {
+    font-size: 1.8rem;
+  }
+}
+.card ul{list-style:none;margin:15px 0}
+.card ul li{font: size 1.2em;margin-bottom:8px; line-height: 1.6;}
+@media (max-width: 768px) {
+  .card ul li {
+    font-size: 1.2rem;
+  }
+}
+
+/* GLOBAL CARD HOVER LIFT */
+.card,
+.trust-card,
+.enterprise-card,
+.pricing-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover,
+.trust-card:hover,
+.enterprise-card:hover,
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 35px rgba(0,0,0,0.12);
+}
+
+.card button{
+  margin-top:auto;
+  padding:12px;
+  background:#00a86b;
+  border:none;
+  border-radius:6px;
+  color:#fff;
+  font: size 1rem;
+  cursor:pointer;
+  font-weight: 600;
+}
+
+/* CTA BUTTON HOVER */
+button,
+.managed-btn,
+.enterprise-card button {
+ transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover,
+.managed-btn:hover,
+.enterprise-card button:hover {
+ background:#e5e7eb; /* silver */
+ color:#111;
+ transform:translateY(-2px);
+}
+
+
+/* MOST POPULAR */
+.popular{
+  border:2px solid #00a86b;
+  transform:scale(1.03);
+}
+
+/* ================= TESTIMONIAL EXPERIENCE SECTION ================= */
+.testimonial-section{
+  background:#f8f9fb;
+  padding:90px 20px;
+}
+
+/* Wrapper */
+.testimonial-wrapper{
+  overflow:hidden;
+  position:relative;
+}
+
+/* Track */
+.testimonial-track{
+  display:flex;
+  transition:transform 1.1s ease-in-out; /* slower than trust */
+}
+
+/* Card */
+.testimonial-card{
+  min-width:100%;
+  background: aqua;
+  padding:42px 38px;
+  border-radius:18px;
+  text-align:left;
+  box-shadow:none; /* avoid stretch artifacts */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Quote mark */
+.quote-mark{
+  font-size:4.5rem;
+  line-height:1;
+  color:#fff;
+  opacity:1;
+  margin-bottom: 10px;
+  display: block;
+}
+.quote-mark{
+  position: relative;
+  z-index: 5;
+}
+
+/* Text */
+.testimonial-text{
+  font-size:1.1rem;
+  line-height:1.8;
+  color:#333;
+  margin-bottom:22px;
+}
+
+/* Name & role */
+.testimonial-name{
+  font-size:1.1rem;
+  font-weight:600;
+  color:darkgreen;
+  margin-bottom:4px;
+}
+
+.testimonial-role{
+  font-size:1rem;
+  color:crimson;
+}
+
+/* Mobile refinement */
+@media (max-width:768px){
+  .testimonial-card{
+    padding:34px 26px;
+  }
+}
+
+/* GUARANTEE */
+.guarantee{
+  text-align:left;
+}
+.guarantee-box{
+  background:chartreuse;
+  padding:40px;
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  max-width:900px;
+  margin: 15px auto 0;
+}
+.guarantee-box ul{
+  list-style:none;
+  margin-bottom:20px;
+}
+.guarantee-box ul li{
+  margin-bottom:10px;
+  font: size 1rem;
+}
+.guarantee-note{
+  font-weight:600;
+  margin-bottom:20px;
+}
+.guarantee-box button{
+  padding:14px 28px;
+  background:#00a86b;
+  border:none;
+  border-radius:30px;
+  color:#fff;
+  font: size 1rem;
+  cursor:pointer;
+}
+.guarantee-box button:hover{
+  background: #e5e7eb;
+  color: #111;
+}
+
+/* ================= TRUST SECTION ================= */
+
+.trust-section{
+  padding:80px 20px;
+  background:#f9fafb;
+  text-align:center;
+  overflow:hidden; /* CRITICAL */
+}
+
+.trust-section .section-title{
+  font-size:2rem;
+  margin-bottom:10px;
+}
+
+.trust-section .section-intro{
+  font-size:1rem;
+  color:#555;
+  margin: bottom 20px;
+}
+
+.trust-wrapper{
+  display:flex;
+  gap:20px;
+  width:max-content;       /* allow all 7 cards */
+  margin:0 auto;
+  overflow:hidden;
+  transition:transform 0.6s ease;
+  align-items: flex-start;
+}
+.trust-wrapper{
+  width:max-content;       /* allow all 7 cards */
+  display:flex;
+  gap:20px;
+}
+
+/* TRUST CARD */
+.trust-card{
+  background:#fff;
+  padding:30px 25px;
+  border-radius:16px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-width: 300px;
+  max-width:300px;
+  flex-shrink:0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+
+.section,
+.container{
+  overflow-x:hidden;
+}
+
+/* CLIENT IMAGE */
+.trust-avatar{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-bottom:12px;
+}
+
+.trust-name{
+  font-size:1rem;
+  font-weight:600;
+  margin:4px 0 0;
+  color:#111;
+}
+
+.trust-role{
+  font-size:0.85rem;
+  color:#666;
+  margin-bottom:8px;
+}
+
+/* BADGE + VERIFIED */
+.trust-verify{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:#22c55e;
+  font-size:1rem;
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+.trust-badge{
+  width: 30px;
+  height:auto;
+}
+
+/* STARS */
+.trust-stars{
+  color:#22c55e;
+  font-size:1.1rem;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+
+/* FEEDBACK */
+.trust-feedback{
+  font-size:0.95rem;
+  color:#555;
+  line-height:1.6;
+  font-style:italic;
+  text-align:center;
+}
+
+/* ===== TRUST SLIDER MOBILE FIX ===== */
+@media (max-width: 768px) {
+  .trust-wrapper {
+    transform: none !important;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    height: auto;
+    display: flex;
+    overflow: visible;
+  }
+
+  .trust-card {
+    min-width: 90%;
+    max-width: 340px;
+    position: relative;
+    left: auto;
+    transform: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    margin: 0 auto;
+  }
+
+  .trust-card.active {
+    opacity: 1;
+    
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width:768px){
+
+  .trust-wrapper{
+    grid-template-columns:1fr;
+    gap: 20px;
+  }
+
+  .trust-card{
+    margin:0 auto;
+  }
+}
+
+.clarity-block h3 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.clarity-block p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+.fade-item,
+.card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-item.show,
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .trust-wrapper {
+    display: block;
+    transform: none !important;
+  }
+
+  .trust-card {
+    display: none;
+  }
+
+  .trust-card.active {
+    display: block;
+  }
+}
+
+
+.cancel-trust{
+  margin:20px auto 30px;
+  font-size:  1.2rem;
+  color:#16a34a;
+  font-weight:500;
+}
+
+
+.badge{
+  position:absolute;
+  top:15px;
+  right:15px;
+  background:#22c55e;
+  color:#fff;
+  padding:5px 10px;
+  font-size:0.75rem;
+  border-radius:20px;
+}
+
+/* ===============================
+   ENTERPRISE STANDALONE SECTION
+================================ */
+
+.enterprise-standalone{
+  padding:80px 20px;
+  background:#f9fafb;
+}
+
+.enterprise-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+.enterprise-title{
+  text-align:center;
+  font-size:2.2rem;
+  margin-bottom:15px;
+}
+
+.enterprise-signals{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  font-size:1.05rem;
+  color:#00a86b;
+  margin-bottom:15px;
+  flex-wrap:wrap;
+}
+
+.enterprise-intro{
+  text-align:center;
+  max-width:720px;
+  margin:0 auto 15px;
+  font-size:1.05rem;
+  line-height:1.6;
+  color:#555;
+}
+
+.enterprise-cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:28px;
+}
+
+.enterprise-card{
+  background:#fff;
+  padding:26px 24px;
+  border-radius:14px;
+  box-shadow:0 8px 22px rgba(0,0,0,0.08);
+}
+
+.enterprise-card h3{
+  font-size:1.3rem;
+  margin-bottom:10px;
+  
+}
+
+.enterprise-card p{
+  font-size:1.3rem;
+  line-height:1.05;
+  margin-bottom:10px;
+  color: darkgreen;
+}
+
+.enterprise-card ul{
+  padding-left:18px;
+}
+
+.enterprise-card ul li{
+  font-size:1rem;
+  margin-bottom:8px;
+}
+
+/* Gold featured card */
+.enterprise-card.gold{
+  background:#f5c542;
+  color:#111;
+}
+
+.enterprise-card.gold ul li{
+  color:#111;
+}
+
+.enterprise-note{
+  text-align:center;
+  font-size:1.3rem;
+  color:#555;
+  margin: top 15px;
+}
+
+.enterprise-card button{
+  background:#00a86b;       /* same green as your site */
+  color:#fff;
+  border:none;
+  padding:12px 22px;
+  border-radius:8px;
+  font-size:0.95rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:all 0.3s ease;
+}
+
+.enterprise-card button:hover{
+  background:#f9fafb;
+  transform:translateY(-1px);
+}
+
+
+/* Mobile safety */
+@media (max-width:768px){
+  .enterprise-title{
+    font-size:1.8rem;
+  }
+}
+
+/* Divider */
+
+.high-value-divider{
+  text-align:center;
+  padding:40px 20px;
+  margin-top: 15px;
+}
+
+.high-value-divider .line{
+  display:block;
+  width:80px;
+  height:4px;
+  background:#00a86b;
+  margin:0 auto 20px;
+  border-radius:2px;
+}
+
+.high-value-divider h2{
+  font-size:2.4rem;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.high-value-divider p{
+  font-size:1.1rem;
+  max-width:700px;
+  margin:0 auto;
+  color:#444;
+}
+@media (max-width: 768px){
+
+  .high-value-divider{
+    padding:20px 15px;
+  }
+
+  .high-value-divider h2{
+    font-size:1.6rem;
+    line-height:1.3;
+  }
+
+  .high-value-divider p{
+    font-size:0.95rem;
+    line-height:1.6;
+  }
+}
+
+.fade-item,
+.card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-item.show,
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .menu{display:none}
+  .hamburger{display:block}
+  .page-title h1{font: size 1.5em;}
+}
+/* === UNIVERSAL SOFT CARD LIFT (FIX) === */
+.section .card:hover,
+.pricing-card:hover,
+.fade-item.card:hover {
+ transform: translate3d(0, -9px, 0) !important;
+ box-shadow: 0 16px 35px rgba(0,0,0,0.12);
+}
+
+/* Pricing page notes spacing */
+.section-note,
+.enterprise-note,
+.cancel-trust{
+  margin-bottom:20px;
+}
+
+@media (max-width:768px){
+  .section-note,
+  .enterprise-note,
+  .cancel-trust{
+    margin-bottom:20px;
+  }
+}
+
+.features-tag {
+  margin: 0.6rem 0 1.2rem;
+  font-size: 0.85rem;
+  color: #374151; /* slightly stronger than best-for */
+  text-align: center;
+}
+
+.features-tag span {
+  font-weight: 600;
+  color: #111827;
+}
+
+.features-tag::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 2px;
+  background: #e5e7eb;
+  margin: 0.6rem auto 0;
+}
+
+.chatbox-usage {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  opacity: 0.85;
+  margin-top: 10px;
+}
+
+.usage-note {
+  margin-top: 32px;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  background: rgba(0, 0, 0, 0.03);
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+
+
+.saas-pricing-section {
+  padding: 40px 20px;
+  background: #f0f2f5 url('data:image/svg+xml;utf8,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="1" fill="%23dcdcdc"/></svg>') repeat;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 25px rgba(0,0,0,0.2);
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1.2em;
+  text-align: center;
+  background: linear-gradient(135deg, #00a86b, #00a86b);
+}
+
+.section-header {
+  text-align: center;
+  max-width: 100%;
+  margin: 0 auto 40px auto;
+}
+
+.section-header h2 {
+  width: 100%;
+  font-size: 2.2rem;
+}
+
+.section-header p {
+  width: 100%;
+  max-width: 700px; /* controls readability */
+  margin: 0 auto;
+  line-height: 1.6;
+  white-space: normal;
+  font-size: 1.2rem;
+}
+
+/* Card-specific gradient headers */
+.starter h3 { background: linear-gradient(135deg, #00a86b, #00a86b); }
+.growth h3 { background: linear-gradient(135deg, #00a86b, #00a86b); }
+.ecommerce h3 { background: linear-gradient(135deg, #00a86b, #00a86b); }
+.enterprise h3 { background: linear-gradient(135deg, #00a86b, #00a86b); }
+.agency h3 { background: linear-gradient(135deg, #00a86b, #00a86b); }
+.ultimate h3 { background: linear-gradient(135deg, #00a86b, #00a86b); }
+
+.card .price { font-size: 20px; font-weight: bold; margin-bottom: 8px; }
+.card .monthly { font-size: 18px; margin-bottom: 15px; color: #555; }
+
+.card ul { list-style: none; padding: 0; }
+.card ul li {
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 25px;
+  font-size: 14.5px;
+}
+.card ul li::before { content: "●"; position: absolute; left: 0; color: green; }
+
+.choose-btn {
+  margin-top: auto;
+  padding: 12px;
+  text-align: center;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s;
+  display: block;
+}
+
+.starter .choose-btn { background-color: #3498db; }
+.growth .choose-btn { background-color: #2ecc71; }
+.ecommerce .choose-btn { background-color: #e67e22; }
+.enterprise .choose-btn { background-color: #9b59b6; }
+.agency .choose-btn { background-color: #e91e63; }
+.ultimate .choose-btn { background-color: #34495e; }
+
+.choose-btn:hover { transform: scale(1.05); opacity: 0.9; }
+
+/* Responsive grid */
+@media (max-width: 900px) { .cards-container { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .cards-container { grid-template-columns: 1fr; } }
+
+/* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">Freener’s Digital Services</div>
+    <nav class="menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+     <a href="marketplace.html">Marketplace</a>
+      <a href="contact.html">Contact</a>
+      <a href="payment.html">Payment</a>
+      <a href="faq.html">FAQs</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Policy</a>
+    </nav>
+    <div class="nav-toggle" id="navToggle">&#9776;</div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mainNav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="marketplace.html">Marketplace</a>
+  <a href="contact.html">Contact</a>
+  <a href="payment.html">Payment</a>
+  <a href="faq.html">FAQs</a>
+  <a href="terms.html">Terms </a>
+  <a href="privacy.html">privacy</a>
+  
+  
+</nav>
+
+<section class="container page-title">
+  <h1>Pricing</h1>
+  <p>Transparent pricing. Real value. Long-term digital success.</p>
+</section>
+
+<!-- WEB DESIGN -->
+<section class="container section">
+<h2>Web Design & Development</h2>
+<p class="intro">
+We build websites that don’t just look good — they convert visitors into customers.
+</p>
+
+<div class="grid">
+<div class="card">
+<h3>Foundational Website</h3>
+<p class="price">$500</p>
+  <p class="features-tag">
+    <span>Includes:</span> Standard website Setup
+  </p>
+
+<ul>
+
+<li>Custom 1-5 page website</li>
+<li>Premium UI/UX design</li>
+<li>Contact form integration</li>
+<li>SEO-ready foundation</li>
+<li>WhatsApp integration</li>
+</ul>
+<button onclick="contact()">Get Started</button>
+</div>
+
+<div class="card popular">
+<span class="tag">Most Popular</span>
+<h3>Growth Plan</h3>
+<p class="price">$3,500</p>
+  <p class="features-tag">
+    <span>Includes:</span>  Extended functionality & integrations
+  </p>
+
+<ul>
+<li>Custom 1-12 Page website</li>
+<li>Advanced UI/UX design</li>
+<li>On-page SEO optimization</li>
+<li>Speed & performance tuning</li>
+<li>Secure payment integration (if required)</li>
+</ul>
+<button onclick="contact()">Start My Project</button>
+</div>
+
+<div class="card popular">
+<span class="tag">Best Value</span>
+<h3>Authority Plan</h3>
+<p class="price">$8,500</p>
+  <p class="features-tag">
+    <span>Includes:</span> Advanced configuration, optimization, & alignment
+  </p>
+<ul>
+<li>Fully custom website</li>
+<li>Custom layouts & interactions</li>
+<li>Brand-aligned UI/UX system</li>
+<li>Conversion-focused structure</li>
+<li>Analytics & tracking setup</li>
+</ul>
+<button onclick="contact()">Request Quote</button>
+</div>
+
+<div class="card">
+<h3>Executive Plan</h3>
+<p class="price">Price: based on projects scope</p>
+  <p class="features-tag">
+    <span>Includes:</span> Custom implementation, automation, & system integration
+  </p>
+<ul>
+<li>Custom web platform </li>
+<li>UX strategy & user flow planning</li>
+<li>Internal tools / dashboards (if needed)</li>
+<li>Advanced payment & API integrations</li>
+<li>Team onboarding & documentation</li>
+</ul>
+<button onclick="contact()">Schedule Consultation</button>
+</div>
+
+<div class="card">
+<h3>Enterprise / Bespoke</h3>
+<p class="price">Price: custom engagement</p>
+  <p class="features-tag">
+    <span>Includes:</span> Fully customized architecture, integration, & support framework
+  </p>
+<ul>
+<li>Fully bespoke digital solution</li>
+<li>Business process automation</li>
+<li>Custom integrations & systems</li>
+<li>Dedicated project management</li>
+<li>Scalability & long-term architecture</li>
+</ul>
+<button onclick="contact()">Contact sales</button>
+</div>
+
+</div>
+
+</section>
+
+<section class="container section high-value-divider fade-item">
+  <span class="line"></span>
+  <h2>High-Value Services</h2>
+  <p>
+    Strategic digital solutions for organizations that require reliability,
+    security, and long-term partnership.
+  </p>
+</section>
+
+<section class="enterprise-standalone fade-item">
+
+  <div class="enterprise-container">
+    <h2 class="enterprise-title">Enterprise & Corporate Solutions</h2>
+
+    <div class="enterprise-signals">
+      <span>✔ NDA Friendly</span>
+      <span>✔ SLA Backed</span>
+      <span>✔ Scalable Systems</span>
+    </div>
+
+    <p class="enterprise-intro">
+      Enterprise-grade digital systems built for scale, security, and long-term growth.
+      Trusted by organizations that cannot afford downtime or compromise.
+    </p>
+
+    <div class="enterprise-cards">
+
+      <div class="enterprise-card">
+        <h3>Enterprise Setup & Implementation</h3>
+        <p class="price">From $3,500 <span class="once">(one-time)</span></p>
+        <p>
+        Secure, scalable systems built for enterprise operations. Includes setup, onboarding, and documentation.
+        </p>
+        <ul>
+          <li>Custom system architecture</li>
+          <li>Secure infrastructure</li>
+          <li>Performance optimization</li>
+          <li>Deployment & onboarding</li>
+          <li>Technical documentation</li>
+        </ul>
+        <button onclick="contact()"> Start Implementation</button>
+      </div>
+
+      <div class="enterprise-card gold">
+        <h3>Enterprise Management & Support</h3>
+        <p class="price">$2,500 <span class="monthly">/ month</span></p>
+        <p>
+        Continuous monitoring, security, optimization, and SLA-backed support.
+        </p>
+        <ul>
+          <li>24/7 monitoring</li>
+          <li>Security patches</li>
+          <li>Performance tuning</li>
+          <li>SLA-backed support</li>
+          <li>Monthly reports</li>
+        </ul>
+        <button onclick="contact()">Schedule Call</button>
+      </div>
+
+      <div class="enterprise-card">
+        <h3>Enterprise Partnership</h3>
+        <p class="price">$5,500 <span class="monthly">/ month</span></p>
+        <p>
+        Long-term partnership including strategy, automation, custom integrations, and priority support.
+        </p>
+        <ul>
+          <li>Dedicated technical team</li>
+          <li>Automation & upgrades</li>
+          <li>Custom integrations</li>
+          <li>Executive strategy sessions</li>
+          <li>Top priority support</li>
+        </ul>
+        <button onclick="contact()">Discuss Partnership</button>
+      </div>
+
+    </div>
+
+    <p class="enterprise-note">
+      All enterprise engagements include confidentiality, structured communication,
+      and professional delivery standards.
+    </p>
+  </div>
+
+</section>
+
+<!-- FREELANCING -->
+<section class="container section">
+<h2>Freelancing & On-Demand Support</h2>
+<p class="intro">
+Flexible professional support when you need speed, precision, and reliability.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>Technical Support</h3>
+<p class="price">$299 / month</p>
+<ul>
+<li>Website bug fixing & error resolution</li>
+<li>Server, hosting & deployment support</li>
+<li>Security checks & basic hardening</li>
+<li>Performance & speed optimization</li>
+<li>Ongoing maintenance & technical monitoring</li>
+</ul>
+<button onclick="contact()">Available</button>
+</div>
+
+<div class="card">
+<h3>Freelancing</h3>
+<p class="price">$99 / hour</p>
+<ul>
+<li>Custom website & web app</li>
+<li>Feature implementation & upgrades</li>
+<li>UI/UX improvements & refinements</li>
+<li>API integrations & automation setup</li>
+<li>Project-based development support</li>
+</ul>
+<button onclick="contact()">Hire Me</button>
+</div>
+
+<div class="card">
+<h3>Virtual Assistant</h3>
+<p class="price">$30 / hour</p>
+<ul>
+<li>Email & inbox management</li>
+<li>Online research & data collection</li>
+<li>Data entry & document organization</li>
+<li>Customer support & follow-ups</li>
+<li>Task coordination & admin assistance</li>
+</ul>
+<button onclick="contact()">Book Support</button>
+</div>
+
+</div>
+</section>
+
+<section class="container section">
+<h2>Not Sure Which Plan You Need?</h2>
+<p>Hosting keeps your website online.
+Maintenance keeps it secure and healthy.
+Retainers help your business grow faster.</p>
+</section>
+
+
+<!-- MAINTENANCE -->
+<section class="container section">
+<h2>Hosting & Website Care</h2>
+<p class="intro">
+Secure hosting, ongoing management, and expert support all in one simple monthly plan.
+</p>
+<p class="cancel-trust">
+  Cancel anytime. No long-term contracts. Full control, always.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>Foundational Care</h3>
+    <p class="price">$39<span> / month</span></p>
+    <ul>
+      <li>Secure cloud hosting (optimized stack)</li>
+      <li>Core updates (CMS & plugins)</li>
+      <li>SSL, backups & uptime monitoring</li>
+      <li>Basic Security</li>
+      <li>1-2 Content Updates</li>
+      <li>Email Setup</li>
+    </ul>
+<button onclick="contact()">Protect My Website</button>
+</div>
+
+<div class="card popular">
+<span class="badge">Most Popular</span>
+    <h3>Growth Care</h3>
+    <p class="price">$99<span> / month</span></p>
+    <ul>
+      <li>Everything in Foundational Care</li>
+      <li>Weekly Backups</li>
+      <li>Website scans </li>
+      <li>Performance monitoring</li>
+      <li>Content updates</li>
+      <li>Priority Support</li>
+    </ul>
+<button onclick="contact()">Upgrade My Care</button>
+</div>
+
+<div class="card">
+<span class="badge">Best value</span>
+    <h3>Authority Care</h3>
+    <p class="price">$199<span> / month</span></p>
+    <ul>
+      <li>Everything in Growth Care</li>
+      <li>Database & server optimization</li>
+      <li>Priority issue resolution</li>
+      <li>Unlimited Updates</li>
+      <li>Emergency Fixes</li>
+    </ul>
+<button onclick="contact()">Get Priority Support</button>
+</div>
+
+<div class="card">
+<h3>Hosting & Infrastructure Management</h3>
+    <p class="price">Custom engagement</p>
+    <ul>
+      <li>Multi-site hosting management</li>
+      <li>Advanced monitoring & failover</li>
+      <li>SLA-Backed Support</li>
+      <li>Dedicated infrastructure oversight</li>
+    </ul>
+<button onclick="contact()">Contact Sales</button>
+</div>
+
+</div>
+</section>
+
+
+<!-- MAINTENANCE -->
+<section class="container section">
+<h2>Cybersecurity & Protection Services</h2>
+<p class="intro">
+ Protect your business from online threats, data breaches, 
+ and malicious attacks with professional cybersecurity services tailored for modern digital operations.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3> Website Security & Hardening </h3>
+<p class="price">$129 / month</p>
+<ul>
+<li>Malware scanning & removal</li>
+<li>Firewall & WAF setup</li>
+<li>Security patching & updates</li>
+<li>Brute force attack prevention</li>
+<li>Secure login protection</li>
+</ul>
+<button onclick="contact()">Protect My Website</button>
+</div>
+
+<div class="card popular">
+<span class="tag">Most Chosen</span>
+<h3>Threat Monitoring & Alerts</h3>
+<p class="price">$199 / month</p>
+<ul>
+<li>Real-time monitoring of security events</li>
+<li>Intrusion detection alerts</li>
+<li>24/7 suspicious activity tracking</li>
+<li>Log monitoring & threat reporting</li>
+<li>Anomaly detection rules</li>
+</ul>
+<button onclick="contact()">Start Monitoring</button>
+</div>
+
+<div class="card">
+<h3> Email Security & Anti-Phishing</h3>
+<p class="price">$99 / month</p>
+<ul>
+<li>SPF, DKIM & DMARC setup</li>
+<li>Phishing protection rules</li>
+<li>Spam & malware filtering</li>
+<li>Attachment scanning & quarantining</li>
+<li>Suspicious sender alerts</li>
+</ul>
+<button onclick="contact()">Secure My Email</button>
+</div>
+
+<div class="card">
+<h3> Vulnerability Assessment & Audit</h3>
+<p class="price">$249 / month</p>
+<ul>
+<li>Full system vulnerability scan</li>
+<li>Risk & threat analysis report</li>
+<li>Security gap identification</li>
+<li>Detailed remediation guide</li>
+<li>Compliance readiness checks</li>
+</ul>
+<button onclick="contact()">Request Audit</button>
+</div>
+
+<div class="card">
+<h3>Data Protection & Backup</h3>
+<p class="price">$149 / month</p>
+<ul>
+<li>Encrypted backup automation</li>
+<li>Offsite secure storage</li>
+<li>Data integrity verification</li>
+<li>Failover & disaster recovery</li>
+<li>Access control & permission policies</li>
+</ul>
+<button onclick="contact()">Protect My Data</button>
+</div>
+
+<div class="card">
+<h3>Ongoing Support & Optimization</h3>
+<p class="price">$169 / month</p>
+<ul>
+<li>Monthly system checks</li>
+<li>Performance tuning</li>
+<li>Automation improvements</li>
+<li>Bug prevention</li>
+<li>Priority support</li>
+</ul>
+<button onclick="contact()">Get Expert Support</button>
+</div>
+
+
+</div>
+</section>
+
+<section class="container section">
+  <h2>Monthly Retainer Packages</h2>
+  <p class="intro">
+    Ongoing digital support and management for businesses that require consistent, high-quality service.
+  </p>
+
+  <div class="grid">
+
+    <!-- Card 1: Foundational Retainer -->
+    <div class="card">
+      <h3>Foundational Retainer</h3>
+      <p class="features-tag">
+        <span>Includes:</span> Core website support, basic admin, and minor updates
+      </p>
+      <p class="price">$450 / month</p>
+      <ul>
+        <li>20 hours support per month</li>
+        <li>Website updates & maintenance</li>
+        <li>Email & administrative tasks</li>
+      </ul>
+      <button onclick="contact()">Start Monthly Support</button>
+    </div>
+
+    <!-- Card 2: Growth Retainer -->
+    <div class="card popular">
+      <span class="tag">Best Value</span>
+      <h3>Growth Retainer</h3>
+      <p class="features-tag">
+        <span>Includes:</span> Enhanced support, performance monitoring, and priority handling
+      </p>
+      <p class="price">$800 / month</p>
+      <ul>
+        <li>50 hours support per month</li>
+        <li>Priority task handling</li>
+        <li>SEO monitoring & performance checks</li>
+      </ul>
+      <button onclick="contact()">Scale With Us</button>
+    </div>
+
+    <!-- Card 3: Elite Retainer -->
+    <div class="card">
+      <h3>Elite Retainer</h3>
+      <p class="features-tag">
+        <span>Includes:</span> Full digital management, strategic guidance, and dedicated support
+      </p>
+      <p class="price">$2,500 / month</p>
+      <ul>
+        <li>Dedicated support team</li>
+        <li>Full digital operations management</li>
+        <li>Business strategy assistance & planning</li>
+      </ul>
+      <button onclick="contact()">Get Priority Support</button>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- MAINTENANCE -->
+<section class="container section">
+<h2>AI Automation & Solutions </h2>
+<p class="intro">
+ Intelligent backend automation systems designed to streamline operations,
+ reduce manual work, and scale business processes beyond chat-based interactions.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3> Foundational AI System </h3>
+<p class="price">$299 / month</p>
+<ul>
+<li>AI workflow architecture setup</li>
+ <li>Process automation mapping</li>
+ <li>Form-to-database automation</li>
+ <li>Email & notification triggers</li>
+ <li>System health monitoring</li>
+</ul>
+<button onclick="contact()">Start Automation</button>
+</div>
+
+<div class="card popular">
+<span class="tag">Most Chosen</span>
+<h3>Growth Automation System</h3>
+<p class="price">$450 / month</p>
+<ul>
+<li>CRM & pipeline automation</li>
+<li>Lead lifecycle management</li>
+<li>Automated task delegation</li>
+<li>Cross-platform workflow syncing</li>
+<li>Monthly performance optimization</li>
+</ul>
+<button onclick="contact()">Optimize My Systems</button>
+</div>
+
+<div class="card">
+<h3> Authority Automation Infrastructure</h3>
+<p class="price">$2,500 / month</p>
+<ul>
+<li>Multi-system automation orchestration</li>
+<li>Advanced logic & conditional workflows</li>
+<li>Custom AI decision rules</li>
+<li>Operational data analysis</li>
+<li>Strategic automation consulting</li>
+</ul>
+<button onclick="contact()">Discuss AI Strategy</button>
+</div>
+
+<div class="card">
+<h3> Operations & Process Automation</h3>
+<p class="price">$499 / month</p>
+<ul>
+<li>Internal workflow automation</li>
+<li>Approval & escalation systems</li>
+<li>Task scheduling automation</li>
+<li>Error detection & alerts</li>
+<li>Process efficiency optimization</li>
+</ul>
+<button onclick="contact()">Automate Operations</button>
+</div>
+
+<div class="card">
+<h3> Integration & AI Connectivity</h3>
+<p class="price">$800 / month</p>
+<ul>
+<li>Third-party tool integration</li>
+<li>API & webhook automation</li>
+<li>AI-to-system communication flows</li>
+<li>Data synchronization logic</li>
+<li>Secure automation pipelines</li>
+</ul>
+<button onclick="contact()">Connect My Systems</button>
+</div>
+
+
+</div>
+</section>
+
+
+
+<section class="saas-pricing-section">
+  <div class="section-header">
+    <h2>Full SaaS Chatbot</h2>
+    <p>Premium-grade AI chatbots engineered for efficiency, scalability & business impact, designed to elevate your brand and accelerate growth.</p>
+  </div>
+  <div class="cards-container">
+    <div class="card starter">
+      <h3>Starter Automation</h3>
+      <div class="price">$350 / month</div>
+
+      <ul>
+        <li>Basic website chatbot setup</li>
+        <li>Pre-built FAQ & support flows</li>
+        <li>Email notification integration</li>
+        <li>Standard analytics dashboard</li>
+      </ul>
+      <a href="#" class="choose-btn">Choose Plan</a>
+    </div>
+
+    <div class="card growth">
+      <h3>Growth Booster</h3>
+      <div class="price">$500 / month</div>
+    
+      <ul>
+        <li>Multi-page website chatbot integration</li>
+        <li>Lead capture & follow-up automation</li>
+        <li>Customizable templates</li>
+        <li>Conversion tracking analytics</li>
+      </ul>
+      <a href="#" class="choose-btn">Choose Plan</a>
+    </div>
+
+    <div class="card ecommerce">
+      <h3>E-Commerce Pro</h3>
+      <div class="price">$1,000 / month</div>
+
+      <ul>
+        <li>Product recommendation engine</li>
+        <li>Cart abandonment alerts</li>
+        <li>Payment integration support</li>
+        <li>Customer segmentation & targeting</li>
+      </ul>
+      <a href="#" class="choose-btn">Choose Plan</a>
+    </div>
+
+    <div class="card enterprise">
+      <h3>Enterprise Elite</h3>
+      <div class="price">$1,500 / month</div>
+     
+      <ul>
+        <li>Multi-channel chatbot (web, WhatsApp, Messenger)</li>
+        <li>AI-powered conversation flow</li>
+        <li>Custom branding & design</li>
+        <li>Advanced reporting & dashboards</li>
+      </ul>
+      <a href="#" class="choose-btn">Choose Plan</a>
+    </div>
+
+    <div class="card agency">
+      <h3>Premium Agency</h3>
+      <div class="price">$2,500 / month</div>
+
+      <ul>
+        <li>White-label setup for client projects</li>
+        <li>Multi-client management</li>
+        <li>Automated lead nurturing campaigns</li>
+        <li>Performance insights & ROI reports</li>
+      </ul>
+      <a href="#" class="choose-btn">Choose Plan</a>
+    </div>
+
+    <div class="card ultimate">
+      <h3>All-in-One Ultimate</h3>
+      <div class="price">$5,500 / month</div>
+      
+      <ul>
+        <li>Fully custom AI chatbot flows</li>
+        <li>Advanced integrations (CRM, payment gateways)</li>
+        <li>24/7 priority support</li>
+        <li>Continuous optimization & AI updates</li>
+      </ul>
+      <a href="#" class="choose-btn">Choose Plan</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- MAINTENANCE -->
+<section class="container section">
+<h2>Upsell-chatbot</h2>
+<p class="intro">
+Purpose-built AI chatbots designed for different business needs. 
+Each solution includes a defined number of seats and monthly chat limits, 
+so pricing scales based on usage, team size, and conversation volume.
+</p>
+
+<div class="grid">
+
+<div class="card popular">
+<span class="tag">Available</span>
+<h3> Customer Support Chatbot  </h3>
+<p class="price">$129 / month </p>
+
+<div class="chatbox-usage">
+  <span>👤 3 Active Agents</span>
+  <span>💬 1,000 Chat / month</span>
+</div>
+
+<ul>
+<li>Knowledge-base powered replies</li>
+<li>Issue categorization system</li>
+<li>Escalation rules to human agents</li>
+<li>Support priority tagging</li>
+<li>Resolution history per customer</li>
+</ul>
+<p class="usage-note">
+Chat volume resets monthly. Extra chats & agents can be upgraded as your business grows.
+</p>
+<button onclick="contact()">Get this Bot</button>
+</div>
+
+<div class="card popular">
+<span class="tag">Available</span>
+<h3>Sales Lead Chatbot</h3>
+<p class="price">$99 / month</p>
+<div class="chatbox-usage">
+  <span>👤 2 Active Agents</span>
+  <span>💬 500 Chat / month</span>
+</div>
+<ul>
+
+<li>Smart lead qualification logic</li>
+<li>Custom sales questions per service</li>
+<li>Lead scoring based on responses</li>
+<li>Auto-routing to sales pipelines</li>
+ <li>Conversation-based conversion tracking</li>
+
+</ul>
+<p class="usage-note">
+Chat volume resets monthly. Extra chats & agents can be upgraded as your business grows.
+</p>
+<button onclick="contact()">Get this Bot</button>
+</div>
+
+
+<div class="card popular">
+<span class="tag">Available</span>
+<h3> Onboarding Chatbot</h3>
+<p class="price">$49 / month </p>
+
+<div class="chatbox-usage">
+  <span>👤 1  Active Agents</span>
+  <span>💬 300 Chat / month</span>
+</div>
+
+<ul>
+<li>Interactive setup walkthroughs</li>
+<li>Account readiness checks</li>
+<li>Requirement collection flows</li>
+<li>Automatic next-step guidance</li>
+<li>User progress tracking</li>
+
+</ul>
+<p class="usage-note">
+  Chat volume resets monthly. Extra chats & agents can be upgraded as your business grows.
+</p>
+<button onclick="contact()">Get this Bot</button>
+</div>
+
+<div class="card popular">
+<span class="tag">Available</span>
+<h3> Booking & Appointment Chatbot</h3>
+<p class="price">$99 / month </p>
+
+<div class="chatbox-usage">
+  <span>👤 2 Active Agents</span>
+  <span>💬 400 Chat / month</span>
+</div>
+
+<ul>
+<li>Timezone-aware scheduling logic</li>
+<li>Availability-based booking rules</li>
+<li>Meeting type selection flows</li>
+<li>No-show reduction automation</li>
+<li>Calendar conflict prevention</li>
+
+</ul>
+<p class="usage-note">
+Chat volume resets monthly. Extra chats & agents can be upgraded as your business grows.
+</p>
+<button onclick="contact()">Get this Bot</button>
+</div>
+
+<div class="card popular">
+<span class="tag">Available</span>
+<h3> Payment / Order Chatbot</h3>
+<p class="price">$89 / month </p>
+
+<div class="chatbox-usage">
+  <span>👤 1 Active Agents</span>
+  <span>💬 300 Chat / month</span>
+</div>
+
+<ul>
+<li>Plan comparison conversations</li>
+<li>Dynamic invoice generation</li>
+<li>Payment status verification</li>
+<li>Order confirmation workflows</li>
+<li>Purchase follow-up automation</li>
+
+</ul>
+<p class="usage-note">
+Chat volume resets monthly. Extra chats & agents can be upgraded as your business grows.
+</p>
+<button onclick="contact()">Get this bot</button>
+</div>
+
+<div class="card popular">
+<span class="tag">Available</span>
+<h3>Feedback & Insights Chatbot</h3>
+<p class="price">$99 / month</p>
+
+<div class="chatbox-usage">
+  <span>👤 1 Active Agents</span>
+  <span>💬 600 Chat / month</span>
+</div>
+
+<ul>
+<li>Post-interaction feedback capture</li>
+<li>Customer sentiment analysis</li>
+<li>Satisfaction score tracking</li>
+<li>Trend detection across responses</li>
+<li>Insight-based improvement alerts</li>
+</ul>
+<p class="usage-note">
+Chat volume resets monthly. Extra chats & agents can be upgraded as your business grows.
+</p>
+<button onclick="contact()">Get this bot</button>
+</div>
+
+
+
+<div class="card popular">
+<span class="tag">Premium</span>
+<h3> Analytics Dashboard Chatbot </h3>
+<p class="price">$159 / month</p>
+<div class="chatbox-usage">
+  <span>👤 1  Active Agents</span>
+  <span>💬 Tracks all connected chatboxes</span>
+</div>
+<ul>
+<li>Conversation performance tracking</li>
+<li>Lead & conversion analytics</li>
+<li>Usage and engagement metrics</li>
+<li>Client-level reporting dashboard</li>
+<li>Data-driven optimization insights</li>
+
+</ul>
+<p class="usage-note">
+Chat volume resets monthly. Extra chats & agents can be upgraded as your business grows.
+</p>
+<button onclick="contact()">Get this bot</button>
+</div>
+
+<div class="card popular">
+<span class="tag">Premium</span>
+<h3> White-Label Chatbot</h3>
+<p class="price">$189 / month </p>
+<div class="chatbox-usage">
+  <span>👤 5 Active Agents</span>
+  <span>💬 1,500 Chat / month</span>
+</div>
+<ul>
+<li>Full branding control</li>
+<li>Custom domain deployment</li>
+<li>Client-owned chat experience</li>
+<li>Multiple bots per client</li>
+<li>Agency-ready setup</li>
+</ul>
+<p class="usage-note">
+Chat volume resets monthly. Extra chats & agents can be upgraded as your business grows.
+</p>
+<button onclick="contact()">Get this bot</button>
+</div>
+
+<div class="card popular">
+<span class="tag">Premium</span>
+<h3> Multi-Language Chatbot</h3>
+<p class="price">$179 / month </p>
+<div class="chatbox-usage">
+  <span>👤 3 Active Agents</span>
+  <span>💬 2,000 Chat / month</span>
+</div>
+<ul>
+<li>Automatic language detection</li>
+<li>Multi-region audience support</li>
+<li>Language-specific chat flows</li>
+<li>Global customer experience</li>
+<li>Scalable international deployment</li>
+</ul>
+<p class="usage-note">
+Chat volume resets monthly. Extra chats & agents can be upgraded as your business grows.
+</p>
+<button onclick="contact()">Get this bot</button>
+</div>
+
+</div>
+</section>
+
+<!-- MAINTENANCE -->
+<section class="container section">
+<h2>Cloud Setup & Management </h2>
+<p class="intro">
+ Secure, scalable cloud infrastructure designed to support business growth,
+ performance, and long-term reliability.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3> Starter </h3>
+<p class="price">$350 / month</p>
+<ul>
+<li>Cloud account setup</li>
+<li>Single server deployment</li>
+<li>Domain & DNS configuration</li>
+<li>Basic firewall protection</li>
+<li>Weekly system backups</li>
+</ul>
+<button onclick="contact()">Get Started</button>
+</div>
+
+<div class="card popular">
+<span class="tag">Most Chosen</span>
+<h3>Professional</h3>
+<p class="price">$1,500 / month</p>
+<ul>
+<li>Multi-server architecture</li>
+<li>Load balancer setup</li>
+<li>SSL & enhanced security</li>
+<li>Automated daily backups</li>
+<li>Performance monitoring</li>
+</ul>
+<button onclick="contact()">Choose Professional</button>
+</div>
+
+<div class="card">
+<h3> Premium</h3>
+<p class="price">$2,550 / month</p>
+<ul>
+<li>Scalable cloud infrastructure</li>
+<li>Auto-scaling & cost control</li>
+<li>Disaster recovery setup</li>
+<li>24/7 uptime monitoring</li>
+<li>Priority technical support</li>
+</ul>
+<button onclick="contact()">Request Premium</button>
+</div>
+</div>
+</section>
+
+<!-- MAINTENANCE -->
+<section class="container section">
+<h2>CRM Setup & Automation</h2>
+<p class="intro">
+ Smart CRM systems that automate sales, improve customer tracking,
+ and help teams close more deals efficiently.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3> Starter </h3>
+<p class="price">$250 / month</p>
+<ul>
+<li>CRM installation</li>
+<li>Contact import</li>
+<li>Basic sales pipeline</li>
+<li>Email integration</li>
+<li>Starter onboarding</li>
+</ul>
+<button onclick="contact()">Get Started</button>
+</div>
+
+<div class="card popular">
+<span class="tag">Most Chosen</span>
+<h3>Professional</h3>
+<p class="price">$1,500 / month</p>
+<ul>
+<li>Custom workflow automation</li>
+<li>Lead scoring system</li>
+<li>Task & calendar automation</li>
+<li>Analytics dashboards</li>
+<li>Third-party integrations</li>
+</ul>
+<button onclick="contact()">Choose Professional</button>
+</div>
+
+<div class="card">
+<h3> Premium</h3>
+<p class="price">$3,500 / month</p>
+<ul>
+<li>Full CRM customization</li>
+<li>Advanced automation flows</li>
+<li>Sales forecasting tools</li>
+<li>User roles & permissions</li>
+<li>Ongoing support & training</li>
+</ul>
+<button onclick="contact()">Request Premium</button>
+</div>
+</div>
+</section>
+
+
+<!-- MAINTENANCE -->
+<section class="container section">
+<h2>Secure File Management</h2>
+<p class="intro">
+ Organized, protected, and professionally managed digital file systems for your business
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3> Starter </h3>
+<p class="price">$59 / month</p>
+<ul>
+<li>Up to 20GB Cloud Storage</li>
+<li>File Organization Setup</li>
+<li>Weekly Backup</li>
+<li>Email Support</li>
+</ul>
+<button onclick="contact()">Get Started</button>
+</div>
+
+<div class="card popular">
+<span class="tag">Most Chosen</span>
+<h3>Professional</h3>
+<p class="price">$129 / month</p>
+<ul>
+<li>Up to 100GB Secure Storage</li>
+<li>Advanced Folder Structuring</li>
+<li>Daily Automated Backup</li>
+<li>Priority Support</li>
+</ul>
+<button onclick="contact()">Upgrade to Pro</button>
+</div>
+
+<div class="card">
+<h3> Enterprise</h3>
+<p class="price">$299 / month</p>
+<ul>
+<li>Unlimited Storage</li>
+<li>Multi-User Access Control</li>
+<li>Real-Time Backup & Recovery</li>
+<li>Dedicated Account Manager</li>
+</ul>
+<button onclick="contact()">Contact Sales</button>
+</div>
+</div>
+</section>
+
+
+<!-- MAINTENANCE -->
+<section class="container section">
+<h2>Smart Lead Generation</h2>
+<p class="intro">
+ Turn visitors into paying customers with strategic, data-driven lead systems.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3> Launch </h3>
+<p class="price">$129 / month</p>
+<ul>
+<li>Landing Page Setup</li>
+<li>Basic Lead Capture Form</li>
+<li>Email Integration</li>
+<li>Monthly Performance Report</li>
+</ul>
+<button onclick="contact()">Start Generating Leads</button>
+</div>
+
+<div class="card popular">
+<span class="tag">Most Chosen</span>
+<h3>Growth</h3>
+<p class="price">$259 / month</p>
+<ul>
+<li>High-Converting Funnel Setup</li>
+<li>AI Chatbot Lead Capture</li>
+<li>Email Automation Sequence</li>
+<li>Bi-Weekly Optimization</li>
+</ul>
+<button onclick="contact()">Scale My Business</button>
+</div>
+
+<div class="card">
+<h3> Authority</h3>
+<p class="price">$549 / month</p>
+<ul>
+<li>Multi-Channel Lead Campaign</li>
+<li>Advanced CRM Integration</li>
+<li>Conversion Tracking & Analytics</li>
+<li>Weekly Strategy Calls</li>
+</ul>
+<button onclick="contact()">Book Strategy Call</button>
+</div>
+</div>
+</section>
+
+
+<!-- MAINTENANCE -->
+<section class="container section">
+<h2>Email Automation Systems</h2>
+<p class="intro">
+ Build automated email sequences that nurture leads, increase engagement, and drive consistent sales.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3> foundational Flow</h3>
+<p class="price">$99 / month</p>
+<ul>
+<li>Welcome Email Sequence (3 Emails)</li>
+<li>Email Platform Setup</li>
+<li>Basic Lead Tagging</li>
+<li>Monthly Performance Report</li>
+</ul>
+<button onclick="contact()">Activate Automation</button>
+</div>
+
+<div class="card popular">
+<span class="tag">Most Chosen</span>
+<h3>Growth Engine</h3>
+<p class="price">$229 / month</p>
+<ul>
+<li>5–7 Email Nurture Sequence</li>
+<li>Behavior-Based Triggers</li>
+<li>Cart Abandonment Setup</li>
+<li>A/B Subject Line Testing</li>
+</ul>
+<button onclick="contact()">Scale My Emails</button>
+</div>
+
+<div class="card">
+<h3> Revenue Machine</h3>
+<p class="price">$950 / month</p>
+<ul>
+<li>Full Funnel Email Strategy</li>
+<li>Advanced Segmentation</li>
+<li>Sales & Re-engagement Campaigns</li>
+<li>Weekly Optimization & Reporting</li>
+</ul>
+<button onclick="contact()">Build My Revenue System</button>
+</div>
+</div>
+</section>
+
+
+<!-- MAINTENANCE -->
+<section class="container section">
+<h2>Social Media Marketing</h2>
+<p class="intro">
+Strategic brand positioning and digital engagement designed to elevate your business and deliver performance-driven growth.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>foundational plan</h3>
+    <p class="price">$180<span> / month</span></p>
+    <ul>
+      <li>8 Posts Per Month</li>
+      <li>Content Calendar</li>
+      <li>Basic Hashtag Research</li>
+      <li>1 Platform Management</li>
+    </ul>
+<button onclick="contact()">Start Now</button>
+</div>
+
+<div class="card popular">
+<span class="badge">Most Popular</span>
+    <h3>Standard plan</h3>
+    <p class="price">$350<span> / month</span></p>
+    <ul>
+      <li>15 Posts Per Month</li>
+        <li>2 Platforms Management</li>
+        <li>Engagement Monitoring</li>
+        <li>Monthly Report</li>
+    </ul>
+<button onclick="contact()">Choose Plan</button>
+</div>
+
+<div class="card">
+<span class="badge">Best value</span>
+    <h3>Elite plan</h3>
+    <p class="price">$650<span> / month</span></p>
+    <ul>
+      <li>30 Posts Per Month</li>
+        <li>3 Platforms Management</li>
+        <li>Ad Campaign Setup</li>
+        <li>Performance Analytics</li>
+    </ul>
+<button onclick="contact()">Contact Us</button>
+</div>
+
+</div>
+</section>
+
+<!-- MAINTENANCE -->
+<section class="container section">
+<h2>Writing & Translation</h2>
+<p class="intro">
+High-impact content and multilingual communication crafted to strengthen brand authority and global market positioning.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>Foundational plan</h3>
+    <p class="price">$170<span> / project</span></p>
+    <ul>
+      <li>1,000 Words Content</li>
+        <li>SEO Optimization</li>
+        <li>Proofreading</li>
+        <li>2 Revisions</li>
+    </ul>
+<button onclick="contact()">Order Now</button>
+</div>
+
+<div class="card popular">
+<span class="badge">Most Popular</span>
+    <h3>Standard plan</h3>
+    <p class="price">$399<span> / project</span></p>
+    <ul>
+      <li>2,500 Words Content</li>
+        <li>Advanced SEO</li>
+        <li>Professional Formatting</li>
+        <li>3 Revisions</li>
+    </ul>
+<button onclick="contact()">Choose Plan</button>
+</div>
+
+<div class="card">
+<h3>Elite plan</h3>
+    <p class="price">$800<span> / project</span></p>
+    <ul>
+      <li>5,000 Words Content</li>
+      <li>Keyword Research</li>
+      <li>Multiple Language Support</li>
+      <li>Unlimited Revisions (7 Days)</li>
+    </ul>
+<button onclick="contact()">Contact Us</button>
+</div>
+
+</div>
+</section>
+
+
+<!-- ADD ONS -->
+<section class="container section">
+<h2>Add-Ons & Growth Boosters</h2>
+<p class="intro">
+These extras help you grow faster, convert better, and stand out professionally.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>Extra Pages</h3>
+<p class="price">$75 / page</p>
+<p>Expand your website anytime without rebuilding.</p>
+<button onclick="contact()">Add Now</button>
+</div>
+
+<div class="card">
+<h3>Speed Optimization</h3>
+<p class="price">$100</p>
+<p>Improve load time, SEO, and user experience.</p>
+<button onclick="contact()">Optimize</button>
+</div>
+
+<div class="card">
+<h3>WhatsApp Automation & care</h3>
+<p class="price">$50 / month</p>
+<p>Instant replies, better follow-ups, more sales.</p>
+<button onclick="contact()">Automate Chat</button>
+</div>
+
+
+</div>
+</section>
+
+<section class="trust-section">
+  <h2 class="section-title">Trusted & Verified by Clients</h2>
+  <p class="section-intro">Rated 5★ by businesses we support worldwide</p>
+
+  <div class="trust-wrapper" id="trustWrapper">
+    
+      <div class="trust-card fade-item">
+  <img src="./images/Jenifer-sway.png" alt="Client" class="trust-avatar">
+  <h4 class="trust-name">Jennifer Sway</h4>
+<p class="trust-role">CEO, Capital Oil Ltd</p>
+
+  <!-- Badge + Verified text -->
+  <div class="trust-verify">
+    <img src="./images/trust-pilot-badge.png" class="trust-badge" alt="">
+    <span class="trust-verified">Verified on Trustpilot</span>
+  </div>
+
+  <!-- Stars -->
+  <div class="trust-stars">★★★★★</div>
+
+  <!-- Feedback -->
+  <p class="trust-feedback">
+  Before we worked with Freener, our site felt outdated. Now it’s modern, mobile-friendly, and customers actually enjoy browsing.
+  </p>
+</div>
+
+    
+      <div class="trust-card fade-item">
+  <img src="./images/Hiroshi-tsnsks.png" alt="Client" class="trust-avatar">
+  <h4 class="trust-name">Hiroshi Tanaka</h4>
+<p class="trust-role">Marketing Manager, GreenLeaf Foods</p>
+
+  <!-- Badge + Verified text -->
+  <div class="trust-verify">
+    <img src="./images/trust-pilot-badge.png" class="trust-badge" alt="">
+    <span class="trust-verified">Verified on Trustpilot</span>
+  </div>
+
+  <!-- Stars -->
+  <div class="trust-stars">★★★★★</div>
+
+  <!-- Feedback -->
+  <p class="trust-feedback">
+    I don’t have to worry about downtime anymore. They handle hosting and updates reliably, saving our IT team so much stress.
+  </p>
+</div>
+
+    
+      <div class="trust-card fade-item">
+  <img src="./images/Zinhle-Dlamini.png" alt="Client" class="trust-avatar">
+  <h4 class="trust-name">Zinhle Dlamini </h4>
+<p class="trust-role">Startup Founder, TechNova Solutions</p>
+
+  <!-- Badge + Verified text -->
+  <div class="trust-verify">
+    <img src="./images/trust-pilot-badge.png" class="trust-badge" alt="">
+    <span class="trust-verified">Verified on Trustpilot</span>
+  </div>
+
+  <!-- Stars -->
+  <div class="trust-stars">★★★★★</div>
+
+  <!-- Feedback -->
+  <p class="trust-feedback">
+    The AI automation they implemented turned hours of manual reporting into just a few clicks. Truly time-saving.
+  </p>
+</div>
+
+
+  <div class="trust-card fade-item">
+  <img src="./images/Camila-morales.png" alt="Client" class="trust-avatar">
+  <h4 class="trust-name">Camila Morales</h4>
+<p class="trust-role">Operations Head, Prime Logistics</p>
+
+  <!-- Badge + Verified text -->
+  <div class="trust-verify">
+    <img src="./images/trust-pilot-badge.png" class="trust-badge" alt="">
+    <span class="trust-verified">Verified on Trustpilot</span>
+  </div>
+
+  <!-- Stars -->
+  <div class="trust-stars">★★★★★</div>
+
+  <!-- Feedback -->
+  <p class="trust-feedback">
+    Traffic on our website increased noticeably after their SEO work. We’re finally being found by the right audience.
+  </p>
+</div>
+
+
+
+  <div class="trust-card fade-item">
+  <img src="./images/Adaeze-nwosu.png" alt="Client" class="trust-avatar">
+  <h4 class="trust-name">Adaeze Nwosu </h4>
+<p class="trust-role">Entrepreneur, Horizon Ventures</p>
+
+  <!-- Badge + Verified text -->
+  <div class="trust-verify">
+    <img src="./images/trust-pilot-badge.png" class="trust-badge" alt="">
+    <span class="trust-verified">Verified on Trustpilot</span>
+  </div>
+
+  <!-- Stars -->
+  <div class="trust-stars">★★★★★</div>
+
+  <!-- Feedback -->
+  <p class="trust-feedback">
+    I outsourced data entry and lead generation tasks, and everything was accurate and fast. Made my workload much lighter.
+  </p>
+</div>
+
+
+  <div class="trust-card fade-item">
+  <img src="./images/Thabo-nkosi.png" alt="Client" class="trust-avatar">
+  <h4 class="trust-name">Thabo Nkosi</h4>
+<p class="trust-role">Product Designer, Creative Minds Studio.</p>
+
+  <!-- Badge + Verified text -->
+  <div class="trust-verify">
+    <img src="./images/trust-pilot-badge.png" class="trust-badge" alt="">
+    <span class="trust-verified">Verified on Trustpilot</span>
+  </div>
+
+  <!-- Stars -->
+  <div class="trust-stars">★★★★★</div>
+
+  <!-- Feedback -->
+  <p class="trust-feedback">
+    The new product pages look amazing and are easy to navigate. Our customers love it.
+  </p>
+</div>
+
+
+  <div class="trust-card fade-item">
+  <img src="./images/Sipho-mokoena.png" alt="Client" class="trust-avatar">
+  <h4 class="trust-name">Sipho Mokoena</h4>
+<p class="trust-role"> IT Manager, Silverline Corp</p>
+
+  <!-- Badge + Verified text -->
+  <div class="trust-verify">
+    <img src="./images/trust-pilot-badge.png" class="trust-badge" alt="">
+    <span class="trust-verified">Verified on Trustpilot</span>
+  </div>
+
+  <!-- Stars -->
+  <div class="trust-stars">★★★★★</div>
+
+  <!-- Feedback -->
+  <p class="trust-feedback">
+   Setting up email automation for our client follow-ups was seamless. The workflow is smooth and efficient now.
+  </p>
+</div>
+
+
+  <div class="trust-card fade-item">
+  <img src="./images/Sofia-germany.png" alt="Client" class="trust-avatar">
+  <h4 class="trust-name">Sofia Müller</h4>
+<p class="trust-role">E-commerce Owner, Trendy Mart</p>
+
+  <!-- Badge + Verified text -->
+  <div class="trust-verify">
+    <img src="./images/trust-pilot-badge.png" class="trust-badge" alt="">
+    <span class="trust-verified">Verified on Trustpilot</span>
+  </div>
+
+  <!-- Stars -->
+  <div class="trust-stars">★★★★★</div>
+
+  <!-- Feedback -->
+  <p class="trust-feedback">
+    File management was a nightmare for us, but they organized everything professionally. We can now find files in seconds.
+  </p>
+</div>
+
+
+  </div>
+</section>
+
+<section class="testimonial-section">
+  <div class="container section">
+    <h2>What It’s Like Working With Us</h2>
+    <p class="intro">
+      Long-term partnerships built on trust, clarity, and measurable results.
+    </p>
+
+    <div class="testimonial-wrapper">
+      <div class="testimonial-track" id="testimonialTrack">
+
+        <div class="testimonial-card">
+          <div class="quote-mark">“</div>
+          <p class="testimonial-text">
+            Their translation and proofreading work kept our tone consistent
+            across multiple markets. Excellent attention to detail.
+          </p>
+          <h4 class="testimonial-name">James K.</h4>
+          <span class="testimonial-role">
+            Brand Manager, Stellar Brands
+          </span>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">“</div>
+          <p class="testimonial-text">
+            Our website speed, structure, and conversions improved immediately.
+            Highly recommended for serious businesses.
+          </p>
+          <h4 class="testimonial-name">Mei Ling Chen</h4>
+          <span class="testimonial-role">
+            E-commerce Owner
+          </span>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">“</div>
+          <p class="testimonial-text">
+            Reliable, skilled, and proactive. Freener feels more like a partner
+            than a freelancer.
+          </p>
+          <h4 class="testimonial-name">Daniel M.</h4>
+          <span class="testimonial-role">
+            Digital Consultant
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container section guarantee">
+  <h2>Our Guarantee</h2>
+  <p class="intro">
+    We believe in our work — and we want you to feel 100% confident.
+  </p>
+
+  <div class="guarantee-box">
+    <ul>
+      <li>✅ Clear project scope before work starts</li>
+      <li>✅ No hidden fees or surprise charges</li>
+      <li>✅ Revisions until expectations are met</li>
+      <li>✅ Ongoing support after delivery</li>
+    </ul>
+
+    <p class="guarantee-note">
+      If something doesn’t feel right, we fix it. Simple.
+    </p>
+
+    <button onclick="contact()">Start With Confidence</button>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* =================  MASTER MOBILE HAMBURGER ================= */
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  navToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+  });
+
+  // Auto close when any link is clicked
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('active');
+    });
+  });
+
+  /* ================= CONTACT CTA ================= */
+  window.contact = function () {
+    window.location.href = "https://wa.me/2347078911819";
+  };
+
+  /* ================= SMOOTH FADE-IN ON SCROLL ================= */
+  const fadeItems = document.querySelectorAll(".fade-item, .card");
+
+  const fadeObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          fadeObserver.unobserve(entry.target); // animate once (NO flicker)
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  fadeItems.forEach(item => fadeObserver.observe(item));
+
+  /* ================= TESTIMONIAL SLIDER ================= */
+  let index = 0;
+  const track = document.getElementById("testimonialTrack");
+  const slides = document.querySelectorAll(".testimonial-card");
+
+  if (track && slides.length > 0) {
+    setInterval(() => {
+      index = (index + 1) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }, 4000);
+  }
+
+});
+
+
+
+  /* ================= TRUST SLIDER (DESKTOP + MOBILE SAFE) ================= */
+const trustWrapper = document.getElementById("trustWrapper");
+const trustCards = trustWrapper.querySelectorAll(".trust-card");
+
+let trustIndex = 0;
+let trustInterval = null;
+let isPaused = false;
+
+function trustDesktopSlide() {
+  if (isPaused) return;
+
+  const cardWidth = trustCards[0].offsetWidth + 20;
+  const visibleCards = Math.floor(
+    trustWrapper.parentElement.offsetWidth / cardWidth
+  );
+  const maxIndex = trustCards.length - visibleCards;
+
+  trustIndex++;
+  if (trustIndex > maxIndex) trustIndex = 0;
+
+  trustWrapper.style.transform =
+    `translateX(-${trustIndex * cardWidth}px)`;
+}
+
+function trustMobileFade() {
+  if (isPaused) return;
+
+  trustCards.forEach(card => card.classList.remove("active"));
+  trustCards[trustIndex].classList.add("active");
+  trustIndex = (trustIndex + 1) % trustCards.length;
+}
+
+function startTrustSlider() {
+  stopTrustSlider();
+
+  isPaused = false;
+
+  if (window.innerWidth <= 768) {
+    trustInterval = setInterval(trustMobileFade, 4000);
+  } else {
+    trustInterval = setInterval(trustDesktopSlide, 4000);
+  }
+}
+
+function stopTrustSlider() {
+  if (trustInterval) {
+    clearInterval(trustInterval);
+    trustInterval = null;
+  }
+}
+
+function initTrustSlider() {
+  stopTrustSlider();
+  trustIndex = 0;
+  isPaused = false;
+
+  trustWrapper.style.transform = "none";
+  trustCards.forEach(card => card.classList.remove("active"));
+
+  if (window.innerWidth <= 768) {
+    trustCards[0].classList.add("active");
+  }
+
+  startTrustSlider();
+}
+
+/* ===== PAUSE CONTROLS ===== */
+trustWrapper.addEventListener("mouseenter", () => {
+  isPaused = true;
+});
+
+trustWrapper.addEventListener("mouseleave", () => {
+  isPaused = false;
+});
+
+trustWrapper.addEventListener("touchstart", () => {
+  isPaused = true;
+}, { passive: true });
+
+trustWrapper.addEventListener("touchend", () => {
+  isPaused = false;
+});
+
+/* INIT */
+window.addEventListener("load", initTrustSlider);
+window.addEventListener("resize", initTrustSlider);
+
+fetch("https://modular-infrastructure-production.up.railway.app/api/status")
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+
+</script>
+
+</body>
+</html>

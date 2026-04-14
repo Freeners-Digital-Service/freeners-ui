@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Billing</title>
+</head>
+
+<body>
+
+  <h1>Billing Summary</h1>
+
+  <div id="billing-box">
+    <p>Loading...</p>
+  </div>
+
+  <!-- ✅ PAYMENT BUTTON -->
+  <button id="pay-btn">Proceed Payment</button>
+
+  <script>
+const params = new URLSearchParams(window.location.search);
+const product_id = params.get("id");
+
+const box = document.getElementById("billing-box");
+const payBtn = document.getElementById("pay-btn");
+
+fetch("https://modular-infrastructure.onrender.com/api/marketplace/products")
+  .then(res => res.json())
+  .then(products => {
+
+    const product = products.find(p => String(p.id) === String(product_id));
+
+    if (!product) {
+      box.innerHTML = "<p>❌ Product not found</p>";
+      payBtn.style.display = "none";
+      return;
+    }
+
+    const setup = product.pricing?.setup_fee || 0;
+    const monthly = product.pricing?.monthly || 0;
+    const total = setup + monthly;
+
+    box.innerHTML = `
+      <h2>${product.name}</h2>
+      <p>Setup Fee: $${setup}</p>
+      <p>Monthly Fee: $${monthly}</p>
+      <hr>
+      <h3>Total Today: $${total}</h3>
+      <p>Next Billing: $${monthly}/month</p>
+    `;
+  });
+
+payBtn.addEventListener("click", async () => {
+
+  if (!product_id) {
+    alert("Missing product ID");
+    return;
+  }
+
+  payBtn.innerText = "Processing...";
+  payBtn.disabled = true;
+
+  try {
+    const res = await fetch("https://modular-infrastructure.onrender.com/api/pay", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        product_id: product_id
+      })
+    });
+
+    const data = await res.json();
+
+    if (data?.data?.link) {
+      window.location.href = data.data.link;
+    } else {
+      throw new Error();
+    }
+
+  } catch (err) {
+    alert("Payment failed");
+    payBtn.innerText = "Proceed Payment";
+    payBtn.disabled = false;
+  }
+
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freener's Digital Services — Home</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{
+  background: var(--silver);
+  background-size:cover;
+  color:#333;
+  padding-top:30px;
+  overflow-x:hidden;
+   overscroll-behavior-x: none;
+  overscroll-behavior: none;
+  touch-action: pan-y;
+  
+}
+a{text-decoration:none;color:inherit}
+
+/* ================= HEADER ================= */
+.site-header{
+  position:fixed;top:0;width:100%;z-index:1000;
+  background: darkgreen;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:15px 5%;
+  box-shadow:0 2px 8px rgba(0,0,0,.1)
+}
+.logo{font-weight:700;color:#fff;font-size:1rem}
+
+.nav{display:flex;gap: 5px;align-items:center}
+.nav a{
+  color: #fff;
+  padding:6px 10px;
+  border-radius:6px;
+  transition:.3s;
+}
+.nav a:hover{background: yellowgreen}
+
+.nav-toggle{
+  display:none;
+  font-size:28px;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* ================= HERO (UPGRADED TECH STYLE) ================= */
+.hero{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:90px 8%;
+ gap:40px;
+ background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+ color:#fff;
+ flex-wrap:wrap;
+}
+
+.hero-content{
+ max-width:550px;
+}
+
+.hero-tag{
+ font-size:14px;
+ color:#00ffd5;
+ margin-bottom:10px;
+ letter-spacing:1px;
+ margin-top: 20px;
+}
+
+.hero-content h1{
+ font-size:42px;
+ line-height:1.2;
+ margin-bottom:20px;
+}
+
+.hero-sub{
+ font-size:16px;
+ color:#dcdcdc;
+ margin-bottom:30px;
+}
+
+.hero-buttons{
+ display:flex;
+ gap:15px;
+ flex-wrap:wrap;
+}
+
+.btn{
+ padding:12px 26px;
+ border-radius:30px;
+ font-weight:600;
+ transition:.3s;
+}
+
+.btn.primary{
+ background:#00ffd5;
+ color:#000;
+ box-shadow: 0 0 15px rgba(0,255,213,0.6);
+}
+
+.btn.primary:hover{
+ box-shadow: 0 0 30px rgba(0,255,213,1);
+}
+
+.btn.secondary{
+ border:2px solid #00ffd5;
+ color:#00ffd5;
+}
+
+.btn.secondary:hover{
+ background:#00ffd5;
+ color:#000;
+ box-shadow: 0 0 20px rgba(0,255,213,0.8);
+}
+
+
+.hero-visual{
+ position:relative;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ min-width:300px;
+}
+
+
+.hero-visual img{
+ width:420px;
+ max-width:100%;
+ border-radius:12px;
+ box-shadow:
+   0 20px 40px rgba(0,0,0,0.3),
+   0 0 25px rgba(0,255,213,0.4);
+ transition:0.3s;
+}
+
+.hero-visual img:hover{
+ transform: scale(1.03);
+ box-shadow:
+   0 30px 60px rgba(0,0,0,0.5),
+   0 0 40px rgba(0,255,213,0.8);
+}
+
+.card-1{
+ top:20px;
+ left:-30px;
+}
+
+.card-2{
+ bottom:20px;
+ right:-30px;
+}
+
+.card-3{
+ top:50%;
+ right:-40px;
+ transform:translateY(-50%);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+ .hero{
+ flex-direction:column;
+ text-align:center;
+ padding:80px 20px;
+ }
+
+ .hero-buttons{
+ justify-content:center;
+ }
+
+ .hero-content h1{
+ font-size:32px;
+ }
+}
+
+.hero{
+ position:relative;
+ overflow:hidden;
+ background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+ background-size:600% 600%;
+ animation:gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove{
+ 0%{background-position:0% 50%}
+ 50%{background-position:100% 50%}
+ 100%{background-position:0% 50%}
+}
+
+/* Glow blobs */
+.hero::before,
+.hero::after{
+ content:"";
+ position:absolute;
+ width:400px;
+ height:400px;
+ background: radial-gradient(circle, rgba(0,255,213,0.25), transparent 70%);
+ filter: blur(80px);
+ z-index:0;
+}
+
+.hero::before{
+ top:-100px;
+ left:-100px;
+}
+
+.hero::after{
+ bottom:-100px;
+ right:-100px;
+}
+
+/* Keep content above glow */
+.hero-content,
+.hero-visual{
+ position:relative;
+ z-index:1;
+}
+
+/* FUTURISTIC GLASS CARDS */
+.floating-card{
+ position:absolute;
+ background: rgba(255, 255, 255, 0.05);
+ backdrop-filter: blur(15px);
+ -webkit-backdrop-filter: blur(15px);
+ border: 1px solid rgba(255,255,255,0.1);
+ color:#00ffd5;
+ padding:12px 18px;
+ border-radius:14px;
+ font-size:13px;
+ box-shadow:
+   0 8px 32px rgba(0,0,0,0.3),
+   0 0 15px rgba(0,255,213,0.3);
+ animation:float 4s ease-in-out infinite;
+ transition:0.3s;
+}
+
+/* Glow on hover */
+.floating-card:hover{
+ transform: scale(1.05);
+ box-shadow:
+   0 10px 40px rgba(0,0,0,0.5),
+   0 0 25px rgba(0,255,213,0.8);
+}
+
+
+#particles{
+ position:fixed;
+ top:0;
+ left:0;
+ width:100%;
+ height:100%;
+ z-index:0;
+ pointer-events:none;
+}
+
+#typing-text::after{
+ content:"|";
+ animation:blink 1s infinite;
+}
+
+@keyframes blink{
+ 0%,100%{opacity:1}
+ 50%{opacity:0}
+}
+
+/* ================= FEATURES ================= */
+.features-header{
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.features-header h2{
+  color: #00a86b;
+  font-size: 2rem;
+  font-weight: 600;
+}
+@media(max-width:768px) {
+  .hero-ctas.after-reasons{
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+}
+
+.features-header{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.features-section{
+  padding:40px 5%;
+  display:flex;
+  flex-direction:column;
+  gap: 15px;
+}
+.feature-block{
+  display:flex;
+  gap: 20px;
+  align-items:center;
+  background:darkgreen;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
+  flex-wrap:wrap;
+  color: #fff;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.feature-block.alt-bg{background:#000; color: #fff;}
+.feature-text{flex:1;min-width:250px}
+.feature-image{flex:1;text-align:center;overflow:hidden}
+.feature-image img{max-width:80%;height:auto;border-radius:12px}
+
+
+/* ================= REVIEWS ================= */
+.reviews-section{
+  background:#f1f7f6;
+  margin:20px auto;
+  padding:20px 5%;
+  border-radius:12px;
+  max-width:1200px;
+  text-align:center;
+}
+
+.reviews-wrapper{
+  overflow:hidden;
+}
+
+.reviews-container{
+  display:flex;
+  gap:20px;
+  transition:transform .6s ease;
+}
+
+.review-card{
+  background:#fff;
+  padding:20px;
+  border-radius:12px;
+  min-width:300px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+.review-card img{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  margin-bottom:8px;
+}
+
+.review-card-role{
+  font-size:0.85rem;
+  color:#666;
+  margin-bottom:8px;
+}
+
+.trustpilot-badge{
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  font-size:12px;
+  color:#00b67a;
+  margin-bottom:6px;
+  text-align: center;
+}
+
+.stars{color:#00b67a}
+
+/* 🔽 MOBILE: ONE CARD AT A TIME */
+@media (max-width:768px){
+  .review-card{
+    min-width:100%;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .reviews-container {
+    transform: none !important;
+  }
+
+  .review-card {
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .review-card.active {
+    opacity: 1;
+    position: relative;
+  }
+
+  .reviews-wrapper {
+    position: relative;
+  }
+}
+
+/* Fade-in on scroll */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  .nav{
+    position:fixed;
+    top:70px;
+    right:-100%;
+    width:170px;
+    background:darkgreen;
+    flex-direction:column;
+    padding:20px;
+    transition:.3s;
+  }
+  .nav.active{right:0}
+  .nav-toggle{display:block}
+  .hero{flex-direction:column;text-align:center}
+  .hero-logo-reasons{flex-direction:column;align-items:center}
+  .feature-block{flex-direction:column;text-align:center}
+}
+
+
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="logo">Freener's Digital Services</div>
+  <nav class="nav" id="mainNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="contact.html">Contact</a>
+    <a href="payment-success.html">Payment</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="faq.html">FAQs</a>
+    <a href="terms.html">Terms</a>
+    <a href="privacy.html">Privacy</a>
+  </nav>
+  <div class="nav-toggle" id="navToggle">☰</div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-tag">AI Marketplace • Automation • Digital Infrastructure</p>
+
+    <h1 id="typing-text"></h1>
+
+    <p class="hero-sub">
+      Streamline business workflows, empower your website with intelligent digital agents, and explore a growing marketplace of advanced automation tools built to help modern businesses operate smarter and scale faster.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="marketplace.html" class="btn primary">Browse Marketplace</a>
+      <a href="contact.html" class="btn secondary">Explore Services</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+  <img src="./images/Ai-dashboard-hero.png" alt="AI System">
+
+  <div class="floating-card card-1">💬 Chatbot Active</div>
+  <div class="floating-card card-2">⚙️ Automation Running</div>
+  <div class="floating-card card-3">📊 Data Syncing</div>
+</div>
+
+</section>
+
+<section class="features-header">
+<h2>Our Features</h2>
+</section>
+<!-- FEATURES (ALL PRESERVED) -->
+<section class="features-section">
+  <div class="card fade-in">
+   <div class="feature-block alt-bg">
+ <div class="feature-image">
+ <img src="./images/multiple-services.png" alt="Multiple Services">
+ </div>
+ <div class="feature-text">
+ <h3>Multiple Services</h3>
+ <p>A Multi-division digital solutions company delivering strategic infrastructure, automation and growth systems designed for performance, scalability and long-term market leadership.
+</p>
+ </div>
+ </div>
+ </div>
+
+ <div class="card fade-in">
+ <div class="feature-block">
+ <div class="feature-text">
+ <h3>Digital Marketplace</h3>
+ <p>Explore a powerful digital marketplace equipped with ready-built solutions like Ai agents, enterprise websites, Crm systems, automation tools, cybersecurity, and digital infrastructure- professionally engineered for seamless integration and faster business growth.</p>
+ </div>
+ <div class="feature-image">
+ <img src="./images/marketplace.png" alt="Digital Marketplace">
+ </div>
+ </div>
+ </div>
+
+ <div class="card fade-in">
+   <div class="feature-block alt-bg">
+ <div class="feature-image">
+ <img src="./images/Ai automation2.png" alt="AI Automation">
+ </div>
+ <div class="feature-text">
+ <h3>AI Automation</h3>
+ <p>Smarter systems. Less manual work.
+We integrate AI-powered automation to help businesses save time, reduce costs, and operate more efficiently in today’s digital world.</p>
+ </div>
+ </div>
+ </div>
+
+
+  <div class="card fade-in">
+ <div class="feature-block">
+ <div class="feature-text">
+ <h3>Fast Delivery</h3>
+ <p>Speed without sacrificing quality.
+We value your time. Our streamlined workflow ensures quick turnaround while maintaining top-tier standards.</p>
+ </div>
+ <div class="feature-image">
+ <img src="./images/fast-delivery.png" alt="Fast Delivery">
+ </div>
+ </div>
+ </div>
+
+ 
+  <div class="card fade-in">
+ <div class="feature-block alt-bg">
+ <div class="feature-image">
+ <img src="./images/contact support.png" alt="Customer Support">
+ </div>
+ <div class="feature-text">
+ <h3>Customer Support</h3>
+ <p>Reliable support when you need it most.
+We provide responsive, friendly customer support to ensure your projects run smoothly. From quick fixes to ongoing assistance, we’re always available to help.
+</p>
+ </div>
+ </div>
+ </div>
+
+
+ 
+  <div class="card fade-in">
+ <div class="feature-block">
+ <div class="feature-text">
+ <h3>Secure & Flexible Payment</h3>
+ <p>Safe, simple, and reliable transactions.
+Reliable payment options with full transparency, ensuring your payments are protected and processed smoothly — no stress, no hidden fees.
+</p>
+ </div>
+ <div class="feature-image">
+ <img src="./images/secure payment.jpeg" alt="Secure Payments">
+ </div>
+ </div>
+ </div>
+
+
+
+  <div class="card fade-in">
+ <div class="feature-block alt-bg">
+ <div class="feature-image">
+ <img src="./images/verified expertise.jpeg" alt="Verified Expertise">
+ </div>
+ <div class="feature-text">
+ <h3>Verified Expertise</h3>
+ <p>Proven skills. Real-world experience.
+Our expertise is backed by hands-on projects, technical knowledge, and results delivered for clients across different industries.</p>
+ </div>
+ </div>
+ </div>
+
+
+
+  <div class="card fade-in">
+ <div class="feature-block">
+ <div class="feature-text">
+ <h3>Transparent Pricing</h3>
+ <p>No hidden charges. No last-minute surprises.
+We believe in clear, upfront pricing so you always know exactly what you’re paying for and why. Honest service, fair value.</p>
+ </div>
+ <div class="feature-image">
+ <img src="./images/transparent pricing.jpeg" alt="Transparent Pricing">
+ </div>
+ </div>
+ </div>
+
+ 
+  <div class="card fade-in">
+ <div class="feature-block alt-bg">
+ <div class="feature-image">
+ <img src="./images/portfolio.jpeg" alt="Portfolio & Past Projects">
+ </div>
+ <div class="feature-text">
+ <h3>Proven Portfolio</h3>
+ <p>Results you can see. Work you can trust.
+Our portfolio showcases real projects delivered for real clients across different industries — quality, consistency, and creativity in every build.</p>
+ </div>
+ </div>
+ </div>
+
+
+
+  <div class="card fade-in">
+ <div class="feature-block">
+ <div class="feature-text">
+ <h3>Solid Brand Foundation</h3>
+ <p>Built to last. Designed to scale.
+We don’t just create websites or systems — we build strong digital brands that look professional, perform smoothly, and grow with your business.</p>
+ </div>
+ <div class="feature-image">
+ <img src="./images/super-hero-logo.png" alt="Professional Branding & Identity">
+ </div>
+ </div>
+ </div>
+
+
+ 
+  <div class="card fade-in">
+ <div class="feature-block alt-bg">
+ <div class="feature-image">
+ <img src="./images/global reach 2.jpeg" alt="Global & Local Reach">
+ </div>
+ <div class="feature-text">
+ <h3>Worldwide Service</h3>
+ <p>Serving clients without borders.
+No matter where you are in the world, we deliver reliable digital solutions remotely, efficiently, and on time.</p>
+ </div>
+ </div>
+ </div>
+
+
+  <div class="card fade-in">
+ <div class="feature-block">
+ <div class="feature-text">
+ <h3>Why Choose Us</h3>
+ <p>Your business deserves better. We deliver results, not just services. We combine strategy, creativity, and technology to deliver solutions that actually work — not just look good.</p>
+ </div>
+ <div class="feature-image">
+ <img src="./images/why choose.png" alt="Why Choose Us">
+ </div>
+ </div>
+</section>
+
+<!-- REVIEWS -->
+ <section class="features-header">
+<h2>Client Reviews</h2>
+</section>
+<section class="reviews-section">
+  <div class="reviews-wrapper">
+    <div class="reviews-container" id="reviews">
+      <!-- all 7 review cards exactly as your original -->
+
+<div class="review-card"><img src="images/lee.jpg"><h4>Michael Lee</h4>
+<p class="review-card-role">Business Owner</p>
+<div class="trustpilot-badge"><img src="./images/trust-pilot-badge.png"><span>Verified on Trustpilot</span></div>
+<p>Freener handled our web design, hosting, and ongoing management flawlessly. Everything runs smoothly with zero stress.</p><div class="stars">★★★★★</div></div>
+
+<div class="review-card"><img src="images/yusuf.jpg"><h4>Amina Yusuf</h4>
+  <p class="review-card-role">Marketing Lead</p>
+<div class="trustpilot-badge"><img src="./images/trust-pilot-badge.png"><span>Verified on Trustpilot</span></div>
+<p>Email automation workflows were implemented with precision, improving engagement and conversion.</p><div class="stars">★★★★☆</div></div>
+
+<div class="review-card"><img src="images/review3.png"><h4>Daniel Carter</h4>
+  <p class="review-card-role">Corporate Consultant</p>
+<div class="trustpilot-badge"><img src="./images/trust-pilot-badge.png"><span>Verified on Trustpilot</span></div>
+<p>They provides dependable freelancing services with strong attention to detail and delivery timelines</p><div class="stars">★★★★★</div></div>
+
+<div class="review-card"><img src="./images/review2 (1).png"><h4>Grace Okafor</h4>
+  <p class="review-card-role">Administrative Manager</p>
+<div class="trustpilot-badge"><img src="./images/trust-pilot-badge.png"><span>Verified on Trustpilot</span></div>
+<p> File management systems are now structured, accessible, and compliant with operational needs.</p><div class="stars">★★★★☆</div></div>
+
+<div class="review-card"><img src="images/review5.png"><h4>William Goose</h4>
+  <p class="review-card-role">Chief Executive Officer</p>
+<div class="trustpilot-badge"><img src="./images/trust-pilot-badge.png"><span>Verified on Trustpilot</span></div>
+<p>Freener delivered a robust web design and management solution that aligns perfectly with our business standards.</p><div class="stars">★★★★☆</div></div>
+
+<div class="review-card"><img src="images/america.jpg"><h4>Phillip Mcdaid</h4>
+  <p class="review-card-role">Technology Manager</p>
+<div class="trustpilot-badge"><img src="./images/trust-pilot-badge.png"><span>Verified on Trustpilot</span></div>
+<p>Website performance, uptime, and ongoing management have been consistently excellent.</p><div class="stars">★★★★☆</div></div>
+
+<div class="review-card"><img src="./images/review1 (1).png"><h4>Sarah Johnson</h4>
+  <p class="review-card-role">Tech Startup</p>
+<div class="trustpilot-badge"><img src="./images/trust-pilot-badge.png"><span>Verified on Trustpilot</span></div>
+<p>Web hosting and site management are solid and secure. Uptime and performance have been excellent.</p><div class="stars">★★★★★</div></div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+<canvas id="particles"></canvas>
+
+<script>
+document.getElementById('navToggle').onclick=()=>{
+  document.getElementById('mainNav').classList.toggle('active');
+};
+
+/* Reviews slider */
+const container = document.getElementById('reviews');
+const cards = document.querySelectorAll('.review-card');
+let index = 0;
+let interval;
+
+/* ===== MOBILE FADE FUNCTION ===== */
+function mobileFade() {
+  cards.forEach(card => card.classList.remove('active'));
+  cards[index].classList.add('active');
+  index = (index + 1) % cards.length;
+}
+
+/* ===== DESKTOP SLIDE FUNCTION ===== */
+function desktopSlide() {
+  const cardWidth = cards[0].offsetWidth + 20; // card + gap
+  const visibleCards = Math.floor(container.parentElement.offsetWidth / cardWidth);
+  const maxIndex = cards.length - visibleCards;
+
+  index++;
+  if (index > maxIndex) index = 0;
+
+  container.style.transform = `translateX(-${index * cardWidth}px)`;
+}
+
+/* ===== START SLIDER BASED ON SCREEN SIZE ===== */
+function startSlider() {
+  clearInterval(interval);
+  index = 0;
+
+  // Reset styles
+  container.style.transform = 'translateX(0)';
+  cards.forEach(card => card.classList.remove('active'));
+
+  if (window.innerWidth <= 768) {
+    // MOBILE: fade one card at a time
+    cards[0].classList.add('active');
+    interval = setInterval(mobileFade, 4000);
+  } else {
+    // DESKTOP: horizontal slider
+    interval = setInterval(desktopSlide, 4000);
+  }
+}
+
+/* ===== INITIALIZE ===== */
+window.addEventListener('load', startSlider);
+window.addEventListener('resize', startSlider);
+
+const fadeElements = document.querySelectorAll('.fade-in');
+
+  const fadeObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        } else {
+          entry.target.classList.remove('show');
+        }
+      });
+    },
+    {
+      threshold: 0.2
+    }
+  );
+
+  fadeElements.forEach(el => fadeObserver.observe(el));
+
+
+  const text = "AI Automation & Digital Agents Platform for Modern Businesses";
+let i = 0;
+
+function typeEffect(){
+ const el = document.getElementById("typing-text");
+
+ if(i < text.length){
+   el.innerHTML += text.charAt(i);
+   i++;
+   setTimeout(typeEffect, 40);
+ }
+}
+
+window.addEventListener("load", typeEffect);
+
+
+function sendMessage(){
+ const input = document.getElementById("chat-input");
+ const chat = document.getElementById("chat-body");
+
+ if(input.value.trim() === "") return;
+
+ // user message
+ const userMsg = document.createElement("div");
+ userMsg.className = "user-msg";
+ userMsg.innerText = input.value;
+ chat.appendChild(userMsg);
+
+ // fake AI reply
+ const botMsg = document.createElement("div");
+ botMsg.className = "bot-msg";
+
+ setTimeout(()=>{
+   botMsg.innerText = "Processing... Your automation can handle this.";
+   chat.appendChild(botMsg);
+   chat.scrollTop = chat.scrollHeight;
+ }, 500);
+
+ input.value = "";
+}
+
+
+
+  const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for(let i=0;i<60;i++){
+ particles.push({
+   x: Math.random()*canvas.width,
+   y: Math.random()*canvas.height,
+   size: Math.random()*2,
+   speedX: (Math.random()-0.5)*0.5,
+   speedY: (Math.random()-0.5)*0.5
+ });
+}
+
+function animateParticles(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ particles.forEach(p=>{
+   p.x += p.speedX;
+   p.y += p.speedY;
+
+   if(p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+   if(p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+
+   ctx.beginPath();
+   ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+   ctx.fillStyle = "rgba(0,255,213,0.7)";
+   ctx.fill();
+ });
+
+ requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+
+window.addEventListener("resize",()=>{
+ canvas.width = window.innerWidth;
+ canvas.height = window.innerHeight;
+});
+
+  fetch("https://modular-infrastructure.onrender.com/health")
+  .then(res => res.json())
+  .then(data => {
+    console.log("Uptime:", data.uptime);
+    console.log("Message:", data.message);
+    console.log("Timestamp:", data.timestamp);
+  });
+
+/* Test AI agent */
+fetch("https://modular-infrastructure.onrender.com/api/agent", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    message: "Create a CRM pipeline for my sales team"
+  })
+})
+.then(res => res.json())
+.then(data => console.log(JSON.stringify(data, null, 2)));
+
+fetch("https://modular-infrastructure.onrender.com/auth/login", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    user: "freener"
+  })
+})
+.then(res => res.json())
+.then(data => console.log("JWT Token:", data.token));
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,2437 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Projects — Freener's Digital Services</title>
+
+<style>
+:root{
+ --green:#00a86b;
+ --darkgreen:darkgreen;
+ --silver:#f2f2f2;
+ --text:#333;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:var(--silver);
+color:var(--text);
+}
+
+/* ================= NAV ================= */
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:var(--darkgreen);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+z-index:1000;
+}
+
+.logo{
+color:#fff;
+font-weight:700;
+}
+
+.nav{
+display:flex;
+gap:20px;
+}
+
+.nav a{
+color:#fff;
+text-decoration:none;
+font-weight:500;
+}
+
+.nav-toggle{
+display:none;
+color:#fff;
+font-size:1.8rem;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+.nav{
+position:fixed;
+top:70px;
+right:-100%;
+width:180px;
+background:var(--darkgreen);
+flex-direction:column;
+padding:20px;
+transition:.3s;
+}
+.nav.active{
+right:0;
+}
+.nav-toggle{
+display:block;
+}
+}
+
+/* ================= MAIN ================= */
+
+main{
+padding:110px 5% 60px;
+}
+
+.section-title{
+text-align:center;
+font-size:2rem;
+color:var(--green);
+margin-bottom:10px;
+}
+
+.section-sub{
+text-align:center;
+font-size:1.1rem;
+color:#555;
+margin-bottom:40px;
+}
+
+
+
+/* ================= GRID ================= */
+
+.cards{
+  display:grid;
+  gap:25px;
+  align-items:stretch;
+}
+
+@media (min-width:1024px){
+  .cards{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media (min-width:768px) and (max-width:1023px){
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media (max-width:767px){
+  .cards{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ================= CARD ================= */
+
+.video-card{
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  overflow:hidden;
+  transition:.3s;
+
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.video-card:hover{
+  transform:translateY(-5px);
+}
+
+/* ================= MEDIA ================= */
+
+.card-media{
+  position:relative;
+  height:200px; /* FIXED HEIGHT (prevents stretching) */
+  overflow:hidden;
+}
+
+.card-media video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  cursor:pointer;
+}
+
+
+/* ================= BODY ================= */
+
+.card-body{
+  padding:20px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  flex-grow:1;
+}
+
+/* ================= TEXT CONTROL ================= */
+
+.card-body p{
+  font-size:14px;
+  line-height:1.4;
+  max-height:60px;
+  overflow:hidden;
+}
+
+/* ================= PRICE ================= */
+
+.price{
+  background:var(--green);
+  color:#fff;
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:.85rem;
+  margin-bottom:12px;
+}
+
+/* ================= AGENT TAG ================= */
+
+.agent-tag{
+  display:inline-block;
+  font-size:.75rem;
+  background:#eee;
+  padding:4px 10px;
+  border-radius:12px;
+  margin-bottom:8px;
+}
+
+/* HIDE ANIMATION */
+.card.hide {
+  display: none;
+}
+
+/* CARD CTA – PREMIUM MULTI RADIATE */
+.card-btn{
+display:inline-block;
+margin-top:14px;
+padding:10px 22px;
+border-radius:30px;
+font-size:.9rem;
+font-weight:600;
+text-decoration:none;
+color:#000;
+background:linear-gradient(45deg,
+gold,
+#00ff88,
+aqua,
+crimson,
+lemonchiffon);
+background-size:300% 300%;
+animation:cardGradient 6s ease infinite;
+transition:.3s;
+}
+
+.card-btn:hover{
+transform:scale(1.05);
+}
+
+@keyframes cardGradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.card-btn.order-btn{
+  background:#00c896 !important;
+  color:#fff !important;
+
+  /* kill gradient completely */
+  background-image:none !important;
+  animation:none !important;
+}
+
+.card-btn.order-btn:hover{
+  background:#00b386 !important;
+}
+
+
+/* WRAPPER (centers everything) */
+.controls-wrapper{
+  position: sticky;
+  top: 70px;
+  z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+/* INNER CONTROLS (clean card look) */
+.controls{
+  width: 100%;
+  max-width: 900px;
+
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+
+  padding: 12px;
+  border-radius: 16px;
+
+  backdrop-filter: blur(14px);
+  background: green;
+
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+/* GLASS EFFECT BASE */
+.search-box,
+.filter-container{
+  position:relative;
+  flex:1;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.6);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* ICON */
+.icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* INPUT */
+.search-box input{
+  width:100%;
+  padding:14px 14px 14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  outline:none;
+}
+
+/* SELECT */
+.filter-container select{
+  width:100%;
+  padding:14px 14px 14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  cursor:pointer;
+  outline:none;
+  appearance:none;
+}
+
+/* CUSTOM ARROW */
+.filter-container::after{
+  content:"▼";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  opacity:0.6;
+}
+
+/* FOCUS EFFECT */
+.search-box:focus-within,
+.filter-container:focus-within{
+  border:1px solid rgba(0,200,150,.6);
+  box-shadow:0 0 0 3px rgba(0,200,150,.15);
+}
+
+/* SORT BOX (GLASS) */
+.sort-box{
+  position:relative;
+  flex:1;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.6);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* SELECT */
+.sort-box select{
+  width:100%;
+  padding:14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  cursor:pointer;
+  outline:none;
+  appearance:none;
+}
+
+/* ICON */
+.sort-box .icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* CUSTOM ARROW */
+.sort-box::after{
+  content:"▼";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  opacity:0.6;
+}
+
+/* FOCUS EFFECT */
+.sort-box:focus-within{
+  border:1px solid rgba(0,200,150,.6);
+  box-shadow:0 0 0 3px rgba(0,200,150,.15);
+}
+
+/* ================= CONTROLS ================= */
+
+.controls{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:25px;
+}
+
+/* SEARCH BOX */
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff;
+}
+
+/* FILTER + SORT ROW */
+.controls-row{
+  display:flex;
+  gap:12px;
+}
+
+/* FILTER + SORT BOXES */
+.filter-container,
+.sort-box{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:1;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff;
+}
+
+/* INPUTS */
+.search-box input,
+.filter-container select,
+.sort-box select{
+  width:100%;
+  border:none;
+  outline:none;
+  background:transparent;
+  font-size:14px;
+}
+
+/* ICON */
+.icon{
+  flex-shrink:0;
+}
+
+
+/* FINAL CTA */
+.cta-block{
+background:#111;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+border-radius:15px;
+margin:60px 0;
+}
+
+/* ================= CTA BLOCK ================= */
+.cta-block{
+background:#111;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+border-radius:15px;
+margin-bottom:30px;
+}
+.cta-btn{
+display:inline-block;
+margin-top:20px;
+padding:14px 30px;
+border-radius:40px;
+background:linear-gradient(45deg,#00ffcc,#00a86b,#00f0ff,#00ff88);
+color:#000;
+font-weight:600;
+text-decoration:none;
+animation:glow 3s infinite linear;
+}
+@keyframes glow{
+0%{filter:hue-rotate(0deg)}
+100%{filter:hue-rotate(360deg)}
+}
+
+/* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">Freener's Digital Services</div>
+
+<nav class="nav" id="nav">
+<a href="marketplace.html">Marketplace</a>
+</nav>
+
+<div class="nav-toggle" id="toggle">&#9776;</div>
+</header>
+
+<main>
+
+<h2 class="section-title">Smart-Driven Lead Intelligence Systems</h2>
+<p class="section-sub">
+Intelligent acquisition frameworks built to qualify, route, and manage prospects through automated workflows and CRM integration.
+</p>
+
+<div class="controls-wrapper">
+
+  <di class="controls">
+
+    <!-- SEARCH -->
+    <div class="search-box">
+      <span class="icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search digital solutions..." />
+    </div>
+
+    <!-- FILTER + SORT ROW -->
+    <div class="controls-row">
+
+    <!-- FILTER -->
+    <div class="filter-container">
+      <span class="icon">⚙️</span>
+      <select id="filterSelect">
+        <option value="all">All Categories</option>
+        <option value="Lead-Capture">Lead Capture Systems</option>
+        <option value="Lead-Intelligence">Lead Intelligence Systems</option>
+        <option value="Lead-Engagement">Lead Engagement Systems</option>
+        <option value="Lead-Conversion">Lead Conversion Sales Systems</option>
+        <option value="Lead-Management">Lead Management & CRM Systems</option>
+        <option value="Lead-Acquisition">Lead Acquisition & Growth Systems</option>
+      </select>
+    </div>
+
+    <div class="sort-box">
+  <span class="icon">📊</span>
+  <select id="sortSelect">
+    <option value="default">Sort</option>
+    <option value="low">Price: Low → High</option>
+    <option value="high">Price: High → Low</option>
+  </select>
+</div>
+</div>
+</di>
+</div>
+
+<div class="cards">
+
+
+
+<div class="video-card"
+  data-id="601"
+  data-name="Capturox"
+  data-fullname="Lead Capture Engine"
+  data-type="system"
+  data-category="Lead-Capture"
+  data-setup="170"
+  data-monthly="120"
+  data-label="Lead Capture System"
+  data-description="A centralized system that automatically collects, validates, and routes leads from multiple sources into a structured pipeline without manual setup"
+  data-modules='[
+    {"name":"Multi-Source Capture Engine","price":35},
+    {"name":"Auto Lead Intake System","price":30},
+    {"name":"Lead Validation Engine","price":30},
+    {"name":"Smart Routing System","price":30},
+    {"name":"Capture Activity Tracker","price":25},
+    {"name":"Duplicate Prevention Engine","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/lead-capture.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Capturox</span>
+    <span class="price">$120 / month</span>
+
+    <p>Lead Capture Engine — automatically collect and organize leads from all channels into one intelligent system.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Multi-Source Capture</li>
+        <li>Auto Lead Intake</li>
+        <li>Lead Validation</li>
+        <li>Smart Routing</li>
+        <li>Activity Tracking</li>
+        <li>Duplicate Prevention</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="602"
+  data-name="Funnelytix"
+  data-fullname="Form & Funnel Capture System"
+  data-type="system"
+  data-category="Lead-Capture"
+  data-setup="190"
+  data-monthly="135"
+  data-label="Lead Capture System"
+  data-description="A pre-structured funnel system that automatically captures, processes, and qualifies leads through optimized flow paths without requiring manual funnel creation"
+  data-modules='[
+    {"name":"Pre-Built Funnel Flow Engine","price":35},
+    {"name":"Auto Lead Capture Routing","price":30},
+    {"name":"Conversion Path Optimization System","price":35},
+    {"name":"Input Processing Engine","price":30},
+    {"name":"Lead Qualification Filter","price":30},
+    {"name":"Funnel Performance Tracker","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/funnel-capture.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Funnelytix</span>
+    <span class="price">$135 / month</span>
+
+    <p>Form & Funnel Capture System — automatically guide visitors through optimized flows that convert into qualified leads.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Pre-Built Funnel Flow</li>
+        <li>Auto Capture Routing</li>
+        <li>Conversion Optimization</li>
+        <li>Input Processing</li>
+        <li>Lead Qualification</li>
+        <li>Performance Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="603"
+  data-name="Landora"
+  data-fullname="Landing Page Capture Engine"
+  data-type="system"
+  data-category="Lead-Capture"
+  data-setup="200"
+  data-monthly="140"
+  data-label="Lead Capture System"
+  data-description="A high-conversion landing system that automatically captures leads using pre-optimized page structures and intelligent conversion triggers"
+  data-modules='[
+    {"name":"Pre-Optimized Landing System","price":40},
+    {"name":"Conversion Trigger Engine","price":35},
+    {"name":"Call-to-Action Automation","price":30},
+    {"name":"Lead Capture Processing System","price":35},
+    {"name":"Page Performance Intelligence","price":30},
+    {"name":"Conversion Testing Engine","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/landing-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Landora</span>
+    <span class="price">$140 / month</span>
+
+    <p>Landing Page Capture Engine — convert traffic into leads with pre-optimized, high-performing capture pages.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Pre-Optimized Pages</li>
+        <li>Conversion Triggers</li>
+        <li>CTA Automation</li>
+        <li>Lead Processing</li>
+        <li>Performance Intelligence</li>
+        <li>Conversion Testing</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="604"
+  data-name="Omnilex"
+  data-fullname="Multi-Channel Capture System"
+  data-type="system"
+  data-category="Lead-Capture"
+  data-setup="210"
+  data-monthly="150"
+  data-label="Lead Capture System"
+  data-description="A unified system that captures leads across multiple channels including web, social, ads, and messaging platforms, automatically consolidating them into one structured pipeline"
+  data-modules='[
+    {"name":"Cross-Channel Capture Engine","price":40},
+    {"name":"Channel Integration System","price":35},
+    {"name":"Unified Lead Aggregation Module","price":35},
+    {"name":"Real-Time Capture Sync Engine","price":35},
+    {"name":"Source Tracking Intelligence","price":30},
+    {"name":"Channel Performance Monitor","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/multichannel-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Omnilex</span>
+    <span class="price">$150 / month</span>
+
+    <p>Multi-Channel Capture System — collect leads from all platforms into one unified system automatically.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Cross-Channel Capture</li>
+        <li>Channel Integration</li>
+        <li>Lead Aggregation</li>
+        <li>Real-Time Sync</li>
+        <li>Source Tracking</li>
+        <li>Performance Monitoring</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="605"
+  data-name="Conversiqo"
+  data-fullname="Popup & Conversion Capture System"
+  data-type="system"
+  data-category="Lead-Capture"
+  data-setup="180"
+  data-monthly="125"
+  data-label="Lead Capture System"
+  data-description="A conversion-focused system that captures leads through intelligent popups, triggers, and behavioral interactions designed to maximize conversion opportunities"
+  data-modules='[
+    {"name":"Behavior Trigger Engine","price":35},
+    {"name":"Popup Delivery System","price":30},
+    {"name":"Conversion Timing Optimizer","price":30},
+    {"name":"Interaction Capture Module","price":30},
+    {"name":"Exit Intent Detection System","price":35},
+    {"name":"Conversion Performance Tracker","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/popup-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Conversiqo</span>
+    <span class="price">$125 / month</span>
+
+    <p>Popup & Conversion Capture System — capture leads at the right moment using intelligent behavioral triggers.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Behavior Triggers</li>
+        <li>Popup Delivery</li>
+        <li>Timing Optimization</li>
+        <li>Interaction Capture</li>
+        <li>Exit Detection</li>
+        <li>Conversion Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="606"
+  data-name="Collectra"
+  data-fullname="Lead Collection Hub"
+  data-type="system"
+  data-category="Lead-Capture"
+  data-setup="200"
+  data-monthly="140"
+  data-label="Lead Capture System"
+  data-description="A centralized lead collection system that consolidates, organizes, and prepares all incoming leads for processing, tracking, and further automation"
+  data-modules='[
+    {"name":"Central Lead Repository","price":35},
+    {"name":"Lead Organization Engine","price":30},
+    {"name":"Data Normalization System","price":30},
+    {"name":"Lead Deduplication Engine","price":30},
+    {"name":"Collection Flow Manager","price":35},
+    {"name":"Lead Readiness Processor","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/collection-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Collectra</span>
+    <span class="price">$140 / month</span>
+
+    <p>Lead Collection Hub — centralize and organize all captured leads into a clean, ready-to-use system.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Central Repository</li>
+        <li>Lead Organization</li>
+        <li>Data Normalization</li>
+        <li>Deduplication</li>
+        <li>Flow Management</li>
+        <li>Lead Processing</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="621"
+  data-name="Intelyx"
+  data-fullname="Lead Intelligence Engine"
+  data-type="system"
+  data-category="Lead-Intelligence"
+  data-setup="210"
+  data-monthly="150"
+  data-label="Lead Intelligence System"
+  data-description="A lead intelligence system that analyzes incoming leads, enriches their data, and generates actionable insights to improve targeting and decision-making"
+  data-modules='[
+    {"name":"Lead Data Enrichment Engine","price":40},
+    {"name":"Profile Enhancement System","price":35},
+    {"name":"Insight Generation Module","price":40},
+    {"name":"Data Correlation Engine","price":35},
+    {"name":"Lead Value Analyzer","price":35},
+    {"name":"Insight Delivery System","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/lead-intelligence.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Intelyx</span>
+    <span class="price">$150 / month</span>
+
+    <p>Lead Intelligence Engine — enrich and analyze leads to uncover insights that improve targeting and conversion.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Data Enrichment</li>
+        <li>Profile Enhancement</li>
+        <li>Insight Generation</li>
+        <li>Data Correlation</li>
+        <li>Lead Value Analysis</li>
+        <li>Insight Delivery</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="622"
+  data-name="Scorvex"
+  data-fullname="Lead Scoring System"
+  data-type="system"
+  data-category="Lead-Intelligence"
+  data-setup="190"
+  data-monthly="135"
+  data-label="Lead Intelligence System"
+  data-description="A scoring system that evaluates lead quality based on behavior, engagement, and attributes to prioritize high-value opportunities"
+  data-modules='[
+    {"name":"Lead Scoring Engine","price":35},
+    {"name":"Behavior Weighting System","price":30},
+    {"name":"Engagement Scoring Module","price":30},
+    {"name":"Score Adjustment Engine","price":30},
+    {"name":"Priority Ranking System","price":35},
+    {"name":"Score Tracking Module","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/lead-scoring.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Scorvex</span>
+    <span class="price">$135 / month</span>
+
+    <p>Lead Scoring System — rank and prioritize leads based on quality and conversion potential.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Lead Scoring</li>
+        <li>Behavior Weighting</li>
+        <li>Engagement Scoring</li>
+        <li>Score Adjustment</li>
+        <li>Priority Ranking</li>
+        <li>Score Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="623"
+  data-name="Behavix"
+  data-fullname="Behavior Tracking Engine"
+  data-type="system"
+  data-category="Lead-Intelligence"
+  data-setup="200"
+  data-monthly="140"
+  data-label="Lead Intelligence System"
+  data-description="A behavioral tracking system that monitors user interactions, actions, and engagement patterns to provide deep insights into lead intent and activity"
+  data-modules='[
+    {"name":"Interaction Tracking Engine","price":35},
+    {"name":"Activity Monitoring System","price":30},
+    {"name":"Behavior Pattern Analyzer","price":35},
+    {"name":"Engagement Timeline Module","price":30},
+    {"name":"User Journey Tracker","price":35},
+    {"name":"Behavior Insight Engine","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/behavior-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Behavix</span>
+    <span class="price">$140 / month</span>
+
+    <p>Behavior Tracking Engine — monitor and analyze user actions to understand intent and engagement.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Interaction Tracking</li>
+        <li>Activity Monitoring</li>
+        <li>Behavior Analysis</li>
+        <li>Engagement Timeline</li>
+        <li>User Journey Tracking</li>
+        <li>Behavior Insights</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="624"
+  data-name="Qualtrix"
+  data-fullname="Lead Qualification Engine"
+  data-type="system"
+  data-category="Lead-Intelligence"
+  data-setup="200"
+  data-monthly="140"
+  data-label="Lead Intelligence System"
+  data-description="A qualification system that automatically filters and identifies high-potential leads based on predefined criteria, engagement signals, and readiness indicators"
+  data-modules='[
+    {"name":"Qualification Rules Engine","price":35},
+    {"name":"Readiness Detection System","price":35},
+    {"name":"Lead Filtering Engine","price":30},
+    {"name":"Qualification Workflow System","price":30},
+    {"name":"Disqualification Logic Module","price":25},
+    {"name":"Qualification Status Tracker","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/qualification-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Qualtrix</span>
+    <span class="price">$140 / month</span>
+
+    <p>Lead Qualification Engine — automatically identify and filter high-quality leads ready for conversion.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Qualification Rules</li>
+        <li>Readiness Detection</li>
+        <li>Lead Filtering</li>
+        <li>Qualification Workflow</li>
+        <li>Disqualification Logic</li>
+        <li>Status Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="625"
+  data-name="Intentra"
+  data-fullname="Intent Detection System"
+  data-type="system"
+  data-category="Lead-Intelligence"
+  data-setup="210"
+  data-monthly="145"
+  data-label="Lead Intelligence System"
+  data-description="An intent detection system that identifies user intent signals based on behavior, interactions, and engagement patterns to determine buying readiness"
+  data-modules='[
+    {"name":"Intent Signal Analyzer","price":35},
+    {"name":"Engagement Pattern Engine","price":35},
+    {"name":"Interest Detection System","price":30},
+    {"name":"Signal Weighting Module","price":30},
+    {"name":"Intent Scoring Engine","price":35},
+    {"name":"Intent Alert System","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/intent-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Intentra</span>
+    <span class="price">$145 / month</span>
+
+    <p>Intent Detection System — detect buying signals and identify leads ready to take action.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Intent Signal Analysis</li>
+        <li>Engagement Patterns</li>
+        <li>Interest Detection</li>
+        <li>Signal Weighting</li>
+        <li>Intent Scoring</li>
+        <li>Intent Alerts</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="626"
+  data-name="Profilix"
+  data-fullname="Lead Profiling Engine"
+  data-type="system"
+  data-category="Lead-Intelligence"
+  data-setup="190"
+  data-monthly="135"
+  data-label="Lead Intelligence System"
+  data-description="A profiling system that builds detailed lead profiles using collected data, behavior insights, and attributes to support targeting and segmentation"
+  data-modules='[
+    {"name":"Profile Building Engine","price":35},
+    {"name":"Attribute Mapping System","price":30},
+    {"name":"Segmentation Module","price":30},
+    {"name":"Profile Enrichment System","price":35},
+    {"name":"Profile Update Engine","price":30},
+    {"name":"Profile Insight Generator","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/profiling-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Profilix</span>
+    <span class="price">$135 / month</span>
+
+    <p>Lead Profiling Engine — build detailed lead profiles for smarter targeting and segmentation.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Profile Building</li>
+        <li>Attribute Mapping</li>
+        <li>Segmentation</li>
+        <li>Profile Enrichment</li>
+        <li>Profile Updates</li>
+        <li>Insight Generation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="641"
+  data-name="Engagix"
+  data-fullname="Lead Engagement Engine"
+  data-type="system"
+  data-category="Lead-Engagement"
+  data-setup="200"
+  data-monthly="140"
+  data-label="Lead Engagement System"
+  data-description="A lead engagement system that automatically interacts with leads across channels, maintaining consistent communication and improving engagement rates without manual effort"
+  data-modules='[
+    {"name":"Multi-Channel Interaction Engine","price":35},
+    {"name":"Automated Response System","price":30},
+    {"name":"Engagement Flow Controller","price":30},
+    {"name":"Conversation Tracking Engine","price":30},
+    {"name":"Interaction Timing Optimizer","price":35},
+    {"name":"Engagement Performance Monitor","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/engagement-lead.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Engagix</span>
+    <span class="price">$140 / month</span>
+
+    <p>Lead Engagement Engine — automatically interact with leads and keep them engaged across all channels.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Multi-Channel Interaction</li>
+        <li>Automated Responses</li>
+        <li>Engagement Flows</li>
+        <li>Conversation Tracking</li>
+        <li>Timing Optimization</li>
+        <li>Performance Monitoring</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="642"
+  data-name="Relivra"
+  data-fullname="Follow-up Automation System"
+  data-type="system"
+  data-category="Lead-Engagement"
+  data-setup="190"
+  data-monthly="135"
+  data-label="Lead Engagement System"
+  data-description="A follow-up system that automatically re-engages leads through timed interactions, ensuring no opportunity is lost due to lack of response or delayed communication"
+  data-modules='[
+    {"name":"Follow-up Scheduling Engine","price":30},
+    {"name":"Auto Re-Engagement System","price":35},
+    {"name":"Sequence Trigger Engine","price":30},
+    {"name":"Response Detection Module","price":30},
+    {"name":"Follow-up Timing Optimizer","price":30},
+    {"name":"Re-Engagement Tracking System","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/followup-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Relivra</span>
+    <span class="price">$135 / month</span>
+
+    <p>Follow-up Automation System — ensure every lead is followed up at the right time automatically.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Follow-up Scheduling</li>
+        <li>Auto Re-Engagement</li>
+        <li>Sequence Triggers</li>
+        <li>Response Detection</li>
+        <li>Timing Optimization</li>
+        <li>Tracking System</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="643"
+  data-name="Mailvora"
+  data-fullname="Email Engagement Engine"
+  data-type="system"
+  data-category="Lead-Engagement"
+  data-setup="210"
+  data-monthly="150"
+  data-label="Lead Engagement System"
+  data-description="An automated email engagement system that manages communication flows, delivers targeted messages, and maintains consistent interaction with leads"
+  data-modules='[
+    {"name":"Email Delivery Engine","price":35},
+    {"name":"Engagement Sequence System","price":35},
+    {"name":"Message Personalization Module","price":35},
+    {"name":"Email Interaction Tracker","price":30},
+    {"name":"Open & Click Analysis Engine","price":30},
+    {"name":"Email Performance Optimizer","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/email-engagement.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Mailvora</span>
+    <span class="price">$150 / month</span>
+
+    <p>Email Engagement Engine — automate email communication and maintain consistent lead interaction.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Email Delivery</li>
+        <li>Engagement Sequences</li>
+        <li>Personalization</li>
+        <li>Interaction Tracking</li>
+        <li>Click Analysis</li>
+        <li>Performance Optimization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="644"
+  data-name="Omnixra"
+  data-fullname="Multi-Channel Engagement System"
+  data-type="system"
+  data-category="Lead-Engagement"
+  data-setup="220"
+  data-monthly="155"
+  data-label="Lead Engagement System"
+  data-description="A centralized engagement system that communicates with leads across multiple platforms simultaneously while maintaining unified interaction control and consistency"
+  data-modules='[
+    {"name":"Channel Synchronization Engine","price":35},
+    {"name":"Unified Messaging System","price":35},
+    {"name":"Cross-Platform Delivery Engine","price":40},
+    {"name":"Channel Routing Logic","price":30},
+    {"name":"Interaction Consolidation Module","price":35},
+    {"name":"Channel Performance Analyzer","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/multichannel-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Omnixra</span>
+    <span class="price">$155 / month</span>
+
+    <p>Multi-Channel Engagement System — manage and unify lead communication across all platforms.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Channel Synchronization</li>
+        <li>Unified Messaging</li>
+        <li>Cross-Platform Delivery</li>
+        <li>Routing Logic</li>
+        <li>Interaction Consolidation</li>
+        <li>Performance Analysis</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="645"
+  data-name="Nurtara"
+  data-fullname="Lead Nurturing Engine"
+  data-type="system"
+  data-category="Lead-Engagement"
+  data-setup="210"
+  data-monthly="145"
+  data-label="Lead Engagement System"
+  data-description="A nurturing system that gradually builds trust with leads through structured interactions, progressive communication, and value-driven engagement sequences"
+  data-modules='[
+    {"name":"Trust Building Engine","price":35},
+    {"name":"Progressive Engagement System","price":35},
+    {"name":"Value Delivery Engine","price":35},
+    {"name":"Nurturing Sequence Controller","price":30},
+    {"name":"Lead Warm-Up Logic","price":30},
+    {"name":"Nurturing Performance Tracker","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/nurturing-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Nurtara</span>
+    <span class="price">$145 / month</span>
+
+    <p>Lead Nurturing Engine — build trust and guide leads gradually toward conversion.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Trust Building</li>
+        <li>Progressive Engagement</li>
+        <li>Value Delivery</li>
+        <li>Nurturing Sequences</li>
+        <li>Lead Warm-Up</li>
+        <li>Performance Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="646"
+  data-name="Flowtixra"
+  data-fullname="Engagement Workflow System"
+  data-type="system"
+  data-category="Lead-Engagement"
+  data-setup="230"
+  data-monthly="160"
+  data-label="Lead Engagement System"
+  data-description="An execution system that manages structured engagement workflows, coordinating interactions, triggers, and communication sequences for maximum efficiency"
+  data-modules='[
+    {"name":"Workflow Execution Engine","price":40},
+    {"name":"Trigger Coordination System","price":35},
+    {"name":"Interaction Routing Engine","price":35},
+    {"name":"Sequence Orchestration Module","price":35},
+    {"name":"Workflow Monitoring System","price":30},
+    {"name":"Execution Optimization Engine","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/workflow-engagement.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Flowtixra</span>
+    <span class="price">$160 / month</span>
+
+    <p>Engagement Workflow System — control and automate complex lead interaction workflows.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Workflow Execution</li>
+        <li>Trigger Coordination</li>
+        <li>Interaction Routing</li>
+        <li>Sequence Orchestration</li>
+        <li>Workflow Monitoring</li>
+        <li>Execution Optimization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="661"
+  data-name="ConvertiqX"
+  data-fullname="Conversion Execution Engine"
+  data-type="system"
+  data-category="Lead-Conversion"
+  data-setup="250"
+  data-monthly="180"
+  data-label="Lead Conversion System"
+  data-description="A conversion system that executes optimized actions to turn qualified leads into paying customers through structured decision triggers and conversion pathways"
+  data-modules='[
+    {"name":"Conversion Trigger Engine","price":40},
+    {"name":"Decision Pathway System","price":35},
+    {"name":"Offer Delivery Engine","price":40},
+    {"name":"Conversion Timing Optimizer","price":35},
+    {"name":"Action Execution System","price":35},
+    {"name":"Conversion Outcome Tracker","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/conversion-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">ConvertiqX</span>
+    <span class="price">$180 / month</span>
+
+    <p>Conversion Execution Engine — turn qualified leads into paying customers through optimized actions.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Conversion Triggers</li>
+        <li>Decision Pathways</li>
+        <li>Offer Delivery</li>
+        <li>Timing Optimization</li>
+        <li>Action Execution</li>
+        <li>Outcome Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="662"
+  data-name="Closivra"
+  data-fullname="Deal Closing System"
+  data-type="system"
+  data-category="Lead-Conversion"
+  data-setup="270"
+  data-monthly="195"
+  data-label="Lead Conversion System"
+  data-description="A deal closing system that manages final-stage interactions, objections, and negotiation signals to secure successful conversions"
+  data-modules='[
+    {"name":"Objection Handling Engine","price":40},
+    {"name":"Closing Signal Detector","price":35},
+    {"name":"Negotiation Flow System","price":40},
+    {"name":"Decision Reinforcement Module","price":35},
+    {"name":"Closing Sequence Controller","price":35},
+    {"name":"Deal Finalization Engine","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/closing-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Closivra</span>
+    <span class="price">$195 / month</span>
+
+    <p>Deal Closing System — manage final interactions and convert leads into confirmed customers.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Objection Handling</li>
+        <li>Closing Signals</li>
+        <li>Negotiation Flow</li>
+        <li>Decision Reinforcement</li>
+        <li>Closing Sequences</li>
+        <li>Deal Finalization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="663"
+  data-name="Offeryx"
+  data-fullname="Offer Optimization System"
+  data-type="system"
+  data-category="Lead-Conversion"
+  data-setup="230"
+  data-monthly="170"
+  data-label="Lead Conversion System"
+  data-description="An optimization system that dynamically adjusts offers, pricing, and presentation strategies to maximize conversion rates"
+  data-modules='[
+    {"name":"Offer Adjustment Engine","price":35},
+    {"name":"Pricing Optimization System","price":40},
+    {"name":"Offer Testing Framework","price":35},
+    {"name":"Presentation Strategy Module","price":35},
+    {"name":"Conversion Impact Analyzer","price":35},
+    {"name":"Offer Performance Tracker","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/offer-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Offeryx</span>
+    <span class="price">$170 / month</span>
+
+    <p>Offer Optimization System — refine offers and pricing to maximize conversions.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Offer Adjustment</li>
+        <li>Pricing Optimization</li>
+        <li>Offer Testing</li>
+        <li>Presentation Strategy</li>
+        <li>Impact Analysis</li>
+        <li>Performance Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="664"
+  data-name="Schedora"
+  data-fullname="Appointment Booking Engine"
+  data-type="system"
+  data-category="Lead-Conversion"
+  data-setup="220"
+  data-monthly="150"
+  data-label="Lead Conversion System"
+  data-description="An automated booking system that schedules appointments with qualified leads, manages availability, and ensures seamless meeting coordination without manual intervention"
+  data-modules='[
+    {"name":"Availability Management Engine","price":35},
+    {"name":"Auto Booking System","price":40},
+    {"name":"Time Slot Allocation Engine","price":35},
+    {"name":"Booking Confirmation System","price":30},
+    {"name":"Reschedule & Cancellation Module","price":30},
+    {"name":"Appointment Tracking Engine","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/booking-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Schedora</span>
+    <span class="price">$150 / month</span>
+
+    <p>Appointment Booking Engine — schedule and manage client meetings automatically.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Availability Management</li>
+        <li>Auto Booking</li>
+        <li>Time Slot Allocation</li>
+        <li>Booking Confirmation</li>
+        <li>Reschedule System</li>
+        <li>Appointment Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="665"
+  data-name="Activyx"
+  data-fullname="Sales Activation Engine"
+  data-type="system"
+  data-category="Lead-Conversion"
+  data-setup="240"
+  data-monthly="170"
+  data-label="Lead Conversion System"
+  data-description="A system that activates sales processes by triggering engagement actions, assigning opportunities, and initiating conversion workflows in real time"
+  data-modules='[
+    {"name":"Sales Trigger Engine","price":40},
+    {"name":"Opportunity Activation System","price":35},
+    {"name":"Lead Routing Engine","price":35},
+    {"name":"Sales Action Initiator","price":35},
+    {"name":"Activation Timing Controller","price":30},
+    {"name":"Sales Activity Tracker","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/sales-activation.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Activyx</span>
+    <span class="price">$170 / month</span>
+
+    <p>Sales Activation Engine — trigger and manage sales actions instantly.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Sales Triggers</li>
+        <li>Opportunity Activation</li>
+        <li>Lead Routing</li>
+        <li>Action Initiation</li>
+        <li>Timing Control</li>
+        <li>Activity Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="666"
+  data-name="Funnelytix"
+  data-fullname="Sales Funnel Engine"
+  data-type="system"
+  data-category="Lead-Conversion"
+  data-setup="260"
+  data-monthly="180"
+  data-label="Lead Conversion System"
+  data-description="A structured funnel system that manages lead progression through defined stages, tracks conversion flow, and optimizes movement from entry to purchase"
+  data-modules='[
+    {"name":"Funnel Stage Management","price":40},
+    {"name":"Lead Progression Engine","price":35},
+    {"name":"Stage Transition Logic","price":35},
+    {"name":"Drop-off Detection System","price":35},
+    {"name":"Funnel Flow Optimization","price":35},
+    {"name":"Conversion Stage Tracker","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/funnel-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Funnelytix</span>
+    <span class="price">$180 / month</span>
+
+    <p>Sales Funnel Engine — manage and optimize lead flow from entry to conversion.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Funnel Stages</li>
+        <li>Lead Progression</li>
+        <li>Stage Transitions</li>
+        <li>Drop-off Detection</li>
+        <li>Flow Optimization</li>
+        <li>Conversion Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="681"
+  data-name="Leadvora"
+  data-fullname="Smart Lead CRM System"
+  data-type="system"
+  data-category="Lead-Management"
+  data-setup="260"
+  data-monthly="180"
+  data-label="Lead Management System"
+  data-description="A centralized CRM system that stores, manages, and organizes all leads while providing full visibility and control over lead interactions and lifecycle"
+  data-modules='[
+    {"name":"Lead Database Engine","price":40},
+    {"name":"Interaction History System","price":35},
+    {"name":"Lead Record Manager","price":35},
+    {"name":"Lifecycle Tracking Engine","price":35},
+    {"name":"Lead Organization System","price":30},
+    {"name":"CRM Activity Monitor","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/crm-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Leadvora</span>
+    <span class="price">$180 / month</span>
+
+    <p>Smart Lead CRM — manage, store, and track all leads in one centralized system.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Lead Database</li>
+        <li>Interaction History</li>
+        <li>Record Management</li>
+        <li>Lifecycle Tracking</li>
+        <li>Lead Organization</li>
+        <li>Activity Monitoring</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="682"
+  data-name="Pipelonix"
+  data-fullname="Pipeline Management System"
+  data-type="system"
+  data-category="Lead-Management"
+  data-setup="250"
+  data-monthly="170"
+  data-label="Lead Management System"
+  data-description="A pipeline system that visually tracks and manages lead movement across different stages, ensuring structured progression and clear sales visibility"
+  data-modules='[
+    {"name":"Pipeline Stage Engine","price":35},
+    {"name":"Stage Movement Tracker","price":35},
+    {"name":"Deal Flow Controller","price":35},
+    {"name":"Pipeline Visibility System","price":30},
+    {"name":"Stage Performance Analyzer","price":35},
+    {"name":"Pipeline Optimization Module","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/pipeline-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Pipelonix</span>
+    <span class="price">$170 / month</span>
+
+    <p>Pipeline Management System — track and control lead progression across sales stages.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Pipeline Stages</li>
+        <li>Stage Tracking</li>
+        <li>Deal Flow</li>
+        <li>Visibility System</li>
+        <li>Performance Analysis</li>
+        <li>Pipeline Optimization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="683"
+  data-name="Contactrix"
+  data-fullname="Contact Intelligence System"
+  data-type="system"
+  data-category="Lead-Management"
+  data-setup="240"
+  data-monthly="165"
+  data-label="Lead Management System"
+  data-description="A contact intelligence system that enriches lead data, tracks communication insights, and builds deeper understanding of each contact"
+  data-modules='[
+    {"name":"Contact Data Enrichment Engine","price":40},
+    {"name":"Communication Insight System","price":35},
+    {"name":"Contact Behavior Tracker","price":35},
+    {"name":"Profile Enhancement Module","price":30},
+    {"name":"Insight Aggregation Engine","price":35},
+    {"name":"Contact Intelligence Dashboard","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/contact-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Contactrix</span>
+    <span class="price">$165 / month</span>
+
+    <p>Contact Intelligence System — enrich and understand every lead deeply.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Data Enrichment</li>
+        <li>Communication Insights</li>
+        <li>Behavior Tracking</li>
+        <li>Profile Enhancement</li>
+        <li>Insight Aggregation</li>
+        <li>Intelligence Dashboard</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="684"
+  data-name="Assignorix"
+  data-fullname="Lead Assignment Engine"
+  data-type="system"
+  data-category="Lead-Management"
+  data-setup="230"
+  data-monthly="155"
+  data-label="Lead Management System"
+  data-description="A routing system that automatically assigns leads to the right team members based on rules, availability, and performance criteria"
+  data-modules='[
+    {"name":"Assignment Rules Engine","price":35},
+    {"name":"Lead Distribution System","price":35},
+    {"name":"Agent Matching Engine","price":35},
+    {"name":"Availability Detection Module","price":30},
+    {"name":"Load Balancing System","price":35},
+    {"name":"Assignment Tracking Engine","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/assignment-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Assignorix</span>
+    <span class="price">$155 / month</span>
+
+    <p>Lead Assignment Engine — automatically assign leads to the right team instantly.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Assignment Rules</li>
+        <li>Lead Distribution</li>
+        <li>Agent Matching</li>
+        <li>Availability Detection</li>
+        <li>Load Balancing</li>
+        <li>Assignment Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="685"
+  data-name="Taskorix"
+  data-fullname="Sales Task System"
+  data-type="system"
+  data-category="Lead-Management"
+  data-setup="220"
+  data-monthly="150"
+  data-label="Lead Management System"
+  data-description="A task management system designed specifically for sales operations, organizing actions, follow-ups, and execution steps required to move leads toward conversion"
+  data-modules='[
+    {"name":"Task Creation Engine","price":30},
+    {"name":"Sales Activity Planner","price":35},
+    {"name":"Task Prioritization System","price":35},
+    {"name":"Execution Tracking Engine","price":30},
+    {"name":"Deadline Monitoring Module","price":30},
+    {"name":"Task Performance Analyzer","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/task-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Taskorix</span>
+    <span class="price">$150 / month</span>
+
+    <p>Sales Task System — manage and execute all sales-related tasks efficiently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Task Creation</li>
+        <li>Activity Planning</li>
+        <li>Task Prioritization</li>
+        <li>Execution Tracking</li>
+        <li>Deadline Monitoring</li>
+        <li>Performance Analysis</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="686"
+  data-name="Dealvora"
+  data-fullname="Deal Management Engine"
+  data-type="system"
+  data-category="Lead-Management"
+  data-setup="260"
+  data-monthly="180"
+  data-label="Lead Management System"
+  data-description="A deal management system that tracks, controls, and organizes all deals from initiation to closure while maintaining full visibility over deal status and performance"
+  data-modules='[
+    {"name":"Deal Tracking Engine","price":40},
+    {"name":"Deal Status Manager","price":35},
+    {"name":"Deal Lifecycle System","price":35},
+    {"name":"Deal Value Analyzer","price":35},
+    {"name":"Deal Progress Controller","price":35},
+    {"name":"Deal Performance Tracker","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/deal-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Dealvora</span>
+    <span class="price">$180 / month</span>
+
+    <p>Deal Management Engine — track and control deals from start to close.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Deal Tracking</li>
+        <li>Status Management</li>
+        <li>Lifecycle Control</li>
+        <li>Value Analysis</li>
+        <li>Progress Monitoring</li>
+        <li>Performance Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="701"
+  data-name="Adverion"
+  data-fullname="AI Ad Lead Engine"
+  data-type="system"
+  data-category="Lead-Acquisition"
+  data-setup="280"
+  data-monthly="200"
+  data-label="Lead Acquisition System"
+  data-description="An advertising system that generates leads through optimized ad delivery, targeting precision, and automated performance adjustments across campaigns"
+  data-modules='[
+    {"name":"Ad Targeting Engine","price":40},
+    {"name":"Audience Matching System","price":35},
+    {"name":"Ad Delivery Optimizer","price":40},
+    {"name":"Campaign Adjustment Engine","price":35},
+    {"name":"Lead Capture Integration","price":30},
+    {"name":"Ad Performance Analyzer","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/ad-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Adverion</span>
+    <span class="price">$200 / month</span>
+
+    <p>AI Ad Lead Engine — generate high-quality leads through optimized advertising systems.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Ad Targeting</li>
+        <li>Audience Matching</li>
+        <li>Ad Optimization</li>
+        <li>Campaign Adjustment</li>
+        <li>Lead Capture Integration</li>
+        <li>Performance Analysis</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="702"
+  data-name="RankoraX"
+  data-fullname="SEO Lead Engine"
+  data-type="system"
+  data-category="Lead-Acquisition"
+  data-setup="260"
+  data-monthly="190"
+  data-label="Lead Acquisition System"
+  data-description="A search optimization system that attracts organic leads by improving visibility, search positioning, and content discovery across search engines"
+  data-modules='[
+    {"name":"Search Visibility Engine","price":35},
+    {"name":"Keyword Positioning System","price":35},
+    {"name":"Content Ranking Optimizer","price":40},
+    {"name":"Search Traffic Generator","price":35},
+    {"name":"Indexing Optimization Module","price":30},
+    {"name":"SEO Performance Tracker","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/seo-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">RankoraX</span>
+    <span class="price">$190 / month</span>
+
+    <p>SEO Lead Engine — generate organic leads through search visibility and ranking systems.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Search Visibility</li>
+        <li>Keyword Positioning</li>
+        <li>Content Ranking</li>
+        <li>Traffic Generation</li>
+        <li>Index Optimization</li>
+        <li>SEO Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="703"
+  data-name="Contivra"
+  data-fullname="Content Lead System"
+  data-type="system"
+  data-category="Lead-Acquisition"
+  data-setup="250"
+  data-monthly="180"
+  data-label="Lead Acquisition System"
+  data-description="A content-driven lead system that attracts, engages, and converts audiences through strategic content distribution and audience targeting"
+  data-modules='[
+    {"name":"Content Distribution Engine","price":35},
+    {"name":"Audience Attraction System","price":35},
+    {"name":"Content Engagement Tracker","price":30},
+    {"name":"Lead Conversion Path Engine","price":35},
+    {"name":"Content Performance Analyzer","price":35},
+    {"name":"Traffic Flow Optimizer","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/content-lead.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Contivra</span>
+    <span class="price">$180 / month</span>
+
+    <p>Content Lead System — attract and convert leads through strategic content systems.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Content Distribution</li>
+        <li>Audience Attraction</li>
+        <li>Engagement Tracking</li>
+        <li>Conversion Path</li>
+        <li>Performance Analysis</li>
+        <li>Traffic Optimization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="704"
+  data-name="Referyx"
+  data-fullname="Referral Growth System"
+  data-type="system"
+  data-category="Lead-Acquisition"
+  data-setup="240"
+  data-monthly="175"
+  data-label="Lead Acquisition System"
+  data-description="A growth system that generates new leads through referral loops, incentivized sharing, and network-based expansion strategies"
+  data-modules='[
+    {"name":"Referral Loop Engine","price":35},
+    {"name":"Incentive Distribution System","price":35},
+    {"name":"Referral Tracking Engine","price":30},
+    {"name":"Network Expansion Module","price":35},
+    {"name":"Referral Conversion System","price":35},
+    {"name":"Growth Performance Tracker","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/referral-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Referyx</span>
+    <span class="price">$175 / month</span>
+
+    <p>Referral Growth System — scale lead acquisition through powerful referral loops.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Referral Loops</li>
+        <li>Incentive System</li>
+        <li>Tracking Engine</li>
+        <li>Network Expansion</li>
+        <li>Conversion System</li>
+        <li>Growth Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="705"
+  data-name="SociaraX"
+  data-fullname="Social Growth Engine"
+  data-type="system"
+  data-category="Lead-Acquisition"
+  data-setup="260"
+  data-monthly="185"
+  data-label="Lead Acquisition System"
+  data-description="A social-driven acquisition system that generates leads through audience expansion, engagement amplification, and platform-based growth strategies"
+  data-modules='[
+    {"name":"Audience Expansion Engine","price":35},
+    {"name":"Engagement Amplification System","price":35},
+    {"name":"Social Interaction Tracker","price":30},
+    {"name":"Platform Growth Controller","price":35},
+    {"name":"Content Reach Optimizer","price":35},
+    {"name":"Social Conversion Tracker","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/social-growth.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">SociaraX</span>
+    <span class="price">$185 / month</span>
+
+    <p>Social Growth Engine — generate leads through social expansion and engagement systems.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Audience Expansion</li>
+        <li>Engagement Amplification</li>
+        <li>Interaction Tracking</li>
+        <li>Platform Growth</li>
+        <li>Reach Optimization</li>
+        <li>Conversion Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="706"
+  data-name="Demandrix"
+  data-fullname="Demand Generation System"
+  data-type="system"
+  data-category="Lead-Acquisition"
+  data-setup="280"
+  data-monthly="200"
+  data-label="Lead Acquisition System"
+  data-description="A strategic system that creates and captures demand through targeted exposure, audience stimulation, and controlled lead generation campaigns"
+  data-modules='[
+    {"name":"Demand Creation Engine","price":40},
+    {"name":"Audience Stimulation System","price":35},
+    {"name":"Campaign Exposure Controller","price":35},
+    {"name":"Lead Demand Capture Engine","price":35},
+    {"name":"Demand Flow Optimization","price":35},
+    {"name":"Demand Performance Analyzer","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/demand-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Demandrix</span>
+    <span class="price">$200 / month</span>
+
+    <p>Demand Generation System — create and capture demand at scale with strategic campaigns.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Demand Creation</li>
+        <li>Audience Stimulation</li>
+        <li>Campaign Exposure</li>
+        <li>Lead Capture</li>
+        <li>Flow Optimization</li>
+        <li>Performance Analysis</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+</div>
+</main>
+
+<!-- FINAL CTA -->
+<div class="cta-block">
+<h2>Have a project in mind?<br>Let’s build something powerful together.</h2>
+<a href="contact.html" class="cta-btn">Let’s Get Started</a>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+<script>
+document.getElementById("toggle").onclick=function(){
+document.getElementById("nav").classList.toggle("active");
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const filterSelect = document.getElementById("filterSelect");
+  const cards = document.querySelectorAll(".video-card");
+  const searchInput = document.getElementById("searchInput");
+
+  let currentFilter = "all";
+
+  // DROPDOWN CHANGE
+  filterSelect.addEventListener("change", () => {
+    currentFilter = filterSelect.value;
+    filterCards();
+  });
+
+  // SEARCH
+  searchInput.addEventListener("keyup", filterCards);
+
+  function filterCards() {
+    const searchValue = searchInput.value.toLowerCase();
+
+    cards.forEach(card => {
+      const category = card.getAttribute("data-category") || "";
+      const keywords = card.getAttribute("data-keywords") || "";
+
+      const text = (
+        category + " " +
+        keywords + " " +
+        card.textContent
+      ).toLowerCase();
+
+      const matchFilter =
+        currentFilter === "all" || category === currentFilter;
+
+      const matchSearch =
+        text.includes(searchValue);
+
+      if (matchFilter && matchSearch) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+
+});
+
+
+const sortSelect = document.getElementById("sortSelect");
+const container = document.querySelector(".cards");
+
+sortSelect.addEventListener("change", () => {
+  const cards = Array.from(container.children);
+
+  cards.sort((a, b) => {
+    const priceA = parseInt(a.querySelector(".price").textContent.replace("$",""));
+    const priceB = parseInt(b.querySelector(".price").textContent.replace("$",""));
+
+    if (sortSelect.value === "low") return priceA - priceB;
+    if (sortSelect.value === "high") return priceB - priceA;
+    return 0;
+  });
+
+  cards.forEach(card => container.appendChild(card));
+});
+
+
+
+document.querySelectorAll(".order-btn").forEach(btn => {
+  btn.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const productId = this.closest(".video-card").dataset.id;
+
+    // ✅ update href dynamically (keeps anchor behavior)
+    this.href = "billing.html?id=" + productId;
+
+    // ✅ now allow redirect
+    window.location.href = this.href;
+  });
+});
+
+</script>
+
+</body>
+</html>

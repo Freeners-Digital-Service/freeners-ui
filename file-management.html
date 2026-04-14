@@ -1,0 +1,2460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Projects — Freener's Digital Services</title>
+
+<style>
+:root{
+ --green:#00a86b;
+ --darkgreen:darkgreen;
+ --silver:#f2f2f2;
+ --text:#333;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:var(--silver);
+color:var(--text);
+}
+
+/* ================= NAV ================= */
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:var(--darkgreen);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+z-index:1000;
+}
+
+.logo{
+color:#fff;
+font-weight:700;
+}
+
+.nav{
+display:flex;
+gap:20px;
+}
+
+.nav a{
+color:#fff;
+text-decoration:none;
+font-weight:500;
+}
+
+.nav-toggle{
+display:none;
+color:#fff;
+font-size:1.8rem;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+.nav{
+position:fixed;
+top:70px;
+right:-100%;
+width:180px;
+background:var(--darkgreen);
+flex-direction:column;
+padding:20px;
+transition:.3s;
+}
+.nav.active{
+right:0;
+}
+.nav-toggle{
+display:block;
+}
+}
+
+/* ================= MAIN ================= */
+
+main{
+padding:110px 5% 60px;
+}
+
+.section-title{
+text-align:center;
+font-size:2rem;
+color:var(--green);
+margin-bottom:10px;
+}
+
+.section-sub{
+text-align:center;
+font-size:1.1rem;
+color:#555;
+margin-bottom:40px;
+}
+
+
+
+/* ================= GRID ================= */
+
+.cards{
+  display:grid;
+  gap:25px;
+  align-items:stretch;
+}
+
+@media (min-width:1024px){
+  .cards{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media (min-width:768px) and (max-width:1023px){
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media (max-width:767px){
+  .cards{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ================= CARD ================= */
+
+.video-card{
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  overflow:hidden;
+  transition:.3s;
+
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.video-card:hover{
+  transform:translateY(-5px);
+}
+
+/* ================= MEDIA ================= */
+
+.card-media{
+  position:relative;
+  height:200px; /* FIXED HEIGHT (prevents stretching) */
+  overflow:hidden;
+}
+
+.card-media video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  cursor:pointer;
+}
+
+
+/* ================= BODY ================= */
+
+.card-body{
+  padding:20px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  flex-grow:1;
+}
+
+/* ================= TEXT CONTROL ================= */
+
+.card-body p{
+  font-size:14px;
+  line-height:1.4;
+  max-height:60px;
+  overflow:hidden;
+}
+
+/* ================= PRICE ================= */
+
+.price{
+  background:var(--green);
+  color:#fff;
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:.85rem;
+  margin-bottom:12px;
+}
+
+/* ================= AGENT TAG ================= */
+
+.agent-tag{
+  display:inline-block;
+  font-size:.75rem;
+  background:#eee;
+  padding:4px 10px;
+  border-radius:12px;
+  margin-bottom:8px;
+}
+
+/* HIDE ANIMATION */
+.card.hide {
+  display: none;
+}
+
+/* CARD CTA – PREMIUM MULTI RADIATE */
+.card-btn{
+display:inline-block;
+margin-top:14px;
+padding:10px 22px;
+border-radius:30px;
+font-size:.9rem;
+font-weight:600;
+text-decoration:none;
+color:#000;
+background:linear-gradient(45deg,
+gold,
+#00ff88,
+aqua,
+crimson,
+lemonchiffon);
+background-size:300% 300%;
+animation:cardGradient 6s ease infinite;
+transition:.3s;
+}
+
+.card-btn:hover{
+transform:scale(1.05);
+}
+
+@keyframes cardGradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.card-btn.order-btn{
+  background:#00c896 !important;
+  color:#fff !important;
+
+  /* kill gradient completely */
+  background-image:none !important;
+  animation:none !important;
+}
+
+.card-btn.order-btn:hover{
+  background:#00b386 !important;
+}
+
+
+/* WRAPPER (centers everything) */
+.controls-wrapper{
+  position: sticky;
+  top: 70px;
+  z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+/* INNER CONTROLS (clean card look) */
+.controls{
+  width: 100%;
+  max-width: 900px;
+
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+
+  padding: 12px;
+  border-radius: 16px;
+
+  backdrop-filter: blur(14px);
+  background: green;
+
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+/* GLASS EFFECT BASE */
+.search-box,
+.filter-container{
+  position:relative;
+  flex:1;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.6);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* ICON */
+.icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* INPUT */
+.search-box input{
+  width:100%;
+  padding:14px 14px 14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  outline:none;
+}
+
+/* SELECT */
+.filter-container select{
+  width:100%;
+  padding:14px 14px 14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  cursor:pointer;
+  outline:none;
+  appearance:none;
+}
+
+/* CUSTOM ARROW */
+.filter-container::after{
+  content:"▼";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  opacity:0.6;
+}
+
+/* FOCUS EFFECT */
+.search-box:focus-within,
+.filter-container:focus-within{
+  border:1px solid rgba(0,200,150,.6);
+  box-shadow:0 0 0 3px rgba(0,200,150,.15);
+}
+
+/* SORT BOX (GLASS) */
+.sort-box{
+  position:relative;
+  flex:1;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.6);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* SELECT */
+.sort-box select{
+  width:100%;
+  padding:14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  cursor:pointer;
+  outline:none;
+  appearance:none;
+}
+
+/* ICON */
+.sort-box .icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* CUSTOM ARROW */
+.sort-box::after{
+  content:"▼";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  opacity:0.6;
+}
+
+/* FOCUS EFFECT */
+.sort-box:focus-within{
+  border:1px solid rgba(0,200,150,.6);
+  box-shadow:0 0 0 3px rgba(0,200,150,.15);
+}
+
+/* ================= CONTROLS ================= */
+
+.controls{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:25px;
+}
+
+/* SEARCH BOX */
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff;
+}
+
+/* FILTER + SORT ROW */
+.controls-row{
+  display:flex;
+  gap:12px;
+}
+
+/* FILTER + SORT BOXES */
+.filter-container,
+.sort-box{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:1;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff;
+}
+
+/* INPUTS */
+.search-box input,
+.filter-container select,
+.sort-box select{
+  width:100%;
+  border:none;
+  outline:none;
+  background:transparent;
+  font-size:14px;
+}
+
+/* ICON */
+.icon{
+  flex-shrink:0;
+}
+
+/* FINAL CTA */
+.cta-block{
+background:#111;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+border-radius:15px;
+margin:60px 0;
+}
+
+/* ================= CTA BLOCK ================= */
+.cta-block{
+background:#111;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+border-radius:15px;
+margin-bottom:30px;
+}
+.cta-btn{
+display:inline-block;
+margin-top:20px;
+padding:14px 30px;
+border-radius:40px;
+background:linear-gradient(45deg,#00ffcc,#00a86b,#00f0ff,#00ff88);
+color:#000;
+font-weight:600;
+text-decoration:none;
+animation:glow 3s infinite linear;
+}
+@keyframes glow{
+0%{filter:hue-rotate(0deg)}
+100%{filter:hue-rotate(360deg)}
+}
+
+/* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">Freener's Digital Services</div>
+
+<nav class="nav" id="nav">
+<a href="marketplace.html">Marketplace</a>
+</nav>
+
+<div class="nav-toggle" id="toggle">&#9776;</div>
+</header>
+
+<main>
+
+<h2 class="section-title">Secure Digital File & Document Infrastructure</h2>
+<p class="section-sub">
+Scalable file management architecture engineered for controlled access, structured storage, and enterprise-grade operational efficiency.
+</p>
+
+<div class="controls-wrapper">
+
+  <div class="controls">
+
+    <!-- SEARCH -->
+    <div class="search-box">
+      <span class="icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search digital solutions..." />
+    </div>
+
+    <!-- FILTER + SORT ROW -->
+    <div class="controls-row">
+
+    <!-- FILTER -->
+    <div class="filter-container">
+      <span class="icon">⚙️</span>
+      <select id="filterSelect">
+        <option value="all">All Categories</option>
+        <option value="file">Storage Systems</option>
+        <option value="file-security">File Security Systems</option>
+        <option value="file-sync">Sync & Transfer Systems</option>
+        <option value="file-intelligence"> File Intelligence Systems</option>
+        <option value="file-monitoring">Monitoring & Control Systems</option>
+        <option value="file-collaboration">Collaboration Systems</option>
+      </select>
+    </div>
+
+    <div class="sort-box">
+  <span class="icon">📊</span>
+  <select id="sortSelect">
+    <option value="default">Sort</option>
+    <option value="low">Price: Low → High</option>
+    <option value="high">Price: High → Low</option>
+  </select>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="cards">
+
+ 
+<div class="video-card"
+  data-id="361"
+  data-name="Stellorix"
+  data-fullname="Smart Storage Engine"
+  data-type="system"
+  data-category="file"
+  data-setup="220"
+  data-monthly="160"
+  data-label="Storage System"
+  data-description="An intelligent storage system that organizes, manages, and maintains files efficiently with optimized storage allocation"
+  data-modules='[
+    {"name":"Storage Allocation Engine","price":30},
+    {"name":"Smart File Organization System","price":30},
+    {"name":"Storage Optimization Engine","price":25},
+    {"name":"Dynamic Storage Balancer","price":25},
+    {"name":"File Structuring Module","price":25},
+    {"name":"Storage Efficiency Tracker","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/storage-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Stellorix</span>
+    <span class="price">$160 / month</span>
+
+    <p>Smart Storage Engine — manage and optimize your file storage intelligently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Storage Allocation</li>
+        <li>Smart Organization</li>
+        <li>Storage Optimization</li>
+        <li>Dynamic Balancing</li>
+        <li>File Structuring</li>
+        <li>Efficiency Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="362"
+  data-name="Cloudara"
+  data-fullname="Cloud Storage System"
+  data-type="system"
+  data-category="file"
+  data-setup="250"
+  data-monthly="180"
+  data-label="Storage System"
+  data-description="A scalable cloud-based storage system that allows secure file access, storage expansion, and remote file management"
+  data-modules='[
+    {"name":"Cloud Storage Engine","price":30},
+    {"name":"Remote Access System","price":30},
+    {"name":"Scalable Storage Module","price":30},
+    {"name":"Cloud Resource Manager","price":25},
+    {"name":"File Access Controller","price":25},
+    {"name":"Storage Expansion Engine","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/cloud-storage.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Cloudara</span>
+    <span class="price">$180 / month</span>
+
+    <p>Cloud Storage System — store and access files securely from anywhere.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Cloud Storage Engine</li>
+        <li>Remote Access</li>
+        <li>Scalable Storage</li>
+        <li>Resource Manager</li>
+        <li>Access Control</li>
+        <li>Storage Expansion</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="363"
+  data-name="Safelix"
+  data-fullname="Backup Storage Engine"
+  data-type="system"
+  data-category="file"
+  data-setup="200"
+  data-monthly="150"
+  data-label="Storage System"
+  data-description="A backup system that securely stores copies of files and ensures data recovery in case of loss or system failure"
+  data-modules='[
+    {"name":"Backup Engine","price":30},
+    {"name":"Auto Backup Scheduler","price":25},
+    {"name":"Data Recovery System","price":30},
+    {"name":"Backup Version Manager","price":25},
+    {"name":"Storage Redundancy Engine","price":25},
+    {"name":"Recovery Validation Module","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/backup-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Safelix</span>
+    <span class="price">$150 / month</span>
+
+    <p>Backup Storage Engine — secure your files and recover them anytime.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Backup Engine</li>
+        <li>Auto Scheduling</li>
+        <li>Data Recovery</li>
+        <li>Version Management</li>
+        <li>Redundancy System</li>
+        <li>Recovery Validation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="364"
+  data-name="Scalorix"
+  data-fullname="Scalable Storage System"
+  data-type="system"
+  data-category="file"
+  data-setup="270"
+  data-monthly="200"
+  data-label="Storage System"
+  data-description="A flexible storage system that automatically scales storage capacity based on usage demand without performance loss"
+  data-modules='[
+    {"name":"Auto Scaling Engine","price":35},
+    {"name":"Capacity Management System","price":30},
+    {"name":"Load Distribution Engine","price":35},
+    {"name":"Elastic Storage Controller","price":30},
+    {"name":"Usage Expansion Module","price":35},
+    {"name":"Performance Stability Engine","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/scalable-storage.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Scalorix</span>
+    <span class="price">$200 / month</span>
+
+    <p>Scalable Storage System — grow your storage dynamically without limits.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Auto Scaling</li>
+        <li>Capacity Management</li>
+        <li>Load Distribution</li>
+        <li>Elastic Control</li>
+        <li>Usage Expansion</li>
+        <li>Performance Stability</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="365"
+  data-name="Archivon"
+  data-fullname="Archive Storage Engine"
+  data-type="system"
+  data-category="file"
+  data-setup="210"
+  data-monthly="155"
+  data-label="Storage System"
+  data-description="A long-term storage system designed for archiving files securely while maintaining accessibility and structured retrieval"
+  data-modules='[
+    {"name":"Archive Engine","price":30},
+    {"name":"Long-Term Storage System","price":25},
+    {"name":"Archive Indexing Module","price":30},
+    {"name":"Cold Storage Controller","price":25},
+    {"name":"Archive Retrieval Engine","price":30},
+    {"name":"Retention Management System","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/archive-storage.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Archivon</span>
+    <span class="price">$155 / month</span>
+
+    <p>Archive Storage Engine — store and retrieve long-term data securely.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Archive Engine</li>
+        <li>Long-Term Storage</li>
+        <li>Archive Indexing</li>
+        <li>Cold Storage Control</li>
+        <li>Archive Retrieval</li>
+        <li>Retention Management</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+<div class="video-card"
+  data-id="366"
+  data-name="Optivault"
+  data-fullname="Storage Optimization System"
+  data-type="system"
+  data-category="file"
+  data-setup="230"
+  data-monthly="170"
+  data-label="Storage System"
+  data-description="A system that analyzes storage usage and optimizes space by reducing redundancy and improving file allocation efficiency"
+  data-modules='[
+    {"name":"Storage Analysis Engine","price":30},
+    {"name":"Redundancy Reduction System","price":30},
+    {"name":"Space Optimization Engine","price":30},
+    {"name":"Storage Reallocation Module","price":25},
+    {"name":"Efficiency Monitoring System","price":25},
+    {"name":"Usage Optimization Controller","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/storage-optimization.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Optivault</span>
+    <span class="price">$170 / month</span>
+
+    <p>Storage Optimization System — maximize storage efficiency and reduce waste.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Storage Analysis</li>
+        <li>Redundancy Reduction</li>
+        <li>Space Optimization</li>
+        <li>Reallocation System</li>
+        <li>Efficiency Monitoring</li>
+        <li>Usage Optimization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="381"
+  data-name="Cryptavault"
+  data-fullname="File Encryption Engine"
+  data-type="system"
+  data-category="file-security"
+  data-setup="260"
+  data-monthly="190"
+  data-label="File Security System"
+  data-description="A security system that encrypts files to protect sensitive data from unauthorized access and breaches"
+  data-modules='[
+    {"name":"Encryption Engine","price":35},
+    {"name":"Key Management System","price":35},
+    {"name":"Secure File Encoding Module","price":30},
+    {"name":"Encryption Policy Controller","price":30},
+    {"name":"Data Protection Engine","price":30},
+    {"name":"Encryption Validation System","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/encryption-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Cryptavault</span>
+    <span class="price">$190 / month</span>
+
+    <p>File Encryption Engine — secure your files with advanced encryption.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Encryption Engine</li>
+        <li>Key Management</li>
+        <li>Secure Encoding</li>
+        <li>Policy Control</li>
+        <li>Data Protection</li>
+        <li>Validation System</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="382"
+  data-name="Guardexis"
+  data-fullname="Access Protection System"
+  data-type="system"
+  data-category="file-security"
+  data-setup="240"
+  data-monthly="175"
+  data-label="File Security System"
+  data-description="A system that controls and restricts file access to authorized users through layered permission and authentication mechanisms"
+  data-modules='[
+    {"name":"Access Control Engine","price":30},
+    {"name":"Permission Management System","price":30},
+    {"name":"Authentication Layer Module","price":30},
+    {"name":"Access Restriction Engine","price":30},
+    {"name":"User Access Monitoring System","price":25},
+    {"name":"Security Policy Enforcement","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/access-protection.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Guardexis</span>
+    <span class="price">$175 / month</span>
+
+    <p>Access Protection System — control who can access your files.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Access Control</li>
+        <li>Permission Management</li>
+        <li>Authentication Layer</li>
+        <li>Access Restriction</li>
+        <li>User Monitoring</li>
+        <li>Policy Enforcement</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="383"
+  data-name="Sharelocka"
+  data-fullname="Secure Sharing Engine"
+  data-type="system"
+  data-category="file-security"
+  data-setup="230"
+  data-monthly="170"
+  data-label="File Security System"
+  data-description="A system that enables secure file sharing with controlled access, expiration rules, and tracking capabilities"
+  data-modules='[
+    {"name":"Secure Sharing Engine","price":30},
+    {"name":"Access Expiry Controller","price":30},
+    {"name":"Link Protection System","price":25},
+    {"name":"Sharing Permission Module","price":30},
+    {"name":"Secure Transfer Engine","price":30},
+    {"name":"Sharing Activity Tracker","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/secure-sharing.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Sharelocka</span>
+    <span class="price">$170 / month</span>
+
+    <p>Secure Sharing Engine — share files safely with full control.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Secure Sharing</li>
+        <li>Access Expiry</li>
+        <li>Link Protection</li>
+        <li>Permission Control</li>
+        <li>Secure Transfer</li>
+        <li>Activity Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="384"
+  data-name="Permixor"
+  data-fullname="File Permission System"
+  data-type="system"
+  data-category="file-security"
+  data-setup="230"
+  data-monthly="165"
+  data-label="File Security System"
+  data-description="A system that defines and manages detailed permission levels for files, ensuring controlled access across users and roles"
+  data-modules='[
+    {"name":"Permission Engine","price":30},
+    {"name":"Role-Based Access System","price":30},
+    {"name":"Permission Assignment Module","price":25},
+    {"name":"Access Level Controller","price":30},
+    {"name":"Permission Audit Engine","price":25},
+    {"name":"Access Rule Manager","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/permission-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Permixor</span>
+    <span class="price">$165 / month</span>
+
+    <p>File Permission System — define who can do what with your files.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Permission Engine</li>
+        <li>Role-Based Access</li>
+        <li>Permission Assignment</li>
+        <li>Access Level Control</li>
+        <li>Permission Audit</li>
+        <li>Access Rule Manager</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="385"
+  data-name="Datashielda"
+  data-fullname="Data Protection Engine"
+  data-type="system"
+  data-category="file-security"
+  data-setup="260"
+  data-monthly="190"
+  data-label="File Security System"
+  data-description="A system that protects sensitive data from leaks, unauthorized exposure, and internal misuse through advanced protection mechanisms"
+  data-modules='[
+    {"name":"Data Protection Engine","price":35},
+    {"name":"Leak Prevention System","price":35},
+    {"name":"Sensitive Data Scanner","price":30},
+    {"name":"Exposure Detection Module","price":30},
+    {"name":"Protection Policy Controller","price":30},
+    {"name":"Data Risk Monitor","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/data-protection.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Datashielda</span>
+    <span class="price">$190 / month</span>
+
+    <p>Data Protection Engine — prevent leaks and protect sensitive information.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Data Protection Engine</li>
+        <li>Leak Prevention</li>
+        <li>Sensitive Data Scanning</li>
+        <li>Exposure Detection</li>
+        <li>Policy Control</li>
+        <li>Risk Monitoring</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="386"
+  data-name="Integrixor"
+  data-fullname="File Integrity System"
+  data-type="system"
+  data-category="file-security"
+  data-setup="240"
+  data-monthly="175"
+  data-label="File Security System"
+  data-description="A system that ensures files remain unchanged, detects tampering, and verifies file authenticity across systems"
+  data-modules='[
+    {"name":"Integrity Verification Engine","price":30},
+    {"name":"Tamper Detection System","price":30},
+    {"name":"File Validation Module","price":25},
+    {"name":"Checksum Monitoring Engine","price":30},
+    {"name":"Integrity Alert System","price":25},
+    {"name":"File Authenticity Controller","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/file-integrity.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Integrixor</span>
+    <span class="price">$175 / month</span>
+
+    <p>File Integrity System — detect changes and ensure file authenticity.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Integrity Verification</li>
+        <li>Tamper Detection</li>
+        <li>File Validation</li>
+        <li>Checksum Monitoring</li>
+        <li>Integrity Alerts</li>
+        <li>Authenticity Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="401"
+  data-name="Syncora"
+  data-fullname="File Sync Engine"
+  data-type="system"
+  data-category="file-sync"
+  data-setup="220"
+  data-monthly="160"
+  data-label="Sync System"
+  data-description="A system that synchronizes files across devices and environments to ensure consistent and up-to-date file access"
+  data-modules='[
+    {"name":"Sync Engine","price":30},
+    {"name":"File State Synchronizer","price":30},
+    {"name":"Change Detection Module","price":25},
+    {"name":"Sync Conflict Resolver","price":30},
+    {"name":"Sync Status Tracker","price":25},
+    {"name":"Synchronization Controller","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/file-sync.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Syncora</span>
+    <span class="price">$160 / month</span>
+
+    <p>File Sync Engine — keep your files updated across all environments.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Sync Engine</li>
+        <li>File State Sync</li>
+        <li>Change Detection</li>
+        <li>Conflict Resolution</li>
+        <li>Status Tracking</li>
+        <li>Sync Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="402"
+  data-name="Fluxsynca"
+  data-fullname="Real-Time Sync System"
+  data-type="system"
+  data-category="file-sync"
+  data-setup="250"
+  data-monthly="185"
+  data-label="Sync System"
+  data-description="A real-time synchronization system that instantly updates files across all connected environments without delay"
+  data-modules='[
+    {"name":"Real-Time Sync Engine","price":35},
+    {"name":"Instant Update Module","price":30},
+    {"name":"Live Change Broadcast System","price":35},
+    {"name":"Low-Latency Sync Controller","price":30},
+    {"name":"Real-Time Conflict Handler","price":30},
+    {"name":"Sync Event Stream Engine","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/realtime-sync.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Fluxsynca</span>
+    <span class="price">$185 / month</span>
+
+    <p>Real-Time Sync System — update files instantly across all systems.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Real-Time Sync</li>
+        <li>Instant Updates</li>
+        <li>Live Broadcast</li>
+        <li>Low Latency Control</li>
+        <li>Conflict Handling</li>
+        <li>Event Streaming</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="403"
+  data-name="Devicorix"
+  data-fullname="Cross-Device Sync Engine"
+  data-type="system"
+  data-category="file-sync"
+  data-setup="230"
+  data-monthly="170"
+  data-label="Sync System"
+  data-description="A system that synchronizes files seamlessly across multiple devices ensuring consistent access regardless of device type"
+  data-modules='[
+    {"name":"Cross-Device Sync Engine","price":30},
+    {"name":"Device Mapping System","price":30},
+    {"name":"Device State Manager","price":25},
+    {"name":"Sync Compatibility Engine","price":30},
+    {"name":"Multi-Device Coordination","price":30},
+    {"name":"Device Sync Tracker","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/device-sync.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Devicorix</span>
+    <span class="price">$170 / month</span>
+
+    <p>Cross-Device Sync Engine — access consistent files across all devices.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Cross-Device Sync</li>
+        <li>Device Mapping</li>
+        <li>Device State</li>
+        <li>Compatibility Engine</li>
+        <li>Multi-Device Coordination</li>
+        <li>Sync Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="404"
+  data-name="Backsyntra"
+  data-fullname="Backup Sync System"
+  data-type="system"
+  data-category="file-sync"
+  data-setup="230"
+  data-monthly="170"
+  data-label="Sync System"
+  data-description="A system that synchronizes backup data across environments ensuring recovery copies remain updated and consistent"
+  data-modules='[
+    {"name":"Backup Sync Engine","price":30},
+    {"name":"Recovery Sync Controller","price":30},
+    {"name":"Backup State Synchronizer","price":25},
+    {"name":"Sync Redundancy Manager","price":30},
+    {"name":"Backup Update Engine","price":25},
+    {"name":"Recovery Consistency Tracker","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/backup-sync.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Backsyntra</span>
+    <span class="price">$170 / month</span>
+
+    <p>Backup Sync System — keep all backup copies updated across systems.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Backup Sync Engine</li>
+        <li>Recovery Sync</li>
+        <li>Backup State Sync</li>
+        <li>Redundancy Manager</li>
+        <li>Backup Updates</li>
+        <li>Consistency Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+</div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="405"
+  data-name="Versynex"
+  data-fullname="Version Sync Engine"
+  data-type="system"
+  data-category="file-sync"
+  data-setup="240"
+  data-monthly="180"
+  data-label="Sync System"
+  data-description="A system that synchronizes file versions across environments ensuring consistency while maintaining version history integrity"
+  data-modules='[
+    {"name":"Version Sync Engine","price":30},
+    {"name":"Version Control System","price":30},
+    {"name":"Version Conflict Resolver","price":30},
+    {"name":"History Synchronization Module","price":25},
+    {"name":"Version Tracking Engine","price":30},
+    {"name":"Version Integrity Controller","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/version-sync.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Versynex</span>
+    <span class="price">$180 / month</span>
+
+    <p>Version Sync Engine — keep file versions aligned across systems.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Version Sync</li>
+        <li>Version Control</li>
+        <li>Conflict Resolution</li>
+        <li>History Sync</li>
+        <li>Version Tracking</li>
+        <li>Integrity Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="406"
+  data-name="Locasyntra"
+  data-fullname="Multi-Location Sync System"
+  data-type="system"
+  data-category="file-sync"
+  data-setup="260"
+  data-monthly="190"
+  data-label="Sync System"
+  data-description="A system that synchronizes files across multiple locations ensuring consistency between distributed environments and teams"
+  data-modules='[
+    {"name":"Location Sync Engine","price":35},
+    {"name":"Distributed Sync System","price":35},
+    {"name":"Location Mapping Module","price":30},
+    {"name":"Multi-Node Coordination Engine","price":35},
+    {"name":"Sync Routing Controller","price":30},
+    {"name":"Location Sync Tracker","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/location-sync.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Locasyntra</span>
+    <span class="price">$190 / month</span>
+
+    <p>Multi-Location Sync System — synchronize files across distributed environments.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Location Sync</li>
+        <li>Distributed Sync</li>
+        <li>Location Mapping</li>
+        <li>Multi-Node Coordination</li>
+        <li>Sync Routing</li>
+        <li>Tracking System</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="421"
+  data-name="Querionyx"
+  data-fullname="File Search Engine"
+  data-type="system"
+  data-category="file-intelligence"
+  data-setup="240"
+  data-monthly="175"
+  data-label="File Intelligence System"
+  data-description="An intelligent search system that locates files using context, intent, and content understanding rather than simple file names"
+  data-modules='[
+    {"name":"Contextual Query Engine","price":35},
+    {"name":"Intent Recognition System","price":35},
+    {"name":"Content Index Mapping","price":30},
+    {"name":"Semantic Retrieval Core","price":35},
+    {"name":"Search Ranking Optimizer","price":30},
+    {"name":"Result Relevance Engine","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/search-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Querionyx</span>
+    <span class="price">$175 / month</span>
+
+    <p>File Search Engine — find files using meaning, not just names.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Contextual Query</li>
+        <li>Intent Recognition</li>
+        <li>Content Mapping</li>
+        <li>Semantic Retrieval</li>
+        <li>Ranking Optimizer</li>
+        <li>Relevance Engine</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="422"
+  data-name="Structiva"
+  data-fullname="AI File Organizer"
+  data-type="system"
+  data-category="file-intelligence"
+  data-setup="260"
+  data-monthly="185"
+  data-label="File Intelligence System"
+  data-description="An intelligent system that automatically organizes files based on behavior patterns, usage frequency, and contextual relationships"
+  data-modules='[
+    {"name":"Behavior Analysis Engine","price":35},
+    {"name":"Usage Pattern Detector","price":30},
+    {"name":"Context Grouping System","price":35},
+    {"name":"Dynamic Structuring Core","price":35},
+    {"name":"Auto Reorganization Engine","price":30},
+    {"name":"Structure Learning Module","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/organizer.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Structiva</span>
+    <span class="price">$185 / month</span>
+
+    <p>AI File Organizer — organize files based on real usage behavior.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Behavior Analysis</li>
+        <li>Usage Detection</li>
+        <li>Context Grouping</li>
+        <li>Dynamic Structuring</li>
+        <li>Auto Reorganization</li>
+        <li>Structure Learning</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="423"
+  data-name="Tagentra"
+  data-fullname="Smart Tagging System"
+  data-type="system"
+  data-category="file-intelligence"
+  data-setup="230"
+  data-monthly="170"
+  data-label="File Intelligence System"
+  data-description="A system that assigns intelligent tags to files based on content meaning, context, and relationships for improved organization and discovery"
+  data-modules='[
+    {"name":"Content Interpretation Engine","price":35},
+    {"name":"Auto Tag Assignment Core","price":30},
+    {"name":"Context Tag Generator","price":30},
+    {"name":"Relationship Mapping System","price":35},
+    {"name":"Tag Evolution Engine","price":30},
+    {"name":"Metadata Enrichment Module","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/tagging.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Tagentra</span>
+    <span class="price">$170 / month</span>
+
+    <p>Smart Tagging System — label files intelligently using context.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Content Interpretation</li>
+        <li>Auto Tagging</li>
+        <li>Context Tags</li>
+        <li>Relationship Mapping</li>
+        <li>Tag Evolution</li>
+        <li>Metadata Enrichment</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="424"
+  data-name="Classyntra"
+  data-fullname="File Classification Engine"
+  data-type="system"
+  data-category="file-intelligence"
+  data-setup="250"
+  data-monthly="180"
+  data-label="File Intelligence System"
+  data-description="An intelligent system that classifies files into structured categories using learned classification models and adaptive logic"
+  data-modules='[
+    {"name":"Classification Logic Engine","price":35},
+    {"name":"Adaptive Categorization System","price":35},
+    {"name":"Category Modeling Core","price":30},
+    {"name":"Classification Training Module","price":35},
+    {"name":"Dynamic Category Assignment","price":30},
+    {"name":"Classification Accuracy Engine","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/classification.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Classyntra</span>
+    <span class="price">$180 / month</span>
+
+    <p>File Classification Engine — automatically group files into intelligent categories.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Classification Logic</li>
+        <li>Adaptive Categorization</li>
+        <li>Category Modeling</li>
+        <li>Training Module</li>
+        <li>Dynamic Assignment</li>
+        <li>Accuracy Engine</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="425"
+  data-name="Duplicora"
+  data-fullname="Duplicate Detection System"
+  data-type="system"
+  data-category="file-intelligence"
+  data-setup="230"
+  data-monthly="165"
+  data-label="File Intelligence System"
+  data-description="A system that identifies duplicate or similar files using deep comparison logic and similarity analysis across content structures"
+  data-modules='[
+    {"name":"Similarity Analysis Engine","price":35},
+    {"name":"Content Comparison Core","price":35},
+    {"name":"Duplicate Identification System","price":30},
+    {"name":"File Signature Analyzer","price":30},
+    {"name":"Similarity Threshold Controller","price":30},
+    {"name":"Duplicate Mapping Module","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/duplicate-detection.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Duplicora</span>
+    <span class="price">$165 / month</span>
+
+    <p>Duplicate Detection System — detect and manage duplicate files intelligently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Similarity Analysis</li>
+        <li>Content Comparison</li>
+        <li>Duplicate Identification</li>
+        <li>File Signature Analysis</li>
+        <li>Threshold Control</li>
+        <li>Duplicate Mapping</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="426"
+  data-name="Insightora"
+  data-fullname="File Insights Engine"
+  data-type="system"
+  data-category="file-intelligence"
+  data-setup="270"
+  data-monthly="200"
+  data-label="File Intelligence System"
+  data-description="An advanced intelligence system that generates insights about file usage, trends, and behavioral patterns to support smarter decisions"
+  data-modules='[
+    {"name":"Usage Behavior Analyzer","price":35},
+    {"name":"Pattern Discovery Engine","price":35},
+    {"name":"Trend Analysis System","price":35},
+    {"name":"Insight Generation Core","price":35},
+    {"name":"Behavior Forecast Module","price":30},
+    {"name":"Insight Visualization Engine","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/file-insights.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Insightora</span>
+    <span class="price">$200 / month</span>
+
+    <p>File Insights Engine — understand file behavior and usage patterns.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Behavior Analysis</li>
+        <li>Pattern Discovery</li>
+        <li>Trend Analysis</li>
+        <li>Insight Generation</li>
+        <li>Behavior Forecasting</li>
+        <li>Insight Visualization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="441"
+  data-name="Shareviax"
+  data-fullname="File Sharing Engine"
+  data-type="system"
+  data-category="file-collaboration"
+  data-setup="220"
+  data-monthly="160"
+  data-label="Collaboration System"
+  data-description="A system that enables controlled file sharing between users with structured collaboration access and sharing rules"
+  data-modules='[
+    {"name":"Sharing Session Engine","price":30},
+    {"name":"Collaborative Access Controller","price":30},
+    {"name":"Share Session Tracking System","price":25},
+    {"name":"Participant Management Module","price":30},
+    {"name":"Share Interaction Engine","price":25},
+    {"name":"Collaboration Access Logger","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/file-sharing.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Shareviax</span>
+    <span class="price">$160 / month</span>
+
+    <p>File Sharing Engine — collaborate by sharing files in a controlled environment.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Sharing Sessions</li>
+        <li>Access Control</li>
+        <li>Session Tracking</li>
+        <li>Participant Management</li>
+        <li>Interaction Engine</li>
+        <li>Access Logging</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="442"
+  data-name="Teamorix"
+  data-fullname="Team Collaboration System"
+  data-type="system"
+  data-category="file-collaboration"
+  data-setup="250"
+  data-monthly="180"
+  data-label="Collaboration System"
+  data-description="A system that enables teams to work together on shared files with coordinated actions and collaboration workflows"
+  data-modules='[
+    {"name":"Team Coordination Engine","price":35},
+    {"name":"Collaborative Workspace System","price":35},
+    {"name":"Action Coordination Module","price":30},
+    {"name":"Team Activity Engine","price":30},
+    {"name":"Collaboration Workflow Manager","price":35},
+    {"name":"Team Interaction System","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/team-collaboration.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Teamorix</span>
+    <span class="price">$180 / month</span>
+
+    <p>Team Collaboration System — coordinate teamwork around shared files.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Team Coordination</li>
+        <li>Workspace System</li>
+        <li>Action Coordination</li>
+        <li>Activity Engine</li>
+        <li>Workflow Manager</li>
+        <li>Team Interaction</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="443"
+  data-name="Annotrix"
+  data-fullname="Commenting System"
+  data-type="system"
+  data-category="file-collaboration"
+  data-setup="210"
+  data-monthly="155"
+  data-label="Collaboration System"
+  data-description="A system that enables structured comments, feedback, and discussions directly on files for collaborative review and communication"
+  data-modules='[
+    {"name":"Annotation Engine","price":30},
+    {"name":"Threaded Comment System","price":30},
+    {"name":"Feedback Structuring Module","price":25},
+    {"name":"Discussion Flow Engine","price":30},
+    {"name":"Comment Tracking System","price":25},
+    {"name":"Feedback Resolution Module","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/comment-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Annotrix</span>
+    <span class="price">$155 / month</span>
+
+    <p>Commenting System — collaborate through structured feedback and discussions.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Annotation Engine</li>
+        <li>Threaded Comments</li>
+        <li>Feedback Structuring</li>
+        <li>Discussion Flow</li>
+        <li>Comment Tracking</li>
+        <li>Resolution Module</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="444"
+  data-name="VersaCollab"
+  data-fullname="Version Collaboration Engine"
+  data-type="system"
+  data-category="file-collaboration"
+  data-setup="240"
+  data-monthly="175"
+  data-label="Collaboration System"
+  data-description="A system that enables teams to work across different file versions while coordinating edits, tracking changes, and maintaining collaborative continuity"
+  data-modules='[
+    {"name":"Version Coordination Engine","price":35},
+    {"name":"Edit Session Manager","price":30},
+    {"name":"Change Awareness System","price":30},
+    {"name":"Version Interaction Module","price":30},
+    {"name":"Collaborative Revision Engine","price":25},
+    {"name":"Edit History Navigator","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/version-collab.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">VersaCollab</span>
+    <span class="price">$175 / month</span>
+
+    <p>Version Collaboration Engine — collaborate across file versions without conflict.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Version Coordination</li>
+        <li>Edit Sessions</li>
+        <li>Change Awareness</li>
+        <li>Version Interaction</li>
+        <li>Revision Engine</li>
+        <li>Edit History Navigation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="445"
+  data-name="EditraLive"
+  data-fullname="Real-Time Editing System"
+  data-type="system"
+  data-category="file-collaboration"
+  data-setup="260"
+  data-monthly="190"
+  data-label="Collaboration System"
+  data-description="A system that allows multiple users to edit files simultaneously with synchronized editing environments and collaborative interaction flows"
+  data-modules='[
+    {"name":"Live Editing Engine","price":35},
+    {"name":"Concurrent Edit Manager","price":35},
+    {"name":"Edit Synchronization Layer","price":30},
+    {"name":"User Cursor Coordination","price":30},
+    {"name":"Live Interaction Stream","price":30},
+    {"name":"Edit Session Stabilizer","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/realtime-edit.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">EditraLive</span>
+    <span class="price">$190 / month</span>
+
+    <p>Real-Time Editing System — edit together live without disruption.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Live Editing</li>
+        <li>Concurrent Edits</li>
+        <li>Edit Synchronization</li>
+        <li>Cursor Coordination</li>
+        <li>Interaction Stream</li>
+        <li>Session Stabilizer</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="446"
+  data-name="Approviax"
+  data-fullname="Review & Approval Engine"
+  data-type="system"
+  data-category="file-collaboration"
+  data-setup="230"
+  data-monthly="170"
+  data-label="Collaboration System"
+  data-description="A system that manages structured review cycles and approval flows ensuring files are validated before final acceptance"
+  data-modules='[
+    {"name":"Review Cycle Engine","price":30},
+    {"name":"Approval Flow Controller","price":35},
+    {"name":"Reviewer Assignment System","price":30},
+    {"name":"Feedback Consolidation Module","price":30},
+    {"name":"Decision Tracking Engine","price":25},
+    {"name":"Approval Outcome System","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/review-approval.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Approviax</span>
+    <span class="price">$170 / month</span>
+
+    <p>Review & Approval Engine — manage structured reviews and approvals.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Review Cycles</li>
+        <li>Approval Flow</li>
+        <li>Reviewer Assignment</li>
+        <li>Feedback Consolidation</li>
+        <li>Decision Tracking</li>
+        <li>Approval Outcomes</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="461"
+  data-name="Activora"
+  data-fullname="File Activity Monitor"
+  data-type="system"
+  data-category="file-monitoring"
+  data-setup="220"
+  data-monthly="160"
+  data-label="Monitoring & Control System"
+  data-description="A monitoring system that tracks all file interactions including access, edits, and movements to provide full visibility of file activity"
+  data-modules='[
+    {"name":"Activity Tracking Engine","price":30},
+    {"name":"Interaction Monitoring System","price":30},
+    {"name":"Access Event Logger","price":25},
+    {"name":"File Movement Tracker","price":30},
+    {"name":"Activity Timeline Module","price":25},
+    {"name":"Interaction Insight Engine","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/activity-monitor.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Activora</span>
+    <span class="price">$160 / month</span>
+
+    <p>File Activity Monitor — track everything happening to your files.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Activity Tracking</li>
+        <li>Interaction Monitoring</li>
+        <li>Event Logging</li>
+        <li>Movement Tracking</li>
+        <li>Timeline View</li>
+        <li>Insight Engine</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="462"
+  data-name="Usagrix"
+  data-fullname="Usage Analytics System"
+  data-type="system"
+  data-category="file-monitoring"
+  data-setup="250"
+  data-monthly="180"
+  data-label="Monitoring & Control System"
+  data-description="An analytics system that evaluates how files are used, accessed, and interacted with to provide actionable usage insights"
+  data-modules='[
+    {"name":"Usage Analysis Engine","price":35},
+    {"name":"Interaction Metrics System","price":30},
+    {"name":"Usage Pattern Analyzer","price":35},
+    {"name":"Engagement Measurement Module","price":30},
+    {"name":"Usage Trend Engine","price":30},
+    {"name":"Analytics Reporting Core","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/usage-analytics.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Usagrix</span>
+    <span class="price">$180 / month</span>
+
+    <p>Usage Analytics System — understand how your files are being used.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Usage Analysis</li>
+        <li>Interaction Metrics</li>
+        <li>Pattern Analyzer</li>
+        <li>Engagement Measurement</li>
+        <li>Usage Trends</li>
+        <li>Analytics Reports</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="463"
+  data-name="Storivex"
+  data-fullname="Storage Monitoring Engine"
+  data-type="system"
+  data-category="file-monitoring"
+  data-setup="240"
+  data-monthly="170"
+  data-label="Monitoring & Control System"
+  data-description="A monitoring system that tracks storage usage, capacity levels, and space distribution across environments"
+  data-modules='[
+    {"name":"Storage Monitoring Engine","price":30},
+    {"name":"Capacity Tracking System","price":30},
+    {"name":"Space Distribution Analyzer","price":30},
+    {"name":"Usage Threshold Monitor","price":30},
+    {"name":"Storage Alert Engine","price":25},
+    {"name":"Capacity Forecast Module","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/storage-monitor.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Storivex</span>
+    <span class="price">$170 / month</span>
+
+    <p>Storage Monitoring Engine — monitor storage capacity and usage in real time.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Storage Monitoring</li>
+        <li>Capacity Tracking</li>
+        <li>Space Analysis</li>
+        <li>Threshold Monitoring</li>
+        <li>Alert Engine</li>
+        <li>Capacity Forecast</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="464"
+  data-name="Accessra"
+  data-fullname="Access Monitoring System"
+  data-type="system"
+  data-category="file-monitoring"
+  data-setup="230"
+  data-monthly="165"
+  data-label="Monitoring & Control System"
+  data-description="A system that monitors who accesses files, when they access them, and how access behaviors evolve over time"
+  data-modules='[
+    {"name":"Access Observation Engine","price":30},
+    {"name":"User Access Timeline","price":30},
+    {"name":"Access Behavior Profiler","price":30},
+    {"name":"Access Event Stream","price":25},
+    {"name":"Access Frequency Analyzer","price":25},
+    {"name":"Access Pattern Tracker","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/access-monitor.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Accessra</span>
+    <span class="price">$165 / month</span>
+
+    <p>Access Monitoring System — track and analyze file access behavior.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Access Observation</li>
+        <li>Access Timeline</li>
+        <li>Behavior Profiling</li>
+        <li>Event Streaming</li>
+        <li>Frequency Analysis</li>
+        <li>Pattern Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="465"
+  data-name="Auditronyx"
+  data-fullname="Audit Logs Engine"
+  data-type="system"
+  data-category="file-monitoring"
+  data-setup="250"
+  data-monthly="180"
+  data-label="Monitoring & Control System"
+  data-description="A system that records and maintains detailed logs of all file-related actions for compliance, auditing, and traceability"
+  data-modules='[
+    {"name":"Audit Logging Core","price":35},
+    {"name":"Event Recording Engine","price":30},
+    {"name":"Action Trace System","price":30},
+    {"name":"Log Structuring Module","price":30},
+    {"name":"Audit History Engine","price":25},
+    {"name":"Compliance Log Controller","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/audit-logs.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Auditronyx</span>
+    <span class="price">$180 / month</span>
+
+    <p>Audit Logs Engine — maintain detailed records for accountability and compliance.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Audit Logging</li>
+        <li>Event Recording</li>
+        <li>Action Trace</li>
+        <li>Log Structuring</li>
+        <li>Audit History</li>
+        <li>Compliance Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="466"
+  data-name="Lifecora"
+  data-fullname="File Lifecycle System"
+  data-type="system"
+  data-category="file-monitoring"
+  data-setup="260"
+  data-monthly="190"
+  data-label="Monitoring & Control System"
+  data-description="A system that manages the lifecycle of files from creation to archival or deletion with automated lifecycle policies"
+  data-modules='[
+    {"name":"Lifecycle Management Engine","price":35},
+    {"name":"File Stage Controller","price":30},
+    {"name":"Lifecycle Policy System","price":35},
+    {"name":"Retention Automation Engine","price":30},
+    {"name":"Lifecycle Transition Module","price":30},
+    {"name":"Lifecycle Decision Engine","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/lifecycle-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Lifecora</span>
+    <span class="price">$190 / month</span>
+
+    <p>File Lifecycle System — manage files from creation to deletion automatically.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Lifecycle Management</li>
+        <li>Stage Control</li>
+        <li>Policy System</li>
+        <li>Retention Automation</li>
+        <li>Transition Module</li>
+        <li>Decision Engine</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+  
+
+</div>
+</main>
+
+<!-- FINAL CTA -->
+<div class="cta-block">
+<h2>Have a project in mind?<br>Let’s build something powerful together.</h2>
+<a href="contact.html" class="cta-btn">Let’s Get Started</a>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+<script>
+document.getElementById("toggle").onclick=function(){
+document.getElementById("nav").classList.toggle("active");
+};
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const filterSelect = document.getElementById("filterSelect");
+  const cards = document.querySelectorAll(".video-card");
+  const searchInput = document.getElementById("searchInput");
+
+  let currentFilter = "all";
+
+  // DROPDOWN CHANGE
+  filterSelect.addEventListener("change", () => {
+    currentFilter = filterSelect.value;
+    filterCards();
+  });
+
+  // SEARCH
+  searchInput.addEventListener("keyup", filterCards);
+
+  function filterCards() {
+    const searchValue = searchInput.value.toLowerCase();
+
+    cards.forEach(card => {
+      const category = card.getAttribute("data-category") || "";
+      const keywords = card.getAttribute("data-keywords") || "";
+
+      const text = (
+        category + " " +
+        keywords + " " +
+        card.textContent
+      ).toLowerCase();
+
+      const matchFilter =
+        currentFilter === "all" || category === currentFilter;
+
+      const matchSearch =
+        text.includes(searchValue);
+
+      if (matchFilter && matchSearch) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+
+});
+
+
+const sortSelect = document.getElementById("sortSelect");
+const container = document.querySelector(".cards");
+
+sortSelect.addEventListener("change", () => {
+  const cards = Array.from(container.children);
+
+  cards.sort((a, b) => {
+    const priceA = parseInt(a.querySelector(".price").textContent.replace("$",""));
+    const priceB = parseInt(b.querySelector(".price").textContent.replace("$",""));
+
+    if (sortSelect.value === "low") return priceA - priceB;
+    if (sortSelect.value === "high") return priceB - priceA;
+    return 0;
+  });
+
+  cards.forEach(card => container.appendChild(card));
+});
+
+
+
+document.querySelectorAll(".order-btn").forEach(btn => {
+  btn.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const productId = this.closest(".video-card").dataset.id;
+
+    // ✅ update href dynamically (keeps anchor behavior)
+    this.href = "billing.html?id=" + productId;
+
+    // ✅ now allow redirect
+    window.location.href = this.href;
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service | Freener's Digital Services</title>
+  <style>
+    :root {
+      --silver: #f2f2f2;
+      --green: #00a86b;
+      --dark: #1a1a1a;
+      --text: #333;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--silver);
+      color: var(--text);
+      line-height: 1.6;
+      overscroll-behavior-x: none;
+      overscroll-behavior: none;
+  touch-action: pan-y;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background-color: darkgreen;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo { font-weight: 700; color: #fff; font-size: 1rem; }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color:#fff;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover { color: greenyellow; }
+
+    /* ===== MASTER MOBILE HAMBURGER ===== */
+.nav-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    z-index: 1001;
+  }
+
+  .nav {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 170px;
+    background: darkgreen;
+    flex-direction: column;
+    padding: 20px;
+    transition: right 0.3s ease;
+  }
+
+  .nav.active {
+    right: 0;
+  }
+
+  .nav a {
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.05rem;
+  }
+
+  .nav a:hover {
+    background: greenyellow;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+}
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background: linear-gradient(to bottom right, var(--green), #00945f);
+      color: var(--white);
+    }
+
+    .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+
+    /* Terms Sections */
+    .terms-container { max-width: 1100px; margin: 0 auto; padding: 20px 20px; }
+    .terms-section { margin-bottom: 5px; padding: 5px; }
+    .terms-section h2 { color: var(--green); margin-bottom: 10px; }
+    .terms-section p, .terms-section ul { margin-bottom: 10px; }
+    .terms-section ul { padding-left: 20px; }
+    .terms-section a { color: var(--green); text-decoration: none; }
+    .terms-section a:hover { text-decoration: underline; }
+
+    /* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+  </style>
+</head>
+<body>
+  <!-- ===== MASTER HAMBURGER NAV (USED ON ALL PAGES) ===== -->
+<header class="site-header">
+  <div class="logo">Freener's Digital Services</div>
+
+  <nav class="nav" id="mainNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="contact.html">Contact</a>
+    <a href="payment.html">Payment</a>
+    <a href="faq.html">FAQs</a>
+    <a href="terms.html" class="mobile-only">Terms</a>
+    <a href="privacy.html" class="mobile-only">Privacy</a>
+  </nav>
+
+  <div class="nav-toggle" id="navToggle">&#9776;</div>
+</header>
+
+<main class="terms-container">
+<section class="hero">
+      <h1>TERMS & CONDITIONS</h1>
+      <p>Effective Date: [Insert Date]</p>
+      <p>Company Name: Freener’s Digital Services</p>
+    </section>
+
+    <section class="terms-section">
+      <h2>Introduction</h2>
+      <p>Welcome to Freener’s Digital Services.</p>
+      <p>These Terms & Conditions (“Terms”) govern all services provided by Freener’s Digital Services (“Company,” “we,” “our,” or “us”). By engaging our services, you agree to be legally bound by these Terms. All terms below apply to all visitors, clients, and users who access our website or engage with our services.</p>
+    </section>
+
+    <section class="terms-section">
+      <h2>Scope of Services</h2>
+      <p>We provide digital solutions including but not limited to:</p>
+<p>Web design & development, Hosting & infrastructure management, AI automation & chatbot systems, Cybersecurity protection services, CRM setup & automation, Cloud configuration, Website maintenance & technical support, Data & file management, Email automation, Social media management, Writing & translation, Lead generation. All Service details are defined in individual agreements, proposals, or retainers.
+</p>
+    </section>
+
+    <section class="terms-section">
+      <h2>Engagement & Project Agreements</h2>
+      <p>All projects require a formal agreement outlining:</p>
+<p>Written agreement or proposal approval, Defined scope of work, Agreed pricing structure, Initial payment (where applicable), Work shall not commence until confirmation of engagement and required payment is received.</p>
+    </section>
+
+    <section class="terms-section">
+      <h2>Pricing & Payments</h2>
+      <p>Custom pricing is based on scope and complexity.</p>
+Retainer services are billed monthly in advance. Project-based services may follow milestone payment structures. Payments must be made on or before due dates. Failure to make payment may result in suspension of services.
+All payments made for completed work phases are non-refundable .</p>
+    </section>
+
+    <section class="terms-section">
+      <h2>Revisions & Scope Changes</h2>
+      <p>Revisions are limited to the scope defined in the agreement:</p>
+<p>Any additional features, integrations, or changes beyond the original scope may require:
+Revised quotation, timeline adjustment & additional fees.</p>
+    </section>
+
+    <section class="terms-section">
+      <h2>Client Responsibilities</h2>
+      <p>Clients agree to:</p>
+<p>Provide accurate and timely information, grant required system access, Review deliverables promptly & Maintain secure credentials. Project delays caused by client inaction may result in timeline extensions.</p>
+    </section>
+
+    <section class="terms-section">
+      <h2>Intellectual Property</h2>
+      <p>Upon full payment:</p>
+<p>Clients receive ownership of final approved deliverables. The Company retains rights to proprietary frameworks, tools, systems, and methodologies used in development. We reserve the right to showcase completed work in our portfolio unless confidentiality is contractually restricted.</p>
+    </section>
+
+    <section class="terms-section">
+      <h2>Confidentiality</h2>
+      <p>We maintain strict confidentiality regarding client data, systems, and strategic information.
+Both parties agree not to disclose proprietary information without consent.</p>
+    </section>
+
+    <section class="terms-section">
+      <h2> Hosting & Infrastructure</h2>
+      <p>For hosting and managed environments:</p>
+      <p> We provide monitoring, maintenance, and configuration in accordance with the selected plan.
+System performance may be influenced by broader network conditions or external technical factors beyond direct operational control.</p>
+    </section>
+
+    <section class="terms-section">
+      <h2>Acceptable Use</h2>
+      <p>Clients agree not to use our infrastructure, hosting, automation, or digital systems for:</p>
+Illegal activities, Distribution of malicious software, Spam or abusive communication, Unauthorized access attempts, Violation may result in immediate suspension.</p>
+    </section>
+
+    <section class="terms-section">
+      <h2>Cybersecurity Disclaimer</h2>
+      <p>We implement industry-standard protection measures. However:</p>
+      <p>No digital system can guarantee absolute immunity from threats. Clients share responsibility for internal access control and password security.</p>
+    </section>
+
+    <section class="terms-section">
+      <h2> Limitation of Liability</h2>
+      <p>Freener’s Digital Services shall not be liable for:</p>
+<p>Indirect or consequential damages, Loss of revenue, profits, or business interruption, Misuse or unauthorized modification of systems,
+Total liability shall not exceed the amount paid for the specific service giving rise to the claim.
+</p>
+    </section>
+
+    <section class="terms-section">
+      <h2>Termination & Cancellation</h2>
+      <p>Either party may terminate services in writing.
+For retainer agreements:</p>
+      <p>A minimum 14–30 days written notice may apply. Outstanding balances remain payable upon termination. Access to managed systems may be revoked upon service termination.</p>
+    </section>
+
+    <section class="terms-section">
+      <h2> Force Majeure</h2>
+      <p>We shall not be liable for delays or inability to perform resulting from events beyond reasonable operational control, including but not limited to:</p>
+      <p>Natural disasters,
+Widespread network disruptions, Government actions or regulatory restrictions, Large-scale cybersecurity incidents.</p>
+    </section>
+
+    <section class="terms-section">
+      <h2>Governing Law</h2>
+      <p>These Terms shall be governed by applicable international commercial standards, unless otherwise specified in a signed agreement.</p>
+    </section>
+
+    <section class="terms-section">
+      <h2>Amendments</h2>
+      <p>We reserve the right to modify these Terms at any time. Updated versions will be published with a revised effective date.</p>
+    </section>
+
+<section class="terms-section">
+      <h2>Contact Us</h2>
+      <ul>
+        <li><strong>Address:</strong> No 27 Gosa Sarki, Airport Road, Riverside By Ecwa Church Gosa Pri, Gossa, FCT Abuja Nigeria</li>
+        <li><strong>Email:</strong> freenersdigitals@gmail.com</li>
+        <li><strong>Phone:</strong> +2347078911819</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+  <script>
+    // Hamburger toggle
+    const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  navToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+  });
+
+  // Auto close when any link is clicked
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('active');
+    });
+  });
+
+    // Auto-update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    fetch("https://modular-infrastructure-production.up.railway.app/api/status")
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+fetch("https://modular-infrastructure-production.up.railway.app/api/status")
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+  </script>
+</body>
+</html>

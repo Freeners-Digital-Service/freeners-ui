@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Freener's Digital Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --silver: #f2f2f2;
+      --green: #00a86b;
+      --dark: #1a1a1a;
+      --text: #333;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--silver);
+      color: var(--text);
+      line-height: 1.6;
+       overscroll-behavior-x: none;
+      overscroll-behavior: none;
+  touch-action: pan-y;
+      
+    }
+    /* Header */
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background-color: darkgreen;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo { font-weight: 700; color: #fff; font-size: 1rem; }
+    .nav { display: flex; gap: 20px; }
+    .nav a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav a:hover { color: greenyellow; }
+    .btn.small {
+      padding: 6px 14px;
+      border-radius: 5px;
+      background: var(--green);
+      color: var(--white);
+      font-weight: 600;
+    }
+    
+   /* ===== MASTER MOBILE HAMBURGER ===== */
+.nav-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #ffffff;
+  
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    z-index: 1001;
+  }
+
+  .nav {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 170px;
+    background: darkgreen;
+    flex-direction: column;
+    padding: 20px;
+    transition: right 0.3s ease;
+  }
+
+  .nav.active {
+    right: 0;
+  }
+
+  .nav a {
+     height: auto;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.05rem;
+  }
+
+  .nav a:hover,
+  .nav a.active {
+    color: greenyellow;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+}
+
+    /* Hero */
+    .contact-hero {
+      text-align: center;
+      padding: 40px 20px 40px;
+      background: linear-gradient(to bottom right, var(--green), #00945f);
+      color: var(--white);
+    }
+    .contact-hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; }
+    .contact-hero .lead { font-size: 1.1rem; opacity: 0.9; }
+    
+    /* Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      padding: 50px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .contact-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+    }
+    /* Form */
+    .contact-form label { display: block; margin: 12px 0 5px; font-weight: 500; }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--green); }
+    .contact-form button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      background: var(--green);
+      color: var(--white);
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .contact-form button:hover { background: #00945f; }
+    /* Contact Links */
+    .contact-links a {
+      display: block;
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 600;
+      margin: 8px 0;
+      transition: color 0.3s ease;
+    }
+    .contact-links a:hover { color: var(--dark); }
+    .contact-info {
+      margin-top: 15px;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .contact-info p { margin: 4px 0; }
+
+
+    
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #25d366;
+      color: #fff;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+      text-decoration: none;
+      font-size: 28px;
+      z-index: 999;
+      transition: transform 0.3s ease;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+
+
+    /* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+    
+  </style>
+</head>
+<body>
+  <!-- ===== MASTER HAMBURGER NAV (USED ON ALL PAGES) ===== -->
+<header class="site-header">
+  <div class="logo">Freener's Digital Services</div>
+
+  <nav class="nav" id="mainNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="contact.html">Contact</a>
+    <a href="payment.html">Payment</a>
+    <a href="faq.html">FAQs</a>
+    <a href="terms.html" class="mobile-only">Terms</a>
+    <a href="privacy.html" class="mobile-only">Privacy</a>
+  </nav>
+
+  <div class="nav-toggle" id="navToggle">&#9776;</div>
+</header>
+
+  <main class="container contact-page">
+    <section class="contact-hero">
+      <h1>Contact Us</h1>
+      <p class="lead">Choose your preferred contact method</p>
+    </section>
+
+    <section class="contact-grid">
+      <div class="contact-card">
+        <h3>Message Us</h3>
+        <form action="https://formspree.io/f/mldpnykn" method="POST" class="contact-form">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required>
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Your email address" required>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Type your message here..." rows="4" required></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+
+      <div class="contact-card">
+        <h3>Other Ways to Reach Us</h3>
+        <div class="contact-links">
+          <a href="https://wa.me/2347078911819" target="_blank">💬 WhatsApp</a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a" target="_blank">🔗 LinkedIn</a>
+          <a href="https://www.facebook.com/profile.php?id=61582737352328" target="_blank">📘 Facebook</a>
+          <a href="mailto:freenersdigitals@gmail.com">📧 Email</a>
+          <a href="tel:+2347078911819">📞 Call</a>
+        </div>
+        <div class="contact-info">
+          <p><strong>Address:</strong> No 27 Gosa Sarki, Airport Road, Riverside By Ecwa Church Gosa Pri, Gossa, FCT Abuja, Nigeria</p>
+          <p><strong>Email:</strong> freenersdigitals@gmail.com</p>
+          <p><strong>Phone:</strong> +234 707 891 1819</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+    
+
+  <a href="https://wa.me/2347078911819" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">💬</a>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  navToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+  });
+
+  // Auto close when any link is clicked
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('active');
+    });
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+    fetch("https://modular-infrastructure-production.up.railway.app/api/status")
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+  </script>
+</body>
+</html>

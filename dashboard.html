@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | Freener OS</title>
+
+<style>
+
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:linear-gradient(135deg,#0f172a,#020617);
+  color:#e5e7eb;
+}
+
+/* ===== NAV ===== */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 20px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  position:relative;
+}
+
+.logo{
+  font-size:15px;
+  font-weight:600;
+  color:#fff;
+}
+
+.menu{
+  display:flex;
+  gap:20px;
+}
+
+.menu a{
+  text-decoration:none;
+  color:rgba(255,255,255,0.7);
+  font-size:13px;
+}
+
+.menu a:hover{
+  color:#00c896;
+}
+
+.hamburger{
+  display:none;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:25px 20px;
+}
+
+/* ===== HEADER ===== */
+.welcome{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.sub{
+  font-size:13px;
+  opacity:.6;
+  margin-top:5px;
+}
+
+#time{
+  margin-top:8px;
+  font-size:12px;
+  opacity:.7;
+}
+
+/* ===== SUMMARY ===== */
+.summary{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.summary-card{
+  background:rgba(255,255,255,0.05);
+  padding:18px;
+  border-radius:12px;
+}
+
+.summary-card h3{
+  color:#00c896;
+}
+
+/* ===== SYSTEMS ===== */
+.systems{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  padding:18px;
+  border-radius:14px;
+}
+
+.status{
+  display:inline-block;
+  margin-top:6px;
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:11px;
+  background:#00c896;
+  color:#000;
+}
+
+.actions{
+  margin-top:12px;
+}
+
+.btn{
+  padding:6px 10px;
+  border:none;
+  border-radius:20px;
+  font-size:12px;
+  cursor:pointer;
+}
+
+.remove{
+  background:#ef4444;
+  color:#fff;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width:768px){
+
+  .menu{
+    position:absolute;
+    top:60px;
+    right:20px;
+    background:#020617;
+    flex-direction:column;
+    width:200px;
+    padding:15px;
+    border-radius:10px;
+    display:none;
+  }
+
+  .menu.active{
+    display:flex;
+  }
+
+  .hamburger{
+    display:block;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+  <div class="logo">Freener OS</div>
+
+  <nav class="menu" id="menu">
+    <a href="#">Dashboard</a>
+    <a href="#">Marketplace</a>
+    <a href="#">Billing</a>
+  </nav>
+
+  <div class="hamburger" id="navToggle">&#9776;</div>
+</header>
+
+<main class="container">
+
+  <section class="welcome">
+    <h2>Welcome back 👋</h2>
+    <p class="sub">Your systems are active and running</p>
+    <div id="time"></div>
+  </section>
+
+  <section class="summary">
+    <div class="summary-card">
+      <span>Total Systems</span>
+      <h3 id="totalSystems">0</h3>
+    </div>
+
+    <div class="summary-card">
+      <span>Active Systems</span>
+      <h3 id="activeSystems">0</h3>
+    </div>
+
+    <div class="summary-card">
+      <span>Monthly Billing</span>
+      <h3 id="monthlyBilling">$0</h3>
+    </div>
+  </section>
+
+  <section class="systems" id="systems">
+    <p id="loading">Loading systems...</p>
+  </section>
+
+</main>
+
+<script>
+
+/* ===== CONFIG ===== */
+const API_URL = "https://modular-infrastructure.onrender.com/api/purchases";
+const email = "test@email.com";
+
+/* ===== NAV ===== */
+const toggle = document.getElementById("navToggle");
+const menu = document.getElementById("menu");
+toggle.onclick = () => menu.classList.toggle("active");
+
+/* ===== CLOCK ===== */
+setInterval(()=>{
+  document.getElementById("time").innerText =
+    new Date().toLocaleTimeString();
+},1000);
+
+/* ===== LOAD SYSTEMS ===== */
+async function loadSystems(){
+  const container = document.getElementById("systems");
+
+  try{
+    const res = await fetch(API_URL + "?email=" + email);
+    const systems = await res.json();
+    render(systems);
+
+  }catch(err){
+    container.innerHTML = "<p>Failed to load systems</p>";
+    console.log(err);
+  }
+}
+
+/* ===== NEXT BILLING ===== */
+function getNextBilling(){
+  const d = new Date();
+  d.setMonth(d.getMonth() + 1);
+  return d.toDateString();
+}
+
+/* ===== RENDER ===== */
+function render(systems){
+
+  const container = document.getElementById("systems");
+  container.innerHTML = "";
+
+  let total = systems.length;
+  let active = 0;
+  let billing = 0;
+
+  if(systems.length === 0){
+    container.innerHTML = "<p>No systems yet</p>";
+    return;
+  }
+
+  systems.forEach(sys => {
+
+    const isActive = sys.status === "active";
+    const monthly = sys.monthly || 0;
+    const nextBilling = getNextBilling();
+
+    if(isActive) active++;
+    billing += monthly;
+
+    container.innerHTML += `
+      <div class="card">
+        <h3>${sys.product_name || "System"}</h3>
+
+        <p>$${monthly}/month</p>
+        <p style="font-size:12px; opacity:.7;">
+          Next Billing: ${nextBilling}
+        </p>
+
+        <span class="status" style="
+          background:${isActive ? '#00c896' : '#f59e0b'};
+          color:#000;
+        ">
+          ${isActive ? '✅ Active' : '⚙️ Under Configuration'}
+        </span>
+
+        <div class="actions">
+          <button class="btn"
+            style="
+              background:${isActive ? '#00c896' : '#334155'};
+              color:#fff;
+              cursor:${isActive ? 'pointer' : 'not-allowed'};
+              opacity:${isActive ? '1' : '.6'};
+            "
+            onclick="openSystem(${sys.product_id}, ${isActive})"
+            ${!isActive ? "disabled" : ""}
+          >
+            View System
+          </button>
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById("totalSystems").innerText = total;
+  document.getElementById("activeSystems").innerText = active;
+  document.getElementById("monthlyBilling").innerText = "$" + billing;
+}
+
+/* ===== OPEN SYSTEM ===== */
+function openSystem(id, isActive){
+
+  if(!isActive){
+    alert("⚙️ Your system is still under configuration.");
+    return;
+  }
+
+  // future system link
+  window.location.href = "/system/" + id;
+}
+
+/* ===== INIT ===== */
+loadSystems();
+
+</script>

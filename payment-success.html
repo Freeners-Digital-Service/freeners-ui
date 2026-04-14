@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Verification</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      background: #22c55e;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-top: 20px;
+    }
+
+    .box {
+      max-width: 500px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <h2>Verifying payment...</h2>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+const transaction_id = params.get("transaction_id");
+const status = params.get("status");
+const tx_ref = params.get("tx_ref");
+
+// extract product_id
+const product_id = tx_ref ? tx_ref.split("_")[1] : null;
+
+if (!transaction_id) {
+  document.getElementById("app").innerHTML = "<h2>❌ No transaction ID</h2>";
+} else {
+
+  fetch(`https://modular-infrastructure.onrender.com/api/verify-payment?transaction_id=${transaction_id}`)
+    .then(res => res.json())
+    .then(data => {
+
+      if (data.success || status === "successful") {
+
+        fetch("https://modular-infrastructure.onrender.com/api/purchase", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            transaction_id: transaction_id,
+            product_id: product_id
+          })
+        })
+        .then(res => res.json())
+        .then(() => {
+
+          // ✅ BUTTON NOW USES HREF
+          document.getElementById("app").innerHTML = `
+            <div class="box">
+              <h2>✅ Payment Successful</h2>
+              <p>Your system is ready to configure.</p>
+
+             <a class="btn" href="https://freeners-digital-services.netlify.app/setup.html?id=${product_id}">
+  Proceed to Setup
+</a>
+            </div>
+          `;
+
+        })
+        .catch(() => {
+          document.getElementById("app").innerHTML = "<h2>⚠️ Payment OK but save failed</h2>";
+        });
+
+      } else {
+        document.getElementById("app").innerHTML = `
+          <h2>❌ Payment Failed</h2>
+          <p>Please try again or contact support</p>
+        `;
+      }
+
+    })
+    .catch(() => {
+      document.getElementById("app").innerHTML = `
+        <h2>⚠️ Verification Pending</h2>
+        <p>Please wait a moment and try again.</p>
+        <button onclick="location.reload()">Retry</button>
+      `;
+    });
+}
+</script>
+
+</body>
+</html>

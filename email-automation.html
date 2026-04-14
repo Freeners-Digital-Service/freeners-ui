@@ -1,0 +1,2463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email-automation Projects — Freener's Digital Services</title>
+
+<style>
+:root{
+ --green:#00a86b;
+ --darkgreen:darkgreen;
+ --silver:#f2f2f2;
+ --text:#333;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:var(--silver);
+color:var(--text);
+}
+
+/* ================= NAV ================= */
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:var(--darkgreen);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+z-index:1000;
+}
+
+.logo{
+color:#fff;
+font-weight:700;
+}
+
+.nav{
+display:flex;
+gap:20px;
+}
+
+.nav a{
+color:#fff;
+text-decoration:none;
+font-weight:500;
+}
+
+.nav-toggle{
+display:none;
+color:#fff;
+font-size:1.8rem;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+.nav{
+position:fixed;
+top:70px;
+right:-100%;
+width:180px;
+background:var(--darkgreen);
+flex-direction:column;
+padding:20px;
+transition:.3s;
+}
+.nav.active{
+right:0;
+}
+.nav-toggle{
+display:block;
+}
+}
+
+/* ================= MAIN ================= */
+
+main{
+padding:110px 5% 60px;
+}
+
+.section-title{
+text-align:center;
+font-size:2rem;
+color:var(--green);
+margin-bottom:10px;
+}
+
+.section-sub{
+text-align:center;
+font-size:1.1rem;
+color:#555;
+margin-bottom:40px;
+}
+
+
+
+/* ================= GRID ================= */
+
+.cards{
+  display:grid;
+  gap:25px;
+  align-items:stretch;
+}
+
+@media (min-width:1024px){
+  .cards{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media (min-width:768px) and (max-width:1023px){
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media (max-width:767px){
+  .cards{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ================= CARD ================= */
+
+.video-card{
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  overflow:hidden;
+  transition:.3s;
+
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.video-card:hover{
+  transform:translateY(-5px);
+}
+
+/* ================= MEDIA ================= */
+
+.card-media{
+  position:relative;
+  height:200px; /* FIXED HEIGHT (prevents stretching) */
+  overflow:hidden;
+}
+
+.card-media video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  cursor:pointer;
+}
+
+
+/* ================= BODY ================= */
+
+.card-body{
+  padding:20px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  flex-grow:1;
+}
+
+/* ================= TEXT CONTROL ================= */
+
+.card-body p{
+  font-size:14px;
+  line-height:1.4;
+  max-height:60px;
+  overflow:hidden;
+}
+
+/* ================= PRICE ================= */
+
+.price{
+  background:var(--green);
+  color:#fff;
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:.85rem;
+  margin-bottom:12px;
+}
+
+/* ================= AGENT TAG ================= */
+
+.agent-tag{
+  display:inline-block;
+  font-size:.75rem;
+  background:#eee;
+  padding:4px 10px;
+  border-radius:12px;
+  margin-bottom:8px;
+}
+
+/* HIDE ANIMATION */
+.card.hide {
+  display: none;
+}
+
+/* CARD CTA – PREMIUM MULTI RADIATE */
+.card-btn{
+display:inline-block;
+margin-top:14px;
+padding:10px 22px;
+border-radius:30px;
+font-size:.9rem;
+font-weight:600;
+text-decoration:none;
+color:#000;
+background:linear-gradient(45deg,
+gold,
+#00ff88,
+aqua,
+crimson,
+lemonchiffon);
+background-size:300% 300%;
+animation:cardGradient 6s ease infinite;
+transition:.3s;
+}
+
+.card-btn:hover{
+transform:scale(1.05);
+}
+
+@keyframes cardGradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.card-btn.order-btn{
+  background:#00c896 !important;
+  color:#fff !important;
+
+  /* kill gradient completely */
+  background-image:none !important;
+  animation:none !important;
+}
+
+.card-btn.order-btn:hover{
+  background:#00b386 !important;
+}
+
+
+/* WRAPPER (centers everything) */
+.controls-wrapper{
+  position: sticky;
+  top: 70px;
+  z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+/* INNER CONTROLS (clean card look) */
+.controls{
+  width: 100%;
+  max-width: 900px;
+
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+
+  padding: 12px;
+  border-radius: 16px;
+
+  backdrop-filter: blur(14px);
+  background: green;
+
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+/* GLASS EFFECT BASE */
+.search-box,
+.filter-container{
+  position:relative;
+  flex:1;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.6);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* ICON */
+.icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* INPUT */
+.search-box input{
+  width:100%;
+  padding:14px 14px 14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  outline:none;
+}
+
+/* SELECT */
+.filter-container select{
+  width:100%;
+  padding:14px 14px 14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  cursor:pointer;
+  outline:none;
+  appearance:none;
+}
+
+/* CUSTOM ARROW */
+.filter-container::after{
+  content:"▼";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  opacity:0.6;
+}
+
+/* FOCUS EFFECT */
+.search-box:focus-within,
+.filter-container:focus-within{
+  border:1px solid rgba(0,200,150,.6);
+  box-shadow:0 0 0 3px rgba(0,200,150,.15);
+}
+
+/* SORT BOX (GLASS) */
+.sort-box{
+  position:relative;
+  flex:1;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.6);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* SELECT */
+.sort-box select{
+  width:100%;
+  padding:14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  cursor:pointer;
+  outline:none;
+  appearance:none;
+}
+
+/* ICON */
+.sort-box .icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* CUSTOM ARROW */
+.sort-box::after{
+  content:"▼";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  opacity:0.6;
+}
+
+/* FOCUS EFFECT */
+.sort-box:focus-within{
+  border:1px solid rgba(0,200,150,.6);
+  box-shadow:0 0 0 3px rgba(0,200,150,.15);
+}
+
+/* ================= CONTROLS ================= */
+
+.controls{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:25px;
+}
+
+/* SEARCH BOX */
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff;
+}
+
+/* FILTER + SORT ROW */
+.controls-row{
+  display:flex;
+  gap:12px;
+}
+
+/* FILTER + SORT BOXES */
+.filter-container,
+.sort-box{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:1;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff;
+}
+
+/* INPUTS */
+.search-box input,
+.filter-container select,
+.sort-box select{
+  width:100%;
+  border:none;
+  outline:none;
+  background:transparent;
+  font-size:14px;
+}
+
+/* ICON */
+.icon{
+  flex-shrink:0;
+}
+
+
+/* FINAL CTA */
+.cta-block{
+background:#111;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+border-radius:15px;
+margin:60px 0;
+}
+
+/* ================= CTA BLOCK ================= */
+.cta-block{
+background:#111;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+border-radius:15px;
+margin-bottom:30px;
+}
+.cta-btn{
+display:inline-block;
+margin-top:20px;
+padding:14px 30px;
+border-radius:40px;
+background:linear-gradient(45deg,#00ffcc,#00a86b,#00f0ff,#00ff88);
+color:#000;
+font-weight:600;
+text-decoration:none;
+animation:glow 3s infinite linear;
+}
+@keyframes glow{
+0%{filter:hue-rotate(0deg)}
+100%{filter:hue-rotate(360deg)}
+}
+
+/* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">Freener's Digital Services</div>
+
+<nav class="nav" id="nav">
+<a href="marketplace.html">Marketplace</a>
+</nav>
+
+<div class="nav-toggle" id="toggle">&#9776;</div>
+</header>
+
+<main>
+
+<h2 class="section-title">Email Intelligence Systems</h2>
+<p class="section-sub">
+Strategically structured email systems developed to maintain organized communication, audience segmentation, and measurable engagement.
+</p>
+
+<div class="controls-wrapper">
+
+  <div class="controls">
+
+    <!-- SEARCH -->
+    <div class="search-box">
+      <span class="icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search digital solutions..." />
+    </div>
+
+    <!-- FILTER + SORT ROW -->
+    <div class="controls-row">
+
+    <!-- FILTER -->
+    <div class="filter-container">
+      <span class="icon">⚙️</span>
+      <select id="filterSelect">
+        <option value="all">All Categories</option>
+        <option value="email-campaign">Campaign & Outreach Systems</option>
+        <option value="email-personalization">Personalization & Content Systems</option>
+        <option value="email-analytics">Analytics & Optimization Systems</option>
+        <option value="email-inbox">Inbox & Response Systems</option>
+        <option value="email-sequence">Sequence & Nurturing Systems</option>
+        <option value="email-deliverability">Deliverability & Infrastructure Systems</option>
+      </select>
+    </div>
+
+    <div class="sort-box">
+  <span class="icon">📊</span>
+  <select id="sortSelect">
+    <option value="default">Sort</option>
+    <option value="low">Price: Low → High</option>
+    <option value="high">Price: High → Low</option>
+  </select>
+</div>
+</div>
+</div>
+</div>
+
+<div class="cards">
+
+
+
+<div class="video-card"
+  data-id="241"
+  data-name="CamporaX"
+  data-fullname="Email Campaign Engine"
+  data-type="system"
+  data-category="email-campaign"
+  data-setup="260"
+  data-monthly="120"
+  data-label="Email Automation System"
+  data-description="A structured system designed to create, manage, and execute large-scale email campaigns with controlled distribution and delivery flow"
+  data-modules='[
+    {"name":"Campaign Creation Framework","price":20},
+    {"name":"Email Dispatch Engine","price":20},
+    {"name":"Audience Segmentation Router","price":20},
+    {"name":"Campaign Timing Controller","price":20},
+    {"name":"Batch Sending Mechanism","price":20},
+    {"name":"Campaign Execution Monitor","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/email-campaign.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">CamporaX</span>
+    <span class="price">$120 / month</span>
+
+    <p>Email Campaign Engine — manage and execute structured email campaigns.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Campaign Creation</li>
+        <li>Email Dispatch</li>
+        <li>Audience Routing</li>
+        <li>Timing Control</li>
+        <li>Batch Sending</li>
+        <li>Execution Monitoring</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="242"
+  data-name="Broadvia"
+  data-fullname="Broadcast Delivery System"
+  data-type="system"
+  data-category="email-campaign"
+  data-setup="240"
+  data-monthly="110"
+  data-label="Email Automation System"
+  data-description="A mass delivery system designed to send single-message broadcasts to large audiences instantly with controlled distribution and delivery stability"
+  data-modules='[
+    {"name":"Mass Email Dispatch Engine","price":20},
+    {"name":"Audience Broadcast Controller","price":20},
+    {"name":"Delivery Load Balancer","price":20},
+    {"name":"Send Queue Manager","price":20},
+    {"name":"Broadcast Timing Switch","price":20},
+    {"name":"Delivery Status Tracker","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/email-broadcast.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Broadvia</span>
+    <span class="price">$110 / month</span>
+
+    <p>Broadcast Delivery System — send emails to large audiences instantly.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Mass Dispatch</li>
+        <li>Audience Broadcast</li>
+        <li>Load Balancing</li>
+        <li>Send Queue</li>
+        <li>Timing Switch</li>
+        <li>Status Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="243"
+  data-name="Schedulix"
+  data-fullname="Campaign Scheduling Engine"
+  data-type="system"
+  data-category="email-campaign"
+  data-setup="230"
+  data-monthly="105"
+  data-label="Email Automation System"
+  data-description="A timing-focused system that schedules and controls when campaigns are executed based on defined time rules and delivery windows"
+  data-modules='[
+    {"name":"Campaign Time Scheduler","price":20},
+    {"name":"Delivery Window Controller","price":20},
+    {"name":"Time-Based Trigger Engine","price":20},
+    {"name":"Scheduled Queue Manager","price":20},
+    {"name":"Timezone Distribution System","price":20},
+    {"name":"Execution Timing Monitor","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/email-schedule.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Schedulix</span>
+    <span class="price">$105 / month</span>
+
+    <p>Campaign Scheduling Engine — control when your emails are delivered.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Time Scheduling</li>
+        <li>Delivery Windows</li>
+        <li>Time Triggers</li>
+        <li>Queue Management</li>
+        <li>Timezone Distribution</li>
+        <li>Timing Monitor</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="244"
+  data-name="Targetrix"
+  data-fullname="Targeted Campaign System"
+  data-type="system"
+  data-category="email-campaign"
+  data-setup="270"
+  data-monthly="125"
+  data-label="Email Automation System"
+  data-description="A precision-driven system that delivers campaigns to highly specific audience groups based on defined targeting rules and segmentation logic"
+  data-modules='[
+    {"name":"Audience Filtering Engine","price":20},
+    {"name":"Target Rule Builder","price":20},
+    {"name":"Segment Matching System","price":20},
+    {"name":"Selective Delivery Controller","price":20},
+    {"name":"Target Refinement Module","price":20},
+    {"name":"Audience Qualification Logic","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/targeted-campaign.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Targetrix</span>
+    <span class="price">$125 / month</span>
+
+    <p>Targeted Campaign System — send emails to the right audience with precision.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Audience Filtering</li>
+        <li>Target Rules</li>
+        <li>Segment Matching</li>
+        <li>Selective Delivery</li>
+        <li>Target Refinement</li>
+        <li>Qualification Logic</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="245"
+  data-name="Execuvia"
+  data-fullname="Campaign Execution Engine"
+  data-type="system"
+  data-category="email-campaign"
+  data-setup="290"
+  data-monthly="135"
+  data-label="Email Automation System"
+  data-description="An execution-focused system that controls how campaigns are processed, triggered, and completed across multiple delivery stages"
+  data-modules='[
+    {"name":"Execution Flow Engine","price":25},
+    {"name":"Trigger Activation System","price":25},
+    {"name":"Process Stage Controller","price":25},
+    {"name":"Execution Pipeline Manager","price":25},
+    {"name":"Dispatch Coordination Logic","price":25},
+    {"name":"Execution Completion Tracker","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/execution-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Execuvia</span>
+    <span class="price">$135 / month</span>
+
+    <p>Campaign Execution Engine — manage how campaigns run from start to finish.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Execution Flow</li>
+        <li>Trigger Activation</li>
+        <li>Process Stages</li>
+        <li>Pipeline Manager</li>
+        <li>Dispatch Coordination</li>
+        <li>Completion Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="246"
+  data-name="Controlyx"
+  data-fullname="Campaign Control System"
+  data-type="system"
+  data-category="email-campaign"
+  data-setup="300"
+  data-monthly="140"
+  data-label="Email Automation System"
+  data-description="A control system designed to manage campaign rules, permissions, and operational limits while ensuring stable and controlled execution"
+  data-modules='[
+    {"name":"Campaign Rule Engine","price":25},
+    {"name":"Permission Control System","price":25},
+    {"name":"Execution Limitation Manager","price":25},
+    {"name":"Campaign Override Mechanism","price":25},
+    {"name":"Control Parameter Configuration","price":25},
+    {"name":"Operational Safeguard System","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/control-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Controlyx</span>
+    <span class="price">$140 / month</span>
+
+    <p>Campaign Control System — manage campaign rules and execution limits.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Rule Engine</li>
+        <li>Permission Control</li>
+        <li>Execution Limits</li>
+        <li>Override System</li>
+        <li>Parameter Config</li>
+        <li>Operational Safeguards</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="261"
+  data-name="SequenzaX"
+  data-fullname="Email Sequence Engine"
+  data-type="system"
+  data-category="email-sequence"
+  data-setup="270"
+  data-monthly="125"
+  data-label="Email Automation System"
+  data-description="A structured sequence system that delivers emails in a predefined order based on progression logic and user journey stages"
+  data-modules='[
+    {"name":"Sequence Flow Builder","price":25},
+    {"name":"Step Progression Engine","price":25},
+    {"name":"Sequence Path Controller","price":25},
+    {"name":"Stage Transition Logic","price":25},
+    {"name":"Sequence Duration Manager","price":25},
+    {"name":"Progress Tracking System","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/sequence-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">SequenzaX</span>
+    <span class="price">$125 / month</span>
+
+    <p>Email Sequence Engine — guide users through structured email journeys.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Sequence Flow</li>
+        <li>Step Progression</li>
+        <li>Path Control</li>
+        <li>Stage Transition</li>
+        <li>Duration Management</li>
+        <li>Progress Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="262"
+  data-name="Dripviax"
+  data-fullname="Drip Automation System"
+  data-type="system"
+  data-category="email-sequence"
+  data-setup="250"
+  data-monthly="115"
+  data-label="Email Automation System"
+  data-description="A timed-release system that gradually delivers emails over controlled intervals to maintain engagement and pacing"
+  data-modules='[
+    {"name":"Interval Release Engine","price":20},
+    {"name":"Delay Configuration System","price":20},
+    {"name":"Time Gap Controller","price":20},
+    {"name":"Release Timing Regulator","price":20},
+    {"name":"Interval Adjustment Module","price":20},
+    {"name":"Drip Timing Monitor","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/drip-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Dripviax</span>
+    <span class="price">$115 / month</span>
+
+    <p>Drip Automation System — send emails gradually over time.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Interval Release</li>
+        <li>Delay Configuration</li>
+        <li>Time Gap Control</li>
+        <li>Timing Regulation</li>
+        <li>Interval Adjustment</li>
+        <li>Timing Monitor</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="263"
+  data-name="Behavionyx"
+  data-fullname="Behavioral Sequence System"
+  data-type="system"
+  data-category="email-sequence"
+  data-setup="300"
+  data-monthly="140"
+  data-label="Email Automation System"
+  data-description="A behavior-driven system that adapts email sequences based on user actions, engagement patterns, and interaction signals"
+  data-modules='[
+    {"name":"Behavior Tracking Engine","price":25},
+    {"name":"Action Response System","price":25},
+    {"name":"Behavior Trigger Mapping","price":25},
+    {"name":"Adaptive Flow Controller","price":25},
+    {"name":"User Interaction Analyzer","price":25},
+    {"name":"Sequence Adjustment Logic","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/behavior-sequence.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Behavionyx</span>
+    <span class="price">$140 / month</span>
+
+    <p>Behavioral Sequence System — adapt email flow based on user actions.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Behavior Tracking</li>
+        <li>Action Response</li>
+        <li>Trigger Mapping</li>
+        <li>Adaptive Flow</li>
+        <li>Interaction Analysis</li>
+        <li>Sequence Adjustment</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="264"
+  data-name="TrigoraX"
+  data-fullname="Trigger-Based Email Engine"
+  data-type="system"
+  data-category="email-sequence"
+  data-setup="290"
+  data-monthly="135"
+  data-label="Email Automation System"
+  data-description="A trigger-driven system that initiates email sequences instantly based on specific system-defined events or conditions"
+  data-modules='[
+    {"name":"Event Detection Engine","price":25},
+    {"name":"Trigger Condition Mapper","price":25},
+    {"name":"Instant Activation System","price":25},
+    {"name":"Event-to-Sequence Linker","price":25},
+    {"name":"Trigger Evaluation Logic","price":25},
+    {"name":"Event Execution Controller","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/trigger-email.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">TrigoraX</span>
+    <span class="price">$135 / month</span>
+
+    <p>Trigger-Based Email Engine — activate emails instantly based on events.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Event Detection</li>
+        <li>Trigger Mapping</li>
+        <li>Instant Activation</li>
+        <li>Sequence Linking</li>
+        <li>Condition Evaluation</li>
+        <li>Execution Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="265"
+  data-name="Lifecorix"
+  data-fullname="Lifecycle Email System"
+  data-type="system"
+  data-category="email-sequence"
+  data-setup="310"
+  data-monthly="145"
+  data-label="Email Automation System"
+  data-description="A lifecycle-driven system that manages email communication across different stages of a user’s journey from entry to long-term engagement"
+  data-modules='[
+    {"name":"Lifecycle Stage Engine","price":25},
+    {"name":"Stage Transition Controller","price":25},
+    {"name":"User Journey Mapping System","price":25},
+    {"name":"Lifecycle Progress Evaluator","price":25},
+    {"name":"Stage-Based Messaging Router","price":25},
+    {"name":"Lifecycle State Manager","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/lifecycle-email.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Lifecorix</span>
+    <span class="price">$145 / month</span>
+
+    <p>Lifecycle Email System — manage emails across the entire user journey.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Lifecycle Stages</li>
+        <li>Stage Transitions</li>
+        <li>User Journey Mapping</li>
+        <li>Progress Evaluation</li>
+        <li>Stage Routing</li>
+        <li>State Management</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="266"
+  data-name="RelivoraX"
+  data-fullname="Follow-up Sequence Engine"
+  data-type="system"
+  data-category="email-sequence"
+  data-setup="280"
+  data-monthly="130"
+  data-label="Email Automation System"
+  data-description="A follow-up system designed to re-engage users through structured reminder logic and repeated interaction cycles"
+  data-modules='[
+    {"name":"Follow-up Cycle Engine","price":25},
+    {"name":"Reminder Interval System","price":25},
+    {"name":"Re-engagement Logic Controller","price":25},
+    {"name":"Response Gap Analyzer","price":25},
+    {"name":"Follow-up Timing Adjuster","price":25},
+    {"name":"Reactivation Trigger System","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/followup-sequence.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">RelivoraX</span>
+    <span class="price">$130 / month</span>
+
+    <p>Follow-up Sequence Engine — re-engage users with structured follow-ups.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Follow-up Cycles</li>
+        <li>Reminder Intervals</li>
+        <li>Re-engagement Logic</li>
+        <li>Response Analysis</li>
+        <li>Timing Adjustment</li>
+        <li>Reactivation Triggers</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="281"
+  data-name="InboxiraX"
+  data-fullname="Smart Inbox System"
+  data-type="system"
+  data-category="email-inbox"
+  data-setup="260"
+  data-monthly="120"
+  data-label="Email Automation System"
+  data-description="An intelligent inbox system designed to organize incoming emails, categorize messages, and maintain structured email management"
+  data-modules='[
+    {"name":"Inbox Classification Engine","price":20},
+    {"name":"Message Categorization System","price":20},
+    {"name":"Priority Sorting Logic","price":20},
+    {"name":"Inbox Structuring Framework","price":20},
+    {"name":"Message Grouping Controller","price":20},
+    {"name":"Inbox Clean-up Mechanism","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/smart-inbox.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">InboxiraX</span>
+    <span class="price">$120 / month</span>
+
+    <p>Smart Inbox System — organize and manage incoming emails intelligently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Inbox Classification</li>
+        <li>Message Categorization</li>
+        <li>Priority Sorting</li>
+        <li>Inbox Structuring</li>
+        <li>Message Grouping</li>
+        <li>Inbox Clean-up</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="282"
+  data-name="Respondix"
+  data-fullname="Auto Response Engine"
+  data-type="system"
+  data-category="email-inbox"
+  data-setup="280"
+  data-monthly="130"
+  data-label="Email Automation System"
+  data-description="An automated response system that generates and sends replies to incoming emails based on predefined response logic and conditions"
+  data-modules='[
+    {"name":"Auto Reply Generator","price":25},
+    {"name":"Response Rule Engine","price":25},
+    {"name":"Condition-Based Reply System","price":25},
+    {"name":"Reply Trigger Mechanism","price":25},
+    {"name":"Response Template Manager","price":25},
+    {"name":"Reply Execution Controller","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/auto-response.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Respondix</span>
+    <span class="price">$130 / month</span>
+
+    <p>Auto Response Engine — automatically reply to incoming emails.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Auto Reply Generator</li>
+        <li>Response Rules</li>
+        <li>Condition Logic</li>
+        <li>Reply Triggers</li>
+        <li>Template Manager</li>
+        <li>Execution Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="283"
+  data-name="ReplyraX"
+  data-fullname="Reply Management System"
+  data-type="system"
+  data-category="email-inbox"
+  data-setup="270"
+  data-monthly="125"
+  data-label="Email Automation System"
+  data-description="A reply handling system designed to manage, organize, and process incoming email replies across multiple conversations"
+  data-modules='[
+    {"name":"Reply Tracking Engine","price":20},
+    {"name":"Conversation Thread Manager","price":20},
+    {"name":"Reply Status Controller","price":20},
+    {"name":"Response Queue System","price":20},
+    {"name":"Reply Sorting Framework","price":20},
+    {"name":"Conversation Flow Organizer","price":20}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/reply-management.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">ReplyraX</span>
+    <span class="price">$125 / month</span>
+
+    <p>Reply Management System — organize and manage email conversations efficiently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Reply Tracking</li>
+        <li>Thread Management</li>
+        <li>Status Control</li>
+        <li>Response Queue</li>
+        <li>Reply Sorting</li>
+        <li>Conversation Flow</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="284"
+  data-name="Routenix"
+  data-fullname="Email Routing Engine"
+  data-type="system"
+  data-category="email-inbox"
+  data-setup="300"
+  data-monthly="140"
+  data-label="Email Automation System"
+  data-description="A routing system that directs incoming emails to the appropriate destination based on predefined routing logic and structural rules"
+  data-modules='[
+    {"name":"Routing Decision Engine","price":25},
+    {"name":"Destination Mapping System","price":25},
+    {"name":"Rule-Based Distribution Logic","price":25},
+    {"name":"Routing Path Controller","price":25},
+    {"name":"Dynamic Routing Switcher","price":25},
+    {"name":"Route Execution Manager","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/email-routing.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Routenix</span>
+    <span class="price">$140 / month</span>
+
+    <p>Email Routing Engine — direct emails to the right destination automatically.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Routing Decisions</li>
+        <li>Destination Mapping</li>
+        <li>Distribution Logic</li>
+        <li>Routing Control</li>
+        <li>Dynamic Switching</li>
+        <li>Execution Manager</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="285"
+  data-name="Convorex"
+  data-fullname="Conversation Handling System"
+  data-type="system"
+  data-category="email-inbox"
+  data-setup="320"
+  data-monthly="145"
+  data-label="Email Automation System"
+  data-description="A system designed to manage entire email conversations with structured handling logic across multi-step interactions"
+  data-modules='[
+    {"name":"Conversation State Engine","price":25},
+    {"name":"Interaction Continuity System","price":25},
+    {"name":"Conversation Progress Tracker","price":25},
+    {"name":"Dialogue Handling Controller","price":25},
+    {"name":"Conversation Branch Manager","price":25},
+    {"name":"Interaction Resolution System","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/conversation-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Convorex</span>
+    <span class="price">$145 / month</span>
+
+    <p>Conversation Handling System — manage full email conversations intelligently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Conversation States</li>
+        <li>Interaction Continuity</li>
+        <li>Progress Tracking</li>
+        <li>Dialogue Control</li>
+        <li>Branch Management</li>
+        <li>Resolution System</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="286"
+  data-name="Governex"
+  data-fullname="Inbox Governance System"
+  data-type="system"
+  data-category="email-inbox"
+  data-setup="310"
+  data-monthly="150"
+  data-label="Email Automation System"
+  data-description="A governance system that enforces structure, policies, and operational rules across inbox environments for controlled communication management"
+  data-modules='[
+    {"name":"Inbox Policy Engine","price":25},
+    {"name":"Communication Rule Framework","price":25},
+    {"name":"Inbox Governance Controller","price":25},
+    {"name":"Policy Enforcement System","price":25},
+    {"name":"Operational Compliance Layer","price":25},
+    {"name":"Inbox Control Monitor","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/inbox-governance.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Governex</span>
+    <span class="price">$150 / month</span>
+
+    <p>Inbox Governance System — enforce structure and control across email operations.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Policy Engine</li>
+        <li>Rule Framework</li>
+        <li>Governance Control</li>
+        <li>Policy Enforcement</li>
+        <li>Compliance Layer</li>
+        <li>Control Monitoring</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="301"
+  data-name="Personyx"
+  data-fullname="Email Personalization Engine"
+  data-type="system"
+  data-category="email-personalization"
+  data-setup="310"
+  data-monthly="145"
+  data-label="Email Automation System"
+  data-description="A personalization system that customizes email content uniquely for each user based on individual attributes and identity profiles"
+  data-modules='[
+    {"name":"User Identity Mapping Engine","price":25},
+    {"name":"Personalization Variable Injector","price":25},
+    {"name":"User Attribute Processor","price":25},
+    {"name":"Personal Content Generator","price":25},
+    {"name":"Identity-Based Customization Layer","price":25},
+    {"name":"Personalization Output Controller","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/email-personalization.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Personyx</span>
+    <span class="price">$145 / month</span>
+
+    <p>Email Personalization Engine — tailor emails uniquely for each user.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>User Identity Mapping</li>
+        <li>Variable Injection</li>
+        <li>Attribute Processing</li>
+        <li>Personal Content Generation</li>
+        <li>Customization Layer</li>
+        <li>Output Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="302"
+  data-name="Dynovex"
+  data-fullname="Dynamic Content System"
+  data-type="system"
+  data-category="email-personalization"
+  data-setup="290"
+  data-monthly="135"
+  data-label="Email Automation System"
+  data-description="A system that dynamically changes email content blocks in real-time based on user-specific conditions and system rules"
+  data-modules='[
+    {"name":"Dynamic Content Renderer","price":25},
+    {"name":"Conditional Content Switcher","price":25},
+    {"name":"Content Variation Engine","price":25},
+    {"name":"Real-Time Content Modifier","price":25},
+    {"name":"Dynamic Block Controller","price":25},
+    {"name":"Content Adaptation Processor","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/dynamic-email.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Dynovex</span>
+    <span class="price">$135 / month</span>
+
+    <p>Dynamic Content System — adjust email content in real-time.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Dynamic Rendering</li>
+        <li>Conditional Switching</li>
+        <li>Content Variations</li>
+        <li>Real-Time Modifications</li>
+        <li>Block Control</li>
+        <li>Adaptation Processing</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="303"
+  data-name="InjectraX"
+  data-fullname="User Data Injection Engine"
+  data-type="system"
+  data-category="email-personalization"
+  data-setup="300"
+  data-monthly="140"
+  data-label="Email Automation System"
+  data-description="A system that injects user-specific data directly into email structures to create context-aware communication"
+  data-modules='[
+    {"name":"Data Injection Engine","price":25},
+    {"name":"User Data Mapper","price":25},
+    {"name":"Data Binding System","price":25},
+    {"name":"Context Injection Controller","price":25},
+    {"name":"Data Synchronization Layer","price":25},
+    {"name":"Injection Execution Engine","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/data-injection.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">InjectraX</span>
+    <span class="price">$140 / month</span>
+
+    <p>User Data Injection Engine — insert user data into emails seamlessly.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Data Injection</li>
+        <li>User Mapping</li>
+        <li>Data Binding</li>
+        <li>Context Injection</li>
+        <li>Data Sync Layer</li>
+        <li>Execution Engine</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+</div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="304"
+  data-name="Contextra"
+  data-fullname="Context-Based Messaging System"
+  data-type="system"
+  data-category="email-personalization"
+  data-setup="320"
+  data-monthly="150"
+  data-label="Email Automation System"
+  data-description="A system that generates email messaging based on real-time user context, environment signals, and situational conditions"
+  data-modules='[
+    {"name":"Context Signal Interpreter","price":25},
+    {"name":"Environmental Data Processor","price":25},
+    {"name":"Situation-Based Messaging Engine","price":25},
+    {"name":"Context Decision Layer","price":25},
+    {"name":"Real-Time Context Evaluator","price":25},
+    {"name":"Context Execution Controller","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/context-email.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Contextra</span>
+    <span class="price">$150 / month</span>
+
+    <p>Context-Based Messaging System — deliver emails based on real-time user context.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Context Signals</li>
+        <li>Environment Processing</li>
+        <li>Situation Messaging</li>
+        <li>Decision Layer</li>
+        <li>Context Evaluation</li>
+        <li>Execution Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="305"
+  data-name="Adaptivex"
+  data-fullname="Adaptive Email System"
+  data-type="system"
+  data-category="email-personalization"
+  data-setup="330"
+  data-monthly="155"
+  data-label="Email Automation System"
+  data-description="An adaptive system that continuously adjusts email behavior and content based on evolving user interaction patterns"
+  data-modules='[
+    {"name":"Behavior Adaptation Engine","price":25},
+    {"name":"Interaction Pattern Analyzer","price":25},
+    {"name":"Adaptive Adjustment Controller","price":25},
+    {"name":"Learning Feedback Loop","price":25},
+    {"name":"Adaptive Response Modifier","price":25},
+    {"name":"Behavior Evolution Tracker","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/adaptive-email.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Adaptivex</span>
+    <span class="price">$155 / month</span>
+
+    <p>Adaptive Email System — evolve email behavior based on user interaction.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Behavior Adaptation</li>
+        <li>Pattern Analysis</li>
+        <li>Adjustment Control</li>
+        <li>Feedback Loop</li>
+        <li>Response Modification</li>
+        <li>Behavior Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="306"
+  data-name="LogicraX"
+  data-fullname="Personalization Logic Engine"
+  data-type="system"
+  data-category="email-personalization"
+  data-setup="340"
+  data-monthly="160"
+  data-label="Email Automation System"
+  data-description="A core logic system that defines, controls, and executes personalization rules across all email communication layers"
+  data-modules='[
+    {"name":"Logic Rule Engine","price":25},
+    {"name":"Personalization Decision Core","price":25},
+    {"name":"Rule Hierarchy System","price":25},
+    {"name":"Logic Conflict Resolver","price":25},
+    {"name":"Execution Priority Manager","price":25},
+    {"name":"Logic Processing Controller","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/personalization-logic.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">LogicraX</span>
+    <span class="price">$160 / month</span>
+
+    <p>Personalization Logic Engine — control how personalization decisions are made.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Logic Rules</li>
+        <li>Decision Core</li>
+        <li>Rule Hierarchy</li>
+        <li>Conflict Resolution</li>
+        <li>Priority Management</li>
+        <li>Logic Processing</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="321"
+  data-name="Analytixor"
+  data-fullname="Email Analytics Engine"
+  data-type="system"
+  data-category="email-analytics"
+  data-setup="340"
+  data-monthly="160"
+  data-label="Email Analytics System"
+  data-description="A core analytics engine that processes email activity data into structured performance insights for decision-making"
+  data-modules='[
+    {"name":"Data Aggregation Engine","price":25},
+    {"name":"Metric Structuring System","price":25},
+    {"name":"Insight Processing Core","price":25},
+    {"name":"Data Interpretation Layer","price":25},
+    {"name":"Analytics Output Generator","price":25},
+    {"name":"Insight Delivery Controller","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/email-analytics.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Analytixor</span>
+    <span class="price">$160 / month</span>
+
+    <p>Email Analytics Engine — turn email activity into actionable insights.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Data Aggregation</li>
+        <li>Metric Structuring</li>
+        <li>Insight Processing</li>
+        <li>Data Interpretation</li>
+        <li>Output Generation</li>
+        <li>Insight Delivery</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="322"
+  data-name="Performyx"
+  data-fullname="Campaign Performance System"
+  data-type="system"
+  data-category="email-analytics"
+  data-setup="330"
+  data-monthly="155"
+  data-label="Email Analytics System"
+  data-description="A system that evaluates campaign effectiveness by analyzing performance outcomes and identifying strengths and weaknesses"
+  data-modules='[
+    {"name":"Performance Evaluation Engine","price":25},
+    {"name":"Outcome Analysis System","price":25},
+    {"name":"Campaign Efficiency Model","price":25},
+    {"name":"Performance Benchmarking Layer","price":25},
+    {"name":"Result Comparison Framework","price":25},
+    {"name":"Performance Summary Generator","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/campaign-performance.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Performyx</span>
+    <span class="price">$155 / month</span>
+
+    <p>Campaign Performance System — evaluate campaign results and efficiency.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Performance Evaluation</li>
+        <li>Outcome Analysis</li>
+        <li>Efficiency Modeling</li>
+        <li>Benchmarking</li>
+        <li>Result Comparison</li>
+        <li>Summary Generation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="323"
+  data-name="Tracklance"
+  data-fullname="Open & Click Tracking Engine"
+  data-type="system"
+  data-category="email-analytics"
+  data-setup="300"
+  data-monthly="145"
+  data-label="Email Analytics System"
+  data-description="A precision tracking system that captures and processes user interaction signals such as opens and clicks for measurable engagement data"
+  data-modules='[
+    {"name":"Interaction Signal Capture","price":25},
+    {"name":"Event Recording Engine","price":25},
+    {"name":"Engagement Signal Processor","price":25},
+    {"name":"Interaction Mapping System","price":25},
+    {"name":"Event Data Structuring Layer","price":25},
+    {"name":"Signal Processing Controller","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/open-click-tracking.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Tracklance</span>
+    <span class="price">$145 / month</span>
+
+    <p>Tracking Engine — capture and process user interaction signals.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Signal Capture</li>
+        <li>Event Recording</li>
+        <li>Signal Processing</li>
+        <li>Interaction Mapping</li>
+        <li>Data Structuring</li>
+        <li>Processing Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="324"
+  data-name="Engagixor"
+  data-fullname="Engagement Analysis System"
+  data-type="system"
+  data-category="email-analytics"
+  data-setup="320"
+  data-monthly="150"
+  data-label="Email Analytics System"
+  data-description="An advanced system that evaluates depth of user engagement by analyzing interaction behavior patterns across email communication layers"
+  data-modules='[
+    {"name":"Behavior Depth Analyzer","price":25},
+    {"name":"Interaction Quality Engine","price":25},
+    {"name":"Engagement Scoring Framework","price":25},
+    {"name":"Behavior Segmentation System","price":25},
+    {"name":"Engagement Intensity Mapper","price":25},
+    {"name":"Engagement Insight Synthesizer","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/engagement-analysis.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Engagixor</span>
+    <span class="price">$150 / month</span>
+
+    <p>Engagement Analysis System — measure how deeply users interact with your emails.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Behavior Depth Analysis</li>
+        <li>Interaction Quality</li>
+        <li>Engagement Scoring</li>
+        <li>Behavior Segmentation</li>
+        <li>Intensity Mapping</li>
+        <li>Insight Synthesis</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="325"
+  data-name="Convertiqon"
+  data-fullname="Conversion Tracking System"
+  data-type="system"
+  data-category="email-analytics"
+  data-setup="350"
+  data-monthly="165"
+  data-label="Email Analytics System"
+  data-description="A system that tracks and attributes user conversion outcomes across email-driven actions to determine business impact"
+  data-modules='[
+    {"name":"Conversion Attribution Engine","price":25},
+    {"name":"Outcome Mapping System","price":25},
+    {"name":"Action-to-Result Linker","price":25},
+    {"name":"Conversion Path Analyzer","price":25},
+    {"name":"Outcome Validation Layer","price":25},
+    {"name":"Conversion Result Processor","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/conversion-tracking.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Convertiqon</span>
+    <span class="price">$165 / month</span>
+
+    <p>Conversion Tracking System — measure actual business results from emails.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Attribution Engine</li>
+        <li>Outcome Mapping</li>
+        <li>Action Linking</li>
+        <li>Path Analysis</li>
+        <li>Validation Layer</li>
+        <li>Result Processing</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="326"
+  data-name="ReportaraX"
+  data-fullname="Email Reporting Dashboard"
+  data-type="system"
+  data-category="email-analytics"
+  data-setup="330"
+  data-monthly="155"
+  data-label="Email Analytics System"
+  data-description="A reporting system that presents structured email performance data through visual dashboards and organized reporting interfaces"
+  data-modules='[
+    {"name":"Report Structuring Engine","price":25},
+    {"name":"Data Visualization Layer","price":25},
+    {"name":"Dashboard Rendering System","price":25},
+    {"name":"Report Formatting Controller","price":25},
+    {"name":"Insight Presentation Framework","price":25},
+    {"name":"Reporting Output Manager","price":25}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/email-dashboard.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">ReportaraX</span>
+    <span class="price">$155 / month</span>
+
+    <p>Email Reporting Dashboard — visualize and present email performance clearly.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Report Structuring</li>
+        <li>Data Visualization</li>
+        <li>Dashboard Rendering</li>
+        <li>Formatting Control</li>
+        <li>Insight Presentation</li>
+        <li>Output Management</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="341"
+  data-name="DelivraX"
+  data-fullname="Email Deliverability Engine"
+  data-type="system"
+  data-category="email-deliverability"
+  data-setup="360"
+  data-monthly="170"
+  data-label="Email Deliverability System"
+  data-description="A core deliverability system that optimizes email transmission reliability to ensure messages reach recipient inboxes consistently"
+  data-modules='[
+    {"name":"Delivery Path Optimizer","price":30},
+    {"name":"Transmission Stability Engine","price":30},
+    {"name":"Inbox Placement Controller","price":30},
+    {"name":"Delivery Timing Regulator","price":30},
+    {"name":"Transmission Load Balancer","price":30},
+    {"name":"Delivery Success Monitor","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/deliverability-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">DelivraX</span>
+    <span class="price">$170 / month</span>
+
+    <p>Email Deliverability Engine — ensure emails reach inboxes reliably.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Path Optimization</li>
+        <li>Transmission Stability</li>
+        <li>Inbox Placement</li>
+        <li>Timing Regulation</li>
+        <li>Load Balancing</li>
+        <li>Delivery Monitoring</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="342"
+  data-name="SpamoraX"
+  data-fullname="Spam Avoidance System"
+  data-type="system"
+  data-category="email-deliverability"
+  data-setup="340"
+  data-monthly="160"
+  data-label="Email Deliverability System"
+  data-description="A system designed to prevent emails from being flagged as spam by analyzing and optimizing compliance with filtering mechanisms"
+  data-modules='[
+    {"name":"Spam Filter Analyzer","price":30},
+    {"name":"Content Compliance Validator","price":30},
+    {"name":"Spam Risk Evaluator","price":30},
+    {"name":"Filter Rule Interpreter","price":30},
+    {"name":"Spam Avoidance Adjuster","price":30},
+    {"name":"Compliance Optimization Engine","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/spam-avoidance.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">SpamoraX</span>
+    <span class="price">$160 / month</span>
+
+    <p>Spam Avoidance System — prevent emails from landing in spam folders.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Spam Analysis</li>
+        <li>Compliance Validation</li>
+        <li>Risk Evaluation</li>
+        <li>Filter Interpretation</li>
+        <li>Avoidance Adjustment</li>
+        <li>Compliance Optimization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="343"
+  data-name="ReputraX"
+  data-fullname="Sender Reputation System"
+  data-type="system"
+  data-category="email-deliverability"
+  data-setup="350"
+  data-monthly="165"
+  data-label="Email Deliverability System"
+  data-description="A system that manages and improves sender reputation by monitoring trust signals and maintaining consistent sending credibility"
+  data-modules='[
+    {"name":"Reputation Scoring Engine","price":30},
+    {"name":"Trust Signal Monitor","price":30},
+    {"name":"Reputation Adjustment Layer","price":30},
+    {"name":"Sending Behavior Analyzer","price":30},
+    {"name":"Trust Stability Controller","price":30},
+    {"name":"Reputation Recovery System","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/sender-reputation.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">ReputraX</span>
+    <span class="price">$165 / month</span>
+
+    <p>Sender Reputation System — build and maintain trusted sending identity.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Reputation Scoring</li>
+        <li>Trust Monitoring</li>
+        <li>Reputation Adjustment</li>
+        <li>Behavior Analysis</li>
+        <li>Stability Control</li>
+        <li>Recovery System</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="344"
+  data-name="AuthenraX"
+  data-fullname="Email Authentication System"
+  data-type="system"
+  data-category="email-deliverability"
+  data-setup="360"
+  data-monthly="170"
+  data-label="Email Deliverability System"
+  data-description="A system that validates email authenticity using protocol-level verification to ensure messages are recognized as legitimate by receiving servers"
+  data-modules='[
+    {"name":"Authentication Protocol Engine","price":30},
+    {"name":"Domain Verification System","price":30},
+    {"name":"Signature Validation Layer","price":30},
+    {"name":"Authentication Alignment Controller","price":30},
+    {"name":"Protocol Compliance Monitor","price":30},
+    {"name":"Verification Execution Manager","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/email-authentication.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">AuthenraX</span>
+    <span class="price">$170 / month</span>
+
+    <p>Email Authentication System — verify sender identity at protocol level.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Protocol Engine</li>
+        <li>Domain Verification</li>
+        <li>Signature Validation</li>
+        <li>Alignment Control</li>
+        <li>Compliance Monitoring</li>
+        <li>Execution Manager</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="345"
+  data-name="BounceraX"
+  data-fullname="Bounce Management System"
+  data-type="system"
+  data-category="email-deliverability"
+  data-setup="330"
+  data-monthly="155"
+  data-label="Email Deliverability System"
+  data-description="A system that detects, categorizes, and manages failed email deliveries to maintain sending stability and reduce future delivery errors"
+  data-modules='[
+    {"name":"Bounce Detection Engine","price":30},
+    {"name":"Failure Classification System","price":30},
+    {"name":"Bounce Response Controller","price":30},
+    {"name":"Failure Pattern Analyzer","price":30},
+    {"name":"Delivery Retry Regulator","price":30},
+    {"name":"Bounce Data Processor","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/bounce-management.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">BounceraX</span>
+    <span class="price">$155 / month</span>
+
+    <p>Bounce Management System — handle delivery failures intelligently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Bounce Detection</li>
+        <li>Failure Classification</li>
+        <li>Response Control</li>
+        <li>Pattern Analysis</li>
+        <li>Retry Regulation</li>
+        <li>Data Processing</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="346"
+  data-name="PlaceraX"
+  data-fullname="Inbox Placement Engine"
+  data-type="system"
+  data-category="email-deliverability"
+  data-setup="380"
+  data-monthly="175"
+  data-label="Email Deliverability System"
+  data-description="A precision system that optimizes final email placement to ensure messages land in the primary inbox instead of spam or promotions"
+  data-modules='[
+    {"name":"Inbox Placement Optimizer","price":30},
+    {"name":"Mailbox Provider Analyzer","price":30},
+    {"name":"Placement Strategy Engine","price":30},
+    {"name":"Inbox Classification Adjuster","price":30},
+    {"name":"Placement Prediction Model","price":30},
+    {"name":"Placement Execution Controller","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/inbox-placement.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">PlaceraX</span>
+    <span class="price">$175 / month</span>
+
+    <p>Inbox Placement Engine — ensure emails land in the primary inbox.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Placement Optimization</li>
+        <li>Provider Analysis</li>
+        <li>Strategy Engine</li>
+        <li>Classification Adjustment</li>
+        <li>Prediction Model</li>
+        <li>Execution Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+</div>
+</main>
+
+<!-- FINAL CTA -->
+<div class="cta-block">
+<h2>Have a project in mind?<br>Let’s build something powerful together.</h2>
+<a href="contact.html" class="cta-btn">Let’s Get Started</a>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+<script>
+document.getElementById("toggle").onclick=function(){
+document.getElementById("nav").classList.toggle("active");
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const filterSelect = document.getElementById("filterSelect");
+  const cards = document.querySelectorAll(".video-card");
+  const searchInput = document.getElementById("searchInput");
+
+  let currentFilter = "all";
+
+  // DROPDOWN CHANGE
+  filterSelect.addEventListener("change", () => {
+    currentFilter = filterSelect.value;
+    filterCards();
+  });
+
+  // SEARCH
+  searchInput.addEventListener("keyup", filterCards);
+
+  function filterCards() {
+    const searchValue = searchInput.value.toLowerCase();
+
+    cards.forEach(card => {
+      const category = card.getAttribute("data-category") || "";
+      const keywords = card.getAttribute("data-keywords") || "";
+
+      const text = (
+        category + " " +
+        keywords + " " +
+        card.textContent
+      ).toLowerCase();
+
+      const matchFilter =
+        currentFilter === "all" || category === currentFilter;
+
+      const matchSearch =
+        text.includes(searchValue);
+
+      if (matchFilter && matchSearch) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+
+});
+
+
+const sortSelect = document.getElementById("sortSelect");
+const container = document.querySelector(".cards");
+
+sortSelect.addEventListener("change", () => {
+  const cards = Array.from(container.children);
+
+  cards.sort((a, b) => {
+    const priceA = parseInt(a.querySelector(".price").textContent.replace("$",""));
+    const priceB = parseInt(b.querySelector(".price").textContent.replace("$",""));
+
+    if (sortSelect.value === "low") return priceA - priceB;
+    if (sortSelect.value === "high") return priceB - priceA;
+    return 0;
+  });
+
+  cards.forEach(card => container.appendChild(card));
+});
+
+
+
+document.querySelectorAll(".order-btn").forEach(btn => {
+  btn.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const productId = this.closest(".video-card").dataset.id;
+
+    // ✅ update href dynamically (keeps anchor behavior)
+    this.href = "billing.html?id=" + productId;
+
+    // ✅ now allow redirect
+    window.location.href = this.href;
+  });
+});
+</script>
+
+</body>
+</html>

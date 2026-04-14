@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | Freener's Digital Services</title>
+  <style>
+    :root {
+      --silver: #f2f2f2;
+      --green: #00a86b;
+      --dark: #1a1a1a;
+      --text: #333;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--silver);
+      color: var(--text);
+      line-height: 1.6;
+       overscroll-behavior-x: none;
+      overscroll-behavior: none;
+  touch-action: pan-y;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background-color: darkgreen;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo { font-weight: 700; color: #fff; font-size: 1rem; }
+    nav { display: flex; gap: 20px; }
+    nav a { text-decoration: none; color: #fff; font-weight: 500; transition: color 0.3s; }
+    nav a:hover { color: greenyellow; }
+    
+/* ===== MASTER MOBILE HAMBURGER ===== */
+.nav-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    z-index: 1001;
+  }
+
+  .nav {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 170px;
+    background: darkgreen;
+    flex-direction: column;
+    padding: 20px;
+    transition: right 0.3s ease;
+  }
+
+  .nav.active {
+    right: 0;
+  }
+
+  .nav a {
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.05rem;
+  }
+
+  .nav a:hover {
+    background: greenyellow;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+}
+     
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background: linear-gradient(to bottom right, var(--green), #00945f);
+      color: var(--white);
+    }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+
+    .policy-container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+    .policy-section { margin-bottom: 30px; }
+    .policy-section h2 { color: var(--green); margin-bottom: 10px; }
+    .policy-section p, .policy-section ul { margin-bottom: 10px; }
+    .policy-section ul { padding-left: 20px; }
+    .policy-section a { color: var(--green); text-decoration: none; }
+    .policy-section a:hover { text-decoration: underline; }
+
+    /* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+  </style>
+</head>
+<body>
+  
+  <!-- ===== MASTER HAMBURGER NAV (USED ON ALL PAGES) ===== -->
+<header class="site-header">
+  <div class="logo">Freener's Digital Services</div>
+
+  <nav class="nav" id="mainNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="contact.html">Contact</a>
+    <a href="payment.html">Payment</a>
+    <a href="faq.html">FAQs</a>
+    <a href="terms.html" class="mobile-only">Terms</a>
+    <a href="privacy.html" class="mobile-only">Privacy</a>
+  </nav>
+
+  <div class="nav-toggle" id="navToggle">&#9776;</div>
+</header>
+
+  <main class="policy-container">
+    <section class="hero">
+      <h1>PRIVACY POLICY</h1>
+      <p>Effective Date: [Insert Date]</p>
+      <p>Company Name: Freener’s Digital Services</p>
+    </section>
+
+    <section class="policy-section">
+      <h2>Introduction</h2>
+      <p>Freener’s Digital Services (“Company,” we, or us) is committed to safeguarding the privacy, confidentiality, and integrity of personal and business data. This Privacy Policy explains how we collect, process, store, and protect information in connection with our website and services.
+By visiting our website or engaging our services, you acknowledge and agree to the practices described herein.</p>
+    </section>
+
+    <section class="policy-section">
+      <h2>1. Information We Collect</h2>
+      <p>We may collect and process the following categories of information:</p>
+      <p>(A) Personal Identification Information:</p>
+      <p>Full name, Email address, Phone number, Business details & Billing information.</p>
+      
+      <p>(B) Technical & Usage Information:</p>
+      <p>IP address, Browser type, Device information, Website interaction data, Log files.</p>
+
+      <p>(c) Client Business Data (Service-Based Processing):</p>
+      <p>For clients engaging our hosting, CRM, automation, cybersecurity, cloud, or data services, we may process:</p>
+      <p>Website content, CRM records, Lead databases, Email automation workflows, Uploaded documents and files, Cloud configurations, We process such data strictly for service delivery purposes.</p>
+    </section>
+
+    <section class="policy-section">
+      <h2>Lawful Basis for Processing</h2>
+      <p>We process information based on:</p>
+      <p>Contractual necessity (to deliver services)</p>
+<p>Legitimate business interests (system improvement and security)</p>
+<p>Legal obligations & User consent (where applicable)</p>
+    </section>
+
+    <section class="policy-section">
+      <h2>How Information Is Used</h2>
+      <p>Collected information may be used to:</p>
+      <p>Deliver contracted services, Manage hosting and infrastructure, Configure CRM and automation systems, Provide technical support, Process transactions, Improve service performance, Monitor security and prevent fraud, Comply with legal requirements, We do not sell or rent personal data to third parties.</p>
+    </section>
+
+    <section class="policy-section">
+      <h2>Data Security Measures</h2>
+      <p>We implement reasonable and industry-aligned safeguards including:</p>
+      <p>Secure hosting environments, Access control restrictions, Role-based permissions, Encrypted communications where applicable, Ongoing system monitoring. Despite these measures, no digital transmission or storage system is entirely immune from risk.</p>
+    </section>
+
+    <section class="policy-section">
+      <h2> Confidentiality & Data Access</h2>
+      <p>Access to client data is restricted to authorized personnel strictly for service execution.
+We do not access, analyze, or disclose client data beyond what is required for contracted services.</p>
+    </section>
+
+    <section class="policy-section">
+      <h2> Infrastructure & Technology Platforms</h2>
+      <p>We operate using secure, enterprise-grade technology platforms to maintain performance, reliability, and data protection standards.
+        <p>All systems are configured and managed in accordance with professional security practices.</p>
+        <p>External platform environments may maintain their own operational policies, which apply independently.</p>
+      </p>
+    </section>
+
+    <section class="policy-section">
+      <h2>Limitation of Responsibility</h2>
+      <p>We implement appropriate safeguards to protect data and system integrity.
+However, certain technical events or external factors beyond reasonable operational control may affect system performance or data accessibility.
+</p>
+    </section>
+
+    <section class="policy-section">
+      <h2> International Data Transfers</h2>
+      <p>As we operate globally, data may be processed across jurisdictions.
+We implement reasonable safeguards to ensure data protection consistent with professional standards, regardless of location.</p>
+    </section>
+
+<section class="policy-section">
+      <h2>Data Retention</h2>
+      <p>We retain personal and client data only for:</p>
+      <p>The duration necessary to fulfill contractual obligations, Compliance with legal requirements, Legitimate operational purposes. Upon termination of services, data may be deleted or returned according to agreement terms.</p>
+    </section>
+
+    <section class="policy-section">
+      <h2>User Rights</h2>
+      <p>Subject to applicable laws, individuals may have the right to:</p>
+      <p>Request access to personal data, Request correction of inaccurate data, Request deletion of personal data, Object to certain processing activities, Withdraw consent where applicable. Requests must be submitted through official contact channels.</p>
+    </section>
+
+    <section class="policy-section">
+      <h2>Cookies & Tracking Technologies</h2>
+      <p>Our website may use cookies and similar technologies to:</p>
+      <p>Enhance user experience, Analyze traffic patterns, Improve performance, Users may control cookie preferences via browser settings.</p>
+    </section>
+
+    <section class="policy-section">
+      <h2> Limitation of Responsibility</h2>
+      <p>While we apply reasonable safeguards, we are not liable for:</p>
+      <p>Unauthorized access resulting from client negligence,
+Breaches caused by third-party platforms,
+Circumstances beyond reasonable control.</p>
+    </section>
+
+    <section class="policy-section">
+      <h2>Updates to This Policy</h2>
+      <p>We reserve the right to revise this Privacy Policy periodically. Updated versions will be published with a revised effective date.</p>
+    </section>
+
+
+    <section class="policy-section">
+      <h2>Contact Information</h2>
+      <ul>
+        <li><strong>Address:</strong> No 27 Gosa Sarki, Airport Road, Riverside By Ecwa Church Gosa Pri, Gossa, FCT Abuja Nigeria</li>
+        <li><strong>Email:</strong> freenersdigitals@gmail.com</li>
+        <li><strong>Phone:</strong> +2347078911819</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  navToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+  });
+
+  // Auto close when any link is clicked
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('active');
+    });
+  });
+    document.getElementById('year').textContent = new Date().getFullYear();
+    fetch("https://modular-infrastructure-production.up.railway.app/api/status")
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+  </script>
+</body>
+</html>

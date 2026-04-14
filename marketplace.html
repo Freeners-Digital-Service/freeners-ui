@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Freener's Digital Services</title>
+
+<style>
+:root{
+  --green:#00a86b;
+  --darkgreen:darkgreen;
+  --silver:#f2f2f2;
+  --white:#ffffff;
+  --text:#333;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
+body{background:var(--silver);color:var(--text);scroll-behavior:smooth}
+
+/* ================= MASTER NAV ================= */
+header{
+position:fixed;top:0;left:0;width:100%;
+background:var(--darkgreen);
+display:flex;justify-content:space-between;
+align-items:center;padding:15px 5%;
+z-index:1000;
+}
+.logo{color:#fff;font-weight:700}
+.nav{display:flex;gap:20px}
+.nav a{color:#fff;text-decoration:none;font-weight:500}
+.nav a:hover{color:greenyellow}
+.nav-toggle{display:none;color:#fff;font-size:1.8rem;cursor:pointer}
+@media(max-width:768px){
+.nav{position:fixed;top:70px;right:-100%;width:180px;background:var(--darkgreen);flex-direction:column;padding:20px;transition:.3s}
+.nav.active{right:0}
+.nav-toggle{display:block}
+}
+
+.portfolio-intro{
+  padding:140px 8% 20px; /* keep top for header space */
+  text-align:center;
+}
+
+.portfolio-title{
+  font-size:42px;
+  font-weight:600;
+  margin-bottom:15px;
+}
+
+.portfolio-sub{
+  font: size 1.3rem;
+  opacity: 75;
+  max-width:750px;
+  margin-bottom: 20px;
+  line-height:1.6;
+  text-align: center;
+}
+
+/* Fade Animation */
+.fade{
+opacity:0;
+transform:translateY(30px);
+transition:1s ease;
+}
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
+
+
+
+/* ================= CTA BLOCK ================= */
+.cta-block{
+background:#111;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+border-radius:15px;
+margin-bottom:30px;
+}
+.cta-btn{
+display:inline-block;
+margin-top:20px;
+padding:14px 30px;
+border-radius:40px;
+background:linear-gradient(45deg,#00ffcc,#00a86b,#00f0ff,#00ff88);
+color:#000;
+font-weight:600;
+text-decoration:none;
+animation:glow 3s infinite linear;
+}
+@keyframes glow{
+0%{filter:hue-rotate(0deg)}
+100%{filter:hue-rotate(360deg)}
+}
+
+.section{
+  padding:20px 8%;
+  margin-top:20px;
+  text-align:center;
+}
+
+.section-title{
+font-size:38px;
+margin-bottom:15px;
+font-weight:600;
+}
+
+.section-sub{
+opacity:.7;
+margin-bottom:60px;
+font-size: 1.3rem;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:40px;
+max-width:1200px;
+margin:0 auto 20px;
+}
+
+.stat-box{
+background:#fff;
+padding:40px 30px;
+border-radius:16px;
+box-shadow:0 10px 30px rgba(0,0,0,.06);
+transition:.3s;
+}
+
+.stat-box:hover{
+transform:translateY(-6px);
+}
+
+.stat-box h3{
+font-size:40px;
+color:var(--darkgreen);
+margin-bottom:10px;
+}
+
+.stat-box p{
+font-size:14px;
+opacity:.7;
+}
+
+@media(max-width:1024px){
+.stats{grid-template-columns:repeat(2,1fr);}
+}
+
+@media(max-width:768px){
+.stats{grid-template-columns:1fr;}
+}
+
+
+.division-section{
+  padding:20px 8%;
+  background:var(--silver);
+  text-align:center;
+}
+
+.division-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards desktop */
+  gap: 35px;
+  max-width: 1200px;
+  margin: 60px auto 0;
+}
+
+@media (max-width: 992px) { /* tablet */
+  .division-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards */
+  }
+}
+
+@media (max-width: 600px) { /* mobile */
+  .division-grid {
+    grid-template-columns: 1fr; /* 1 card */
+  }
+}
+
+
+.division-card{
+  background:var(--darkgreen);
+  padding:45px 35px;
+  border-radius:18px;
+  text-decoration:none;
+  color:#fff;
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+  transition:.35s;
+}
+
+.division-card:hover{
+transform:translateY(-8px);
+box-shadow:0 15px 40px rgba(0,0,0,.1);
+}
+
+.division-card h4{
+font: size 1.3rem;
+margin-bottom:12px;
+}
+
+.division-card p{
+font: size 1rem;
+opacity:.85;
+margin-bottom:18px;
+}
+
+.division-card span{
+font: size 1rem;;
+font-weight:500;
+color:var(--white);
+}
+
+@media(max-width:1024px){
+.division-grid{grid-template-columns:repeat(2,1fr);}
+}
+
+@media(max-width:768px){
+.division-grid{grid-template-columns:1fr;}
+}
+
+.division-btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 22px;
+  border-radius:30px;
+  background:linear-gradient(45deg,#00ffcc,#00a86b,#00f0ff,#00ff88);
+  color:#000;
+  font-weight:600;
+  animation:glow 3s linear infinite;
+}
+
+
+.client-strip{
+  padding:20px 0;
+  text-align:center;
+  color:#fff;
+  background-color:green;
+  overflow:hidden;
+  margin-bottom: 20px;
+}
+
+.logo-grid{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:40px;
+align-items:center;
+opacity:.6;
+}
+
+.logo-grid img{
+  max-width:120px;
+  margin:auto;
+  filter:grayscale(100%);
+  transition:.3s;
+}
+
+.logo-slider{
+  width:100%;
+  overflow:hidden;
+  border-radius:12px;
+}
+
+.logo-track{
+  display:flex;
+  gap:60px;
+  align-items:center;
+  width: fit-content;
+  animation:scroll 20s linear infinite;
+}
+
+.logo-set{
+  display: flex;
+  gap: 60px;
+  flex-shrink: 0;
+}
+
+@keyframes scroll{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(-50%); }
+}
+
+.logo-track img{
+  max-width:120px;
+  filter:grayscale(100%);
+  opacity:.6;
+  transition:.3s;
+}
+
+.logo-track img:hover{
+  filter:grayscale(0%);
+  opacity:1;
+}
+
+
+
+/* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">Freener's Digital Services</div>
+<nav class="nav" id="nav">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="services.html">Services</a>
+<a href="pricing.html">Pricing</a>
+<a href="marketplace.html">Marketplace</a>
+<a href="contact.html">Contact</a>
+<a href="payment-success.html">Payment</a>
+<a href="faq.html">FAQs</a>
+<a href="terms.html" class="mobile-only">Terms</a>
+<a href="privacy.html" class="mobile-only">Privacy</a>
+</nav>
+<div class="nav-toggle" id="toggle">&#9776;</div>
+</header>
+
+<main>
+
+<section class="portfolio-intro fade">
+  <h1 class="portfolio-title">Digital Solutions Marketplace</h1>
+  <p class="portfolio-sub">
+    A structured presentation of our digital platforms, intelligent systems, 
+    and enterprise infrastructure capabilities.
+  </p>
+</section>
+
+
+<section class="section fade">
+<h2 class="section-title">Our Performance Metrics</h2>
+<p class="section-sub">Measured impact across digital infrastructure & automation projects.</p>
+
+<div class="stats">
+<div class="stat-box">
+<h3 class="counter" data-target="120">0</h3>
+<p>Projects Delivered</p>
+</div>
+
+<div class="stat-box">
+<h3 class="counter" data-target="98">0</h3>
+<p>Client Satisfaction %</p>
+</div>
+
+<div class="stat-box">
+<h3 class="counter" data-target="35">0</h3>
+<p>Automation Systems Built</p>
+</div>
+
+<div class="stat-box">
+<h3 class="counter" data-target="15">0</h3>
+<p>Cloud Deployments</p>
+</div>
+</div>
+</section>
+
+<section class="division-section fade">
+<h2 class="section-title">Explore Our Divisions</h2>
+<p class="section-sub">Select a specialized portfolio to view detailed projects and systems.</p>
+
+<div class="division-grid">
+
+  <a href="website.html" class="division-card">
+<h4>Website Development</h4>
+<p>Professional business websites and responsive web platforms.</p>
+<span class="division-btn">Explore Portfolio</span>
+</a>
+
+<a href="Ai automation.html" class="division-card">
+<h4>AI Automation Systems</h4>
+<p>Intelligent automation solutions to streamline operations.</p>
+<span class="division-btn">Explore Portfolio</span>
+</a>
+
+<a href="full-saas.html" class="division-card">
+<h4>SaaS Applications</h4>
+<p>Custom software platforms built for scalability and growth.</p>
+<span class="division-btn">Explore Portfolio</span>
+</a>
+
+
+
+<a href="email-automation.html" class="division-card">
+<h4>Email Automation</h4>
+<p>Smart email workflows and marketing automation systems.</p>
+<span class="division-btn">Explore Portfolio</span>
+</a>
+
+<a href="cyber-security.html" class="division-card">
+<h4>Cyber Security</h4>
+<p>Advanced security systems and digital threat protection.</p>
+<span class="division-btn">Explore Portfolio</span>
+</a>
+
+
+<a href="writing.html" class="division-card">
+<h4>Writing & Translation Systems</h4>
+<p>Smart Content creation and multilingual communication platforms built for enterprise integration.</p>
+<span class="division-btn">Explore Portfolio</span>
+</a>
+
+<a href="file-management.html" class="division-card">
+<h4>File Management Systems</h4>
+<p>Secure digital document infrastructure with access control, version tracking, and scalability.</p>
+<span class="division-btn">Explore Portfolio</span>
+</a>
+
+<a href="smart-lead.html" class="division-card">
+<h4>Smart Lead Generation</h4>
+<p>Intelligent acquisition systems with automated qualification, and performance tracking.</p>
+<span class="division-btn">Explore Portfolio</span>
+</a>
+
+
+
+
+
+</div>
+</section>
+ 
+<section class="client-strip fade">
+<h3 class="strip-title">Trusted by Growing Brands & Enterprises</h3>
+<div class="logo-slider">
+    <div class="logo-track">
+      <img src="./images/X icon.png" alt="">
+      <img src="images/logo2.png" alt="">
+      <img src="images/logo3.png" alt="">
+      <img src="images/logo4.png" alt="">
+      <img src="images/logo5.png" alt="">
+      <img src="./images/logo.png" alt="">
+
+      <!-- Duplicate logos for seamless loop -->
+      <img src="./images/X icon.png" alt="">
+      <img src="images/logo2.png" alt="">
+      <img src="images/logo3.png" alt="">
+      <img src="images/logo4.png" alt="">
+      <img src="images/logo5.png" alt="">
+      <img src="./images/logo.png" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<div class="cta-block fade">
+<h2>Do you have a project in mind?<br>Let’s build something powerful together.</h2>
+<a href="contact.html" class="cta-btn">Let’s Get Started</a>
+</div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+<script>
+document.getElementById("toggle").onclick=function(){
+document.getElementById("nav").classList.toggle("active");
+}
+
+/* Fade in on scroll */
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+});
+document.querySelectorAll(".fade").forEach(el=>observer.observe(el));
+
+
+const counters = document.querySelectorAll('.counter');
+
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      const counter = entry.target;
+      const target = +counter.getAttribute('data-target');
+      let count = 0;
+      const increment = target / 100;
+
+      const updateCounter = () => {
+        if(count < target){
+          count += increment;
+          counter.innerText = Math.ceil(count);
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.innerText = target;
+        }
+      };
+
+      updateCounter();
+      counterObserver.unobserve(counter);
+    }
+  });
+},{
+  threshold:0.6
+});
+
+counters.forEach(counter => {
+  counterObserver.observe(counter);
+});
+
+fetch("https://modular-infrastructure-production.up.railway.app/api/status")
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+</script>
+
+</body>
+</html>

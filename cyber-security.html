@@ -1,0 +1,2464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybersecurity Projects — Freener's Digital Services</title>
+
+<style>
+:root{
+ --green:#00a86b;
+ --darkgreen:darkgreen;
+ --silver:#f2f2f2;
+ --text:#333;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:var(--silver);
+color:var(--text);
+}
+
+/* ================= NAV ================= */
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:var(--darkgreen);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+z-index:1000;
+}
+
+.logo{
+color:#fff;
+font-weight:700;
+}
+
+.nav{
+display:flex;
+gap:20px;
+}
+
+.nav a{
+color:#fff;
+text-decoration:none;
+font-weight:500;
+}
+
+.nav-toggle{
+display:none;
+color:#fff;
+font-size:1.8rem;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+.nav{
+position:fixed;
+top:70px;
+right:-100%;
+width:180px;
+background:var(--darkgreen);
+flex-direction:column;
+padding:20px;
+transition:.3s;
+}
+.nav.active{
+right:0;
+}
+.nav-toggle{
+display:block;
+}
+}
+
+/* ================= MAIN ================= */
+
+main{
+padding:110px 5% 60px;
+}
+
+.section-title{
+text-align:center;
+font-size:2rem;
+color:var(--green);
+margin-bottom:10px;
+}
+
+.section-sub{
+text-align:center;
+font-size:1.1rem;
+color:#555;
+margin-bottom:40px;
+}
+
+
+
+/* ================= GRID ================= */
+
+.cards{
+  display:grid;
+  gap:25px;
+  align-items:stretch;
+}
+
+@media (min-width:1024px){
+  .cards{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media (min-width:768px) and (max-width:1023px){
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media (max-width:767px){
+  .cards{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ================= CARD ================= */
+
+.video-card{
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  overflow:hidden;
+  transition:.3s;
+
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.video-card:hover{
+  transform:translateY(-5px);
+}
+
+/* ================= MEDIA ================= */
+
+.card-media{
+  position:relative;
+  height:200px; /* FIXED HEIGHT (prevents stretching) */
+  overflow:hidden;
+}
+
+.card-media video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  cursor:pointer;
+}
+
+
+/* ================= BODY ================= */
+
+.card-body{
+  padding:20px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  flex-grow:1;
+}
+
+/* ================= TEXT CONTROL ================= */
+
+.card-body p{
+  font-size:14px;
+  line-height:1.4;
+  max-height:60px;
+  overflow:hidden;
+}
+
+/* ================= PRICE ================= */
+
+.price{
+  background:var(--green);
+  color:#fff;
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:.85rem;
+  margin-bottom:12px;
+}
+
+/* ================= AGENT TAG ================= */
+
+.agent-tag{
+  display:inline-block;
+  font-size:.75rem;
+  background:#eee;
+  padding:4px 10px;
+  border-radius:12px;
+  margin-bottom:8px;
+}
+
+/* HIDE ANIMATION */
+.card.hide {
+  display: none;
+}
+
+/* CARD CTA – PREMIUM MULTI RADIATE */
+.card-btn{
+display:inline-block;
+margin-top:14px;
+padding:10px 22px;
+border-radius:30px;
+font-size:.9rem;
+font-weight:600;
+text-decoration:none;
+color:#000;
+background:linear-gradient(45deg,
+gold,
+#00ff88,
+aqua,
+crimson,
+lemonchiffon);
+background-size:300% 300%;
+animation:cardGradient 6s ease infinite;
+transition:.3s;
+}
+
+.card-btn:hover{
+transform:scale(1.05);
+}
+
+@keyframes cardGradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.card-btn.order-btn{
+  background:#00c896 !important;
+  color:#fff !important;
+
+  /* kill gradient completely */
+  background-image:none !important;
+  animation:none !important;
+}
+
+.card-btn.order-btn:hover{
+  background:#00b386 !important;
+}
+
+
+/* WRAPPER (centers everything) */
+.controls-wrapper{
+  position: sticky;
+  top: 70px;
+  z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+/* INNER CONTROLS (clean card look) */
+.controls{
+  width: 100%;
+  max-width: 900px;
+
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+
+  padding: 12px;
+  border-radius: 16px;
+
+  backdrop-filter: blur(14px);
+  background: green;
+
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+/* GLASS EFFECT BASE */
+.search-box,
+.filter-container{
+  position:relative;
+  flex:1;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.6);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* ICON */
+.icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* INPUT */
+.search-box input{
+  width:100%;
+  padding:14px 14px 14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  outline:none;
+}
+
+/* SELECT */
+.filter-container select{
+  width:100%;
+  padding:14px 14px 14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  cursor:pointer;
+  outline:none;
+  appearance:none;
+}
+
+/* CUSTOM ARROW */
+.filter-container::after{
+  content:"▼";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  opacity:0.6;
+}
+
+/* FOCUS EFFECT */
+.search-box:focus-within,
+.filter-container:focus-within{
+  border:1px solid rgba(0,200,150,.6);
+  box-shadow:0 0 0 3px rgba(0,200,150,.15);
+}
+
+/* SORT BOX (GLASS) */
+.sort-box{
+  position:relative;
+  flex:1;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.6);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* SELECT */
+.sort-box select{
+  width:100%;
+  padding:14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  cursor:pointer;
+  outline:none;
+  appearance:none;
+}
+
+/* ICON */
+.sort-box .icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* CUSTOM ARROW */
+.sort-box::after{
+  content:"▼";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  opacity:0.6;
+}
+
+/* FOCUS EFFECT */
+.sort-box:focus-within{
+  border:1px solid rgba(0,200,150,.6);
+  box-shadow:0 0 0 3px rgba(0,200,150,.15);
+}
+
+/* ================= CONTROLS ================= */
+
+.controls{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:25px;
+}
+
+/* SEARCH BOX */
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff;
+}
+
+/* FILTER + SORT ROW */
+.controls-row{
+  display:flex;
+  gap:12px;
+}
+
+/* FILTER + SORT BOXES */
+.filter-container,
+.sort-box{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:1;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff;
+}
+
+/* INPUTS */
+.search-box input,
+.filter-container select,
+.sort-box select{
+  width:100%;
+  border:none;
+  outline:none;
+  background:transparent;
+  font-size:14px;
+}
+
+/* ICON */
+.icon{
+  flex-shrink:0;
+}
+
+
+
+/* FINAL CTA */
+.cta-block{
+background:#111;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+border-radius:15px;
+margin:60px 0;
+}
+
+/* ================= CTA BLOCK ================= */
+.cta-block{
+background:#111;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+border-radius:15px;
+margin-bottom:30px;
+}
+.cta-btn{
+display:inline-block;
+margin-top:20px;
+padding:14px 30px;
+border-radius:40px;
+background:linear-gradient(45deg,#00ffcc,#00a86b,#00f0ff,#00ff88);
+color:#000;
+font-weight:600;
+text-decoration:none;
+animation:glow 3s infinite linear;
+}
+@keyframes glow{
+0%{filter:hue-rotate(0deg)}
+100%{filter:hue-rotate(360deg)}
+}
+
+/* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">Freener's Digital Services</div>
+
+<nav class="nav" id="nav">
+<a href="marketplace.html">Marketplace</a>
+</nav>
+
+<div class="nav-toggle" id="toggle">&#9776;</div>
+</header>
+
+<main>
+
+<h2 class="section-title">Cybersecurity & Infrastructure Protection</h2>
+<p class="section-sub">
+Security-focused infrastructure implementations designed to protect digital assets, manage access controls, and maintain system integrity.
+</p>
+
+<div class="controls-wrapper">
+
+  <div class="controls">
+
+    <!-- SEARCH -->
+    <div class="search-box">
+      <span class="icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search digital solutions..." />
+    </div>
+
+    <!-- FILTER + SORT ROW -->
+    <div class="controls-row">
+
+    <!-- FILTER -->
+    <div class="filter-container">
+      <span class="icon">⚙️</span>
+      <select id="filterSelect">
+        <option value="all">All Categories</option>
+        <option value="cyber-threat">Threat Detection Systems</option>
+        <option value="cyber-vulnerability">Vulnerability & Testing Systems</option>
+        <option value="cyber-identity"> Access & Identity Systems</option>
+        <option value="cyber-protection"> Data Protection Systems</option>
+        <option value="cyber-logging"> Logging & Intelligence Systems</option>
+        <option value="cyber-defense">Active Defense Systems</option>
+      </select>
+    </div>
+
+    <div class="sort-box">
+  <span class="icon">📊</span>
+  <select id="sortSelect">
+    <option value="default">Sort</option>
+    <option value="low">Price: Low → High</option>
+    <option value="high">Price: High → Low</option>
+  </select>
+</div>
+</div>
+</div>
+</div>
+
+<div class="cards">
+
+
+<div class="video-card"
+  data-id="121"
+  data-name="Threatra"
+  data-fullname="Threat Detection Engine"
+  data-type="system"
+  data-category="cyber-threat"
+  data-setup="320"
+  data-monthly="240"
+  data-label="Cyber Security System"
+  data-description="A system that identifies potential cyber threats using behavioral indicators, pattern deviation, and threat signature modeling"
+  data-modules='[
+    {"name":"Threat Signature Engine","price":40},
+    {"name":"Deviation Pattern Detector","price":40},
+    {"name":"Behavioral Risk Scanner","price":35},
+    {"name":"Threat Indicator Mapper","price":35},
+    {"name":"Risk Signal Aggregator","price":45},
+    {"name":"Threat Probability Engine","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/threat-detection.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Threatra</span>
+    <span class="price">$240 / month</span>
+
+    <p>Threat Detection Engine — identify threats before they become attacks.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Threat Signatures</li>
+        <li>Pattern Deviation</li>
+        <li>Risk Scanning</li>
+        <li>Indicator Mapping</li>
+        <li>Signal Aggregation</li>
+        <li>Threat Probability</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+    <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="122"
+  data-name="Intruxionyx"
+  data-fullname="Intrusion Detection System"
+  data-type="system"
+  data-category="cyber-threat"
+  data-setup="350"
+  data-monthly="260"
+  data-label="Cyber Security System"
+  data-description="A system that detects unauthorized system entry attempts by analyzing access anomalies and unauthorized interaction patterns"
+  data-modules='[
+    {"name":"Unauthorized Access Analyzer","price":45},
+    {"name":"Entry Pattern Inspector","price":40},
+    {"name":"Access Deviation Engine","price":40},
+    {"name":"Intrusion Signal Detector","price":45},
+    {"name":"Entry Attempt Tracker","price":45},
+    {"name":"Access Violation Identifier","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/intrusion-detection.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Intruxionyx</span>
+    <span class="price">$260 / month</span>
+
+    <p>Intrusion Detection System — detect unauthorized access attempts instantly.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Access Analysis</li>
+        <li>Entry Inspection</li>
+        <li>Deviation Detection</li>
+        <li>Intrusion Signals</li>
+        <li>Attempt Tracking</li>
+        <li>Violation Identification</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="123"
+  data-name="Behavionyx"
+  data-fullname="Behavior Monitoring Engine"
+  data-type="system"
+  data-category="cyber-threat"
+  data-setup="330"
+  data-monthly="250"
+  data-label="Cyber Security System"
+  data-description="A system that detects abnormal user and system behaviors by analyzing behavioral baselines and identifying suspicious activity shifts"
+  data-modules='[
+    {"name":"Behavior Baseline Engine","price":40},
+    {"name":"Anomaly Shift Detector","price":40},
+    {"name":"User Behavior Profiler","price":40},
+    {"name":"Activity Deviation Scanner","price":40},
+    {"name":"Behavior Drift Analyzer","price":45},
+    {"name":"Suspicious Pattern Engine","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/behavior-monitoring.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Behavionyx</span>
+    <span class="price">$250 / month</span>
+
+    <p>Behavior Monitoring Engine — detect abnormal activities before damage occurs.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Behavior Baseline</li>
+        <li>Anomaly Detection</li>
+        <li>User Profiling</li>
+        <li>Activity Scanning</li>
+        <li>Behavior Drift</li>
+        <li>Suspicious Patterns</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="124"
+  data-name="Netrionex"
+  data-fullname="Network Monitoring System"
+  data-type="system"
+  data-category="cyber-threat"
+  data-setup="340"
+  data-monthly="255"
+  data-label="Cyber Security System"
+  data-description="A system that detects suspicious network-level activities by analyzing traffic behavior, connection anomalies, and communication irregularities"
+  data-modules='[
+    {"name":"Traffic Pattern Analyzer","price":45},
+    {"name":"Connection Behavior Inspector","price":40},
+    {"name":"Protocol Deviation Detector","price":40},
+    {"name":"Network Flow Scanner","price":45},
+    {"name":"Communication Irregularity Engine","price":45},
+    {"name":"Signal Disruption Detector","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/network-monitoring.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Netrionex</span>
+    <span class="price">$255 / month</span>
+
+    <p>Network Monitoring System — detect abnormal network activity before escalation.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Traffic Analysis</li>
+        <li>Connection Inspection</li>
+        <li>Protocol Deviation</li>
+        <li>Flow Scanning</li>
+        <li>Communication Irregularities</li>
+        <li>Signal Disruption Detection</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="125"
+  data-name="Alertyx"
+  data-fullname="Real-Time Alert Engine"
+  data-type="system"
+  data-category="cyber-threat"
+  data-setup="300"
+  data-monthly="230"
+  data-label="Cyber Security System"
+  data-description="A system that generates immediate threat alerts by detecting critical risk signals and triggering instant notification workflows"
+  data-modules='[
+    {"name":"Threat Signal Trigger","price":40},
+    {"name":"Instant Alert Generator","price":40},
+    {"name":"Priority Risk Engine","price":40},
+    {"name":"Event Trigger System","price":40},
+    {"name":"Alert Routing Logic","price":35},
+    {"name":"Critical Signal Dispatcher","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/alert-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Alertyx</span>
+    <span class="price">$230 / month</span>
+
+    <p>Real-Time Alert Engine — get instant alerts when threats emerge.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Signal Triggers</li>
+        <li>Alert Generation</li>
+        <li>Risk Prioritization</li>
+        <li>Event Detection</li>
+        <li>Alert Routing</li>
+        <li>Signal Dispatching</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="126"
+  data-name="Anomatrix"
+  data-fullname="Anomaly Detection System"
+  data-type="system"
+  data-category="cyber-threat"
+  data-setup="360"
+  data-monthly="270"
+  data-label="Cyber Security System"
+  data-description="A system that identifies unknown and emerging threats by detecting hidden anomalies across systems, behaviors, and data patterns"
+  data-modules='[
+    {"name":"Anomaly Pattern Engine","price":45},
+    {"name":"Unknown Behavior Detector","price":45},
+    {"name":"Outlier Identification System","price":40},
+    {"name":"Pattern Irregularity Scanner","price":45},
+    {"name":"Hidden Threat Detector","price":45},
+    {"name":"Adaptive Learning Engine","price":50}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/anomaly-detection.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Anomatrix</span>
+    <span class="price">$270 / month</span>
+
+    <p>Anomaly Detection System — uncover hidden threats others miss.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Anomaly Patterns</li>
+        <li>Unknown Behavior</li>
+        <li>Outlier Detection</li>
+        <li>Irregularity Scanning</li>
+        <li>Hidden Threat Detection</li>
+        <li>Adaptive Intelligence</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="141"
+  data-name="Cryptara"
+  data-fullname="Data Encryption Engine"
+  data-type="system"
+  data-category="cyber-protection"
+  data-setup="380"
+  data-monthly="290"
+  data-label="Cyber Security System"
+  data-description="A system that secures sensitive data through advanced encryption layers, ensuring data remains protected both at rest and in transmission"
+  data-modules='[
+    {"name":"Encryption Core Engine","price":50},
+    {"name":"Data Transformation Layer","price":45},
+    {"name":"Secure Key Generation System","price":50},
+    {"name":"Encryption Policy Manager","price":45},
+    {"name":"Secure Transmission Layer","price":50},
+    {"name":"Encryption Integrity Monitor","price":50}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/encryption-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Cryptara</span>
+    <span class="price">$290 / month</span>
+
+    <p>Data Encryption Engine — protect sensitive data with advanced encryption layers.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Encryption Core</li>
+        <li>Data Transformation</li>
+        <li>Key Generation</li>
+        <li>Policy Control</li>
+        <li>Secure Transmission</li>
+        <li>Integrity Monitoring</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="142"
+  data-name="Leakronyx"
+  data-fullname="Data Leak Prevention System"
+  data-type="system"
+  data-category="cyber-protection"
+  data-setup="360"
+  data-monthly="275"
+  data-label="Cyber Security System"
+  data-description="A system that prevents unauthorized data exposure by detecting sensitive data movement and blocking risky data transfer channels"
+  data-modules='[
+    {"name":"Data Movement Analyzer","price":45},
+    {"name":"Sensitive Data Identifier","price":45},
+    {"name":"Leak Channel Blocker","price":45},
+    {"name":"Transfer Risk Engine","price":45},
+    {"name":"Outbound Data Filter","price":45},
+    {"name":"Leak Prevention Controller","price":50}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/data-leak.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Leakronyx</span>
+    <span class="price">$275 / month</span>
+
+    <p>Data Leak Prevention System — stop sensitive data from leaving your system.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Data Movement Analysis</li>
+        <li>Sensitive Data Detection</li>
+        <li>Leak Channel Blocking</li>
+        <li>Transfer Risk Control</li>
+        <li>Outbound Filtering</li>
+        <li>Leak Prevention Logic</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="143"
+  data-name="Vaultrexia"
+  data-fullname="Secure Storage Protection Engine"
+  data-type="system"
+  data-category="cyber-protection"
+  data-setup="400"
+  data-monthly="310"
+  data-label="Cyber Security System"
+  data-description="A system that protects stored data by securing storage environments, enforcing protection layers, and preventing unauthorized data access"
+  data-modules='[
+    {"name":"Storage Security Layer","price":50},
+    {"name":"Protected Storage Engine","price":50},
+    {"name":"Access Shield System","price":50},
+    {"name":"Storage Isolation Module","price":50},
+    {"name":"Secure Storage Enforcement","price":55},
+    {"name":"Data Protection Layer","price":55}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/storage-protection.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Vaultrexia</span>
+    <span class="price">$310 / month</span>
+
+    <p>Secure Storage Engine — protect stored data from unauthorized access.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Storage Security</li>
+        <li>Protected Storage</li>
+        <li>Access Shield</li>
+        <li>Storage Isolation</li>
+        <li>Security Enforcement</li>
+        <li>Protection Layer</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="144"
+  data-name="Backtrionyx"
+  data-fullname="Backup Protection System"
+  data-type="system"
+  data-category="cyber-protection"
+  data-setup="350"
+  data-monthly="260"
+  data-label="Cyber Security System"
+  data-description="A system that safeguards data through intelligent backup protection, ensuring data recovery, version control, and resilience against data loss events"
+  data-modules='[
+    {"name":"Backup Replication Engine","price":45},
+    {"name":"Version Snapshot System","price":40},
+    {"name":"Recovery Point Manager","price":45},
+    {"name":"Backup Integrity Validator","price":45},
+    {"name":"Recovery Orchestration Engine","price":45},
+    {"name":"Resilience Control System","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/backup-protection.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Backtrionyx</span>
+    <span class="price">$260 / month</span>
+
+    <p>Backup Protection System — secure your data with intelligent recovery and resilience.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Backup Replication</li>
+        <li>Version Snapshots</li>
+        <li>Recovery Points</li>
+        <li>Integrity Validation</li>
+        <li>Recovery Orchestration</li>
+        <li>Resilience Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="145"
+  data-name="Acessira"
+  data-fullname="Data Access Control Engine"
+  data-type="system"
+  data-category="cyber-protection"
+  data-setup="370"
+  data-monthly="280"
+  data-label="Cyber Security System"
+  data-description="A system that governs how data is accessed by enforcing strict access rules, usage boundaries, and controlled data interaction policies"
+  data-modules='[
+    {"name":"Access Rule Engine","price":45},
+    {"name":"Permission Boundary System","price":45},
+    {"name":"Usage Control Layer","price":45},
+    {"name":"Access Session Regulator","price":45},
+    {"name":"Privilege Limitation Engine","price":50},
+    {"name":"Data Interaction Controller","price":50}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/access-control.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Acessira</span>
+    <span class="price">$280 / month</span>
+
+    <p>Data Access Control Engine — control how and when data is accessed.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Access Rules</li>
+        <li>Permission Boundaries</li>
+        <li>Usage Control</li>
+        <li>Session Regulation</li>
+        <li>Privilege Limiting</li>
+        <li>Interaction Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="146"
+  data-name="Integrionyx"
+  data-fullname="Data Integrity Protection System"
+  data-type="system"
+  data-category="cyber-protection"
+  data-setup="390"
+  data-monthly="300"
+  data-label="Cyber Security System"
+  data-description="A system that ensures data remains accurate, consistent, and unaltered by detecting unauthorized changes and preserving data integrity across systems"
+  data-modules='[
+    {"name":"Integrity Verification Engine","price":50},
+    {"name":"Change Detection System","price":45},
+    {"name":"Data Consistency Validator","price":45},
+    {"name":"Tamper Detection Layer","price":50},
+    {"name":"Integrity Audit Engine","price":55},
+    {"name":"Data Preservation Controller","price":55}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/data-integrity.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Integrionyx</span>
+    <span class="price">$300 / month</span>
+
+    <p>Data Integrity System — ensure your data remains accurate and untampered.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Integrity Verification</li>
+        <li>Change Detection</li>
+        <li>Consistency Validation</li>
+        <li>Tamper Detection</li>
+        <li>Integrity Audits</li>
+        <li>Data Preservation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="161"
+  data-name="Identra"
+  data-fullname="Identity Verification Engine"
+  data-type="system"
+  data-category="cyber-identity"
+  data-setup="360"
+  data-monthly="270"
+  data-label="Cyber Security System"
+  data-description="A system that verifies user identity through multi-factor identity validation processes, ensuring only legitimate users are recognized before access is granted"
+  data-modules='[
+    {"name":"Identity Validation Engine","price":45},
+    {"name":"Credential Matching System","price":45},
+    {"name":"Biometric Verification Layer","price":50},
+    {"name":"Identity Trust Scoring Engine","price":45},
+    {"name":"Verification Flow Controller","price":40},
+    {"name":"Identity Proofing Module","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/identity-verification.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Identra</span>
+    <span class="price">$270 / month</span>
+
+    <p>Identity Verification Engine — confirm user identity before granting access.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Identity Validation</li>
+        <li>Credential Matching</li>
+        <li>Biometric Verification</li>
+        <li>Trust Scoring</li>
+        <li>Verification Flow</li>
+        <li>Identity Proofing</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="162"
+  data-name="Gatexion"
+  data-fullname="Access Control System"
+  data-type="system"
+  data-category="cyber-identity"
+  data-setup="340"
+  data-monthly="260"
+  data-label="Cyber Security System"
+  data-description="A system that governs system entry by defining structured access rules, entry permissions, and controlled environment boundaries for users"
+  data-modules='[
+    {"name":"Access Policy Engine","price":45},
+    {"name":"Entry Authorization System","price":45},
+    {"name":"Access Zone Controller","price":40},
+    {"name":"Permission Mapping Engine","price":45},
+    {"name":"Entry Condition Validator","price":40},
+    {"name":"Access Boundary Manager","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/access-control-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Gatexion</span>
+    <span class="price">$260 / month</span>
+
+    <p>Access Control System — define who can enter and under what conditions.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Access Policies</li>
+        <li>Entry Authorization</li>
+        <li>Access Zones</li>
+        <li>Permission Mapping</li>
+        <li>Condition Validation</li>
+        <li>Boundary Management</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="163"
+  data-name="Authrixa"
+  data-fullname="Authentication Engine"
+  data-type="system"
+  data-category="cyber-identity"
+  data-setup="350"
+  data-monthly="265"
+  data-label="Cyber Security System"
+  data-description="A system that authenticates user identity through secure login validation processes, ensuring authorized access using trusted authentication mechanisms"
+  data-modules='[
+    {"name":"Login Validation Engine","price":45},
+    {"name":"Credential Verification Layer","price":45},
+    {"name":"Authentication Protocol Manager","price":45},
+    {"name":"Secure Login Flow Controller","price":40},
+    {"name":"Token Generation System","price":45},
+    {"name":"Authentication Session Initiator","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/authentication-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Authrixa</span>
+    <span class="price">$265 / month</span>
+
+    <p>Authentication Engine — securely validate user identity during login.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Login Validation</li>
+        <li>Credential Verification</li>
+        <li>Authentication Protocols</li>
+        <li>Secure Login Flow</li>
+        <li>Token Generation</li>
+        <li>Session Initiation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="164"
+  data-name="Multivara"
+  data-fullname="Multi-Factor Authentication System"
+  data-type="system"
+  data-category="cyber-identity"
+  data-setup="370"
+  data-monthly="280"
+  data-label="Cyber Security System"
+  data-description="A system that enforces layered identity verification by requiring multiple independent authentication factors before granting system access"
+  data-modules='[
+    {"name":"Factor Orchestration Engine","price":45},
+    {"name":"Multi-Step Validation Flow","price":45},
+    {"name":"Device Trust Evaluator","price":45},
+    {"name":"Verification Channel Manager","price":45},
+    {"name":"Adaptive Factor Selector","price":50},
+    {"name":"Auth Challenge Coordinator","price":50}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/mfa-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Multivara</span>
+    <span class="price">$280 / month</span>
+
+    <p>Multi-Factor Authentication — enforce layered identity verification.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Factor Orchestration</li>
+        <li>Multi-Step Validation</li>
+        <li>Device Trust Evaluation</li>
+        <li>Verification Channels</li>
+        <li>Adaptive Factor Selection</li>
+        <li>Auth Challenge Coordination</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="165"
+  data-name="Sessoryx"
+  data-fullname="Session Monitoring Engine"
+  data-type="system"
+  data-category="cyber-identity"
+  data-setup="340"
+  data-monthly="255"
+  data-label="Cyber Security System"
+  data-description="A system that supervises active user sessions by tracking session behavior, detecting abnormal session activity, and enforcing session lifecycle controls"
+  data-modules='[
+    {"name":"Session Lifecycle Manager","price":45},
+    {"name":"Active Session Tracker","price":40},
+    {"name":"Session Behavior Profiler","price":45},
+    {"name":"Concurrent Session Controller","price":40},
+    {"name":"Session Expiry Regulator","price":40},
+    {"name":"Session Risk Evaluator","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/session-monitor.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Sessoryx</span>
+    <span class="price">$255 / month</span>
+
+    <p>Session Monitoring Engine — control and supervise active user sessions.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Session Lifecycle</li>
+        <li>Session Tracking</li>
+        <li>Behavior Profiling</li>
+        <li>Concurrent Control</li>
+        <li>Expiry Regulation</li>
+        <li>Risk Evaluation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="166"
+  data-name="Rolentrax"
+  data-fullname="Role-Based Access System"
+  data-type="system"
+  data-category="cyber-identity"
+  data-setup="360"
+  data-monthly="270"
+  data-label="Cyber Security System"
+  data-description="A system that assigns and manages access rights based on user roles, ensuring structured access control aligned with organizational responsibilities"
+  data-modules='[
+    {"name":"Role Definition Engine","price":45},
+    {"name":"Permission Structuring System","price":45},
+    {"name":"Role Assignment Manager","price":45},
+    {"name":"Access Hierarchy Builder","price":45},
+    {"name":"Role Mapping Engine","price":45},
+    {"name":"Privilege Distribution Controller","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/role-access.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Rolentrax</span>
+    <span class="price">$270 / month</span>
+
+    <p>Role-Based Access System — manage access based on roles and responsibilities.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Role Definition</li>
+        <li>Permission Structuring</li>
+        <li>Role Assignment</li>
+        <li>Access Hierarchy</li>
+        <li>Role Mapping</li>
+        <li>Privilege Distribution</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="181"
+  data-name="Vulnexis"
+  data-fullname="Vulnerability Scanner"
+  data-type="system"
+  data-category="cyber-vulnerability"
+  data-setup="360"
+  data-monthly="270"
+  data-label="Cyber Security System"
+  data-description="A system that scans systems, applications, and environments to identify security weaknesses before they can be exploited"
+  data-modules='[
+    {"name":"Surface Scan Engine","price":45},
+    {"name":"Weakness Detection Core","price":45},
+    {"name":"Exposure Mapping System","price":45},
+    {"name":"Scan Depth Controller","price":40},
+    {"name":"Vulnerability Index Engine","price":45},
+    {"name":"Scan Coverage Manager","price":50}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/vulnerability-scan.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Vulnexis</span>
+    <span class="price">$270 / month</span>
+
+    <p>Vulnerability Scanner — uncover system weaknesses before attackers do.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Surface Scanning</li>
+        <li>Weakness Detection</li>
+        <li>Exposure Mapping</li>
+        <li>Scan Depth Control</li>
+        <li>Vulnerability Indexing</li>
+        <li>Coverage Management</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+  <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="182"
+  data-name="Pentorix"
+  data-fullname="Penetration Testing Engine"
+  data-type="system"
+  data-category="cyber-vulnerability"
+  data-setup="420"
+  data-monthly="320"
+  data-label="Cyber Security System"
+  data-description="A system that simulates controlled attack scenarios to test system defenses and expose exploitable vulnerabilities under real-world conditions"
+  data-modules='[
+    {"name":"Attack Simulation Engine","price":55},
+    {"name":"Exploit Scenario Builder","price":55},
+    {"name":"Controlled Breach Tester","price":50},
+    {"name":"Defense Stress Engine","price":55},
+    {"name":"Exploit Path Mapper","price":50},
+    {"name":"Test Execution Controller","price":55}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/penetration-test.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Pentorix</span>
+    <span class="price">$320 / month</span>
+
+    <p>Penetration Testing Engine — simulate attacks to reveal real vulnerabilities.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Attack Simulation</li>
+        <li>Exploit Scenarios</li>
+        <li>Controlled Breach Testing</li>
+        <li>Defense Stress Testing</li>
+        <li>Exploit Path Mapping</li>
+        <li>Test Execution Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="183"
+  data-name="Auditraxion"
+  data-fullname="Security Audit System"
+  data-type="system"
+  data-category="cyber-vulnerability"
+  data-setup="390"
+  data-monthly="295"
+  data-label="Cyber Security System"
+  data-description="A system that performs structured security audits by reviewing configurations, policies, and system states to identify compliance gaps and risks"
+  data-modules='[
+    {"name":"Configuration Review Engine","price":50},
+    {"name":"Policy Audit System","price":45},
+    {"name":"Compliance Gap Analyzer","price":50},
+    {"name":"System State Inspector","price":45},
+    {"name":"Audit Workflow Manager","price":50},
+    {"name":"Risk Exposure Reviewer","price":55}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/security-audit.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Auditraxion</span>
+    <span class="price">$295 / month</span>
+
+    <p>Security Audit System — evaluate system security posture and compliance gaps.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Configuration Review</li>
+        <li>Policy Auditing</li>
+        <li>Compliance Analysis</li>
+        <li>System Inspection</li>
+        <li>Audit Workflows</li>
+        <li>Risk Review</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="184"
+  data-name="Codevra"
+  data-fullname="Code Security Scanner"
+  data-type="system"
+  data-category="cyber-vulnerability"
+  data-setup="380"
+  data-monthly="285"
+  data-label="Cyber Security System"
+  data-description="A system that analyzes application code to identify hidden security flaws, unsafe logic structures, and potential exploit points before deployment"
+  data-modules='[
+    {"name":"Static Code Analyzer","price":50},
+    {"name":"Logic Vulnerability Detector","price":45},
+    {"name":"Unsafe Pattern Scanner","price":45},
+    {"name":"Dependency Risk Inspector","price":50},
+    {"name":"Code Exposure Mapper","price":45},
+    {"name":"Pre-Deploy Scan Engine","price":50}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/code-scan.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Codevra</span>
+    <span class="price">$285 / month</span>
+
+    <p>Code Security Scanner — detect vulnerabilities inside your code before release.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Static Code Analysis</li>
+        <li>Logic Flaw Detection</li>
+        <li>Unsafe Pattern Scanning</li>
+        <li>Dependency Risk Inspection</li>
+        <li>Code Exposure Mapping</li>
+        <li>Pre-Deploy Scanning</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="185"
+  data-name="Riskorix"
+  data-fullname="Risk Assessment Engine"
+  data-type="system"
+  data-category="cyber-vulnerability"
+  data-setup="370"
+  data-monthly="275"
+  data-label="Cyber Security System"
+  data-description="A system that evaluates security risks by calculating impact levels, likelihood probabilities, and system exposure across operational environments"
+  data-modules='[
+    {"name":"Risk Scoring Engine","price":45},
+    {"name":"Impact Evaluation System","price":45},
+    {"name":"Threat Likelihood Model","price":45},
+    {"name":"Exposure Analysis Engine","price":45},
+    {"name":"Risk Prioritization Matrix","price":45},
+    {"name":"Risk Classification System","price":50}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/risk-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Riskorix</span>
+    <span class="price">$275 / month</span>
+
+    <p>Risk Assessment Engine — evaluate and prioritize security risks accurately.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Risk Scoring</li>
+        <li>Impact Evaluation</li>
+        <li>Likelihood Modeling</li>
+        <li>Exposure Analysis</li>
+        <li>Risk Prioritization</li>
+        <li>Risk Classification</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="186"
+  data-name="Patchronyx"
+  data-fullname="Patch Management System"
+  data-type="system"
+  data-category="cyber-vulnerability"
+  data-setup="360"
+  data-monthly="270"
+  data-label="Cyber Security System"
+  data-description="A system that manages security patches by identifying outdated components, scheduling updates, and ensuring systems remain protected against known vulnerabilities"
+  data-modules='[
+    {"name":"Patch Detection Engine","price":45},
+    {"name":"Update Scheduling System","price":40},
+    {"name":"Patch Deployment Controller","price":45},
+    {"name":"Version Gap Analyzer","price":45},
+    {"name":"Patch Compliance Tracker","price":45},
+    {"name":"System Update Orchestrator","price":50}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/patch-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Patchronyx</span>
+    <span class="price">$270 / month</span>
+
+    <p>Patch Management System — keep systems updated and protected from known vulnerabilities.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Patch Detection</li>
+        <li>Update Scheduling</li>
+        <li>Patch Deployment</li>
+        <li>Version Gap Analysis</li>
+        <li>Compliance Tracking</li>
+        <li>Update Orchestration</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="201"
+  data-name="Logentrix"
+  data-fullname="Security Logging Engine"
+  data-type="system"
+  data-category="cyber-logging"
+  data-setup="340"
+  data-monthly="255"
+  data-label="Cyber Security System"
+  data-description="A system that records and structures security-related events into organized logs for traceability, auditing, and future analysis"
+  data-modules='[
+    {"name":"Event Capture Engine","price":40},
+    {"name":"Log Structuring System","price":40},
+    {"name":"Log Storage Formatter","price":40},
+    {"name":"Event Categorization Engine","price":45},
+    {"name":"Log Stream Processor","price":45},
+    {"name":"Record Normalization System","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/security-logging.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Logentrix</span>
+    <span class="price">$255 / month</span>
+
+    <p>Security Logging Engine — record and organize all system security events.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Event Capture</li>
+        <li>Log Structuring</li>
+        <li>Log Formatting</li>
+        <li>Event Categorization</li>
+        <li>Stream Processing</li>
+        <li>Record Normalization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="202"
+  data-name="Activionyx"
+  data-fullname="Activity Monitoring System"
+  data-type="system"
+  data-category="cyber-logging"
+  data-setup="350"
+  data-monthly="265"
+  data-label="Cyber Security System"
+  data-description="A system that tracks and records user and system activities to provide visibility into operational behavior across environments"
+  data-modules='[
+    {"name":"Activity Tracking Engine","price":45},
+    {"name":"Interaction Mapping System","price":45},
+    {"name":"Action Recording Module","price":40},
+    {"name":"Activity Timeline Builder","price":45},
+    {"name":"User Interaction Logger","price":45},
+    {"name":"Operation Flow Tracker","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/activity-monitoring.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Activionyx</span>
+    <span class="price">$265 / month</span>
+
+    <p>Activity Monitoring System — track all system and user activities.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Activity Tracking</li>
+        <li>Interaction Mapping</li>
+        <li>Action Recording</li>
+        <li>Timeline Building</li>
+        <li>User Logging</li>
+        <li>Operation Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="203"
+  data-name="Trailixor"
+  data-fullname="Audit Trail Engine"
+  data-type="system"
+  data-category="cyber-logging"
+  data-setup="360"
+  data-monthly="275"
+  data-label="Cyber Security System"
+  data-description="A system that builds complete traceable histories of system actions, enabling full accountability and historical tracking of events"
+  data-modules='[
+    {"name":"Trace Builder Engine","price":45},
+    {"name":"Event Sequencing System","price":45},
+    {"name":"History Reconstruction Module","price":45},
+    {"name":"Trace Linking Engine","price":45},
+    {"name":"Audit Record Generator","price":45},
+    {"name":"Chronology Mapping System","price":50}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/audit-trail.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Trailixor</span>
+    <span class="price">$275 / month</span>
+
+    <p>Audit Trail Engine — maintain complete traceability of system actions.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Trace Building</li>
+        <li>Event Sequencing</li>
+        <li>History Reconstruction</li>
+        <li>Trace Linking</li>
+        <li>Audit Records</li>
+        <li>Chronology Mapping</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="204"
+  data-name="Analytixor"
+  data-fullname="Log Analysis System"
+  data-type="system"
+  data-category="cyber-logging"
+  data-setup="370"
+  data-monthly="285"
+  data-label="Cyber Security System"
+  data-description="A system that processes structured logs to extract meaningful insights, identify patterns, and reveal hidden operational signals"
+  data-modules='[
+    {"name":"Log Parsing Engine","price":45},
+    {"name":"Pattern Extraction System","price":45},
+    {"name":"Signal Interpretation Engine","price":45},
+    {"name":"Data Aggregation Layer","price":45},
+    {"name":"Insight Generation Module","price":50},
+    {"name":"Analysis Workflow Engine","price":55}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/log-analysis.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Analytixor</span>
+    <span class="price">$285 / month</span>
+
+    <p>Log Analysis System — turn raw logs into meaningful intelligence.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Log Parsing</li>
+        <li>Pattern Extraction</li>
+        <li>Signal Interpretation</li>
+        <li>Data Aggregation</li>
+        <li>Insight Generation</li>
+        <li>Analysis Workflow</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="205"
+  data-name="Intelvora"
+  data-fullname="Threat Intelligence Engine"
+  data-type="system"
+  data-category="cyber-logging"
+  data-setup="400"
+  data-monthly="310"
+  data-label="Cyber Security System"
+  data-description="A system that transforms collected security data into strategic intelligence by identifying patterns, trends, and contextual threat insights"
+  data-modules='[
+    {"name":"Intelligence Aggregation Engine","price":50},
+    {"name":"Context Mapping System","price":50},
+    {"name":"Threat Insight Generator","price":50},
+    {"name":"Trend Recognition Engine","price":50},
+    {"name":"Intelligence Classification System","price":55},
+    {"name":"Strategic Insight Layer","price":55}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/threat-intelligence.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Intelvora</span>
+    <span class="price">$310 / month</span>
+
+    <p>Threat Intelligence Engine — convert data into actionable security intelligence.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Intelligence Aggregation</li>
+        <li>Context Mapping</li>
+        <li>Insight Generation</li>
+        <li>Trend Recognition</li>
+        <li>Intelligence Classification</li>
+        <li>Strategic Insights</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="206"
+  data-name="Correlixion"
+  data-fullname="Event Correlation System"
+  data-type="system"
+  data-category="cyber-logging"
+  data-setup="380"
+  data-monthly="295"
+  data-label="Cyber Security System"
+  data-description="A system that connects multiple independent events to uncover relationships, sequences, and hidden links across system activities"
+  data-modules='[
+    {"name":"Event Linking Engine","price":50},
+    {"name":"Sequence Correlation System","price":45},
+    {"name":"Multi-Event Mapper","price":45},
+    {"name":"Correlation Pattern Engine","price":45},
+    {"name":"Relationship Detection Layer","price":45},
+    {"name":"Event Chain Builder","price":50}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/event-correlation.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Correlixion</span>
+    <span class="price">$295 / month</span>
+
+    <p>Event Correlation System — connect events to uncover hidden relationships.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Event Linking</li>
+        <li>Sequence Correlation</li>
+        <li>Multi-Event Mapping</li>
+        <li>Pattern Correlation</li>
+        <li>Relationship Detection</li>
+        <li>Event Chain Building</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="221"
+  data-name="Firexion"
+  data-fullname="Firewall Automation Engine"
+  data-type="system"
+  data-category="cyber-defense"
+  data-setup="400"
+  data-monthly="300"
+  data-label="Cyber Security System"
+  data-description="A system that enforces dynamic network protection rules by automatically controlling inbound and outbound traffic based on predefined security policies"
+  data-modules='[
+    {"name":"Traffic Control Engine","price":50},
+    {"name":"Rule Execution System","price":50},
+    {"name":"Access Blocking Layer","price":50},
+    {"name":"Policy Enforcement Engine","price":50},
+    {"name":"Connection Filtering System","price":50},
+    {"name":"Dynamic Rule Manager","price":50}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/firewall-engine.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Firexion</span>
+    <span class="price">$300 / month</span>
+
+    <p>Firewall Automation Engine — control and block network traffic intelligently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Traffic Control</li>
+        <li>Rule Execution</li>
+        <li>Access Blocking</li>
+        <li>Policy Enforcement</li>
+        <li>Connection Filtering</li>
+        <li>Dynamic Rules</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="222"
+  data-name="Preventrixa"
+  data-fullname="Intrusion Prevention System"
+  data-type="system"
+  data-category="cyber-defense"
+  data-setup="420"
+  data-monthly="315"
+  data-label="Cyber Security System"
+  data-description="A system that actively prevents unauthorized system intrusions by blocking malicious entry attempts and enforcing defensive control mechanisms"
+  data-modules='[
+    {"name":"Intrusion Blocking Engine","price":55},
+    {"name":"Entry Prevention System","price":50},
+    {"name":"Access Denial Controller","price":50},
+    {"name":"Threat Containment Layer","price":55},
+    {"name":"Attack Interruption Engine","price":50},
+    {"name":"Prevention Rule Manager","price":55}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/intrusion-prevention.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Preventrixa</span>
+    <span class="price">$315 / month</span>
+
+    <p>Intrusion Prevention System — block threats before they enter your system.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Intrusion Blocking</li>
+        <li>Entry Prevention</li>
+        <li>Access Denial</li>
+        <li>Threat Containment</li>
+        <li>Attack Interruption</li>
+        <li>Prevention Rules</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="223"
+  data-name="Floodrixor"
+  data-fullname="DDoS Protection Engine"
+  data-type="system"
+  data-category="cyber-defense"
+  data-setup="450"
+  data-monthly="340"
+  data-label="Cyber Security System"
+  data-description="A system that defends against traffic flooding attacks by regulating excessive requests and maintaining system stability under high-load conditions"
+  data-modules='[
+    {"name":"Traffic Surge Controller","price":55},
+    {"name":"Request Limiting Engine","price":55},
+    {"name":"Load Stabilization System","price":55},
+    {"name":"Traffic Filtering Layer","price":55},
+    {"name":"Flood Mitigation Engine","price":60},
+    {"name":"Request Balancing System","price":60}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/ddos-protection.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Floodrixor</span>
+    <span class="price">$340 / month</span>
+
+    <p>DDoS Protection Engine — defend your system from traffic overload attacks.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Traffic Surge Control</li>
+        <li>Request Limiting</li>
+        <li>Load Stabilization</li>
+        <li>Traffic Filtering</li>
+        <li>Flood Mitigation</li>
+        <li>Request Balancing</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="224"
+  data-name="Endorix"
+  data-fullname="Endpoint Protection System"
+  data-type="system"
+  data-category="cyber-defense"
+  data-setup="410"
+  data-monthly="305"
+  data-label="Cyber Security System"
+  data-description="A system that secures individual devices by enforcing endpoint-level protection policies and controlling device interactions within the system environment"
+  data-modules='[
+    {"name":"Device Control Engine","price":50},
+    {"name":"Endpoint Isolation System","price":50},
+    {"name":"Device Integrity Enforcer","price":50},
+    {"name":"Peripheral Access Controller","price":50},
+    {"name":"Endpoint Policy Manager","price":50},
+    {"name":"Device Activity Regulator","price":55}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/endpoint-protection.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Endorix</span>
+    <span class="price">$305 / month</span>
+
+    <p>Endpoint Protection System — secure and control all connected devices.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Device Control</li>
+        <li>Endpoint Isolation</li>
+        <li>Integrity Enforcement</li>
+        <li>Peripheral Access</li>
+        <li>Policy Management</li>
+        <li>Activity Regulation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="225"
+  data-name="Malvionex"
+  data-fullname="Malware Defense Engine"
+  data-type="system"
+  data-category="cyber-defense"
+  data-setup="430"
+  data-monthly="325"
+  data-label="Cyber Security System"
+  data-description="A system that neutralizes malicious software by identifying harmful code execution patterns and eliminating active threats within system environments"
+  data-modules='[
+    {"name":"Malicious Code Neutralizer","price":55},
+    {"name":"Execution Pattern Blocker","price":50},
+    {"name":"Threat Removal Engine","price":55},
+    {"name":"Malware Containment Layer","price":55},
+    {"name":"Code Behavior Disruptor","price":55},
+    {"name":"Threat Elimination System","price":55}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/malware-defense.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Malvionex</span>
+    <span class="price">$325 / month</span>
+
+    <p>Malware Defense Engine — eliminate malicious threats within your system.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Code Neutralization</li>
+        <li>Execution Blocking</li>
+        <li>Threat Removal</li>
+        <li>Containment Layer</li>
+        <li>Behavior Disruption</li>
+        <li>Threat Elimination</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="226"
+  data-name="Respontra"
+  data-fullname="Threat Response System"
+  data-type="system"
+  data-category="cyber-defense"
+  data-setup="420"
+  data-monthly="315"
+  data-label="Cyber Security System"
+  data-description="A system that executes coordinated response actions against security incidents by isolating threats, triggering countermeasures, and restoring system stability"
+  data-modules='[
+    {"name":"Incident Response Engine","price":55},
+    {"name":"Threat Isolation Controller","price":50},
+    {"name":"Response Action Executor","price":55},
+    {"name":"Containment Strategy Engine","price":50},
+    {"name":"System Recovery Coordinator","price":55},
+    {"name":"Response Workflow Manager","price":50}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/threat-response.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Respontra</span>
+    <span class="price">$315 / month</span>
+
+    <p>Threat Response System — act instantly to isolate and neutralize threats.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Incident Response</li>
+        <li>Threat Isolation</li>
+        <li>Action Execution</li>
+        <li>Containment Strategy</li>
+        <li>System Recovery</li>
+        <li>Response Workflow</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+</div>
+</main>
+
+<!-- FINAL CTA -->
+<div class="cta-block">
+<h2>Have a project in mind?<br>Let’s build something powerful together.</h2>
+<a href="contact.html" class="cta-btn">Let’s Get Started</a>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+<script>
+document.getElementById("toggle").onclick=function(){
+document.getElementById("nav").classList.toggle("active");
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const filterSelect = document.getElementById("filterSelect");
+  const cards = document.querySelectorAll(".video-card");
+  const searchInput = document.getElementById("searchInput");
+
+  let currentFilter = "all";
+
+  // DROPDOWN CHANGE
+  filterSelect.addEventListener("change", () => {
+    currentFilter = filterSelect.value;
+    filterCards();
+  });
+
+  // SEARCH
+  searchInput.addEventListener("keyup", filterCards);
+
+  function filterCards() {
+    const searchValue = searchInput.value.toLowerCase();
+
+    cards.forEach(card => {
+      const category = card.getAttribute("data-category") || "";
+      const keywords = card.getAttribute("data-keywords") || "";
+
+      const text = (
+        category + " " +
+        keywords + " " +
+        card.textContent
+      ).toLowerCase();
+
+      const matchFilter =
+        currentFilter === "all" || category === currentFilter;
+
+      const matchSearch =
+        text.includes(searchValue);
+
+      if (matchFilter && matchSearch) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+
+});
+
+
+const sortSelect = document.getElementById("sortSelect");
+const container = document.querySelector(".cards");
+
+sortSelect.addEventListener("change", () => {
+  const cards = Array.from(container.children);
+
+  cards.sort((a, b) => {
+    const priceA = parseInt(a.querySelector(".price").textContent.replace("$",""));
+    const priceB = parseInt(b.querySelector(".price").textContent.replace("$",""));
+
+    if (sortSelect.value === "low") return priceA - priceB;
+    if (sortSelect.value === "high") return priceB - priceA;
+    return 0;
+  });
+
+  cards.forEach(card => container.appendChild(card));
+});
+
+
+document.querySelectorAll(".order-btn").forEach(btn => {
+  btn.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const productId = this.closest(".video-card").dataset.id;
+
+    // ✅ update href dynamically (keeps anchor behavior)
+    this.href = "billing.html?id=" + productId;
+
+    // ✅ now allow redirect
+    window.location.href = this.href;
+  });
+});
+
+</script>
+
+</body>
+</html>

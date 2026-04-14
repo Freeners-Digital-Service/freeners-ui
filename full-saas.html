@@ -1,0 +1,2510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full-saas Projects — Freener's Digital Services</title>
+
+<style>
+:root{
+ --green:#00a86b;
+ --darkgreen:darkgreen;
+ --silver:#f2f2f2;
+ --text:#333;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:var(--silver);
+color:var(--text);
+}
+
+/* ================= NAV ================= */
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:var(--darkgreen);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+z-index:1000;
+}
+
+.logo{
+color:#fff;
+font-weight:700;
+}
+
+.nav{
+display:flex;
+gap:20px;
+}
+
+.nav a{
+color:#fff;
+text-decoration:none;
+font-weight:500;
+}
+
+.nav-toggle{
+display:none;
+color:#fff;
+font-size:1.8rem;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+.nav{
+position:fixed;
+top:70px;
+right:-100%;
+width:180px;
+background:var(--darkgreen);
+flex-direction:column;
+padding:20px;
+transition:.3s;
+}
+.nav.active{
+right:0;
+}
+.nav-toggle{
+display:block;
+}
+}
+
+/* ================= MAIN ================= */
+
+main{
+padding:110px 5% 60px;
+}
+
+.section-title{
+text-align:center;
+font-size:2rem;
+color:var(--green);
+margin-bottom:10px;
+}
+
+.section-sub{
+text-align:center;
+font-size:1.1rem;
+color:#555;
+margin-bottom:40px;
+}
+
+
+/* ================= GRID ================= */
+
+.cards{
+  display:grid;
+  gap:25px;
+  align-items:stretch;
+}
+
+@media (min-width:1024px){
+  .cards{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media (min-width:768px) and (max-width:1023px){
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media (max-width:767px){
+  .cards{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ================= CARD ================= */
+
+.video-card{
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  overflow:hidden;
+  transition:.3s;
+
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.video-card:hover{
+  transform:translateY(-5px);
+}
+
+
+
+/* ================= GRID ================= */
+
+.cards{
+  display:grid;
+  gap:25px;
+  align-items:stretch;
+}
+
+@media (min-width:1024px){
+  .cards{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media (min-width:768px) and (max-width:1023px){
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media (max-width:767px){
+  .cards{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ================= CARD ================= */
+
+.video-card{
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  overflow:hidden;
+  transition:.3s;
+
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.video-card:hover{
+  transform:translateY(-5px);
+}
+
+/* ================= MEDIA ================= */
+
+.card-media{
+  position:relative;
+  height:200px; /* FIXED HEIGHT (prevents stretching) */
+  overflow:hidden;
+}
+
+.card-media video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  cursor:pointer;
+}
+
+
+/* ================= BODY ================= */
+
+.card-body{
+  padding:20px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  flex-grow:1;
+}
+
+/* ================= TEXT CONTROL ================= */
+
+.card-body p{
+  font-size:14px;
+  line-height:1.4;
+  max-height:60px;
+  overflow:hidden;
+}
+
+/* ================= PRICE ================= */
+
+.price{
+  background:var(--green);
+  color:#fff;
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:.85rem;
+  margin-bottom:12px;
+}
+
+/* ================= AGENT TAG ================= */
+
+.agent-tag{
+  display:inline-block;
+  font-size:.75rem;
+  background:#eee;
+  padding:4px 10px;
+  border-radius:12px;
+  margin-bottom:8px;
+}
+
+/* HIDE ANIMATION */
+.card.hide {
+  display: none;
+}
+
+/* CARD CTA – PREMIUM MULTI RADIATE */
+.card-btn{
+display:inline-block;
+margin-top:14px;
+padding:10px 22px;
+border-radius:30px;
+font-size:.9rem;
+font-weight:600;
+text-decoration:none;
+color:#000;
+background:linear-gradient(45deg,
+gold,
+#00ff88,
+aqua,
+crimson,
+lemonchiffon);
+background-size:300% 300%;
+animation:cardGradient 6s ease infinite;
+transition:.3s;
+}
+
+.card-btn:hover{
+transform:scale(1.05);
+}
+
+@keyframes cardGradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.card-btn.order-btn{
+  background:#00c896 !important;
+  color:#fff !important;
+
+  /* kill gradient completely */
+  background-image:none !important;
+  animation:none !important;
+}
+
+.card-btn.order-btn:hover{
+  background:#00b386 !important;
+}
+
+
+/* WRAPPER (centers everything) */
+.controls-wrapper{
+  position: sticky;
+  top: 70px;
+  z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+/* INNER CONTROLS (clean card look) */
+.controls{
+  width: 100%;
+  max-width: 900px;
+
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+
+  padding: 12px;
+  border-radius: 16px;
+
+  backdrop-filter: blur(14px);
+  background: green;
+
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+/* GLASS EFFECT BASE */
+.search-box,
+.filter-container{
+  position:relative;
+  flex:1;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.6);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* ICON */
+.icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* INPUT */
+.search-box input{
+  width:100%;
+  padding:14px 14px 14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  outline:none;
+}
+
+/* SELECT */
+.filter-container select{
+  width:100%;
+  padding:14px 14px 14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  cursor:pointer;
+  outline:none;
+  appearance:none;
+}
+
+/* CUSTOM ARROW */
+.filter-container::after{
+  content:"▼";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  opacity:0.6;
+}
+
+/* FOCUS EFFECT */
+.search-box:focus-within,
+.filter-container:focus-within{
+  border:1px solid rgba(0,200,150,.6);
+  box-shadow:0 0 0 3px rgba(0,200,150,.15);
+}
+
+/* SORT BOX (GLASS) */
+.sort-box{
+  position:relative;
+  flex:1;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.6);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+/* SELECT */
+.sort-box select{
+  width:100%;
+  padding:14px 36px;
+  border:none;
+  background:transparent;
+  font-size:14px;
+  cursor:pointer;
+  outline:none;
+  appearance:none;
+}
+
+/* ICON */
+.sort-box .icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* CUSTOM ARROW */
+.sort-box::after{
+  content:"▼";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:10px;
+  opacity:0.6;
+}
+
+/* FOCUS EFFECT */
+.sort-box:focus-within{
+  border:1px solid rgba(0,200,150,.6);
+  box-shadow:0 0 0 3px rgba(0,200,150,.15);
+}
+
+/* ================= CONTROLS ================= */
+
+.controls{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:25px;
+}
+
+/* SEARCH BOX */
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff;
+}
+
+/* FILTER + SORT ROW */
+.controls-row{
+  display:flex;
+  gap:12px;
+}
+
+/* FILTER + SORT BOXES */
+.filter-container,
+.sort-box{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:1;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff;
+}
+
+/* INPUTS */
+.search-box input,
+.filter-container select,
+.sort-box select{
+  width:100%;
+  border:none;
+  outline:none;
+  background:transparent;
+  font-size:14px;
+}
+
+/* ICON */
+.icon{
+  flex-shrink:0;
+}
+
+
+/* FINAL CTA */
+.cta-block{
+background:#111;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+border-radius:15px;
+margin:60px 0;
+}
+
+/* ================= CTA BLOCK ================= */
+.cta-block{
+background:#111;
+color:#fff;
+text-align:center;
+padding:60px 20px;
+border-radius:15px;
+margin-bottom:30px;
+}
+.cta-btn{
+display:inline-block;
+margin-top:20px;
+padding:14px 30px;
+border-radius:40px;
+background:linear-gradient(45deg,#00ffcc,#00a86b,#00f0ff,#00ff88);
+color:#000;
+font-weight:600;
+text-decoration:none;
+animation:glow 3s infinite linear;
+}
+@keyframes glow{
+0%{filter:hue-rotate(0deg)}
+100%{filter:hue-rotate(360deg)}
+}
+
+/* ================= FOOTER ================= */
+.site-footer{
+  background:#000;
+  color:#e5e7eb;
+  padding:40px 20px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+}
+
+/* Grid layout */
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+  margin-bottom:25px;
+}
+
+/* headings */
+.footer-grid h3,
+.footer-grid h4{
+  margin-bottom:10px;
+}
+
+/* links */
+.footer-links a{
+  display:block;
+  margin-bottom:8px;
+  color:#6ee7b7;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* icons */
+.social-icons img{
+  width:26px;
+  margin-right:10px;
+  transition:0.3s;
+}
+
+.social-icons img:hover{
+  transform:translateY(-3px);
+}
+
+.social-note{
+  font-size:0.85rem;
+  margin-top:10px;
+  color:#a7f3d0;
+  opacity:0.9;
+  line-height:1.5;
+}
+
+/* bottom line */
+.footer-bottom{
+  text-align:center;
+  font-size:0.9rem;
+  border-top:1px solid #10b981;
+  padding-top:15px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">Freener's Digital Services</div>
+
+<nav class="nav" id="nav">
+<a href="marketplace.html">Marketplace</a>
+</nav>
+
+<div class="nav-toggle" id="toggle">&#9776;</div>
+</header>
+
+<main>
+
+<h2 class="section-title">SaaS Software Platform Portfolio</h2>
+<p class="section-sub">
+Scalable software platforms built with structured architecture, secure infrastructure, and performance-focused system design.
+</p>
+
+<div class="controls-wrapper">
+
+  <div class="controls">
+
+    <!-- SEARCH -->
+    <div class="search-box">
+      <span class="icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search digital solutions..." />
+    </div>
+
+    <!-- FILTER + SORT ROW -->
+    <div class="controls-row">
+
+    <!-- FILTER -->
+    <div class="filter-container">
+      <span class="icon">⚙️</span>
+      <select id="filterSelect">
+        <option value="all">All Categories</option>
+        <option value="saas-business">Business Operating System</option>
+        <option value="saas-finance">Financial Infrastructure System</option>
+        <option value="saas-marketing">Marketing & Growth Systems</option>
+        <option value="saas-commerce">E-Commerce Systems</option>
+        <option value="saas-hr">HR & Teams System</option>
+        <option value="saas-analytics">Intelligence & Analytics Systems</option>
+      </select>
+    </div>
+
+    <div class="sort-box">
+  <span class="icon">📊</span>
+  <select id="sortSelect">
+    <option value="default">Sort</option>
+    <option value="low">Price: Low → High</option>
+    <option value="high">Price: High → Low</option>
+  </select>
+</div>
+</div>
+</div>
+</div>
+
+<div class="cards">
+
+
+<div class="video-card"
+  data-id="481"
+  data-name="Operionyx"
+  data-fullname="Business Management Platform"
+  data-type="system"
+  data-category="saas-business"
+  data-setup="800"
+  data-monthly="220"
+  data-label="Business Operating System"
+  data-description="A centralized system that manages core business operations, structure, and execution across departments through unified operational control"
+  data-modules='[
+    {"name":"Business Command Center","price":45},
+    {"name":"Operational Structure Engine","price":40},
+    {"name":"Decision Flow Controller","price":40},
+    {"name":"Execution Coordination System","price":40},
+    {"name":"Organizational Mapping Framework","price":35},
+    {"name":"Control & Oversight Engine","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/business-platform.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Operionyx</span>
+    <span class="price">$220 / month</span>
+
+    <p>Business Management Platform — run and control your entire business system from one place.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Command Center</li>
+        <li>Structure Engine</li>
+        <li>Decision Flow</li>
+        <li>Execution Coordination</li>
+        <li>Org Mapping</li>
+        <li>Oversight Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="482"
+  data-name="Flowtrixor"
+  data-fullname="Operations Management SaaS"
+  data-type="system"
+  data-category="saas-business"
+  data-setup="750"
+  data-monthly="200"
+  data-label="Business Operating System"
+  data-description="A system that manages operational workflows, execution pipelines, and real-time task flow across business activities"
+  data-modules='[
+    {"name":"Workflow Execution Engine","price":40},
+    {"name":"Task Flow Distributor","price":35},
+    {"name":"Operational Timeline Controller","price":35},
+    {"name":"Execution Load Manager","price":35},
+    {"name":"Process Adjustment System","price":35},
+    {"name":"Operational Efficiency Tracker","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/operations-saas.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Flowtrixor</span>
+    <span class="price">$200 / month</span>
+
+    <p>Operations Management SaaS — manage execution flow and daily operations efficiently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Workflow Execution</li>
+        <li>Task Distribution</li>
+        <li>Timeline Control</li>
+        <li>Load Management</li>
+        <li>Process Adjustment</li>
+        <li>Efficiency Tracking</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="483"
+  data-name="Relatixor"
+  data-fullname="CRM SaaS System"
+  data-type="system"
+  data-category="saas-business"
+  data-setup="780"
+  data-monthly="210"
+  data-label="Business Operating System"
+  data-description="A relationship intelligence system that manages customer interactions, lifecycle stages, and communication history across all touchpoints"
+  data-modules='[
+    {"name":"Client Relationship Engine","price":40},
+    {"name":"Interaction Timeline System","price":40},
+    {"name":"Customer Segmentation Layer","price":35},
+    {"name":"Lifecycle Stage Controller","price":35},
+    {"name":"Relationship Health Analyzer","price":35},
+    {"name":"Engagement History Manager","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/crm-saas.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Relatixor</span>
+    <span class="price">$210 / month</span>
+
+    <p>CRM SaaS System — manage customer relationships and lifecycle intelligently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Relationship Engine</li>
+        <li>Interaction Timeline</li>
+        <li>Segmentation Layer</li>
+        <li>Lifecycle Control</li>
+        <li>Health Analysis</li>
+        <li>Engagement History</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="484"
+  data-name="Automatrixa"
+  data-fullname="Workflow Automation SaaS"
+  data-type="system"
+  data-category="saas-business"
+  data-setup="820"
+  data-monthly="230"
+  data-label="Business Operating System"
+  data-description="An intelligent automation system that executes predefined operational logic across business functions without manual intervention"
+  data-modules='[
+    {"name":"Automation Logic Core","price":45},
+    {"name":"Execution Trigger Framework","price":40},
+    {"name":"Rule-Based Action Engine","price":40},
+    {"name":"Automation Sequence Controller","price":40},
+    {"name":"Logic Validation Layer","price":35},
+    {"name":"Execution Consistency Engine","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/workflow-automation.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Automatrixa</span>
+    <span class="price">$230 / month</span>
+
+    <p>Workflow Automation SaaS — automate business actions using intelligent execution logic.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Automation Core</li>
+        <li>Trigger Framework</li>
+        <li>Action Engine</li>
+        <li>Sequence Control</li>
+        <li>Logic Validation</li>
+        <li>Execution Consistency</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="485"
+  data-name="Stratexon"
+  data-fullname="Business Strategy Platform"
+  data-type="system"
+  data-category="saas-business"
+  data-setup="900"
+  data-monthly="260"
+  data-label="Business Operating System"
+  data-description="A strategic intelligence platform that supports planning, forecasting, and decision direction across long-term business growth"
+  data-modules='[
+    {"name":"Strategic Planning Engine","price":45},
+    {"name":"Forecast Modeling System","price":45},
+    {"name":"Decision Intelligence Core","price":45},
+    {"name":"Goal Structuring Framework","price":40},
+    {"name":"Strategic Scenario Simulator","price":40},
+    {"name":"Growth Direction Analyzer","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/strategy-platform.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Stratexon</span>
+    <span class="price">$260 / month</span>
+
+    <p>Business Strategy Platform — plan, predict, and guide business growth intelligently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Strategic Planning</li>
+        <li>Forecast Modeling</li>
+        <li>Decision Intelligence</li>
+        <li>Goal Structuring</li>
+        <li>Scenario Simulation</li>
+        <li>Growth Analysis</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="486"
+  data-name="Resourcix"
+  data-fullname="ERP System SaaS"
+  data-type="system"
+  data-category="saas-business"
+  data-setup="950"
+  data-monthly="280"
+  data-label="Business Operating System"
+  data-description="An enterprise resource system that integrates and manages business assets, resources, and internal systems within a unified structure"
+  data-modules='[
+    {"name":"Resource Allocation Engine","price":50},
+    {"name":"System Integration Framework","price":50},
+    {"name":"Asset Coordination System","price":45},
+    {"name":"Enterprise Resource Tracker","price":45},
+    {"name":"Operational Resource Balancer","price":40},
+    {"name":"Central Resource Controller","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/erp-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Resourcix</span>
+    <span class="price">$280 / month</span>
+
+    <p>ERP System SaaS — unify and manage all business resources in one system.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Resource Allocation</li>
+        <li>System Integration</li>
+        <li>Asset Coordination</li>
+        <li>Resource Tracking</li>
+        <li>Resource Balancing</li>
+        <li>Central Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="501"
+  data-name="Paynexor"
+  data-fullname="Payment Processing Platform"
+  data-type="system"
+  data-category="saas-finance"
+  data-setup="900"
+  data-monthly="260"
+  data-label="Financial Infrastructure System"
+  data-description="A financial execution system that processes transactions securely across multiple payment channels and ensures seamless money flow"
+  data-modules='[
+    {"name":"Transaction Execution Engine","price":50},
+    {"name":"Payment Channel Integrator","price":50},
+    {"name":"Transaction Validation Layer","price":45},
+    {"name":"Payment Flow Controller","price":45},
+    {"name":"Transaction Security Framework","price":45},
+    {"name":"Payment Confirmation Engine","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/payment-platform.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Paynexor</span>
+    <span class="price">$260 / month</span>
+
+    <p>Payment Processing Platform — handle secure transactions across multiple payment channels.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Transaction Execution</li>
+        <li>Channel Integration</li>
+        <li>Validation Layer</li>
+        <li>Flow Control</li>
+        <li>Security Framework</li>
+        <li>Confirmation Engine</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="502"
+  data-name="SubscriptaX"
+  data-fullname="Subscription Billing System"
+  data-type="system"
+  data-category="saas-finance"
+  data-setup="850"
+  data-monthly="240"
+  data-label="Financial Infrastructure System"
+  data-description="A recurring billing system that manages subscription lifecycles, automated billing cycles, and payment continuity across users"
+  data-modules='[
+    {"name":"Recurring Billing Engine","price":45},
+    {"name":"Subscription Lifecycle Controller","price":45},
+    {"name":"Billing Cycle Manager","price":40},
+    {"name":"Renewal Processing System","price":40},
+    {"name":"Subscription Status Engine","price":40},
+    {"name":"Billing Continuity Framework","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/subscription-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">SubscriptaX</span>
+    <span class="price">$240 / month</span>
+
+    <p>Subscription Billing System — manage recurring payments and subscription lifecycle.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Recurring Billing</li>
+        <li>Lifecycle Control</li>
+        <li>Billing Cycles</li>
+        <li>Renewal Processing</li>
+        <li>Status Engine</li>
+        <li>Continuity Framework</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="503"
+  data-name="Involexa"
+  data-fullname="Invoice Management SaaS"
+  data-type="system"
+  data-category="saas-finance"
+  data-setup="780"
+  data-monthly="210"
+  data-label="Financial Infrastructure System"
+  data-description="A structured invoicing system that generates, manages, and tracks billing documents across financial operations"
+  data-modules='[
+    {"name":"Invoice Generation Engine","price":40},
+    {"name":"Billing Document Manager","price":40},
+    {"name":"Invoice Structuring System","price":35},
+    {"name":"Payment Linking Framework","price":35},
+    {"name":"Invoice Status Controller","price":35},
+    {"name":"Billing Record System","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/invoice-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Involexa</span>
+    <span class="price">$210 / month</span>
+
+    <p>Invoice Management SaaS — create, manage, and track billing documents.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Invoice Generation</li>
+        <li>Document Management</li>
+        <li>Structuring System</li>
+        <li>Payment Linking</li>
+        <li>Status Control</li>
+        <li>Record System</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="504"
+  data-name="Expensiqra"
+  data-fullname="Expense Tracking System"
+  data-type="system"
+  data-category="saas-finance"
+  data-setup="720"
+  data-monthly="190"
+  data-label="Financial Infrastructure System"
+  data-description="A financial tracking system that monitors, categorizes, and structures outgoing expenses across business operations"
+  data-modules='[
+    {"name":"Expense Capture Engine","price":35},
+    {"name":"Spending Classification System","price":35},
+    {"name":"Expense Allocation Framework","price":30},
+    {"name":"Cost Structuring Engine","price":30},
+    {"name":"Expense Logging System","price":30},
+    {"name":"Spending Pattern Recorder","price":30}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/expense-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Expensiqra</span>
+    <span class="price">$190 / month</span>
+
+    <p>Expense Tracking System — monitor and structure all business spending.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Expense Capture</li>
+        <li>Classification System</li>
+        <li>Allocation Framework</li>
+        <li>Cost Structuring</li>
+        <li>Expense Logging</li>
+        <li>Spending Recorder</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="505"
+  data-name="Finoventra"
+  data-fullname="Financial Dashboard SaaS"
+  data-type="system"
+  data-category="saas-finance"
+  data-setup="880"
+  data-monthly="250"
+  data-label="Financial Infrastructure System"
+  data-description="A centralized financial visibility system that consolidates financial flows into structured visual insights for decision-making"
+  data-modules='[
+    {"name":"Financial Data Aggregator","price":40},
+    {"name":"Cash Flow Visualization Engine","price":40},
+    {"name":"Revenue Mapping System","price":35},
+    {"name":"Financial Snapshot Generator","price":35},
+    {"name":"Balance Structuring Module","price":35},
+    {"name":"Financial Overview Controller","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/finance-dashboard.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Finoventra</span>
+    <span class="price">$250 / month</span>
+
+    <p>Financial Dashboard SaaS — visualize and structure your financial position in real time.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Data Aggregation</li>
+        <li>Cash Flow Visualization</li>
+        <li>Revenue Mapping</li>
+        <li>Snapshot Generator</li>
+        <li>Balance Structuring</li>
+        <li>Overview Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+   <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="506"
+  data-name="Currenlix"
+  data-fullname="Multi-Currency Payment System"
+  data-type="system"
+  data-category="saas-finance"
+  data-setup="950"
+  data-monthly="280"
+  data-label="Financial Infrastructure System"
+  data-description="A cross-border financial system that handles multi-currency transactions, conversions, and global payment standardization"
+  data-modules='[
+    {"name":"Currency Conversion Engine","price":45},
+    {"name":"Multi-Currency Processor","price":45},
+    {"name":"Exchange Rate Integrator","price":40},
+    {"name":"Cross-Border Payment Router","price":40},
+    {"name":"Currency Normalization System","price":40},
+    {"name":"Global Payment Standardizer","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/currency-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Currenlix</span>
+    <span class="price">$280 / month</span>
+
+    <p>Multi-Currency Payment System — process global payments across currencies seamlessly.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Currency Conversion</li>
+        <li>Multi-Currency Processing</li>
+        <li>Exchange Integration</li>
+        <li>Cross-Border Routing</li>
+        <li>Normalization System</li>
+        <li>Global Standardization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="521"
+  data-name="Funnelytix"
+  data-fullname="Funnel Deployment System"
+  data-type="system"
+  data-category="saas-marketing"
+  data-setup="850"
+  data-monthly="230"
+  data-label="Growth Infrastructure System"
+  data-description="A deployment system that structures and launches conversion funnels with optimized user flow routing and journey mapping"
+  data-modules='[
+    {"name":"Funnel Structure Engine","price":40},
+    {"name":"User Journey Mapper","price":40},
+    {"name":"Conversion Path Router","price":35},
+    {"name":"Step Transition Controller","price":35},
+    {"name":"Entry Point Distributor","price":40},
+    {"name":"Funnel Flow Stabilizer","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/funnel-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Funnelytix</span>
+    <span class="price">$230 / month</span>
+
+    <p>Funnel Deployment System — structure and launch high-converting funnel flows.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Funnel Structuring</li>
+        <li>Journey Mapping</li>
+        <li>Path Routing</li>
+        <li>Step Control</li>
+        <li>Entry Distribution</li>
+        <li>Flow Stabilization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="522"
+  data-name="Leadronyx"
+  data-fullname="Lead Generation SaaS"
+  data-type="system"
+  data-category="saas-marketing"
+  data-setup="900"
+  data-monthly="260"
+  data-label="Growth Infrastructure System"
+  data-description="A structured acquisition system that attracts and captures potential customers through controlled inbound and outbound channels"
+  data-modules='[
+    {"name":"Lead Source Aggregator","price":45},
+    {"name":"Acquisition Channel Controller","price":45},
+    {"name":"Inbound Capture Distributor","price":40},
+    {"name":"Outbound Prospect Engine","price":40},
+    {"name":"Lead Intake Structuring System","price":45},
+    {"name":"Acquisition Flow Regulator","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/lead-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Leadronyx</span>
+    <span class="price">$260 / month</span>
+
+    <p>Lead Generation SaaS — attract and structure inbound and outbound leads.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Source Aggregation</li>
+        <li>Channel Control</li>
+        <li>Inbound Distribution</li>
+        <li>Prospect Engine</li>
+        <li>Lead Structuring</li>
+        <li>Flow Regulation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="523"
+  data-name="Campatrix"
+  data-fullname="Campaign Management Platform"
+  data-type="system"
+  data-category="saas-marketing"
+  data-setup="870"
+  data-monthly="240"
+  data-label="Growth Infrastructure System"
+  data-description="A centralized campaign control system that structures, launches, and coordinates marketing campaigns across multiple channels"
+  data-modules='[
+    {"name":"Campaign Structuring Engine","price":40},
+    {"name":"Campaign Launch Controller","price":40},
+    {"name":"Multi-Channel Coordination System","price":40},
+    {"name":"Campaign Timeline Manager","price":35},
+    {"name":"Execution Synchronization Engine","price":40},
+    {"name":"Campaign Control Framework","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/campaign-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Campatrix</span>
+    <span class="price">$240 / month</span>
+
+    <p>Campaign Management Platform — coordinate and control marketing campaigns across channels.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Campaign Structuring</li>
+        <li>Launch Control</li>
+        <li>Channel Coordination</li>
+        <li>Timeline Management</li>
+        <li>Execution Sync</li>
+        <li>Control Framework</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="524"
+  data-name="Convexara"
+  data-fullname="Conversion Optimization System"
+  data-type="system"
+  data-category="saas-marketing"
+  data-setup="920"
+  data-monthly="270"
+  data-label="Growth Infrastructure System"
+  data-description="A behavioral optimization system that refines user interaction points to increase conversion efficiency across digital touchpoints"
+  data-modules='[
+    {"name":"Interaction Behavior Mapper","price":45},
+    {"name":"Conversion Friction Detector","price":45},
+    {"name":"Touchpoint Optimization Engine","price":40},
+    {"name":"User Decision Flow Refiner","price":40},
+    {"name":"Micro-Interaction Controller","price":40},
+    {"name":"Conversion Efficiency Stabilizer","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/conversion-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Convexara</span>
+    <span class="price">$270 / month</span>
+
+    <p>Conversion Optimization System — refine user behavior flow to maximize conversions.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Behavior Mapping</li>
+        <li>Friction Detection</li>
+        <li>Touchpoint Optimization</li>
+        <li>Decision Flow Refinement</li>
+        <li>Micro-Interaction Control</li>
+        <li>Efficiency Stabilization</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="525"
+  data-name="Affilionyx"
+  data-fullname="Affiliate Marketing SaaS"
+  data-type="system"
+  data-category="saas-marketing"
+  data-setup="880"
+  data-monthly="250"
+  data-label="Growth Infrastructure System"
+  data-description="A partner-driven growth system that structures, manages, and scales affiliate networks with controlled commission flows"
+  data-modules='[
+    {"name":"Affiliate Network Builder","price":40},
+    {"name":"Partner Relationship Engine","price":40},
+    {"name":"Commission Structuring System","price":40},
+    {"name":"Referral Link Distribution Engine","price":40},
+    {"name":"Affiliate Activity Tracker","price":45},
+    {"name":"Payout Coordination Framework","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/affiliate-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Affilionyx</span>
+    <span class="price">$250 / month</span>
+
+    <p>Affiliate Marketing SaaS — build and scale partner-driven growth networks.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Network Builder</li>
+        <li>Partner Engine</li>
+        <li>Commission Structuring</li>
+        <li>Referral Distribution</li>
+        <li>Activity Tracking</li>
+        <li>Payout Coordination</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="526"
+  data-name="Engagixra"
+  data-fullname="Customer Engagement Platform"
+  data-type="system"
+  data-category="saas-marketing"
+  data-setup="910"
+  data-monthly="260"
+  data-label="Growth Infrastructure System"
+  data-description="A user engagement system that strengthens customer interaction cycles and maintains long-term relationship continuity"
+  data-modules='[
+    {"name":"Engagement Cycle Engine","price":40},
+    {"name":"Interaction Frequency Controller","price":40},
+    {"name":"User Retention Structuring System","price":45},
+    {"name":"Engagement Timing Optimizer","price":40},
+    {"name":"Customer Interaction Layer","price":45},
+    {"name":"Engagement Continuity Framework","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/engagement-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Engagixra</span>
+    <span class="price">$260 / month</span>
+
+    <p>Customer Engagement Platform — maintain strong and consistent user relationships.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Engagement Cycles</li>
+        <li>Interaction Control</li>
+        <li>Retention Structuring</li>
+        <li>Timing Optimization</li>
+        <li>Interaction Layer</li>
+        <li>Continuity Framework</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="541"
+  data-name="Commeriqra"
+  data-fullname="E-commerce Platform"
+  data-type="system"
+  data-category="saas-commerce"
+  data-setup="950"
+  data-monthly="280"
+  data-label="Commerce Infrastructure System"
+  data-description="A fully deployed commerce system that manages product lifecycle, storefront operations, and transactional flow without manual setup or development"
+  data-modules='[
+    {"name":"Product Lifecycle Engine","price":45},
+    {"name":"Storefront Runtime System","price":45},
+    {"name":"Catalog Control Framework","price":40},
+    {"name":"Product Delivery Structure","price":40},
+    {"name":"Order Flow Engine","price":45},
+    {"name":"Commerce Runtime Stabilizer","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/ecommerce-platform.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Commeriqra</span>
+    <span class="price">$280 / month</span>
+
+    <p>E-commerce Platform — deploy and run a complete digital commerce operation instantly.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Product Lifecycle</li>
+        <li>Storefront Runtime</li>
+        <li>Catalog Control</li>
+        <li>Product Delivery</li>
+        <li>Order Flow</li>
+        <li>Runtime Stability</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="542"
+  data-name="Storvanta"
+  data-fullname="Store Deployment System"
+  data-type="system"
+  data-category="saas-commerce"
+  data-setup="900"
+  data-monthly="250"
+  data-label="Commerce Infrastructure System"
+  data-description="A ready-to-run store environment system that deploys a complete digital storefront instantly with structured product and layout configuration"
+  data-modules='[
+    {"name":"Store Environment Loader","price":40},
+    {"name":"Deployment Configuration Engine","price":40},
+    {"name":"Store Activation System","price":40},
+    {"name":"Environment Structuring Layer","price":40},
+    {"name":"Store Runtime Controller","price":40},
+    {"name":"Deployment Validation Engine","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/store-deploy.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Storvanta</span>
+    <span class="price">$250 / month</span>
+
+    <p>Store Deployment System — launch a complete store instantly with zero build process.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Environment Loader</li>
+        <li>Config Engine</li>
+        <li>Store Activation</li>
+        <li>Structuring Layer</li>
+        <li>Runtime Control</li>
+        <li>Deployment Validation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="543"
+  data-name="Checkovra"
+  data-fullname="Commerce Checkout Engine"
+  data-type="system"
+  data-category="saas-commerce"
+  data-setup="920"
+  data-monthly="260"
+  data-label="Commerce Infrastructure System"
+  data-description="A structured checkout execution system that handles cart processing, purchase transitions, and order finalization across commerce systems"
+  data-modules='[
+    {"name":"Cart Execution Engine","price":40},
+    {"name":"Checkout Flow Controller","price":40},
+    {"name":"Purchase Finalization System","price":45},
+    {"name":"Order Confirmation Engine","price":45},
+    {"name":"Transaction Routing Layer","price":40},
+    {"name":"Checkout Stability Framework","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/checkout-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Checkovra</span>
+    <span class="price">$260 / month</span>
+
+    <p>Commerce Checkout Engine — process and finalize transactions seamlessly.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Cart Execution</li>
+        <li>Flow Control</li>
+        <li>Purchase Finalization</li>
+        <li>Order Confirmation</li>
+        <li>Routing Layer</li>
+        <li>Stability Framework</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="544"
+  data-name="Ordentrax"
+  data-fullname="Order Management Platform"
+  data-type="system"
+  data-category="saas-commerce"
+  data-setup="870"
+  data-monthly="240"
+  data-label="Commerce Infrastructure System"
+  data-description="A post-purchase orchestration system that manages order states, fulfillment routing, and delivery coordination across commerce operations"
+  data-modules='[
+    {"name":"Order State Controller","price":40},
+    {"name":"Fulfillment Routing Engine","price":40},
+    {"name":"Delivery Coordination System","price":40},
+    {"name":"Order Segmentation Layer","price":35},
+    {"name":"Fulfillment Queue Manager","price":40},
+    {"name":"Order Resolution Framework","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/order-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Ordentrax</span>
+    <span class="price">$240 / month</span>
+
+    <p>Order Management Platform — control fulfillment flow and delivery coordination.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Order State Control</li>
+        <li>Fulfillment Routing</li>
+        <li>Delivery Coordination</li>
+        <li>Order Segmentation</li>
+        <li>Queue Management</li>
+        <li>Resolution Framework</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="545"
+  data-name="Inventraxel"
+  data-fullname="Inventory Management SaaS"
+  data-type="system"
+  data-category="saas-commerce"
+  data-setup="890"
+  data-monthly="250"
+  data-label="Commerce Infrastructure System"
+  data-description="A stock intelligence system that tracks inventory movement, controls availability, and manages supply distribution across storage environments"
+  data-modules='[
+    {"name":"Stock Positioning Engine","price":40},
+    {"name":"Inventory Movement Tracker","price":40},
+    {"name":"Availability Control System","price":40},
+    {"name":"Stock Distribution Layer","price":40},
+    {"name":"Inventory Balancing Engine","price":40},
+    {"name":"Supply Flow Regulator","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/inventory-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Inventraxel</span>
+    <span class="price">$250 / month</span>
+
+    <p>Inventory Management SaaS — track and control stock across operations.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Stock Positioning</li>
+        <li>Movement Tracking</li>
+        <li>Availability Control</li>
+        <li>Distribution Layer</li>
+        <li>Inventory Balancing</li>
+        <li>Supply Regulation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="546"
+  data-name="Vendoryxra"
+  data-fullname="Multi-Vendor Marketplace System"
+  data-type="system"
+  data-category="saas-commerce"
+  data-setup="980"
+  data-monthly="290"
+  data-label="Commerce Infrastructure System"
+  data-description="A multi-party commerce system that structures vendor participation, product distribution, and marketplace coordination within a unified environment"
+  data-modules='[
+    {"name":"Vendor Onboarding Engine","price":45},
+    {"name":"Marketplace Structuring System","price":45},
+    {"name":"Vendor Allocation Framework","price":40},
+    {"name":"Product Distribution Layer","price":40},
+    {"name":"Vendor Activity Coordinator","price":40},
+    {"name":"Marketplace Governance Engine","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/marketplace-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Vendoryxra</span>
+    <span class="price">$290 / month</span>
+
+    <p>Multi-Vendor Marketplace System — manage vendors and marketplace operations in one system.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Vendor Onboarding</li>
+        <li>Marketplace Structuring</li>
+        <li>Vendor Allocation</li>
+        <li>Product Distribution</li>
+        <li>Activity Coordination</li>
+        <li>Governance Engine</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="561"
+  data-name="Stafforyn"
+  data-fullname="Employee Management System"
+  data-type="system"
+  data-category="saas-hr"
+  data-setup="880"
+  data-monthly="240"
+  data-label="Workforce Management System"
+  data-description="A workforce structuring system that organizes employee records, role distribution, and internal workforce hierarchy across organizations"
+  data-modules='[
+    {"name":"Employee Record Structuring Engine","price":40},
+    {"name":"Workforce Hierarchy Framework","price":40},
+    {"name":"Role Distribution System","price":40},
+    {"name":"Employee Profile Controller","price":40},
+    {"name":"Workforce Organization Layer","price":40},
+    {"name":"Staff Registry Engine","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/employee-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Stafforyn</span>
+    <span class="price">$240 / month</span>
+
+    <p>Employee Management System — structure and organize your workforce efficiently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Employee Records</li>
+        <li>Hierarchy Framework</li>
+        <li>Role Distribution</li>
+        <li>Profile Control</li>
+        <li>Workforce Layer</li>
+        <li>Staff Registry</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="562"
+  data-name="Hirevanta"
+  data-fullname="Recruitment Platform"
+  data-type="system"
+  data-category="saas-hr"
+  data-setup="900"
+  data-monthly="260"
+  data-label="Workforce Management System"
+  data-description="A hiring system that structures candidate sourcing, applicant flow, and recruitment pipelines across organizations"
+  data-modules='[
+    {"name":"Candidate Sourcing Engine","price":45},
+    {"name":"Applicant Flow Structuring System","price":45},
+    {"name":"Recruitment Pipeline Framework","price":40},
+    {"name":"Candidate Evaluation Layer","price":40},
+    {"name":"Hiring Workflow Controller","price":45},
+    {"name":"Recruitment Coordination Engine","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/recruitment-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Hirevanta</span>
+    <span class="price">$260 / month</span>
+
+    <p>Recruitment Platform — manage hiring pipelines and candidate flow efficiently.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Candidate Sourcing</li>
+        <li>Applicant Flow</li>
+        <li>Pipeline Framework</li>
+        <li>Evaluation Layer</li>
+        <li>Workflow Control</li>
+        <li>Coordination Engine</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="563"
+  data-name="Attendrixa"
+  data-fullname="Attendance Tracking System"
+  data-type="system"
+  data-category="saas-hr"
+  data-setup="820"
+  data-monthly="210"
+  data-label="Workforce Management System"
+  data-description="A workforce presence system that records attendance, tracks work sessions, and structures time-based participation across teams"
+  data-modules='[
+    {"name":"Presence Logging Engine","price":35},
+    {"name":"Work Session Tracker","price":35},
+    {"name":"Attendance Structuring System","price":35},
+    {"name":"Time Allocation Framework","price":35},
+    {"name":"Session Validation Layer","price":35},
+    {"name":"Presence Record System","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/attendance-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Attendrixa</span>
+    <span class="price">$210 / month</span>
+
+    <p>Attendance Tracking System — monitor workforce presence and time structure.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Presence Logging</li>
+        <li>Session Tracking</li>
+        <li>Attendance Structuring</li>
+        <li>Time Allocation</li>
+        <li>Validation Layer</li>
+        <li>Record System</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="564"
+  data-name="Payrolixra"
+  data-fullname="Payroll Management System"
+  data-type="system"
+  data-category="saas-hr"
+  data-setup="950"
+  data-monthly="280"
+  data-label="Workforce Management System"
+  data-description="A workforce compensation system that structures salary distribution, manages payment cycles, and organizes employee earnings frameworks"
+  data-modules='[
+    {"name":"Salary Structuring Engine","price":45},
+    {"name":"Compensation Cycle Controller","price":45},
+    {"name":"Earnings Distribution System","price":45},
+    {"name":"Salary Allocation Framework","price":40},
+    {"name":"Compensation Record Engine","price":40},
+    {"name":"Payroll Structuring Layer","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/payroll-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Payrolixra</span>
+    <span class="price">$280 / month</span>
+
+    <p>Payroll Management System — manage structured employee compensation and salary cycles.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Salary Structuring</li>
+        <li>Compensation Cycles</li>
+        <li>Earnings Distribution</li>
+        <li>Allocation Framework</li>
+        <li>Compensation Records</li>
+        <li>Payroll Structuring</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="565"
+  data-name="Collabryn"
+  data-fullname="Team Collaboration System"
+  data-type="system"
+  data-category="saas-hr"
+  data-setup="860"
+  data-monthly="230"
+  data-label="Workforce Management System"
+  data-description="A team interaction system that structures internal communication, shared workflows, and coordinated team activities across organizations"
+  data-modules='[
+    {"name":"Team Interaction Engine","price":40},
+    {"name":"Shared Workspace Framework","price":40},
+    {"name":"Collaboration Structuring System","price":40},
+    {"name":"Team Coordination Layer","price":40},
+    {"name":"Communication Flow Controller","price":35},
+    {"name":"Workspace Synchronization Engine","price":35}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/team-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Collabryn</span>
+    <span class="price">$230 / month</span>
+
+    <p>Team Collaboration System — structure communication and teamwork across your organization.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Interaction Engine</li>
+        <li>Workspace Framework</li>
+        <li>Collaboration Structure</li>
+        <li>Team Coordination</li>
+        <li>Communication Flow</li>
+        <li>Workspace Sync</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+ <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="566"
+  data-name="Performiqra"
+  data-fullname="Performance Management System"
+  data-type="system"
+  data-category="saas-hr"
+  data-setup="890"
+  data-monthly="250"
+  data-label="Workforce Management System"
+  data-description="A performance structuring system that evaluates employee output, tracks growth progression, and organizes performance-based development frameworks"
+  data-modules='[
+    {"name":"Performance Evaluation Engine","price":40},
+    {"name":"Output Measurement System","price":40},
+    {"name":"Growth Progression Tracker","price":40},
+    {"name":"Performance Structuring Framework","price":40},
+    {"name":"Employee Development Layer","price":45},
+    {"name":"Performance Record Engine","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/performance-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Performiqra</span>
+    <span class="price">$250 / month</span>
+
+    <p>Performance Management System — track, evaluate, and improve workforce performance.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Evaluation Engine</li>
+        <li>Output Measurement</li>
+        <li>Progress Tracking</li>
+        <li>Performance Structuring</li>
+        <li>Development Layer</li>
+        <li>Record Engine</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="581"
+  data-name="Analytixra"
+  data-fullname="Business Analytics Platform"
+  data-type="system"
+  data-category="saas-analytics"
+  data-setup="950"
+  data-monthly="280"
+  data-label="Intelligence & Analytics Engine"
+  data-description="A decision intelligence system that interprets business data patterns and transforms them into structured strategic insights"
+  data-modules='[
+    {"name":"Data Interpretation Engine","price":45},
+    {"name":"Pattern Recognition System","price":45},
+    {"name":"Insight Structuring Framework","price":40},
+    {"name":"Trend Interpretation Layer","price":40},
+    {"name":"Decision Support Engine","price":45},
+    {"name":"Strategic Insight Generator","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/analytics-platform.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Analytixra</span>
+    <span class="price">$280 / month</span>
+
+    <p>Business Analytics Platform — convert data patterns into strategic decisions.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Data Interpretation</li>
+        <li>Pattern Recognition</li>
+        <li>Insight Structuring</li>
+        <li>Trend Interpretation</li>
+        <li>Decision Support</li>
+        <li>Insight Generation</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="582"
+  data-name="Visuorix"
+  data-fullname="Data Visualization SaaS"
+  data-type="system"
+  data-category="saas-analytics"
+  data-setup="880"
+  data-monthly="240"
+  data-label="Intelligence & Analytics Engine"
+  data-description="A structured visualization system that transforms complex datasets into clear, interpretable visual representations for analysis"
+  data-modules='[
+    {"name":"Data Mapping Engine","price":40},
+    {"name":"Visual Structuring System","price":40},
+    {"name":"Chart Rendering Framework","price":40},
+    {"name":"Data Layer Translator","price":40},
+    {"name":"Visual Output Engine","price":40},
+    {"name":"Representation Control System","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/visualization-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Visuorix</span>
+    <span class="price">$240 / month</span>
+
+    <p>Data Visualization SaaS — turn complex data into clear visual insights.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Data Mapping</li>
+        <li>Visual Structuring</li>
+        <li>Chart Rendering</li>
+        <li>Layer Translation</li>
+        <li>Output Engine</li>
+        <li>Representation Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="583"
+  data-name="Reportiqon"
+  data-fullname="Reporting Automation System"
+  data-type="system"
+  data-category="saas-analytics"
+  data-setup="900"
+  data-monthly="250"
+  data-label="Intelligence & Analytics Engine"
+  data-description="A structured reporting system that generates organized business reports from processed data and delivers consistent analytical outputs"
+  data-modules='[
+    {"name":"Report Structuring Engine","price":40},
+    {"name":"Data Compilation System","price":40},
+    {"name":"Report Formatting Framework","price":40},
+    {"name":"Output Standardization Engine","price":40},
+    {"name":"Report Delivery System","price":45},
+    {"name":"Insight Packaging Layer","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/reporting-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Reportiqon</span>
+    <span class="price">$250 / month</span>
+
+    <p>Reporting Automation System — generate structured and consistent business reports.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Report Structuring</li>
+        <li>Data Compilation</li>
+        <li>Formatting Framework</li>
+        <li>Output Standardization</li>
+        <li>Delivery System</li>
+        <li>Insight Packaging</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="584"
+  data-name="KPIvanta"
+  data-fullname="KPI Tracking Platform"
+  data-type="system"
+  data-category="saas-analytics"
+  data-setup="880"
+  data-monthly="240"
+  data-label="Intelligence & Analytics Engine"
+  data-description="A performance framing system that defines, organizes, and maintains key performance indicators across business operations"
+  data-modules='[
+    {"name":"KPI Structuring Engine","price":40},
+    {"name":"Performance Benchmark Framework","price":40},
+    {"name":"Target Definition System","price":40},
+    {"name":"Metric Alignment Layer","price":40},
+    {"name":"Performance Threshold Engine","price":40},
+    {"name":"KPI Organization Controller","price":40}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/kpi-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">KPIvanta</span>
+    <span class="price">$240 / month</span>
+
+    <p>KPI Tracking Platform — define and structure business performance metrics.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>KPI Structuring</li>
+        <li>Benchmark Framework</li>
+        <li>Target Definition</li>
+        <li>Metric Alignment</li>
+        <li>Threshold Engine</li>
+        <li>Organization Control</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+  <a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="585"
+  data-name="Predicentra"
+  data-fullname="Predictive Analytics SaaS"
+  data-type="system"
+  data-category="saas-analytics"
+  data-setup="950"
+  data-monthly="290"
+  data-label="Intelligence & Analytics Engine"
+  data-description="A future modeling system that analyzes historical patterns to forecast potential outcomes and guide strategic planning"
+  data-modules='[
+    {"name":"Future Modeling Engine","price":45},
+    {"name":"Scenario Projection System","price":45},
+    {"name":"Outcome Simulation Framework","price":45},
+    {"name":"Predictive Structuring Layer","price":40},
+    {"name":"Forecast Alignment Engine","price":45},
+    {"name":"Projection Calibration System","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/predictive-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Predicentra</span>
+    <span class="price">$290 / month</span>
+
+    <p>Predictive Analytics SaaS — forecast future outcomes and strategic directions.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Future Modeling</li>
+        <li>Scenario Projection</li>
+        <li>Outcome Simulation</li>
+        <li>Predictive Structuring</li>
+        <li>Forecast Alignment</li>
+        <li>Calibration System</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+
+<div class="video-card"
+  data-id="586"
+  data-name="Decidronyx"
+  data-fullname="Decision Intelligence Platform"
+  data-type="system"
+  data-category="saas-analytics"
+  data-setup="980"
+  data-monthly="300"
+  data-label="Intelligence & Analytics Engine"
+  data-description="A strategic execution system that transforms analytical insights into structured decisions and coordinated business actions"
+  data-modules='[
+    {"name":"Decision Structuring Engine","price":45},
+    {"name":"Strategy Execution Framework","price":45},
+    {"name":"Decision Path Controller","price":45},
+    {"name":"Action Alignment System","price":40},
+    {"name":"Decision Coordination Layer","price":45},
+    {"name":"Execution Logic Engine","price":45}
+  ]'>
+
+  <div class="card-media">
+    <video src="./videos/decision-system.mp4" controls preload="metadata"></video>
+  </div>
+
+  <div class="card-body">
+    <span class="agent-tag">Decidronyx</span>
+    <span class="price">$300 / month</span>
+
+    <p>Decision Intelligence Platform — convert insights into structured actions.</p>
+
+    <div class="module-preview">
+      <ul>
+        <li>Decision Structuring</li>
+        <li>Strategy Execution</li>
+        <li>Path Control</li>
+        <li>Action Alignment</li>
+        <li>Coordination Layer</li>
+        <li>Execution Logic</li>
+      </ul>
+    </div>
+
+    <a href="contact.html" class="card-btn">View Details</a>
+<a href="billing.html" class="card-btn order-btn">Get System</a>
+  </div>
+</div>
+
+
+ 
+
+</div>
+</main>
+
+<!-- FINAL CTA -->
+<div class="cta-block">
+<h2>Have a project in mind?<br>Let’s build something powerful together.</h2>
+<a href="contact.html" class="cta-btn">Let’s Get Started</a>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-grid">
+
+      <!-- Column 1 -->
+      <div class="footer-brand">
+        <h3>Freener's Digital Services</h3>
+        <p>
+          Sabon Lugbe, Airport Road<br>
+          Abuja, Nigeria
+        </p>
+        <p>
+          Email: freenersdigitals@gmail.com<br>
+          Phone: +2347078911819
+        </p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+
+        <p class="footer-verification">
+          Registered Business<br>
+          Freener's Digital Services<br>
+          CAC Registration – Nigeria
+        </p>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61582737352328"><img src="images/facebook (1).png"></a>
+          <a href="https://www.linkedin.com/in/awhaefe-freener-85414b37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/linkedin.png"></a>
+          <a href="https://www.instagram.com/freeners_digital_services?igsh=MWJ0ZnR5MTNvYWYxMw=="><img src="images/instagram.png"></a>
+          <a href="https://x.com/awhaefe36300?t=W22hr3ph5AjbRLcATkp7qQ&s=09"><img src="images/X icon.png"></a>
+        </div>
+        <p class="social-note">
+Stay connected for insights, updates, and innovative digital solutions.
+</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      © 2026 Freener's Digital Services. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+<script>
+document.getElementById("toggle").onclick=function(){
+document.getElementById("nav").classList.toggle("active");
+};
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const filterSelect = document.getElementById("filterSelect");
+  const cards = document.querySelectorAll(".video-card");
+  const searchInput = document.getElementById("searchInput");
+
+  let currentFilter = "all";
+
+  // DROPDOWN CHANGE
+  filterSelect.addEventListener("change", () => {
+    currentFilter = filterSelect.value;
+    filterCards();
+  });
+
+  // SEARCH
+  searchInput.addEventListener("keyup", filterCards);
+
+  function filterCards() {
+    const searchValue = searchInput.value.toLowerCase();
+
+    cards.forEach(card => {
+      const category = card.getAttribute("data-category") || "";
+      const keywords = card.getAttribute("data-keywords") || "";
+
+      const text = (
+        category + " " +
+        keywords + " " +
+        card.textContent
+      ).toLowerCase();
+
+      const matchFilter =
+        currentFilter === "all" || category === currentFilter;
+
+      const matchSearch =
+        text.includes(searchValue);
+
+      if (matchFilter && matchSearch) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+
+});
+
+
+const sortSelect = document.getElementById("sortSelect");
+const container = document.querySelector(".cards");
+
+sortSelect.addEventListener("change", () => {
+  const cards = Array.from(container.children);
+
+  cards.sort((a, b) => {
+    const priceA = parseInt(a.querySelector(".price").textContent.replace("$",""));
+    const priceB = parseInt(b.querySelector(".price").textContent.replace("$",""));
+
+    if (sortSelect.value === "low") return priceA - priceB;
+    if (sortSelect.value === "high") return priceB - priceA;
+    return 0;
+  });
+
+  cards.forEach(card => container.appendChild(card));
+});
+
+
+document.querySelectorAll(".order-btn").forEach(btn => {
+  btn.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const productId = this.closest(".video-card").dataset.id;
+
+    // ✅ update href dynamically (keeps anchor behavior)
+    this.href = "billing.html?id=" + productId;
+
+    // ✅ now allow redirect
+    window.location.href = this.href;
+  });
+});
+
+</script>
+
+</body>
+</html>
