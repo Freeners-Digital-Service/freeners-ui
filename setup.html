@@ -74,9 +74,12 @@
   <div id="step2-new" class="step hidden">
     <h3>New System Setup</h3>
     <input id="business" placeholder="Business Name">
-    <input id="domain" placeholder="Domain (yourdomain.com)">
-    <input id="brand" placeholder="Brand Name">
-    <input id="admin_email" placeholder="Admin Email">
+
+<label>Upload Logo</label>
+<input type="file" id="logo" accept="image/*">
+
+<input id="domain" placeholder="Domain (optional)">
+<input id="admin_email" placeholder="Admin Email">
 
     <label>Primary Color</label>
     <input type="color" id="primary_color" value="#22c55e">
@@ -160,7 +163,7 @@ async function loadProduct() {
     // 🔹 Separate values
     const name = product.name || "System";
     const fullName = product.full_name || "";
-    prouctname =name;
+    productname =name;
 
     // 🔹 Display separately (two lines)
     document.getElementById("system_display").innerHTML = `
@@ -240,14 +243,17 @@ function getData() {
     secondary = document.getElementById("secondary_color_existing")?.value || secondary;
   }
 
-  return {
-    mode,
-    system_name: productName || document.getElementById("system_display").innerText || "System",
+  const logoFile = document.getElementById("logo")?.files[0];
 
-    business: document.getElementById("business")?.value || "",
-    domain: document.getElementById("domain")?.value || "",
-    brand: document.getElementById("brand")?.value || "",
-    admin_email: document.getElementById("admin_email")?.value || "",
+return {
+  mode,
+  system_name: productName || document.getElementById("system_display").innerText || "System",
+
+  business: document.getElementById("business")?.value || "",
+  domain: document.getElementById("domain")?.value || "",
+  admin_email: document.getElementById("admin_email")?.value || "",
+
+
 
     system_type: document.getElementById("system_type")?.value || "",
     existing_domain: document.getElementById("existing_domain")?.value || "",
@@ -289,9 +295,9 @@ function renderReview() {
 
     ${d.mode === "new" ? `
       <p><b>Business:</b> ${d.business}</p>
-      <p><b>Domain:</b> ${d.domain}</p>
-      <p><b>Brand:</b> ${d.brand}</p>
-      <p><b>Admin Email:</b> ${d.admin_email}</p>
+<p><b>Domain:</b> ${d.domain || "Not provided"}</p>
+<p><b>Logo:</b> ${d.logo || "Not uploaded"}</p>
+<p><b>Admin Email:</b> ${d.admin_email}</p>
     ` : `
       <p><b>System Type:</b> ${d.system_type}</p>
       <p><b>Domain:</b> ${d.existing_domain}</p>
