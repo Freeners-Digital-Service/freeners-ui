@@ -327,15 +327,27 @@ async function submitSetup(e) {
   btn.disabled = true;
 
   try {
+
+    const formData = new FormData();
+
+    formData.append("product_id", product_id);
+    formData.append("email", "test@email.com");
+
+    // collect all form data
+    const d = getData();
+    for (let key in d) {
+      formData.append(key, d[key]);
+    }
+
+    // attach logo file
+    const logoFile = document.getElementById("logo")?.files[0];
+    if (logoFile) {
+      formData.append("logo_file", logoFile);
+    }
+
     const res = await fetch("https://modular-infrastructure.onrender.com/api/setup/submit", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        product_id,
-        email: "test@email.com"
-      })
+      body: formData
     });
 
     const data = await res.json();
@@ -356,10 +368,7 @@ async function submitSetup(e) {
           </button>
         </div>
       `;
-    } 
-    
-    // ❌ FAILED RESPONSE
-    else {
+    } else {
       alert("Submission failed. Please try again.");
       btn.innerText = "Submit";
       btn.disabled = false;
@@ -368,12 +377,12 @@ async function submitSetup(e) {
   } catch (err) {
     console.log("Submission error:", err);
 
-    // ❌ NETWORK / SERVER ERROR
     alert("Submission failed. Please check your connection and try again.");
     btn.innerText = "Submit";
     btn.disabled = false;
   }
 }
+
 
 /* INIT */
 loadProduct();
