@@ -252,7 +252,7 @@ return {
   business: document.getElementById("business")?.value || "",
   domain: document.getElementById("domain")?.value || "",
   admin_email: document.getElementById("admin_email")?.value || "",
-
+  logo: logoFile ? URL.createObjectURL(logoFile) : "",
 
 
     system_type: document.getElementById("system_type")?.value || "",
@@ -296,7 +296,11 @@ function renderReview() {
     ${d.mode === "new" ? `
       <p><b>Business:</b> ${d.business}</p>
 <p><b>Domain:</b> ${d.domain || "Not provided"}</p>
-<p><b>Logo:</b> ${d.logo || "Not uploaded"}</p>
+<p><b>Logo:</b><br>
+  ${d.logo 
+    ? `<img src="${d.logo}" style="width:80px; height:auto; border-radius:8px;">` 
+    : "Not uploaded"}
+</p>
 <p><b>Admin Email:</b> ${d.admin_email}</p>
     ` : `
       <p><b>System Type:</b> ${d.system_type}</p>
