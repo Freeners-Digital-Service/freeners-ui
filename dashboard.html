@@ -267,7 +267,9 @@ function render(systems){
     return;
   }
 
-  systems.forEach(sys => {
+  systems
+  .filter(sys => sys.status === "submitted") // 🔥 ONLY SHOW COMPLETED SETUPS
+  .forEach(sys => {
 
     // ✅ FIX: status from setups
     const isActive = sys.status === "submitted";
