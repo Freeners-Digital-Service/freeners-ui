@@ -272,7 +272,8 @@ function render(systems){
   .forEach(sys => {
 
     // ✅ FIX: status from setups
-    const isActive = sys.status === "submitted";
+    const isConfigured = sys.status === "configured";
+    const isActive = isConfigured;
 
     // ✅ no pricing yet → default 0
     const monthly = sys.monthly || 0;
@@ -295,7 +296,7 @@ function render(systems){
           background:${isActive ? '#00c896' : '#f59e0b'};
           color:#000;
         ">
-          ${isActive ? '✅ Active' : '⚙️ Under Configuration'}
+          ${isConfigured ? '✅ Active' : '⚙️ Under Configuration'}
         </span>
 
         <div class="actions">
@@ -345,27 +346,31 @@ loadSystems();
 
 async function checkSetupStatus() {
   try {
-    // 🔹 get user's purchased systems
     const res = await fetch("https://modular-infrastructure.onrender.com/api/user/purchases?username=test_user");
     const purchases = await res.json();
 
     if (!purchases || purchases.length === 0) return;
 
-    // 🔹 latest system
-    const product_id = purchases[0].product_id;
+    for (let sys of purchases) {
 
-    // 🔹 check setup status
-    const setupRes = await fetch(`https://modular-infrastructure.onrender.com/api/setup/load?product_id=${product_id}`);
-    const setup = await setupRes.json();
+      const setupRes = await fetch(
+        `https://modular-infrastructure.onrender.com/api/setup/load?product_id=${sys.product_id}`
+      );
 
-    if (!setup.found || setup.status !== "submitted") {
-      showSetupPopup(product_id);
+      const setup = await setupRes.json();
+
+      // 🔥 if NOT submitted → show popup for that system
+      if (setup.found && setup.status === "draft") {
+        showSetupPopup(sys.product_id);
+        return; // stop after first incomplete
+      }
     }
 
   } catch (err) {
     console.log("Error:", err);
   }
 }
+
 
 function showSetupPopup(product_id) {
   const popup = document.createElement("div");
