@@ -235,7 +235,7 @@ async function loadSystems(){
   const container = document.getElementById("systems");
 
   try{
-    const res = await fetch(API_URL + "?username=test_user");
+    const res = await fetch("https://modular-infrastructure.onrender.com/api/setup/load-all?username=test_user");
     const systems = await res.json();
     render(systems);
 
@@ -269,8 +269,12 @@ function render(systems){
 
   systems.forEach(sys => {
 
-    const isActive = sys.status === "active";
+    // ✅ FIX: status from setups
+    const isActive = sys.status === "submitted";
+
+    // ✅ no pricing yet → default 0
     const monthly = sys.monthly || 0;
+
     const nextBilling = getNextBilling();
 
     if(isActive) active++;
@@ -278,7 +282,7 @@ function render(systems){
 
     container.innerHTML += `
       <div class="card">
-        <h3>${sys.product_name || "System"}</h3>
+        <h3>${sys.system_name || "System"}</h3>
 
         <p>$${monthly}/month</p>
         <p style="font-size:12px; opacity:.7;">
@@ -300,7 +304,7 @@ function render(systems){
               cursor:${isActive ? 'pointer' : 'not-allowed'};
               opacity:${isActive ? '1' : '.6'};
             "
-            onclick="openSystem(${sys.product_id}, ${isActive})"
+            onclick="openSystem('${sys.product_id}', ${isActive})"
             ${!isActive ? "disabled" : ""}
           >
             View System
@@ -315,6 +319,7 @@ function render(systems){
   document.getElementById("monthlyBilling").innerText = "$" + billing;
 }
 
+
 /* ===== OPEN SYSTEM ===== */
 function openSystem(id, isActive){
 
@@ -326,6 +331,7 @@ function openSystem(id, isActive){
   // future system link
   window.location.href = "/system/" + id;
 }
+
 
 /* ===== INIT ===== */
 loadSystems();
