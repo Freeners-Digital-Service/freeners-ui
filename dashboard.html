@@ -359,11 +359,19 @@ async function checkSetupStatus() {
 
       const setup = await setupRes.json();
 
-      // 🔥 if NOT submitted → show popup for that system
-      if (setup.found && setup.status === "draft") {
-        showSetupPopup(sys.product_id);
-        return; // stop after first incomplete
-      }
+      const d = setup.data || {};
+
+const isIncomplete =
+  !d.business ||
+  !d.admin_email ||
+  !d.primary_color ||
+  !d.secondary_color ||
+  !d.logo;   
+
+if (setup.found && isIncomplete) {
+  showSetupPopup(sys.product_id);
+  return;
+}
     }
 
   } catch (err) {
