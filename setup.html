@@ -249,7 +249,7 @@ return {
   mode,
   system_name: productName || document.getElementById("system_display").innerText || "System",
 
-  business: document.getElementById("business_name")?.value || "",
+  business_name: document.getElementById("business_name")?.value || "",
   domain: document.getElementById("domain")?.value || "",
   admin_email: document.getElementById("admin_email")?.value || "",
   logo: logoFile ? URL.createObjectURL(logoFile) : "",
@@ -294,7 +294,7 @@ function renderReview() {
     <p><b>Mode:</b> ${d.mode}</p>
 
     ${d.mode === "new" ? `
-      <p><b>Business:</b> ${d.business_name}</p>
+      <p><b>Business_name:</b> ${d.business_name}</p>
 <p><b>Domain:</b> ${d.domain || "Not provided"}</p>
 <p><b>Logo:</b><br>
   ${d.logo 
@@ -338,7 +338,7 @@ async function submitSetup(e) {
 
    // 🔹 collect data
   const formData = {
-    business: document.getElementById("business_name")?.value || "",
+    business_name: document.getElementById("business_name")?.value || "",
     admin_email: document.getElementById("admin_email")?.value || "",
     primary_color: document.getElementById("primary_color")?.value || "",
     secondary_color: document.getElementById("secondary_color")?.value || "",
