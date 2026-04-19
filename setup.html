@@ -249,7 +249,7 @@ return {
   mode,
   system_name: productName || document.getElementById("system_display").innerText || "System",
 
-  business: document.getElementById("business")?.value || "",
+  business: document.getElementById("business_name")?.value || "",
   domain: document.getElementById("domain")?.value || "",
   admin_email: document.getElementById("admin_email")?.value || "",
   logo: logoFile ? URL.createObjectURL(logoFile) : "",
@@ -294,7 +294,7 @@ function renderReview() {
     <p><b>Mode:</b> ${d.mode}</p>
 
     ${d.mode === "new" ? `
-      <p><b>Business:</b> ${d.business}</p>
+      <p><b>Business:</b> ${d.business_name}</p>
 <p><b>Domain:</b> ${d.domain || "Not provided"}</p>
 <p><b>Logo:</b><br>
   ${d.logo 
@@ -320,40 +320,66 @@ function renderReview() {
 }
 
 /* SUBMIT */
+function validateSetup(formData) {
+  return (
+    formData.business_name &&
+    formData.admin_email &&
+    formData.primary_color &&
+    formData.secondary_color &&
+    formData.logo
+  );
+}
+
 async function submitSetup(e) {
   const btn = e.target;
 
   btn.innerText = "Submitting...";
   btn.disabled = true;
 
+   // 🔹 collect data
+  const formData = {
+    business: document.getElementById("business_name")?.value || "",
+    admin_email: document.getElementById("admin_email")?.value || "",
+    primary_color: document.getElementById("primary_color")?.value || "",
+    secondary_color: document.getElementById("secondary_color")?.value || "",
+    logo: document.getElementById("logo")?.files[0] || null
+  };
+
+  // ❌ block incomplete submission
+  if (!validateSetup(formData)) {
+    alert("⚠️ Please complete all required fields before submitting.");
+    btn.innerText = "Submit";
+    btn.disabled = false;
+    return;
+  }
+
   try {
+    const data = new FormData();
 
-    const formData = new FormData();
+    data.append("product_id", product_id);
+    data.append("email", "test@email.com");
 
-    formData.append("product_id", product_id);
-    formData.append("email", "test@email.com");
-
-    // collect all form data
-    const d = getData();
-    for (let key in d) {
-      formData.append(key, d[key]);
+    // append fields
+    for (let key in formData) {
+      if (key !== "logo") {
+        data.append(key, formData[key]);
+      }
     }
 
-    // attach logo file
-    const logoFile = document.getElementById("logo")?.files[0];
-    if (logoFile) {
-      formData.append("logo_file", logoFile);
+    // append logo file
+    if (formData.logo) {
+      data.append("logo_file", formData.logo);
     }
 
     const res = await fetch("https://modular-infrastructure.onrender.com/api/setup/submit", {
       method: "POST",
-      body: formData
+      body: data
     });
 
-    const data = await res.json();
+    const result = await res.json();
 
     // ✅ SUCCESS
-    if (data.success) {
+     if (result.success) {
       document.body.innerHTML = `
         <div style="text-align:center; margin-top:50px;">
           <h2>✅ Setup Submitted</h2>
