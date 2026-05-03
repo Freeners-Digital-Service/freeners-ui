@@ -408,7 +408,96 @@ margin-bottom:40px;
 }
 
 
+/* POPUP BACKDROP */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
 
+/* CARD */
+.popup-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+/* TITLE */
+.popup-card h2 {
+  margin-bottom: 15px;
+}
+
+/* PRICE BOX */
+.price-box {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f5f7fa;
+}
+
+.price-box.total {
+  background: #e8f5e9;
+  font-weight: bold;
+}
+
+.price-box.next {
+  background: #eef7ff;
+}
+
+/* LABEL */
+.label {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #666;
+}
+
+/* BUTTONS */
+.actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+#continuePayment {
+  flex: 1;
+  background: linear-gradient(135deg, #00c853, #00bfa5);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#continuePayment:hover {
+  opacity: 0.9;
+}
+
+#closePopup {
+  flex: 1;
+  background: #eee;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
 
 
 /* CARD CTA – PREMIUM MULTI RADIATE */
@@ -2158,11 +2247,11 @@ console.log("API DATA:", data);
         document.getElementById("monthlyPrice").innerText = "$" + data.monthly_fee + "/month";
         document.getElementById("monthlyNext").innerText = "$" + data.monthly_fee + "/month";
         document.getElementById("billingLabel").innerText = data.label;
-        document.getElementById("billingLabel2").innerText = data.label;
+        
 
         // 🔥 TOTAL TODAY (setup + first month)
         document.getElementById("totalToday").innerText =
-          "$" + (data.setup_fee + data.monthly_fee);
+        "$" + (Number(data.setup_fee) + Number(data.monthly_fee));
 
         // 🔥 SHOW POPUP
         if (popup) popup.style.display = "flex";
@@ -2190,26 +2279,39 @@ document.getElementById("continuePayment").onclick = () => {
 
 </script>
 
-<div id="billingPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:9999;">
+<div id="billingPopup" class="popup">
+  <div class="popup-card">
 
-  <div style="background:#fff; padding:20px; border-radius:10px; width:90%; max-width:400px;">
+    <h2 id="productName"></h2>
 
-    <h2 id="productName">System Name</h2>
+    <div class="price-box">
+      <p>Setup Fee</p>
+      <h3 id="setupPrice"></h3>
+    </div>
 
-    <p>Setup Fee: <span id="setupPrice"></span></p>
-    <p>Monthly: <span id="monthlyPrice"></span></p>
-    <p>Next Billing: <span id="monthlyNext"></span></p>
+    <div class="price-box">
+      <p>Monthly</p>
+      <h3 id="monthlyPrice"></h3>
+    </div>
 
-    <p id="billingLabel"></p>
-    <p id="billingLabel2"></p>
+    <div class="price-box total">
+      <p>Total Today</p>
+      <h2 id="totalToday"></h2>
+    </div>
 
-    <h3>Total Today: <span id="totalToday"></span></h3>
+    <div class="price-box next">
+  <p>Next Billing</p>
+  <h3 id="monthlyNext"></h3>
+</div>
 
-    <button id="continuePayment">Continue to Payment</button>
-<button id="closePopup">Close</button>
+    <p class="label" id="billingLabel"></p>
+
+    <div class="actions">
+      <button id="continuePayment">Continue to Payment</button>
+      <button id="closePopup">Close</button>
+    </div>
 
   </div>
-
 </div>
 
 </body>
