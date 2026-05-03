@@ -628,8 +628,6 @@ Intelligent automation systems developed to streamline workflows, enhance operat
   data-fullname="Smart Funnel System"
   data-type="system"
   data-category="Sales-Automation"
-  data-setup="180"
-  data-monthly="120"
   data-label="Sales Automation System"
   data-description="A high-performance funnel automation system that guides prospects through structured conversion paths using intelligent workflows, dynamic routing, and automated engagement sequences"
   data-modules='[
@@ -656,7 +654,7 @@ Intelligent automation systems developed to streamline workflows, enhance operat
 
     <!-- CTA -->
     <a href="contact.html" class="card-btn">View Details</a>
-    <a href="billing.html" class="card-btn order-btn">Get System</a>
+    <button class="order-btn">Get this System</button>
 
   </div>
 </div>
@@ -2123,65 +2121,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const popup = document.getElementById("billingPopup");
 
-  let selectedProduct = {};
-
   document.querySelectorAll(".order-btn").forEach(btn => {
-    btn.addEventListener("click", e => {
+    btn.addEventListener("click", async (e) => {
       e.preventDefault();
 
       const card = btn.closest(".video-card");
-      console.log(card); // debug
+      const id = card.getAttribute("data-id");
 
-      const name = card.getAttribute("data-name");
-      const setup = Number(card.getAttribute("data-setup"));
-      const monthly = Number(card.getAttribute("data-monthly"));
-      const label = card.getAttribute("data-label");
+      if (!id) {
+        console.error("Missing system ID");
+        return;
+      }
 
-      selectedProduct = {
-        id: card.getAttribute("data-id"),
-        name,
-        setup,
-        monthly,
-        label
-      };
+      try {
+        // 🔥 FETCH SYSTEM FROM BACKEND
+        const res = await fetch("https://modular-infrastructure.onrender.com/api/systems/" + id);
+        
+        if (!res.ok) {
+          throw new Error("System not found");
+        }
 
-      console.log("WORKING:", selectedProduct);
+        const data = await res.json();
 
-      localStorage.setItem("selectedProduct", JSON.stringify(selectedProduct));
+        console.log("SYSTEM DATA:", data);
 
-      // Fill popup
-      document.getElementById("productName").innerText = name;
-      document.getElementById("setupPrice").innerText = "$" + setup;
-      document.getElementById("monthlyPrice").innerText = "$" + monthly + "/month";
-      document.getElementById("monthlyNext").innerText = "$" + monthly + "/month";
-      document.getElementById("billingLabel").innerText = label;
-      document.getElementById("billingLabel2").innerText = label;
-      document.getElementById("totalToday").innerText = "$" + (setup + monthly);
+        // 🔥 SAVE FOR NEXT PAGE (billing)
+        localStorage.setItem("selectedProduct", JSON.stringify(data));
 
-      if (popup) popup.style.display = "flex";
+        // 🔥 FILL POPUP UI
+        document.getElementById("productName").innerText = data.name;
+        document.getElementById("setupPrice").innerText = "$" + data.setup_fee;
+        document.getElementById("monthlyPrice").innerText = "$" + data.monthly_fee + "/month";
+        document.getElementById("monthlyNext").innerText = "$" + data.monthly_fee + "/month";
+        document.getElementById("billingLabel").innerText = data.label;
+        document.getElementById("billingLabel2").innerText = data.label;
+
+        // 🔥 TOTAL TODAY (setup + first month)
+        document.getElementById("totalToday").innerText =
+          "$" + (data.setup_fee + data.monthly_fee);
+
+        // 🔥 SHOW POPUP
+        if (popup) popup.style.display = "flex";
+
+      } catch (err) {
+        console.error("Fetch error:", err);
+        alert("Failed to load system data");
+      }
     });
   });
 
-  document.getElementById("closePopup").onclick = () => {
-    popup.style.display = "none";
-  };
+  // 🔒 CLOSE POPUP
+  const closeBtn = document.getElementById("closePopup");
+  if (closeBtn) {
+    closeBtn.onclick = () => {
+      popup.style.display = "none";
+    };
+  }
 
-});
-
-
-
-document.querySelectorAll(".order-btn").forEach(btn => {
-  btn.addEventListener("click", function(e) {
-    e.preventDefault();
-
-    const productId = this.closest(".video-card").dataset.id;
-
-    // ✅ update href dynamically (keeps anchor behavior)
-    this.href = "billing.html?id=" + productId;
-
-    // ✅ now allow redirect
-    window.location.href = this.href;
-  });
 });
 
 </script>
