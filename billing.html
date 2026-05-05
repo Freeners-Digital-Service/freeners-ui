@@ -4,6 +4,49 @@
   <title>Billing</title>
 
   <style>
+
+/* PAGE BACKGROUND */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #fff;
+}
+
+/* CENTER CONTAINER */
+.page-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  position: relative; /* needed for absolute positioning */
+}
+
+/* BILLING CARD */
+.billing-card {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+
+  background: #ffffff;
+  color: #111;
+  padding: 20px;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+
+/* TITLE */
+.billing-card h1 {
+  margin-bottom: 10px;
+}
+
+.billing-card p {
+  color: #555;
+  font-size: 14px;
+}
+
+
+
     /* POPUP BACKDROP */
 .popup {
   position: fixed;
@@ -103,7 +146,12 @@
 
 <body>
 
-  <h1>Billing Summary</h1>
+  <div class="page-container">
+    <div class="billing-card">
+      <h1>Billing Summary</h1>
+      <p>Review your system before payment</p>
+    </div>
+  </div>
 
   <div id="billingPopup" class="popup">
   <div class="popup-card">
@@ -184,7 +232,8 @@ document.getElementById("continuePayment").onclick = async () => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        product_id: id
+        system_id: id,
+        email: "test@email.com"
       })
     });
 
