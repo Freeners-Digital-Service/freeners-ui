@@ -408,98 +408,6 @@ margin-bottom:40px;
 }
 
 
-/* POPUP BACKDROP */
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-/* CARD */
-.popup-card {
-  background: #ffffff;
-  padding: 25px;
-  border-radius: 12px;
-  width: 320px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  animation: fadeIn 0.3s ease;
-}
-
-/* TITLE */
-.popup-card h2 {
-  margin-bottom: 15px;
-}
-
-/* PRICE BOX */
-.price-box {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 8px;
-  background: #f5f7fa;
-}
-
-.price-box.total {
-  background: #e8f5e9;
-  font-weight: bold;
-}
-
-.price-box.next {
-  background: #eef7ff;
-}
-
-/* LABEL */
-.label {
-  margin-top: 10px;
-  font-size: 13px;
-  color: #666;
-}
-
-/* BUTTONS */
-.actions {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-}
-
-#continuePayment {
-  flex: 1;
-  background: linear-gradient(135deg, #00c853, #00bfa5);
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-#continuePayment:hover {
-  opacity: 0.9;
-}
-
-#closePopup {
-  flex: 1;
-  background: #eee;
-  border: none;
-  padding: 12px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-/* ANIMATION */
-@keyframes fadeIn {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-
 /* CARD CTA – PREMIUM MULTI RADIATE */
 .card-btn{
 display:inline-block;
@@ -743,7 +651,7 @@ Intelligent automation systems developed to streamline workflows, enhance operat
 
     <!-- CTA -->
     <a href="contact.html" class="card-btn">View Details</a>
-    <button class="order-btn">Get this System</button>
+    <a href="billing.html?id=sys-ai-1" class="card-btn order-btn">Get System</a>
 
   </div>
 </div>
@@ -2205,114 +2113,9 @@ sortSelect.addEventListener("change", () => {
 
 
 
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const popup = document.getElementById("billingPopup");
-
-  document.querySelectorAll(".order-btn").forEach(btn => {
-    btn.addEventListener("click", async (e) => {
-      e.preventDefault();
-
-      const card = btn.closest(".video-card");
-      const id = card.getAttribute("data-id");
-
-      if (!id) {
-        console.error("Missing system ID");
-        return;
-      }
-
-      try {
-        // 🔥 FETCH SYSTEM FROM BACKEND
-        const res = await fetch("https://modular-infrastructure.onrender.com/api/systems/" + id);
-
-  console.log("STATUS:", res.status);
-
-  if (!res.ok) {
-    throw new Error("API response not OK");
-  }
-
-  const data = await res.json();
-  console.log("CLICKED ID:", id);
-console.log("API DATA:", data);
-
-  console.log("DATA:", data);
-
-        // 🔥 SAVE FOR NEXT PAGE (billing)
-        localStorage.setItem("selectedProduct", JSON.stringify(data));
-
-        // 🔥 FILL POPUP UI
-        document.getElementById("productName").innerText = data.name;
-        document.getElementById("setupPrice").innerText = "$" + data.setup_fee;
-        document.getElementById("monthlyPrice").innerText = "$" + data.monthly_fee + "/month";
-        document.getElementById("monthlyNext").innerText = "$" + data.monthly_fee + "/month";
-        document.getElementById("billingLabel").innerText = data.label;
-        
-
-        // 🔥 TOTAL TODAY (setup + first month)
-        document.getElementById("totalToday").innerText =
-        "$" + (Number(data.setup_fee) + Number(data.monthly_fee));
-
-        // 🔥 SHOW POPUP
-        if (popup) popup.style.display = "flex";
-
-      } catch (err) {
-        console.error("Fetch error:", err);
-        alert("Failed to load system data");
-      }
-    });
-  });
-
-  // 🔒 CLOSE POPUP
-  const closeBtn = document.getElementById("closePopup");
-  if (closeBtn) {
-    closeBtn.onclick = () => {
-      popup.style.display = "none";
-    };
-  }
-
-});
-
-document.getElementById("continuePayment").onclick = () => {
-  window.location.href = "billing.html";
-};
-
 </script>
 
-<div id="billingPopup" class="popup">
-  <div class="popup-card">
 
-    <h2 id="productName"></h2>
-
-    <div class="price-box">
-      <p>Setup Fee</p>
-      <h3 id="setupPrice"></h3>
-    </div>
-
-    <div class="price-box">
-      <p>Monthly</p>
-      <h3 id="monthlyPrice"></h3>
-    </div>
-
-    <div class="price-box total">
-      <p>Total Today</p>
-      <h2 id="totalToday"></h2>
-    </div>
-
-    <div class="price-box next">
-  <p>Next Billing</p>
-  <h3 id="monthlyNext"></h3>
-</div>
-
-    <p class="label" id="billingLabel"></p>
-
-    <div class="actions">
-      <button id="continuePayment">Continue to Payment</button>
-      <button id="closePopup">Close</button>
-    </div>
-
-  </div>
-</div>
 
 </body>
 </html>
