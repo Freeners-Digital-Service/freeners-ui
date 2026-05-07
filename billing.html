@@ -65,6 +65,25 @@
     z-index: 999;
   }
 
+  /* POPUP HEADER */
+.popup-header {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.popup-header h1 {
+  margin: 0;
+  font-size: 22px;
+  color: #111;
+}
+
+.popup-header p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #666;
+}
+
   /* =========================
      POPUP CARD
   ========================= */
@@ -74,7 +93,10 @@
     border-radius: 14px;
     width: 340px;
     box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+    max-height: 90vh;
+    overflow-y: auto;
     animation: fadeIn 0.25s ease;
+    scroll-behavior: smooth;
   }
 
   /* =========================
@@ -167,19 +189,15 @@
 
 <body>
 
-  <!-- PAGE CONTAINER -->
-  <div class="page-container">
-
-    <div class="billing-card">
-      <h1>Billing Summary</h1>
-      <p>Review your system before payment</p>
-    </div>
-
-  </div>
 
   <!-- POPUP -->
   <div id="billingPopup" class="popup">
     <div class="popup-card">
+
+      <div class="popup-header">
+  <h1>Billing Summary</h1>
+  <p>Review your system before payment</p>
+</div>
 
       <h2 id="systemName"></h2>
 
@@ -266,9 +284,11 @@
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            system_id: id,
-            email: "test@email.com"
-          })
+          client_id: 2,                 // temporary test value
+          item_type: "system",          // VERY IMPORTANT
+          system_id: id,
+          email: "test@email.com"
+})
         });
 
         const result = await res.json();
