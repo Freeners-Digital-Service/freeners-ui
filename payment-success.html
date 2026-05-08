@@ -101,131 +101,123 @@
 const params = new URLSearchParams(window.location.search);
 
 const transaction_id = params.get("transaction_id");
-const status = params.get("status");
 const tx_ref = params.get("tx_ref");
 
-// 🔥 extract system ID
-const system_id = tx_ref ? tx_ref.split("_")[1] : null;
+/* EXTRACT SYSTEM ID */
+
+const system_id = tx_ref
+  ? tx_ref.split("_")[1]
+  : null;
+
+/* NO TRANSACTION */
 
 if (!transaction_id) {
 
   document.getElementById("app").innerHTML = `
     <div class="box">
+
       <div class="status-icon">❌</div>
+
       <h2>No Transaction Found</h2>
-      <p>Missing payment transaction ID.</p>
+
+      <p>
+        Missing payment transaction ID.
+      </p>
+
     </div>
   `;
 
-} else {
+}
 
-  fetch(
-    `https://modular-infrastructure.onrender.com/api/verify-payment?transaction_id=${transaction_id}`
-  )
-    .then(res => res.json())
-    .then(data => {
+/* CHECK PAYMENT STATUS */
 
-      if (data.success) {
+else {
 
-        fetch("https://modular-infrastructure.onrender.com/api/purchase", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            transaction_id,
-            system_id
-          })
-        })
+  async function checkPaymentStatus() {
 
-        .then(res => res.json())
+    try {
 
-        .then(() => {
+      const res = await fetch(
+        `https://modular-infrastructure.onrender.com/api/payment-status?tx_ref=${tx_ref}`
+      );
 
-          document.getElementById("app").innerHTML = `
-            <div class="box">
+      const data = await res.json();
 
-              <div class="status-icon">✅</div>
+      /* PAYMENT CONFIRMED */
 
-              <h2>Payment Successful</h2>
-
-              <p>
-                Your system purchase has been confirmed successfully.
-                You can now continue to setup and configure your system.
-              </p>
-
-              <a 
-                class="btn"
-                href="https://freeners-ui-site.netlify.app/setup.html?id=${system_id}">
-                Proceed to Setup
-              </a>
-
-            </div>
-          `;
-
-        })
-
-        .catch(() => {
-
-          document.getElementById("app").innerHTML = `
-            <div class="box">
-
-              <div class="status-icon">⚠️</div>
-
-              <h2>Payment Saved Failed</h2>
-
-              <p>
-                Payment was successful but we could not save the purchase.
-              </p>
-
-            </div>
-          `;
-
-        });
-
-      } else {
+      if (
+        data.success &&
+        data.status === "paid"
+      ) {
 
         document.getElementById("app").innerHTML = `
           <div class="box">
 
-            <div class="status-icon">❌</div>
+            <div class="status-icon">✅</div>
 
-            <h2>Payment Failed</h2>
+            <h2>Payment Successful</h2>
 
             <p>
-              Your payment could not be verified.
-              Please try again or contact support.
+              Your system purchase has been confirmed successfully.
+              You can now continue to setup and configure your system.
             </p>
+
+            <a
+              class="btn"
+              href="https://freeners-ui-site.netlify.app/setup.html?type=system&id=${system_id}">
+              Proceed to Setup
+            </a>
 
           </div>
         `;
 
       }
 
-    })
+      /* STILL WAITING */
 
-    .catch(() => {
+      else {
+
+        document.getElementById("app").innerHTML = `
+          <div class="box">
+
+            <div class="status-icon">⏳</div>
+
+            <h2>Waiting for Payment Confirmation</h2>
+
+            <p>
+              Please wait while we confirm your payment.
+            </p>
+
+          </div>
+        `;
+
+        setTimeout(checkPaymentStatus, 5000);
+
+      }
+
+    } catch (err) {
 
       document.getElementById("app").innerHTML = `
         <div class="box">
 
           <div class="status-icon">⚠️</div>
 
-          <h2>Verification Pending</h2>
+          <h2>Verification Error</h2>
 
           <p>
-            We are still waiting for payment confirmation.
-            Please retry in a moment.
+            Failed to check payment status.
           </p>
-
-          <button class="retry-btn" onclick="location.reload()">
-            Retry
-          </button>
 
         </div>
       `;
 
-    });
+    }
+
+  }
+
+  /* START CHECKING */
+
+  checkPaymentStatus();
 
 }
 
