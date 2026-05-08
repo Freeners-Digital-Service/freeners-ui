@@ -125,7 +125,7 @@ if (!transaction_id) {
     .then(res => res.json())
     .then(data => {
 
-      if (data.success || status === "successful") {
+      if (data.success) {
 
         fetch("https://modular-infrastructure.onrender.com/api/purchase", {
           method: "POST",
