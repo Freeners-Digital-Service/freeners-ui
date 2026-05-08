@@ -4,51 +4,124 @@
   <title>Payment Verification</title>
 
   <style>
+
     body {
-      font-family: Arial;
-      background: #0f172a;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
       color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .box {
+      width: 100%;
+      max-width: 500px;
+      background: white;
+      color: #111;
+      padding: 35px;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
       text-align: center;
-      padding: 40px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .status-icon {
+      font-size: 60px;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      line-height: 1.5;
     }
 
     .btn {
       display: inline-block;
-      padding: 12px 20px;
-      background: #22c55e;
+      margin-top: 25px;
+      padding: 14px 24px;
+      background: #16a34a;
       color: white;
-      border-radius: 6px;
+      border-radius: 10px;
       text-decoration: none;
-      margin-top: 20px;
+      font-weight: bold;
+      transition: 0.2s ease;
     }
 
-    .box {
-      max-width: 500px;
-      margin: auto;
+    .btn:hover {
+      background: #15803d;
     }
+
+    .retry-btn {
+      margin-top: 20px;
+      padding: 12px 20px;
+      border: none;
+      background: #334155;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
   </style>
 </head>
+
 <body>
 
 <div id="app">
-  <h2>Verifying payment...</h2>
+
+  <div class="box">
+    <div class="status-icon">⏳</div>
+    <h2>Verifying Payment...</h2>
+    <p>Please wait while we confirm your transaction.</p>
+  </div>
+
 </div>
 
 <script>
+
 const params = new URLSearchParams(window.location.search);
 
 const transaction_id = params.get("transaction_id");
 const status = params.get("status");
 const tx_ref = params.get("tx_ref");
 
-// extract product_id
-const product_id = tx_ref ? tx_ref.split("_")[1] : null;
+// 🔥 extract system ID
+const system_id = tx_ref ? tx_ref.split("_")[1] : null;
 
 if (!transaction_id) {
-  document.getElementById("app").innerHTML = "<h2>❌ No transaction ID</h2>";
+
+  document.getElementById("app").innerHTML = `
+    <div class="box">
+      <div class="status-icon">❌</div>
+      <h2>No Transaction Found</h2>
+      <p>Missing payment transaction ID.</p>
+    </div>
+  `;
+
 } else {
 
-  fetch(`https://modular-infrastructure.onrender.com/api/verify-payment?transaction_id=${transaction_id}`)
+  fetch(
+    `https://modular-infrastructure.onrender.com/api/verify-payment?transaction_id=${transaction_id}`
+  )
     .then(res => res.json())
     .then(data => {
 
@@ -60,46 +133,102 @@ if (!transaction_id) {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            transaction_id: transaction_id,
-            product_id: product_id
+            transaction_id,
+            system_id
           })
         })
+
         .then(res => res.json())
+
         .then(() => {
 
-          // ✅ BUTTON NOW USES HREF
           document.getElementById("app").innerHTML = `
             <div class="box">
-              <h2>✅ Payment Successful</h2>
-              <p>Your system is ready to configure.</p>
 
-             <a class="btn" href="https://freeners-ui-site.netlify.app/setup.html?id=${product_id}">
-  Proceed to Setup
-</a>
+              <div class="status-icon">✅</div>
+
+              <h2>Payment Successful</h2>
+
+              <p>
+                Your system purchase has been confirmed successfully.
+                You can now continue to setup and configure your system.
+              </p>
+
+              <a 
+                class="btn"
+                href="https://freeners-ui-site.netlify.app/setup.html?id=${system_id}">
+                Proceed to Setup
+              </a>
+
             </div>
           `;
 
         })
+
         .catch(() => {
-          document.getElementById("app").innerHTML = "<h2>⚠️ Payment OK but save failed</h2>";
+
+          document.getElementById("app").innerHTML = `
+            <div class="box">
+
+              <div class="status-icon">⚠️</div>
+
+              <h2>Payment Saved Failed</h2>
+
+              <p>
+                Payment was successful but we could not save the purchase.
+              </p>
+
+            </div>
+          `;
+
         });
 
       } else {
+
         document.getElementById("app").innerHTML = `
-          <h2>❌ Payment Failed</h2>
-          <p>Please try again or contact support</p>
+          <div class="box">
+
+            <div class="status-icon">❌</div>
+
+            <h2>Payment Failed</h2>
+
+            <p>
+              Your payment could not be verified.
+              Please try again or contact support.
+            </p>
+
+          </div>
         `;
+
       }
 
     })
+
     .catch(() => {
+
       document.getElementById("app").innerHTML = `
-        <h2>⚠️ Verification Pending</h2>
-        <p>Please wait a moment and try again.</p>
-        <button onclick="location.reload()">Retry</button>
+        <div class="box">
+
+          <div class="status-icon">⚠️</div>
+
+          <h2>Verification Pending</h2>
+
+          <p>
+            We are still waiting for payment confirmation.
+            Please retry in a moment.
+          </p>
+
+          <button class="retry-btn" onclick="location.reload()">
+            Retry
+          </button>
+
+        </div>
       `;
+
     });
+
 }
+
 </script>
 
 </body>

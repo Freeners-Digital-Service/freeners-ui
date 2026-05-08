@@ -2,416 +2,335 @@
 <html>
 <head>
   <title>System Setup</title>
+
   <style>
+
+    /* =========================
+       PAGE
+    ========================= */
     body {
-      font-family: Arial;
-      background: #0f172a;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
       color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 20px;
     }
-    .container {
-      max-width: 700px;
-      margin: auto;
-      background: #1e293b;
+
+    /* =========================
+       POPUP
+    ========================= */
+    .setup-popup {
+      width: 100%;
+      max-width: 650px;
+      background: white;
+      color: #111;
+      border-radius: 18px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+      overflow: hidden;
+      animation: fadeIn 0.25s ease;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+    .setup-header {
       padding: 25px;
-      border-radius: 10px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
     }
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border-radius: 5px;
-      border: none;
+
+    .setup-header h1 {
+      margin: 0;
+      font-size: 26px;
+      color: #111827;
     }
-    button {
-      width: 100%;
-      padding: 12px;
-      background: #22c55e;
-      border: none;
+
+    .setup-header p {
+      margin-top: 8px;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    /* =========================
+       CONTENT
+    ========================= */
+    .setup-content {
+      padding: 25px;
+      max-height: 70vh;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    /* =========================
+       LOADING BOX
+    ========================= */
+    .loading-box {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .loading-box h2 {
+      margin-bottom: 10px;
+      color: #111827;
+    }
+
+    .loading-box p {
+      color: #64748b;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+    .setup-footer {
+      padding: 20px 25px;
+      border-top: 1px solid #e2e8f0;
+      background: #f8fafc;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .footer-btn {
+      background: #16a34a;
       color: white;
-      font-weight: bold;
-      border-radius: 5px;
+      border: none;
+      padding: 14px 22px;
+      border-radius: 10px;
       cursor: pointer;
-      margin-top: 10px;
-    }
-    .nav-btn {
-      background: #334155;
-    }
-    .hidden {
-      display: none;
-    }
-    .step {
-      margin-top: 20px;
-    }
-    .color-box {
-      display: inline-block;
-      width: 40px;
-      height: 20px;
-      border-radius: 4px;
-      margin-left: 10px;
-    }
-  </style>
-</head>
-<body>
-<div class="container">
-  <h2>Setup Your System</h2>
-
-  <!-- STEP 0 -->
-  <div id="step0" class="step">
-    <p>How do you want to proceed?</p>
-    <button onclick="selectMode('new')">Set up a new system</button>
-    <button onclick="selectMode('existing')">Connect existing system</button>
-  </div>
-
-  <!-- STEP 1 -->
-  <div id="step1" class="step hidden">
-    <h3>Confirm Your System</h3>
-    <p><b id="system_display">Loading system...</b></p>
-    <button onclick="nextStep(2)">Next</button>
-  </div>
-
-  <!-- STEP 2 NEW -->
-  <div id="step2-new" class="step hidden">
-    <h3>New System Setup</h3>
-    <input id="business_name" placeholder="Business Name">
-
-<label>Upload Logo</label>
-<input type="file" id="logo" accept="image/*">
-
-<input id="domain" placeholder="Domain (optional)">
-<input id="admin_email" placeholder="Admin Email">
-
-    <label>Primary Color</label>
-    <input type="color" id="primary_color" value="#22c55e">
-
-    <label>Secondary Color</label>
-    <input type="color" id="secondary_color" value="#0ea5e9">
-
-    <button class="nav-btn" onclick="prevStep()">Back</button>
-    <button onclick="nextStep(3)">Next</button>
-  </div>
-
-  <!-- STEP 2 EXISTING -->
-  <div id="step2-existing" class="step hidden">
-    <h3>Connect Existing System</h3>
-
-    <select id="system_type">
-      <option value="website">Website</option>
-      <option value="webapp">Web App</option>
-      <option value="mobile_app">Mobile App</option>
-      <option value="automation">Automation System</option>
-      <option value="crm">CRM System</option>
-      <option value="ai_system">AI System</option>
-      <option value="other">Other</option>
-    </select>
-
-    <input id="existing_domain" placeholder="Domain">
-    <input id="api_key" placeholder="API Key">
-    <input id="webhook" placeholder="Webhook URL">
-    <input id="hosting" placeholder="Hosting Provider">
-    <textarea id="notes" placeholder="Additional notes"></textarea>
-
-    <label>Primary Color</label>
-    <input type="color" id="primary_color_existing" value="#22c55e">
-
-    <label>Secondary Color</label>
-    <input type="color" id="secondary_color_existing" value="#0ea5e9">
-
-    <button class="nav-btn" onclick="prevStep()">Back</button>
-    <button onclick="nextStep(3)">Next</button>
-  </div>
-
-  <!-- STEP 3 -->
-  <div id="step3" class="step hidden">
-    <h3>Review & Submit</h3>
-    <div id="review"></div>
-
-    <button class="nav-btn" onclick="prevStep()">Back</button>
-    <button onclick="submitSetup(event)">Submit</button>
-  </div>
-</div>
-
-<script>
-const params = new URLSearchParams(window.location.search);
-const product_id = params.get("id");
-
-let mode = "";
-let step = 0;
-let productName = "";
-
-
-/* LOAD LATEST PURCHASE (CORRECT FLOW) */
-async function loadProduct() {
-  try {
-
-    // 🔹 Get product_id from URL
-    const params = new URLSearchParams(window.location.search);
-    const product_id = params.get("id");
-
-    // 🔹 Fetch products
-    const res = await fetch("https://modular-infrastructure.onrender.com/api/products");
-    const products = await res.json();
-
-    // 🔹 Find product
-    const product = products.find(p => p.id == product_id);
-
-    if (!product) {
-      document.getElementById("system_display").innerText = "System not found";
-      return;
+      font-weight: bold;
+      font-size: 14px;
     }
 
-    // 🔹 Separate values
-    const name = product.name || "System";
-    const fullName = product.full_name || "";
-    productname =name;
-
-    // 🔹 Display separately (two lines)
-    document.getElementById("system_display").innerHTML = `
-      <div style="font-size: 20px; font-weight: bold;">${name}</div>
-      <div style="font-size: 14px; opacity: 0.8;">${fullName}</div>
-    `;
-
-  } catch (err) {
-    console.log("Load error:", err);
-    document.getElementById("system_display").innerText = "Error loading system";
-  }
-}
-
-
-
-
-/* SELECT MODE */
-function selectMode(selected) {
-  mode = selected;
-  document.getElementById("step0").classList.add("hidden");
-  document.getElementById("step1").classList.remove("hidden");
-  step = 1;
-  saveProgress();
-}
-
-/* NEXT */
-function nextStep(next) {
-  document.querySelectorAll(".step").forEach(s => s.classList.add("hidden"));
-
-  if (next === 2) {
-    if (mode === "new") {
-      document.getElementById("step2-new").classList.remove("hidden");
-    } else {
-      document.getElementById("step2-existing").classList.remove("hidden");
+    .footer-btn:hover {
+      background: #15803d;
     }
-  }
 
-  if (next === 3) {
-    document.getElementById("step3").classList.remove("hidden");
-    renderReview();
-  }
+    /* =========================
+       ANIMATION
+    ========================= */
+    @keyframes fadeIn {
+      from {
+        transform: scale(0.95);
+        opacity: 0;
+      }
 
-  step = next;
-  saveProgress();
-}
-
-/* BACK */
-function prevStep() {
-  document.querySelectorAll(".step").forEach(s => s.classList.add("hidden"));
-
-  if (step === 3) {
-    if (mode === "new") {
-      document.getElementById("step2-new").classList.remove("hidden");
-    } else {
-      document.getElementById("step2-existing").classList.remove("hidden");
-    }
-    step = 2;
-  } else {
-    document.getElementById("step1").classList.remove("hidden");
-    step = 1;
-  }
-}
-
-/* GET DATA (FIXED COLOR SEPARATION) */
-function getData() {
-
-  let primary = "#22c55e";
-  let secondary = "#0ea5e9";
-
-  if (mode === "new") {
-    primary = document.getElementById("primary_color")?.value || primary;
-    secondary = document.getElementById("secondary_color")?.value || secondary;
-  }
-
-  if (mode === "existing") {
-    primary = document.getElementById("primary_color_existing")?.value || primary;
-    secondary = document.getElementById("secondary_color_existing")?.value || secondary;
-  }
-
-  const logoFile = document.getElementById("logo")?.files[0];
-
-return {
-  mode,
-  system_name: productName || document.getElementById("system_display").innerText || "System",
-
-  business_name: document.getElementById("business_name")?.value || "",
-  domain: document.getElementById("domain")?.value || "",
-  admin_email: document.getElementById("admin_email")?.value || "",
-  logo: logoFile ? URL.createObjectURL(logoFile) : "",
-
-
-    system_type: document.getElementById("system_type")?.value || "",
-    existing_domain: document.getElementById("existing_domain")?.value || "",
-    api_key: document.getElementById("api_key")?.value || "",
-    webhook: document.getElementById("webhook")?.value || "",
-    hosting: document.getElementById("hosting")?.value || "",
-    notes: document.getElementById("notes")?.value || "",
-
-    primary_color: primary,
-    secondary_color: secondary
-  };
-}
-
-/* SAVE */
-async function saveProgress() {
-  try {
-    await fetch("https://modular-infrastructure.onrender.com/api/setup/save", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        product_id,
-        email: "test@email.com",
-        data: getData(),
-        step
-      })
-    });
-  } catch {}
-}
-
-/* REVIEW */
-function renderReview() {
-  const d = getData();
-
-  document.getElementById("review").innerHTML = `
-    <p><b>System:</b> ${d.system_name}</p>
-    <p><b>Mode:</b> ${d.mode}</p>
-
-    ${d.mode === "new" ? `
-      <p><b>Business_name:</b> ${d.business_name}</p>
-<p><b>Domain:</b> ${d.domain || "Not provided"}</p>
-<p><b>Logo:</b><br>
-  ${d.logo 
-  ? `<img src="${d.logo}" style="width:80px; height:auto; border-radius:10px;" />`
-  : "Not uploaded"}
-</p>
-<p><b>Admin Email:</b> ${d.admin_email}</p>
-    ` : `
-      <p><b>System Type:</b> ${d.system_type}</p>
-      <p><b>Domain:</b> ${d.existing_domain}</p>
-      <p><b>Hosting:</b> ${d.hosting}</p>
-      <p><b>Notes:</b> ${d.notes}</p>
-    `}
-
-    <p><b>Primary Color:</b>
-      <span class="color-box" style="background:${d.primary_color}"></span>
-    </p>
-
-    <p><b>Secondary Color:</b>
-      <span class="color-box" style="background:${d.secondary_color}"></span>
-    </p>
-  `;
-}
-
-/* SUBMIT */
-function validateSetup(formData) {
-  return (
-    formData.business_name &&
-    formData.admin_email &&
-    formData.primary_color &&
-    formData.secondary_color &&
-    formData.logo
-  );
-}
-
-async function submitSetup(e) {
-  const btn = e.target;
-
-  btn.innerText = "Submitting...";
-  btn.disabled = true;
-
-   // 🔹 collect data
-  const formData = {
-    business_name: document.getElementById("business_name")?.value || "",
-    admin_email: document.getElementById("admin_email")?.value || "",
-    primary_color: document.getElementById("primary_color")?.value || "",
-    secondary_color: document.getElementById("secondary_color")?.value || "",
-    logo: document.getElementById("logo")?.files[0] || null
-  };
-
-  // ❌ block incomplete submission
-  if (!validateSetup(formData)) {
-    alert("⚠️ Please complete all required fields before submitting.");
-    btn.innerText = "Submit";
-    btn.disabled = false;
-    return;
-  }
-
-  try {
-    const data = new FormData();
-
-    data.append("product_id", product_id);
-    data.append("email", "test@email.com");
-
-    // append fields
-    for (let key in formData) {
-      if (key !== "logo") {
-        data.append(key, formData[key]);
+      to {
+        transform: scale(1);
+        opacity: 1;
       }
     }
 
-    // append logo file
-    if (formData.logo) {
-      data.append("logo_file", formData.logo);
-    }
 
-    const res = await fetch("https://modular-infrastructure.onrender.com/api/setup/submit", {
-      method: "POST",
-      body: data
-    });
+    /* =========================
+   DYNAMIC FORM
+========================= */
 
-    const result = await res.json();
+.setup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
-    // ✅ SUCCESS
-     if (result.success) {
-      document.body.innerHTML = `
-        <div style="text-align:center; margin-top:50px;">
-          <h2>✅ Setup Submitted</h2>
-          <p>Your system is being prepared.</p>
-          <p>We’re configuring everything for a smooth experience.</p>
-          <p>You’ll be notified once it's ready.</p>
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
 
-          <br><br>
+.form-label {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #111827;
+}
 
-          <button onclick="window.location.href='dashboard.html'">
-            Go to Dashboard
-          </button>
-        </div>
-      `;
-    } else {
-      alert("Submission failed. Please try again.");
-      btn.innerText = "Submit";
-      btn.disabled = false;
-    }
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  box-sizing: border-box;
+  font-size: 14px;
+}
 
-  } catch (err) {
-    console.log("Submission error:", err);
+.form-input:focus {
+  outline: none;
+  border-color: #16a34a;
+}
 
-    alert("Submission failed. Please check your connection and try again.");
-    btn.innerText = "Submit";
-    btn.disabled = false;
-  }
+.form-submit {
+  width: 100%;
+  padding: 14px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.form-submit:hover {
+  background: #15803d;
 }
 
 
-/* INIT */
-loadProduct();
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       SETUP POPUP
+  ========================= -->
+  <div class="setup-popup">
+
+    <!-- HEADER -->
+    <div class="setup-header">
+      <h1>System Setup</h1>
+      <p>
+        Configure your purchased system before activation.
+      </p>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="setup-content" id="setupContent">
+
+      <div class="loading-box">
+        <h2>Loading Setup Form...</h2>
+        <p>Please wait while we prepare your configuration form.</p>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="setup-footer">
+      <button class="footer-btn">
+        Submit Configuration
+      </button>
+    </div>
+
+  </div>
+
+  <!-- =========================
+       JS
+  ========================= -->
+  <script>
+
+const params = new URLSearchParams(window.location.search);
+
+const type = params.get("type") || "system";
+const id = params.get("id");
+
+const setupContent = document.getElementById("setupContent");
+
+/* =========================
+   LOAD FORM
+========================= */
+
+async function loadSetupForm() {
+
+  try {
+
+    const res = await fetch(
+      `https://modular-infrastructure.onrender.com/api/setup/form/${type}`
+    );
+
+    const data = await res.json();
+
+    if (!data.success) {
+      throw new Error();
+    }
+
+    renderForm(data.form.fields);
+
+  } catch (err) {
+
+    setupContent.innerHTML = `
+      <div class="loading-box">
+        <h2>Failed to Load Form</h2>
+        <p>Please refresh and try again.</p>
+      </div>
+    `;
+
+  }
+
+}
+
+/* =========================
+   RENDER FORM
+========================= */
+
+function renderForm(fields) {
+
+  let html = `<form id="setupForm" class="setup-form">`;
+
+  fields.forEach(field => {
+
+    html += `
+      <div class="form-group">
+
+        <label class="form-label">
+          ${field.label}
+        </label>
+    `;
+
+    /* FILE INPUT */
+
+    if (field.type === "file") {
+
+      html += `
+        <input
+          type="file"
+          name="${field.name}"
+          class="form-input"
+        />
+      `;
+
+    }
+
+    /* NORMAL INPUT */
+
+    else {
+
+      html += `
+        <input
+          type="${field.type}"
+          name="${field.name}"
+          placeholder="${field.placeholder || ""}"
+          class="form-input"
+        />
+      `;
+
+    }
+
+    html += `</div>`;
+
+  });
+
+  html += `
+    <button
+      type="submit"
+      class="form-submit">
+      Submit Configuration
+    </button>
+  `;
+
+  html += `</form>`;
+
+  setupContent.innerHTML = html;
+
+}
+
+/* =========================
+   START
+========================= */
+
+loadSetupForm();
+
 </script>
+
+
 </body>
 </html>
