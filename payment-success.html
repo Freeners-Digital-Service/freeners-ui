@@ -106,105 +106,119 @@ const tx_ref = params.get("tx_ref");
 /* EXTRACT SYSTEM ID */
 
 const system_id = tx_ref
- ? tx_ref.split("_")[1]
- : null;
+  ? tx_ref.split("_")[1]
+  : null;
 
-/* NO TRANSACTION */
+/* MISSING PAYMENT INFO */
 
 if (!transaction_id || !tx_ref) {
 
- document.getElementById("app").innerHTML = `
- <div class="box">
+  document.getElementById("app").innerHTML = `
+    <div class="box">
 
- <div class="status-icon">❌</div>
+      <div class="status-icon">❌</div>
 
- <h2>Payment Error</h2>
+      <h2>No Transaction Found</h2>
 
- <p>
- Missing payment information.
- </p>
+      <p>
+        Missing payment information.
+      </p>
 
- </div>
- `;
+    </div>
+  `;
 
 }
 
-/* VERIFY PAYMENT */
+/* CHECK PAYMENT STATUS */
 
 else {
 
- fetch(
- `https://modular-infrastructure.onrender.com/api/verify-payment?transaction_id=${transaction_id}&tx_ref=${tx_ref}`
- )
+  async function checkPaymentStatus() {
 
- .then(res => res.json())
+    try {
 
- .then(data => {
+      const res = await fetch(
+        `https://modular-infrastructure.onrender.com/api/payment-status?tx_ref=${tx_ref}`
+      );
 
- if (data.success) {
+      const data = await res.json();
 
- document.getElementById("app").innerHTML = `
- <div class="box">
+      /* PAYMENT CONFIRMED */
 
- <div class="status-icon">✅</div>
+      if (
+        data.success &&
+        data.status === "paid"
+      ) {
 
- <h2>Payment Successful</h2>
+        document.getElementById("app").innerHTML = `
+          <div class="box">
 
- <p>
- Your system purchase has been confirmed successfully.
- You can now continue to setup and configure your system.
- </p>
+            <div class="status-icon">✅</div>
 
- <a
- class="btn"
- href="https://freeners-ui-site.netlify.app/setup.html?type=system&id=${system_id}">
- Proceed to Setup
- </a>
+            <h2>Payment Successful</h2>
 
- </div>
- `;
+            <p>
+              Your system purchase has been confirmed successfully.
+              You can now continue to setup and configure your system.
+            </p>
 
- }
+            <a
+              class="btn"
+              href="https://freeners-ui-site.netlify.app/setup.html?type=system&id=${system_id}">
+              Proceed to Setup
+            </a>
 
- else {
+          </div>
+        `;
 
- document.getElementById("app").innerHTML = `
- <div class="box">
+      }
 
- <div class="status-icon">❌</div>
+      /* STILL WAITING */
 
- <h2>Verification Failed</h2>
+      else {
 
- <p>
- Payment could not be verified.
- Please contact support.
- </p>
+        document.getElementById("app").innerHTML = `
+          <div class="box">
 
- </div>
- `;
+            <div class="status-icon">⏳</div>
 
- }
+            <h2>Waiting for Payment Confirmation</h2>
 
- })
+            <p>
+              Please wait while we confirm your payment.
+            </p>
 
- .catch(() => {
+          </div>
+        `;
 
- document.getElementById("app").innerHTML = `
- <div class="box">
+        setTimeout(checkPaymentStatus, 3000);
 
- <div class="status-icon">⚠️</div>
+      }
 
- <h2>Verification Error</h2>
+    } catch (err) {
 
- <p>
- Failed to verify payment.
- Please try again shortly.
- </p>
+      document.getElementById("app").innerHTML = `
+        <div class="box">
 
- </div>
- `;
+          <div class="status-icon">⚠️</div>
 
- });
+          <h2>Verification Error</h2>
+
+          <p>
+            Failed to check payment status.
+            Please try again shortly.
+          </p>
+
+        </div>
+      `;
+
+    }
+
+  }
+
+  /* START CHECKING */
+
+  checkPaymentStatus();
 
 }
 
