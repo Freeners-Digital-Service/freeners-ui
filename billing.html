@@ -252,73 +252,160 @@
   document.addEventListener("DOMContentLoaded", () => {
 
     const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
+   const id = params.get("id");
+const type = params.get("type") || "system";
+
+
 
     if (!id) {
       alert("No system selected");
       return;
     }
 
-    // FETCH SYSTEM
-    fetch("https://modular-infrastructure.onrender.com/api/systems/" + id)
-      .then(res => res.json())
-      .then(data => {
+    // FETCH ITEM
 
-        document.getElementById("systemName").innerText = data.name;
-        document.getElementById("setupPrice").innerText = "$" + data.setup_fee;
-        document.getElementById("monthlyPrice").innerText = "$" + data.monthly_fee;
+let apiUrl = "";
+let monthlyFee = 0;
 
-        document.getElementById("totalToday").innerText =
-          "$" + (Number(data.setup_fee) + Number(data.monthly_fee));
+if (type === "website") {
 
-        document.getElementById("monthlyNext").innerText =
-          "$" + data.monthly_fee + "/month";
+  apiUrl =
+    "https://modular-infrastructure.onrender.com/api/websites/websites/" + id;
 
-        document.getElementById("billingLabel").innerText = data.label;
+} else {
 
-        document.getElementById("billingPopup").style.display = "flex";
-      })
-      .catch(err => {
-        console.error(err);
-        alert("Failed to load system data");
-      });
+  apiUrl =
+    "https://modular-infrastructure.onrender.com/api/systems/" + id;
+}
+
+fetch(apiUrl)
+  .then(res => res.json())
+  .then(data => {
+
+    // Dynamic popup header
+    document.querySelector(".popup-header p")
+      .innerText =
+      type === "website"
+        ? "Review your website before payment"
+        : "Review your system before payment";
+
+    // Dynamic monthly title
+    document.getElementById("monthlyTitle")
+      .innerText =
+      type === "website"
+        ? "Current Service Fee"
+        : "Monthly";
+
+    // Name
+    document.getElementById("systemName")
+      .innerText =
+      data.full_name || data.name;
+
+    // Type
+    document.getElementById("billingLabel")
+      .innerText =
+      "Type: " +
+      (type === "website"
+        ? "Website"
+        : "System");
+
+    // Setup Fee
+    document.getElementById("setupPrice")
+      .innerText =
+      "$" + data.setup_fee;
+
+    // Monthly Fee
+    monthlyFee =
+      type === "website"
+        ? data.basic_monthly_fee
+        : data.monthly_fee;
+
+    document.getElementById("monthlyPrice")
+      .innerText =
+      "$" + monthlyFee;
+
+    // Total Today
+    document.getElementById("totalToday")
+      .innerText =
+      "$" + (
+        Number(data.setup_fee) +
+        Number(monthlyFee)
+      );
+
+    // Next Billing
+    document.getElementById("monthlyNext")
+      .innerText =
+      "$" + monthlyFee + "/month";
+
+    // Open popup
+    document.getElementById("billingPopup")
+      .style.display = "flex";
+
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Failed to load item data");
+  });
 
     // CLOSE POPUP
     document.getElementById("closePopup").onclick = () => {
       document.getElementById("billingPopup").style.display = "none";
     };
 
-    // PAYMENT
-    document.getElementById("continuePayment").onclick = async () => {
+    /// PAYMENT
+document.getElementById("continuePayment").onclick =
+  async () => {
 
-      try {
-        const res = await fetch("https://modular-infrastructure.onrender.com/api/pay", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-          client_id: 1,                 // temporary test value
-          item_type: "system",          // VERY IMPORTANT
+  try {
+
+    const payload =
+      type === "website"
+      ? {
+          client_id: 1, // temporary
+          item_type: "website",
+          website_id: id,
+          selected_plan: "basic",
+          email: "test@email.com"
+        }
+      : {
+          client_id: 1, // temporary
+          item_type: "system",
           system_id: id,
           email: "test@email.com"
-})
-        });
+        };
 
-        const result = await res.json();
-
-        if (result?.data?.link) {
-          window.location.href = result.data.link;
-        } else {
-          throw new Error();
-        }
-
-      } catch (err) {
-        console.error(err);
-        alert("Payment failed");
+    const res = await fetch(
+      "https://modular-infrastructure.onrender.com/api/pay",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
       }
+    );
 
-    };
+    const result = await res.json();
+
+    if (result?.data?.link) {
+
+      window.location.href =
+        result.data.link;
+
+    } else {
+
+      throw new Error();
+
+    }
+
+  } catch (err) {
+
+    console.error(err);
+    alert("Payment failed");
+
+  }
+
+};
 
   });
   </script>
