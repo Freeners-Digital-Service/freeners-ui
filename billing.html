@@ -256,11 +256,13 @@
 const type = params.get("type") || "system";
 
 
-
     if (!id) {
-      alert("No system selected");
-      return;
-    }
+  alert("No item selected");
+  return;
+}
+
+console.log("ID:", id);
+console.log("TYPE:", type);
 
     // FETCH ITEM
 
