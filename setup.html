@@ -188,11 +188,16 @@
 
     <!-- HEADER -->
     <div class="setup-header">
-      <h1>System Setup</h1>
-      <p>
-        Configure your purchased system before activation.
-      </p>
-    </div>
+
+  <h1 id="setupTitle">
+    System Setup Form
+  </h1>
+
+  <p id="setupSubtitle">
+    Fill your system information before activation.
+  </p>
+
+</div>
 
     <!-- CONTENT -->
     <div class="setup-content" id="setupContent">
@@ -226,6 +231,22 @@ const id = params.get("id");
 const setupContent = document.getElementById("setupContent");
 
 /* =========================
+   DYNAMIC HEADER
+========================= */
+
+document.getElementById("setupTitle")
+.innerText =
+type === "website"
+? "Website Setup Form"
+: "System Setup Form";
+
+document.getElementById("setupSubtitle")
+.innerText =
+type === "website"
+? "Fill your website information before activation."
+: "Fill your system information before activation.";
+
+/* =========================
    LOAD FORM
 ========================= */
 
@@ -237,9 +258,13 @@ async function loadSetupForm() {
       `https://modular-infrastructure.onrender.com/api/setup/form/${type}`
     );
 
+    if (!res.ok) {
+      throw new Error();
+    }
+
     const data = await res.json();
 
-    if (!data.success) {
+    if (!data.success || !data.form) {
       throw new Error();
     }
 
@@ -247,10 +272,17 @@ async function loadSetupForm() {
 
   } catch (err) {
 
+    console.error(err);
+
     setupContent.innerHTML = `
       <div class="loading-box">
+
         <h2>Failed to Load Form</h2>
-        <p>Please refresh and try again.</p>
+
+        <p>
+          Please refresh and try again.
+        </p>
+
       </div>
     `;
 
@@ -258,13 +290,17 @@ async function loadSetupForm() {
 
 }
 
+
+
 /* =========================
    RENDER FORM
 ========================= */
 
 function renderForm(fields) {
 
-  let html = `<form id="setupForm" class="setup-form">`;
+  let html =
+    `<form id="setupForm"
+      class="setup-form">`;
 
   fields.forEach(field => {
 
@@ -276,58 +312,108 @@ function renderForm(fields) {
         </label>
     `;
 
+
     /* FILE INPUT */
 
-    if (field.type === "file") {
+if (field.type === "file") {
 
-      html += `
-        <input
-          type="file"
-          name="${field.name}"
-          class="form-input"
-        />
-      `;
+  html += `
+    <input
+      type="file"
+      name="${field.name}"
+      class="form-input"
+      accept="image/*"
+      ${field.required ? "required" : ""}
+    />
+  `;
 
-    }
+}
 
-    /* NORMAL INPUT */
 
-    else {
+    /* SELECT INPUT */
 
-      html += `
-        <input
-          type="${field.type}"
-          name="${field.name}"
-          placeholder="${field.placeholder || ""}"
-          class="form-input"
-        />
-      `;
+else if (field.type === "select") {
 
-    }
+  html += `
+    <select
+      name="${field.name}"
+      class="form-input"
+      ${field.required ? "required" : ""}
+    >
+  `;
 
-    html += `</div>`;
+  field.options.forEach(option => {
+
+    html += `
+      <option value="${option}">
+        ${option}
+      </option>
+    `;
 
   });
 
   html += `
-    <button
-      type="submit"
-      class="form-submit">
-      Submit Configuration
-    </button>
+    </select>
   `;
 
-  html += `</form>`;
+}
 
-  setupContent.innerHTML = html;
+/* NORMAL INPUT */
+
+else {
+
+  html += `
+    <input
+      type="${field.type}"
+      name="${field.name}"
+      placeholder="${field.placeholder || ""}"
+      class="form-input"
+      ${field.required ? "required" : ""}
+    />
+  `;
 
 }
+
+html += `</div>`;
+
+});
+
+html += `
+  <button
+    type="submit"
+    class="form-submit">
+    Submit Information
+  </button>
+`;
+
+html += `</form>`;
+
+setupContent.innerHTML = html;
+
+}
+
+
 
 /* =========================
    START
 ========================= */
 
-loadSetupForm();
+if (!id) {
+
+  setupContent.innerHTML = `
+    <div class="loading-box">
+      <h2>Missing Setup</h2>
+      <p>
+        No purchased item found.
+      </p>
+    </div>
+  `;
+
+} else {
+
+  loadSetupForm();
+
+}
 
 </script>
 
