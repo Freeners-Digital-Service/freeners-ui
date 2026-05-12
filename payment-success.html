@@ -98,129 +98,211 @@
 
 <script>
 
-const params = new URLSearchParams(window.location.search);
+const params =
+new URLSearchParams(
+window.location.search
+);
 
-const transaction_id = params.get("transaction_id");
-const tx_ref = params.get("tx_ref");
+const transaction_id =
+params.get("transaction_id");
 
-/* EXTRACT SYSTEM ID */
+const tx_ref =
+params.get("tx_ref");
 
-const system_id = tx_ref
-  ? tx_ref.split("_")[1]
-  : null;
+/* =========================
+   EXTRACT TYPE + ID
+========================= */
 
-/* MISSING PAYMENT INFO */
+const item_type =
+tx_ref
+? tx_ref.split("_")[0]
+: "system";
 
-if (!transaction_id || !tx_ref) {
+const item_id =
+tx_ref
+? tx_ref.split("_")[1]
+: null;
 
-  document.getElementById("app").innerHTML = `
-    <div class="box">
+/* =========================
+   PAGE CONTENT
+========================= */
 
-      <div class="status-icon">❌</div>
+const isWebsite =
+item_type === "website";
 
-      <h2>No Transaction Found</h2>
+const itemName =
+isWebsite
+? "website"
+: "system";
 
-      <p>
-        Missing payment information.
-      </p>
+const setupType =
+isWebsite
+? "website"
+: "system";
 
-    </div>
-  `;
+const setupButtonText =
+isWebsite
+? "Proceed to Website Setup"
+: "Proceed to System Setup";
+
+/* =========================
+   MISSING PAYMENT INFO
+========================= */
+
+if (
+!transaction_id ||
+!tx_ref
+) {
+
+document.getElementById("app")
+.innerHTML = `
+<div class="box">
+
+<div class="status-icon">
+❌
+</div>
+
+<h2>
+No Transaction Found
+</h2>
+
+<p>
+Missing payment information.
+</p>
+
+</div>
+`;
 
 }
 
-/* CHECK PAYMENT STATUS */
+/* =========================
+   CHECK PAYMENT STATUS
+========================= */
 
 else {
 
-  async function checkPaymentStatus() {
+async function
+checkPaymentStatus() {
 
-    try {
+try {
 
-      const res = await fetch(
-        `https://modular-infrastructure.onrender.com/api/payment-status?tx_ref=${tx_ref}`
-      );
+const res =
+await fetch(
+`https://modular-infrastructure.onrender.com/api/payment-status?tx_ref=${tx_ref}`
+);
 
-      const data = await res.json();
+const data =
+await res.json();
 
-      /* PAYMENT CONFIRMED */
+/* PAYMENT CONFIRMED */
 
-      if (
-        data.success &&
-        data.status === "paid"
-      ) {
+if (
+data.success &&
+data.status === "paid"
+) {
 
-        document.getElementById("app").innerHTML = `
-          <div class="box">
+document.getElementById("app")
+.innerHTML = `
+<div class="box">
 
-            <div class="status-icon">✅</div>
+<div class="status-icon">
+✅
+</div>
 
-            <h2>Payment Successful</h2>
+<h2>
+Payment Successful
+</h2>
 
-            <p>
-              Your system purchase has been confirmed successfully.
-              You can now continue to setup and configure your system.
-            </p>
+<p>
+Your ${itemName}
+purchase has been
+confirmed successfully.
 
-            <a
-              class="btn"
-              href="https://freeners-ui-site.netlify.app/setup.html?type=system&id=${system_id}">
-              Proceed to Setup
-            </a>
+You can now continue
+to fill your
+${itemName}
+information.
+</p>
 
-          </div>
-        `;
+<a
+class="btn"
+href="https://freeners-ui-site.netlify.app/setup.html?type=${setupType}&id=${item_id}">
+${setupButtonText}
+</a>
 
-      }
-
-      /* STILL WAITING */
-
-      else {
-
-        document.getElementById("app").innerHTML = `
-          <div class="box">
-
-            <div class="status-icon">⏳</div>
-
-            <h2>Waiting for Payment Confirmation</h2>
-
-            <p>
-              Please wait while we confirm your payment.
-            </p>
-
-          </div>
-        `;
-
-        setTimeout(checkPaymentStatus, 3000);
-
-      }
-
-    } catch (err) {
-
-      document.getElementById("app").innerHTML = `
-        <div class="box">
-
-          <div class="status-icon">⚠️</div>
-
-          <h2>Verification Error</h2>
-
-          <p>
-            Failed to check payment status.
-            Please try again shortly.
-          </p>
-
-        </div>
-      `;
-
-    }
-
-  }
-
-  /* START CHECKING */
-
-  checkPaymentStatus();
+</div>
+`;
 
 }
+
+/* STILL WAITING */
+
+else {
+
+document.getElementById("app")
+.innerHTML = `
+<div class="box">
+
+<div class="status-icon">
+⏳
+</div>
+
+<h2>
+Waiting for Payment Confirmation
+</h2>
+
+<p>
+Please wait while we
+confirm your payment.
+</p>
+
+</div>
+`;
+
+setTimeout(
+checkPaymentStatus,
+3000
+);
+
+}
+
+} catch (err) {
+
+document.getElementById("app")
+.innerHTML = `
+<div class="box">
+
+<div class="status-icon">
+⚠️
+</div>
+
+<h2>
+Verification Error
+</h2>
+
+<p>
+Failed to check
+payment status.
+
+Please try again
+shortly.
+</p>
+
+</div>
+`;
+
+}
+
+}
+
+/* START CHECKING */
+
+checkPaymentStatus();
+
+}
+
+</script>
+
 
 </script>
 
