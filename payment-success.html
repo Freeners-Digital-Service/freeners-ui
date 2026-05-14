@@ -114,9 +114,8 @@ params.get("tx_ref");
 ========================= */
 
 const item_type =
-tx_ref
-? tx_ref.split("_")[0]
-: "system";
+params.get("type")
+|| "system";
 
 const item_id =
 tx_ref
