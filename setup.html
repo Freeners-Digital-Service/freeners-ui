@@ -388,7 +388,6 @@ setupContent.innerHTML = html;
 /* =========================
    SUBMIT FORM
 ========================= */
-
 document.addEventListener(
 "submit",
 async (e) => {
@@ -402,6 +401,21 @@ e.preventDefault();
 
 const form =
 e.target;
+
+const submitBtn =
+form.querySelector("button");
+
+submitBtn.disabled =
+true;
+
+submitBtn.textContent =
+"Submitting...";
+
+submitBtn.style.background =
+"#9CA3AF";
+
+submitBtn.style.cursor =
+"not-allowed";
 
 const formData =
 new FormData(form);
@@ -445,19 +459,11 @@ await res.json();
 
 if (data.success) {
 
-const submitBtn =
-form.querySelector(
-'button[type="submit"]'
-);
-
-submitBtn.disabled =
-true;
-
 submitBtn.textContent =
-"Submitted";
+"Submitted ✓";
 
-submitBtn.style.opacity =
-"0.8";
+submitBtn.style.background =
+"#16a34a";
 
 setTimeout(() => {
 
@@ -466,10 +472,16 @@ window.location.href =
 
 }, 1500);
 
-}
+} else {
 
+submitBtn.disabled =
+false;
 
-else {
+submitBtn.textContent =
+"Submit Information";
+
+submitBtn.style.background =
+"#ef4444";
 
 alert(
 "Submission failed."
@@ -479,6 +491,17 @@ alert(
 
 } catch (err) {
 
+console.error(err);
+
+submitBtn.disabled =
+false;
+
+submitBtn.textContent =
+"Submit Information";
+
+submitBtn.style.background =
+"#ef4444";
+
 alert(
 "Something went wrong."
 );
@@ -486,6 +509,7 @@ alert(
 }
 
 });
+
 
 
 
