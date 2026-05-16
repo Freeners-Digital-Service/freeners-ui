@@ -385,6 +385,91 @@ setupContent.innerHTML = html;
 
 }
 
+/* =========================
+   SUBMIT FORM
+========================= */
+
+document
+.getElementById("setupForm")
+.addEventListener(
+"submit",
+async (e) => {
+
+e.preventDefault();
+
+const form =
+e.target;
+
+const formData =
+new FormData(form);
+
+formData.append(
+"item_type",
+type
+);
+
+if (type === "system") {
+
+formData.append(
+"system_id",
+id
+);
+
+}
+
+if (type === "website") {
+
+formData.append(
+"website_id",
+id
+);
+
+}
+
+try {
+
+const res =
+await fetch(
+"https://modular-infrastructure.onrender.com/api/setup/submit",
+{
+method: "POST",
+body: formData
+}
+);
+
+const data =
+await res.json();
+
+if (data.success) {
+
+alert(
+"Information submitted successfully."
+);
+
+window.location.href =
+"user-dashboard.html";
+
+}
+
+else {
+
+alert(
+"Submission failed."
+);
+
+}
+
+} catch (err) {
+
+alert(
+"Something went wrong."
+);
+
+}
+
+});
+
+
 
 
 /* =========================
