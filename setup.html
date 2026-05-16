@@ -389,11 +389,14 @@ setupContent.innerHTML = html;
    SUBMIT FORM
 ========================= */
 
-document
-.getElementById("setupForm")
-.addEventListener(
+document.addEventListener(
 "submit",
 async (e) => {
+
+if (
+e.target.id !==
+"setupForm"
+) return;
 
 e.preventDefault();
 
