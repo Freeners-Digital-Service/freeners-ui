@@ -445,14 +445,29 @@ await res.json();
 
 if (data.success) {
 
-alert(
-"Information submitted successfully."
+const submitBtn =
+form.querySelector(
+'button[type="submit"]'
 );
+
+submitBtn.disabled =
+true;
+
+submitBtn.textContent =
+"Submitted";
+
+submitBtn.style.opacity =
+"0.8";
+
+setTimeout(() => {
 
 window.location.href =
 "user-dashboard.html";
 
+}, 1500);
+
 }
+
 
 else {
 
