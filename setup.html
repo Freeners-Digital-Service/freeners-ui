@@ -82,6 +82,234 @@
       color: #64748b;
     }
 
+
+/* =========================
+   AGENT SETUP UI
+========================= */
+
+.setup-popup {
+  width: 750px;
+  max-width: 95%;
+  margin: 30px auto;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+/* =========================
+   ACCORDION SECTION
+========================= */
+
+.accordion-section {
+  margin-bottom: 18px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #E5E7EB;
+  background: #FFFFFF;
+}
+
+.accordion-header {
+  padding: 16px 20px;
+  color: #FFFFFF;
+  font-weight: 600;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  user-select: none;
+}
+
+/* Header Colors */
+
+.accordion-header.target_type {
+  background: #0891B2;
+}
+
+.accordion-header.agent_behavior {
+  background: #16A34A;
+}
+
+.accordion-header.additional_information {
+  background: #D97706;
+}
+
+.accordion-header.contact_method {
+  background: #7C3AED;
+}
+
+.accordion-icon {
+  transition: transform 0.3s ease;
+}
+
+.accordion-section.active
+.accordion-icon {
+  transform: rotate(180deg);
+}
+
+/* =========================
+   ACCORDION CONTENT
+========================= */
+
+.accordion-content {
+  display: none;
+  padding: 20px;
+  background: #FFFFFF;
+}
+
+.accordion-section.active
+.accordion-content {
+  display: block;
+}
+
+/* =========================
+   CONFIRM AGENT NAME
+========================= */
+
+.form-group[data-field="agent_name"] {
+  background: #1E3A8A;
+  padding: 18px;
+  border-radius: 14px;
+  margin-bottom: 18px;
+}
+
+.form-group[data-field="agent_name"]
+.form-label {
+  color: #FFFFFF;
+}
+
+.form-group[data-field="agent_name"]
+.form-input {
+  margin-top: 10px;
+}
+
+/* =========================
+   FORM INPUTS
+========================= */
+
+.form-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #D1D5DB;
+  border-radius: 10px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #16A34A;
+  box-shadow: 0 0 0 3px rgba(22,163,74,0.15);
+}
+
+/* =========================
+   AGENT BEHAVIOR
+========================= */
+
+.form-group[data-field="agent_behavior"]
+label {
+  display: block;
+  padding: 12px;
+  margin-bottom: 10px;
+
+  border: 1px solid #D1D5DB;
+  border-radius: 10px;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.form-group[data-field="agent_behavior"]
+label:hover {
+  background: #F0FDF4;
+}
+
+.form-group[data-field="agent_behavior"]
+input:checked + span {
+  color: #16A34A;
+  font-weight: 600;
+}
+
+.form-group[data-field="agent_behavior"]
+input:checked {
+  accent-color: #16A34A;
+}
+
+/* =========================
+   ADDITIONAL INFORMATION
+========================= */
+
+textarea.form-input {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* =========================
+   SUBMIT BUTTON
+========================= */
+
+.form-submit {
+  width: 100%;
+  padding: 14px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #DC2626;
+  color: #FFFFFF;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.form-submit:hover {
+  background: #B91C1C;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes slideDown {
+
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .setup-popup {
+    width: 95%;
+  }
+
+  .accordion-header {
+    padding: 14px 16px;
+  }
+
+  .accordion-content {
+    padding: 16px;
+  }
+
+}
+
+
     /* =========================
        FOOTER
     ========================= */
@@ -218,26 +446,58 @@
 
 const params = new URLSearchParams(window.location.search);
 
-const type = params.get("type") || "system";
+const type = params.get("type");
 const id = params.get("id");
 
 const setupContent = document.getElementById("setupContent");
 
+if (!type || !id) {
+
+  setupContent.innerHTML = `<div class="loading-box">
+      <h2>Invalid Setup</h2>
+      <p> Missing setup information.</p>
+    </div>
+  `;
+
+  throw new Error("Missing setup information");
+
+}
+
+
 /* =========================
    DYNAMIC HEADER
 ========================= */
-
 document.getElementById("setupTitle")
-.innerText =
-type === "website"
-? "Website Setup Form"
-: "System Setup Form";
+  .innerText = setupTitle;
+
+let setupTitle =
+  "System Setup Form";
+
+if (type === "website") {
+  setupTitle =
+    "Website Setup Form";
+
+} else if (type === "agent") {
+  setupTitle =
+    "Agent Setup Form";
+}
+
 
 document.getElementById("setupSubtitle")
-.innerText =
-type === "website"
-? "Fill your website information before activation."
-: "Fill your system information before activation.";
+  .innerText = setupSubtitle;
+
+let setupSubtitle =
+  "Fill your system information before activation.";
+
+if (type === "website") {
+  setupSubtitle =
+    "Fill your website information before activation.";
+
+} else if (type === "agent") {
+  setupSubtitle =
+  "Fill your agent configuration before activation.";
+}
+
 
 /* =========================
    LOAD FORM
@@ -297,14 +557,54 @@ function renderForm(fields) {
 
   fields.forEach(field => {
 
-    html += `
-      <div class="form-group">
+    /* =========================
+   FIELD WRAPPER
+========================= */
 
-        <label class="form-label">
+if (
+  type === "agent" &&
+  [
+    "target_type",
+    "agent_behavior",
+    "additional_information",
+    "contact_method"
+  ].includes(field.name)
+) {
+
+  html += `
+    <div
+      class="form-group accordion-section"
+      data-field="${field.name}">
+
+      <div
+        class="accordion-header ${field.name}">
+
+        <span>
           ${field.label}
-        </label>
-    `;
+        </span>
 
+        <span class="accordion-icon">
+          ▼
+        </span>
+
+      </div>
+
+      <div class="accordion-content">
+  `;
+
+} else {
+
+  html += `
+    <div
+      class="form-group"
+      data-field="${field.name}">
+
+      <label class="form-label">
+        ${field.label}
+      </label>
+  `;
+
+}
 
     /* FILE INPUT */
 
@@ -351,23 +651,50 @@ else if (field.type === "select") {
 
 }
 
+
+
 /* NORMAL INPUT */
 
-else {
+    else {
 
-  html += `
-    <input
-      type="${field.type}"
-      name="${field.name}"
-      placeholder="${field.placeholder || ""}"
-      class="form-input"
-      ${field.required ? "required" : ""}
-    />
-  `;
+      html += `
+        <input
+          type="${field.type}"
+          name="${field.name}"
+          placeholder="${field.placeholder || ""}"
+          class="form-input"
+          ${field.required ? "required" : ""}
+        />
+      `;
 
-}
+    }
 
-html += `</div>`;
+      /* =========================
+        FIELD CLOSING
+      ========================= */
+
+      if (
+        type === "agent" &&
+        [
+          "target_type",
+          "agent_behavior",
+          "additional_information",
+          "contact_method"
+        ].includes(field.name)
+      ) {
+
+        html += `
+            </div>
+          </div>
+        `;
+
+      } else {
+
+        html += `
+          </div>
+        `;
+
+      }
 
 });
 
@@ -382,132 +709,414 @@ html += `
 html += `</form>`;
 
 setupContent.innerHTML = html;
+setupAgentTargetBehaviour();
+setupAgentAccordions();
+
+}
+
+
+
+/* =========================
+   AGENT TARGET BEHAVIOUR
+========================= */
+
+function setupAgentTargetBehaviour() {
+
+  if (type !== "agent") return;
+
+  const targetField = document.querySelector(
+    '[name="target_type"]'
+  );
+
+  if (!targetField) return;
+
+  /* =========================
+     LOAD CLIENT WEBSITES
+  ========================= */
+
+  async function loadClientWebsites() {
+
+    try {
+
+      const websiteSelect =
+        document.querySelector(
+          '[name="selected_website"]'
+        );
+
+      if (!websiteSelect) return;
+
+      websiteSelect.innerHTML =
+        '<option>Loading...</option>';
+
+      const res = await fetch(
+        'https://modular-infrastructure.onrender.com/api/client-products?client_id=1'
+      );
+
+      const data = await res.json();
+
+      websiteSelect.innerHTML = "";
+
+      if (!data.data || data.data.length === 0) {
+
+        websiteSelect.innerHTML =
+          '<option>No websites found</option>';
+
+        return;
+
+      }
+
+      data.data.forEach(item => {
+
+        websiteSelect.innerHTML += `
+          <option value="${item.website_id}">
+            ${item.name}
+          </option>
+        `;
+
+      });
+
+    } catch (err) {
+
+      console.error(err);
+
+    }
+
+  }
+
+  /* =========================
+     LOAD CLIENT SYSTEMS
+  ========================= */
+
+  async function loadClientSystems() {
+
+    try {
+
+      const systemSelect =
+        document.querySelector(
+          '[name="selected_system"]'
+        );
+
+      if (!systemSelect) return;
+
+      systemSelect.innerHTML =
+        '<option>Loading...</option>';
+
+      const res = await fetch(
+        'https://modular-infrastructure.onrender.com/api/client-products/systems?client_id=1'
+      );
+
+      const data = await res.json();
+
+      systemSelect.innerHTML = "";
+
+      if (!data.data || data.data.length === 0) {
+
+        systemSelect.innerHTML =
+          '<option>No systems found</option>';
+
+        return;
+
+      }
+
+      data.data.forEach(item => {
+
+        systemSelect.innerHTML += `
+          <option value="${item.system_id}">
+            ${item.name}
+          </option>
+        `;
+
+      });
+
+    } catch (err) {
+
+      console.error(err);
+
+    }
+
+  }
+
+  /* =========================
+     TARGET FIELDS
+  ========================= */
+
+  const allTargetFields = [
+
+    "selected_website",
+
+    "website_name",
+    "website_url",
+    "website_platform",
+
+    "selected_system",
+
+    "system_name",
+    "system_url",
+    "system_type",
+
+    "platform_name",
+    "account_name",
+    "profile_url"
+
+  ];
+
+  function hideAllTargetFields() {
+
+    allTargetFields.forEach(name => {
+
+      const field = document.querySelector(
+        `[data-field="${name}"]`
+      );
+
+      if (field) {
+        field.style.display = "none";
+      }
+
+    });
+
+  }
+
+  function updateTargetFields() {
+
+    hideAllTargetFields();
+
+    const selected = targetField.value;
+
+    /* PLATFORM WEBSITE */
+
+    if (selected === "Platform Website") {
+
+      const field = document.querySelector(
+        '[data-field="selected_website"]'
+      );
+
+      if (field) {
+        field.style.display = "block";
+      }
+
+      loadClientWebsites();
+
+    }
+
+    /* EXTERNAL WEBSITE */
+
+    if (selected === "External Website") {
+
+      [
+        "website_name",
+        "website_url",
+        "website_platform"
+      ].forEach(name => {
+
+        const field = document.querySelector(
+          `[data-field="${name}"]`
+        );
+
+        if (field) {
+          field.style.display = "block";
+        }
+
+      });
+
+    }
+
+    /* PLATFORM SYSTEM */
+
+    if (selected === "Platform System") {
+
+      const field = document.querySelector(
+        '[data-field="selected_system"]'
+      );
+
+      if (field) {
+        field.style.display = "block";
+      }
+
+      loadClientSystems();
+
+    }
+
+    /* EXTERNAL SYSTEM */
+
+if (selected === "External System") {
+
+  [
+    "system_name",
+    "system_url",
+    "system_type"
+  ].forEach(name => {
+
+    const field = document.querySelector(
+      `[data-field="${name}"]`
+    );
+
+    if (field) {
+      field.style.display = "block";
+    }
+
+  });
+
+}
+
+    /* SOCIAL PLATFORM */
+
+if (selected === "Social Platform") {
+
+  [
+    "platform_name",
+    "account_name",
+    "profile_url"
+  ].forEach(name => {
+
+    const field = document.querySelector(
+      `[data-field="${name}"]`
+    );
+
+    if (field) {
+      field.style.display = "block";
+    }
+
+  });
+
+}
+
+  }
+
+  hideAllTargetFields();
+
+  targetField.addEventListener(
+    "change",
+    updateTargetFields
+  );
+
+  updateTargetFields();
+  
+  
+
+}
+
+/* =========================
+   AGENT ACCORDIONS
+========================= */
+
+function setupAgentAccordions() {
+
+  if (type !== "agent") return;
+
+  const accordions =
+    document.querySelectorAll(
+      ".accordion-section"
+    );
+
+  accordions.forEach(section => {
+
+    const header =
+      section.querySelector(
+        ".accordion-header"
+      );
+
+    if (!header) return;
+
+    header.addEventListener(
+      "click",
+      () => {
+
+        section.classList.toggle(
+          "active"
+        );
+
+      }
+    );
+
+  });
 
 }
 
 /* =========================
    SUBMIT FORM
 ========================= */
-document.addEventListener(
-"submit",
-async (e) => {
+document.addEventListener("submit", async (e) => {
+  if (e.target.id !== "setupForm") return;
 
-if (
-e.target.id !==
-"setupForm"
-) return;
+  e.preventDefault();
 
-e.preventDefault();
+  const form = e.target;
+  const submitBtn = form.querySelector("button");
 
-const form =
-e.target;
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Submitting...";
+  submitBtn.style.background = "#9CA3AF";
+  submitBtn.style.cursor = "not-allowed";
 
-const submitBtn =
-form.querySelector("button");
+  const formData = new FormData(form);
+  formData.append("item_type", type);
 
-submitBtn.disabled =
-true;
+  if (type === "system") {
+    formData.append("system_id", id);
+  }
 
-submitBtn.textContent =
-"Submitting...";
+  if (type === "website") {
+    formData.append("website_id", id);
+  }
 
-submitBtn.style.background =
-"#9CA3AF";
+  if (type === "agent") {
+    formData.append("client_id", 1); // temporary
+    formData.append("agent_id", id);
+  }
 
-submitBtn.style.cursor =
-"not-allowed";
+  if (type === "agent") {
 
-const formData =
-new FormData(form);
+  const targetType =formData.get("target_type");
 
-formData.append(
-"item_type",
-type
-);
+  if (targetType === "Platform Website") {
 
-if (type === "system") {
+    formData.append("target_reference",
+      formData.get("selected_website")
+    );
+  }
 
-formData.append(
-"system_id",
-id
-);
+  if (targetType === "Platform System") {
 
-}
+    formData.append(
+      "target_reference",
+      formData.get("selected_system")
+    );
+    }
+  }
 
-if (type === "website") {
+  const submitUrl =
+    type === "agent"
+      ? "https://modular-infrastructure.onrender.com/api/agentSetup/submit"
+      : "https://modular-infrastructure.onrender.com/api/setup/submit";
 
-formData.append(
-"website_id",
-id
-);
+  try {
+    const res = await fetch(submitUrl, {
+      method: "POST",
+      body: formData
+    });
 
-}
+    const data = await res.json();
 
-try {
+    if (data.success) {
+      submitBtn.textContent = "Submitted ✓";
+      submitBtn.style.background = "#16a34a";
 
-const res =
-await fetch(
-"https://modular-infrastructure.onrender.com/api/setup/submit",
-{
-method: "POST",
-body: formData
-}
-);
-
-const data =
-await res.json();
-
-if (data.success) {
-
-submitBtn.textContent =
-"Submitted ✓";
-
-submitBtn.style.background =
-"#16a34a";
-
-setTimeout(() => {
-
-window.location.href =
-"dashboard.html";
-
-}, 1500);
-
-} else {
-
-submitBtn.disabled =
-false;
-
-submitBtn.textContent =
-"Submit Information";
-
-submitBtn.style.background =
-"#ef4444";
-
-alert(
-"Submission failed."
-);
-
-}
-
-} catch (err) {
-
-console.error(err);
-
-submitBtn.disabled =
-false;
-
-submitBtn.textContent =
-"Submit Information";
-
-submitBtn.style.background =
-"#ef4444";
-
-alert(
-"Something went wrong."
-);
-
-}
-
+      setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 1500);
+    } else {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit Information";
+      submitBtn.style.background = "#ef4444";
+      alert("Submission failed.");
+    }
+  } catch (err) {
+    console.error(err);
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Submit Information";
+    submitBtn.style.background = "#ef4444";
+    alert("Something went wrong.");
+  }
 });
 
 

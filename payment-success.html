@@ -126,23 +126,27 @@ tx_ref
    PAGE CONTENT
 ========================= */
 
-const isWebsite =
-item_type === "website";
+let itemName = "system";
+let setupType = "system";
+let setupButtonText =
+  "Proceed to System Setup";
 
-const itemName =
-isWebsite
-? "website"
-: "system";
+if (item_type === "website") {
 
-const setupType =
-isWebsite
-? "website"
-: "system";
+  itemName = "website";
+  setupType = "website";
+  setupButtonText =
+    "Proceed to Website Setup";
 
-const setupButtonText =
-isWebsite
-? "Proceed to Website Setup"
-: "Proceed to System Setup";
+} else if (item_type === "agent") {
+
+  itemName = "agent";
+  setupType = "agent";
+  setupButtonText =
+    "Proceed to Agent Setup";
+
+}
+
 
 /* =========================
    MISSING PAYMENT INFO

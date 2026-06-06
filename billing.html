@@ -211,11 +211,12 @@
 
       <div class="popup-header">
   <h1>Billing Summary</h1>
-  <p>Review your system before payment</p>
+  <p  id="billingSubtitle"></p>
 </div>
 
       <h2 id="systemName"></h2>
       <p id="billingLabel"></p>
+      <p id="itemDescription"></p>
 
       <div class="price-box setup-price">
         <p>Setup Fee</p>
@@ -238,7 +239,7 @@
       </div>
 
       <div class="actions">
-        <button id="continuePayment">Proceed Payment</button>
+        <button id="continuePayment">Proceed to Payment</button>
         <button id="closePopup">Close</button>
       </div>
 
@@ -252,14 +253,20 @@
   document.addEventListener("DOMContentLoaded", () => {
 
     const params = new URLSearchParams(window.location.search);
-   const id = params.get("id");
-const type = params.get("type") || "system";
 
+const id = params.get("id");
+const type = params.get("type");
 
-    if (!id) {
-  alert("No item selected");
+if (!id || !type) {
+  alert("Invalid item selected");
   return;
 }
+
+if (!["website", "system", "agent"].includes(type)) {
+  alert("Invalid item type");
+  return;
+}
+
 
     // FETCH ITEM
 
@@ -271,11 +278,17 @@ if (type === "website") {
   apiUrl =
     "https://modular-infrastructure.onrender.com/api/websites/websites/" + id;
 
+} else if (type === "agent") {
+
+  apiUrl =
+    "https://modular-infrastructure.onrender.com/api/agents/" + id;
+
 } else {
 
   apiUrl =
     "https://modular-infrastructure.onrender.com/api/systems/" + id;
 }
+
 
 fetch(apiUrl)
   .then(res => res.json())
@@ -283,10 +296,13 @@ fetch(apiUrl)
 
     // Dynamic popup header
     document.querySelector(".popup-header p")
-      .innerText =
-      type === "website"
-        ? "Review your website before payment"
-        : "Review your system before payment";
+  .innerText =
+  type === "website"
+    ? "Review your website before payment"
+    : type === "agent"
+    ? "Review your agent before payment"
+    : "Review your system before payment";
+
 
     // Dynamic monthly title
     document.getElementById("monthlyTitle")
@@ -301,12 +317,16 @@ fetch(apiUrl)
       data.full_name || data.name;
 
     // Type
-    document.getElementById("billingLabel")
+    // Type
+document.getElementById("billingLabel")
+  .innerText =
+  `Type: ${data.type.charAt(0).toUpperCase() + data.type.slice(1)}`;
+
+        // Description
+    document.getElementById("itemDescription")
       .innerText =
-      "Type: " +
-      (type === "website"
-        ? "Website"
-        : "System");
+      data.description || "";
+
 
     // Setup Fee
     document.getElementById("setupPrice")
@@ -357,21 +377,38 @@ document.getElementById("continuePayment").onclick =
 
   try {
 
-    const payload =
-      type === "website"
-      ? {
+    let payload = {};
+
+      if (type === "website") {
+
+        payload = {
           client_id: 1, // temporary
           item_type: "website",
           website_id: id,
           selected_plan: "basic",
           email: "test@email.com"
-        }
-      : {
+        };
+
+      } else if (type === "agent") {
+
+        payload = {
+          client_id: 1, // temporary
+          item_type: "agent",
+          agent_id: id,
+          email: "test@email.com"
+        };
+
+      } else {
+
+        payload = {
           client_id: 1, // temporary
           item_type: "system",
           system_id: id,
           email: "test@email.com"
         };
+
+      }
+
 
     const res = await fetch(
       "https://modular-infrastructure.onrender.com/api/pay",
