@@ -283,7 +283,7 @@ if (type === "website") {
   apiUrl =
     "https://modular-infrastructure.onrender.com/api/agents/" + id;
 
-} else {
+} else if (type === "system") {
 
   apiUrl =
     "https://modular-infrastructure.onrender.com/api/systems/" + id;
@@ -319,7 +319,7 @@ fetch(apiUrl)
     // Full Name
 document.getElementById("itemFullName")
   .innerText =
-  data.full.name || "";
+  data.full_name || "";
 
         // Type
     document.getElementById("itemType")
@@ -400,7 +400,7 @@ document.getElementById("continuePayment").onclick =
           email: "test@email.com"
         };
 
-      } else {
+      } else if (type === "system"){
 
         payload = {
           client_id: 1, // temporary
