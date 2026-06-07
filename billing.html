@@ -150,7 +150,7 @@
   /* =========================
      LABEL
   ========================= */
-  #billingLabel {
+  #itemType {
     margin-top: 12px;
     font-size: 13px;
     color: #444;
@@ -214,9 +214,9 @@
   <p  id="billingSubtitle"></p>
 </div>
 
-      <h2 id="systemName"></h2>
-      <p id="billingLabel"></p>
-      <p id="itemDescription"></p>
+      <h2 id="itemName"></h2>
+      <p id="itemFullName"></p>
+      <p id="itemType"></p>
 
       <div class="price-box setup-price">
         <p>Setup Fee</p>
@@ -312,20 +312,22 @@ fetch(apiUrl)
         : "Monthly";
 
     // Name
-    document.getElementById("systemName")
+    document.getElementById("itemName")
       .innerText =
-      data.full_name || data.name;
+      data.name || "";
 
-    // Type
-    // Type
-document.getElementById("billingLabel")
+    // Full Name
+document.getElementById("itemFullName")
   .innerText =
-  `Type: ${data.type.charAt(0).toUpperCase() + data.type.slice(1)}`;
+  data.full.name || "";
 
-        // Description
-    document.getElementById("itemDescription")
+        // Type
+    document.getElementById("itemType")
       .innerText =
-      data.description || "";
+      `type; ${
+      data.type.charAt(0).toUperCase() +
+      data.type.slice(1)
+      }`;
 
 
     // Setup Fee
