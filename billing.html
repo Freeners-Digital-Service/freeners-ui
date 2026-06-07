@@ -274,65 +274,51 @@ let apiUrl = "";
 let monthlyFee = 0;
 
 if (type === "website") {
-
   apiUrl =
     "https://modular-infrastructure.onrender.com/api/websites/websites/" + id;
-
 } else if (type === "agent") {
-
   apiUrl =
     "https://modular-infrastructure.onrender.com/api/agents/" + id;
-
 } else if (type === "system") {
-
   apiUrl =
     "https://modular-infrastructure.onrender.com/api/systems/" + id;
 }
-
 
 fetch(apiUrl)
   .then(res => res.json())
   .then(data => {
 
     // Dynamic popup header
-    document.querySelector(".popup-header p")
-  .innerText =
-  type === "website"
-    ? "Review your website before payment"
-    : type === "agent"
-    ? "Review your agent before payment"
-    : "Review your system before payment";
-
+    document.querySelector(".popup-header p").innerText =
+      type === "website"
+        ? "Review your website before payment"
+        : type === "agent"
+        ? "Review your agent before payment"
+        : "Review your system before payment";
 
     // Dynamic monthly title
-    document.getElementById("monthlyTitle")
-      .innerText =
+    document.getElementById("monthlyTitle").innerText =
       type === "website"
         ? "Current Service Fee"
         : "Monthly";
 
     // Name
-    document.getElementById("itemName")
-      .innerText =
+    document.getElementById("itemName").innerText =
       data.name || "";
 
     // Full Name
-document.getElementById("itemFullName")
-  .innerText =
-  data.full_name || "";
+    document.getElementById("itemFullName").innerText =
+      data.full_name || "";
 
-        // Type
-    document.getElementById("itemType")
-      .innerText =
-      `type; ${
-      data.type.charAt(0).toUperCase() +
-      data.type.slice(1)
+    // Type
+    document.getElementById("itemType").innerText =
+      `Type: ${
+        data.type.charAt(0).toUpperCase() +
+        data.type.slice(1)
       }`;
 
-
     // Setup Fee
-    document.getElementById("setupPrice")
-      .innerText =
+    document.getElementById("setupPrice").innerText =
       "$" + data.setup_fee;
 
     // Monthly Fee
@@ -341,27 +327,23 @@ document.getElementById("itemFullName")
         ? data.basic_monthly_fee
         : data.monthly_fee;
 
-    document.getElementById("monthlyPrice")
-      .innerText =
+    document.getElementById("monthlyPrice").innerText =
       "$" + monthlyFee;
 
     // Total Today
-    document.getElementById("totalToday")
-      .innerText =
+    document.getElementById("totalToday").innerText =
       "$" + (
         Number(data.setup_fee) +
         Number(monthlyFee)
       );
 
     // Next Billing
-    document.getElementById("monthlyNext")
-      .innerText =
+    document.getElementById("monthlyNext").innerText =
       "$" + monthlyFee + "/month";
 
     // Open popup
-    document.getElementById("billingPopup")
-      .style.display = "flex";
-
+    document.getElementById("billingPopup").style.display =
+      "flex";
   })
   .catch(err => {
     console.error(err);
@@ -369,9 +351,10 @@ document.getElementById("itemFullName")
   });
 
     // CLOSE POPUP
-    document.getElementById("closePopup").onclick = () => {
-      document.getElementById("billingPopup").style.display = "none";
-    };
+document.getElementById("closePopup").onclick = () => {
+  document.getElementById("billingPopup").style.display = "none";
+};
+
 
     /// PAYMENT
 document.getElementById("continuePayment").onclick =
