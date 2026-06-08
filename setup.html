@@ -635,15 +635,16 @@ else if (field.type === "select") {
     >
   `;
 
-  field.options.forEach(option => {
+  const options = field.options || [];
 
-    html += `
-      <option value="${option}">
-        ${option}
-      </option>
-    `;
+options.forEach(option => {
+  html += `
+    <option value="${option}">
+      ${option}
+    </option>
+  `;
+});
 
-  });
 
   html += `
     </select>
